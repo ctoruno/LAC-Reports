@@ -108,24 +108,24 @@ WJP_theme <- function() {
         panel.grid.minor   = element_blank(),
         axis.title.y       = element_text(family = "Lato Full",
                                           face     = "plain",
-                                          size     = 10,
+                                          size     = 3.514598*.pt,
                                           color    = "#524F4C",
                                           margin   = margin(0, 10, 0, 0)),
         axis.title.x       = element_text(family = "Lato Full",
                                           face     = "plain",
-                                          size     = 10,
+                                          size     = 3.514598*.pt,
                                           color    = "#524F4C",
                                           margin   = margin(10, 0, 0, 0)),
         axis.text.y        = element_text(family = "Lato Full",
                                           face     = "plain",
-                                          size     = 10,
+                                          size     = 3.514598*.pt,
                                           color    = "#524F4C"),
         axis.text.x = element_text(family = "Lato Full",
                                    face   = "plain",
-                                   size   = 10,
+                                   size   = 3.514598*.pt,
                                    color  = "#524F4C"),
         axis.ticks  = element_blank(),
-        plot.margin  = unit(c(10, 10, 10, 10), "points")
+        plot.margin  = unit(c(0, 0, 0, 0), "points")
   ) 
 }
 
@@ -156,7 +156,6 @@ eastCaribbean.ls <- c(
   "St. Kitts and Nevis",
   "St. Lucia",
   "St. Vincent and the Grenadines",
-  "Suriname",
   "Trinidad and Tobago"
 )
 
@@ -214,9 +213,12 @@ map(
   }
 )
 
+# Country Set to include in the reports
+countrySet <- c(mainCountry, comparison_countries.ls)
+
 # Updating the country color palette to match the length of the group of countries
 countryPalette <- countryPalette[1:4]
-names(countryPalette) <- c(mainCountry, comparison_countries.ls)
+names(countryPalette) <- countrySet
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -244,18 +246,21 @@ for (plot in 1:18) {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-saveIT.fn <- function(chart, suffix = NULL, w, h) {
+saveIT.fn <- function(chart, n, suffix = NULL, w, h) {
   ggsave(plot   = chart,
-         file   = paste0("Outputs/", 
-                         str_replace(mainCountry, " ", "_"),
-                         "figure_", chart,
-                         "figure_", chart, suffix, ".svg"), 
+         file   = file.path("Outputs", 
+                            str_replace(mainCountry, " ", "_"),
+                            paste0("figure_", n),
+                            paste0("figure_", n, suffix, ".svg"),
+                            fsep = "/"), 
          width  = w, 
          height = h,
-         units  = "in",
-         dpi    = 300,
+         units  = "mm",
+         dpi    = 72,
          device = "svg")
 } 
+
+
   
 
   

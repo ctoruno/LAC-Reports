@@ -1,0 +1,277 @@
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## Script:            LAC Country Reports - Section I
+##
+## Author(s):         Carlos A. Toruño Paniagua   (ctoruno@worldjusticeproject.org)
+##                    A. Santiago Pardo G.        (spardo@worldjusticeproject.org)
+##
+## Dependencies:      World Justice Project
+##
+## Creation date:     November 18th, 2022
+##
+## This version:      November 21st, 2022
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## Outline:                                                                                                 ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 1                                                                                              ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 2                                                                                              ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 3                                                                                              ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 4                                                                                              ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure04.fn <- function(){
+  
+  nchart = 4
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear) %>%
+    select(country, q50, q51, q52, CAR_q73, CAR_q74) %>%
+    mutate(
+      q52 = case_when(
+        q52 == 1 ~ 4,
+        q52 == 2 ~ 3,
+        q52 == 3 ~ 2,
+        q52 == 4 ~ 1,
+        q52 == 5 ~ 5,
+        q52 == 99 ~ 99
+      ),
+      across(!country,
+             ~if_else(.x < 3, 1, 0),
+             .names = "{.col}_pos"),
+      across(c(q50, q51, q52, CAR_q73, CAR_q74),
+             ~if_else(.x == 3 | .x == 4, 1, 0),
+             .names = "{.col}_neg")
+    ) %>%
+    group_by(country) %>%
+    summarise(
+      total = n(),
+      across(c(ends_with("_pos"),
+               ends_with("_neg")),
+             sum,
+             na.rm = T)
+    ) %>%
+    pivot_longer(!c(country, total),
+                 values_to = "abs_value",
+                 names_to  = "category") %>%
+    mutate(
+      perc    = round((abs_value/total)*100, 
+                      1),
+      status  = if_else(str_detect(category, "_neg"), 
+                        "Negative", 
+                        "Positive"),
+      perc    = if_else(str_detect(category, "_neg"), 
+                        perc*-1, 
+                        perc),
+      label   = paste0(format(abs(perc),
+                              nsmall = 1),
+                       "%"),
+      group   = str_replace_all(category, "_pos|_neg", "")
+    )
+  
+  # Customizing colorPalette for plot
+  colors4plot <- binPalette
+  names(colors4plot) <- c("Positive", "Negative")
+  
+  # The height of the plot depends on the number of countries
+  if (length(countrySet) == 3) {
+    h = 15.464229
+  }
+  if (length(countrySet) == 4) {
+    h = 20.736125
+  }
+  if (length(countrySet) == 6) {
+    h = 31.279918
+  }
+  if (length(countrySet) > 6) {
+    h = 41.823711
+  }
+  
+  # Plotting each panel of Figure 4
+  imap(c("A" = "q50", 
+         "B" = "q51", 
+         "C" = "q52",
+         "D" = "CAR_q73",
+         "E" = "CAR_q74"),
+       function(var4plot, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(group %in% var4plot)
+         
+         # Applying plotting function
+         chart <- LAC_divBars(data           = data2plot,
+                              target_var     = "perc",
+                              grouping_var   = "country",
+                              diverging_var  = "status",
+                              negative_value = "Negative",
+                              colors         = colors4plot,
+                              labels_var     = "label")
+         
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 100.8689,
+                   h      = h)
+         
+         
+       })
+}
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 5                                                                                              ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure05.fn <- function() {
+  
+  nchart = 5
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry) %>%
+    select(year,
+           q46c_G2, q46f_G2, q46g_G2, q46c_G1, q46e_G2,
+           q46d_G2, q46f_G1, q46a_G2,
+           q46d_G1, q46e_G1, q46h_G2) %>%
+    mutate(
+      across(!year,
+             ~ case_when(
+               .x == 1 | .x == 2 ~ 1,
+               .x == 3 | .x == 4 | .x == 99 ~ 0
+             )),
+      year = paste0("'", str_sub(year, start = -2))
+    ) %>%
+    group_by(year) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(!year,
+                 names_to  = "category",
+                 values_to = "value") %>%
+    mutate(value = value*100,
+           label = paste0(format(round(value, 0),
+                                 nsmall = 0),
+                          "%"))
+  
+  # Plotting each panel of Figure 5
+  imap(c("A" = "q46c_G2", "B" = "q46f_G2", "C" = "q46g_G2", "D" = "q46c_G1", "E" = "q46e_G2",
+         "F" = "q46d_G2", "G" = "q46f_G1", "H" = "q46a_G2",
+         "I" = "q46d_G1", "J" = "q46e_G1", "K" = "q46h_G2"),
+       function(var4plot, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(category %in% var4plot)
+         
+         # Defining colors4plot
+         colors4plot <- mainCOLOR
+         names(colors4plot) <- var4plot
+         
+         # Applying plotting function
+         chart <- LAC_lineChart(data           = data2plot,
+                                target_var     = "value",
+                                grouping_var   = "year",
+                                ngroups        = 1, 
+                                labels_var     = "label",
+                                colors_var     = "category",
+                                colors         = colors4plot
+                                )
+         
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 90.67663,
+                   h      = 45.68977)
+         
+       })
+    
+  
+  
+}
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 6                                                                                              ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 7                                                                                              ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure07.fn <- function() {
+  
+  nchart = 7
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    select(country, year, q43_G2) %>% 
+    mutate(
+      q43_G2 = if_else(q43_G2 == 3, 1, 
+                       if_else(!is.na(q43_G2), 0, NA_real_)),
+      year = paste0("'", str_sub(year, start = -2))
+    ) %>%     
+    group_by(year, country) %>%
+    summarise(value2plot = mean(q43_G2, na.rm = T)) %>%
+    mutate(value2plot = value2plot*100,
+           label = paste0(format(round(value2plot, 0),
+                                 nsmall = 0),
+                          "%"),
+           label = if_else(country == mainCountry, label, NA_character_))
+  
+  # # Defining colors4plot
+  colors4plot <- countryPalette
+  names(colors4plot) <- countrySet
+  
+  # Applying plotting function
+  chart <- LAC_lineChart(data           = data2plot,
+                         target_var     = "value2plot",
+                         grouping_var   = "year",
+                         ngroups        = data2plot$country, 
+                         labels_var     = "label",
+                         colors_var     = "country",
+                         colors         = colors4plot,
+                         repel          = T
+  )
+  
+  # Saving panels
+  saveIT.fn(chart  = chart,
+            n      = nchart,
+            suffix = NULL,
+            w      = 189.7883,
+            h      = 149.7219)
+  
+}
