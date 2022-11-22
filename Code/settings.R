@@ -84,12 +84,6 @@ font_add(family  = "Lato Black",
          regular = paste0(path2fonts, "Lato-Black.ttf"))
 font_add(family  = "Lato Black Italic",
          regular = paste0(path2fonts, "Lato-BlackItalic.ttf"))
-font_add(family = "FontAwesome", 
-         regular = paste0(path2fonts, "fontawesome-webfont.ttf"))
-font_add(family = "FontAwesome5Free-Solid", 
-         regular = paste0(path2fonts, "fa-solid-900.ttf"))
-font_add(family = "FontAwesome 5 Brands", 
-         regular = paste0(path2fonts, "fa-brands-400.ttf"))
 showtext_auto()
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
