@@ -1,6 +1,6 @@
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-## Script:            LAC Country Reports - Section I Functions
+## Script:            LAC Country Reports - Section II Functions
 ##
 ## Author(s):         Carlos A. Toruño Paniagua   (ctoruno@worldjusticeproject.org)
 ##                    A. Santiago Pardo G.        (spardo@worldjusticeproject.org)
