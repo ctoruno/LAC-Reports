@@ -96,7 +96,7 @@ showtext_auto()
 WJP_theme <- function() {
   theme(panel.background   = element_rect(fill = "white",
                                           size = 2),
-        panel.grid.major   = element_line(size     = 0.5,
+        panel.grid.major   = element_line(size     = 0.25,
                                           colour   = "#5e5c5a",
                                           linetype = "dashed"),
         panel.grid.minor   = element_blank(),
