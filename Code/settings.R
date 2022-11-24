@@ -254,7 +254,18 @@ saveIT.fn <- function(chart, n, suffix = NULL, w, h) {
          device = "svg")
 } 
 
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## 9.  Creating a to_percentage function                                                                    ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+to_percentage.fn <- function(value){
+  perc <- paste0(format(round(value, 0),
+                        nsmall = 0),
+                 "%")
   
+  return(perc)
+}
 
   
