@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 17th, 2022
 ##
-## This version:      November 18th, 2022
+## This version:      November 24th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -56,7 +56,11 @@ data_subset.df <- master_data.df %>%
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+# All the plotting functions from this sections are contained in the "Code/S01.R" file. Please refer to it
+# for more information.
+
 # Figure 1:
+figure01.fn()
 
 # Figure 2:
 
@@ -80,6 +84,9 @@ figure07.fn()
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+# All the plotting functions from this sections are contained in the "Code/S02.R" file. Please refer to it
+# for more information.
+
 # Figure 8:
 figure08.fn()
 
@@ -97,6 +104,9 @@ figure12.fn()
 ##   Section 3                                                                                              ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# All the plotting functions from this sections are contained in the "Code/S03.R" file. Please refer to it
+# for more information.
 
 # Figure 13.1:
 

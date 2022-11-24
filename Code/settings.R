@@ -98,7 +98,7 @@ WJP_theme <- function() {
                                           size = 2),
         panel.grid.major   = element_line(size     = 0.5,
                                           colour   = "#5e5c5a",
-                                          linetype = "dotted"),
+                                          linetype = "dashed"),
         panel.grid.minor   = element_blank(),
         axis.title.y       = element_text(family = "Lato Full",
                                           face     = "plain",

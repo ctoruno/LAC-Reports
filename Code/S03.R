@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 22nd, 2022
 ##
-## This version:      November 22nd, 2022
+## This version:      November 23rd, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -207,7 +207,7 @@ figure16.fn <- function() {
                                  nsmall = 0),
                           "%"))
   
-  # Plotting each panel of Figure 8
+  # Plotting each panel of Figure 16
   imap(c("A" = "Trust", 
          "B" = "Corruption", 
          "C" = "Effectiveness"),

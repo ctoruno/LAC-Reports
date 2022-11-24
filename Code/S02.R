@@ -159,7 +159,7 @@ figure12.fn <- function() {
                                  nsmall = 0),
                           "%"))
   
-  # Plotting each panel of Figure 8
+  # Plotting each panel of Figure 12
   imap(c("A" = "Community", 
          "B" = "Police", 
          "C" = "Executive", 
