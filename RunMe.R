@@ -56,7 +56,7 @@ data_subset.df <- master_data.df %>%
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# All the plotting functions from this sections are contained in the "Code/S01.R" file. Please refer to it
+# All the figure functions from this section are contained in the "Code/S01.R" file. Please refer to it
 # for more information.
 
 # Figure 1:
@@ -84,7 +84,7 @@ figure07.fn()
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# All the plotting functions from this sections are contained in the "Code/S02.R" file. Please refer to it
+# All the figure functions from this section are contained in the "Code/S02.R" file. Please refer to it
 # for more information.
 
 # Figure 8:
@@ -105,7 +105,7 @@ figure12.fn()
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# All the plotting functions from this sections are contained in the "Code/S03.R" file. Please refer to it
+# All the figure functions from this section are contained in the "Code/S03.R" file. Please refer to it
 # for more information.
 
 # Figure 13.1:
