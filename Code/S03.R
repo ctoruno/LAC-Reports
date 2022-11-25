@@ -362,6 +362,36 @@ figure16.fn <- function() {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure17.fn <- function() {
+  
+  nchart = 17
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry) %>%
+    slice_max(year) %>%
+    select(starts_with("EXP_q24") & !(matches("EXP_q24h_G2|EXP_q24e_G2"))) %>%
+    mutate(across(everything(), section.fn)) %>%
+    summarise(across(.fns = mean, na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "avg") %>%
+    arrange(desc(avg)) %>%
+    mutate(variable = case_when(
+      variable == "EXP_q24a_G1" ~ "Receive prompt and\ncourteous attention\nwhen they report a\ncrime",
+      variable == "EXP_q24b_G1" ~ "Are believed when\nthey report a crime",
+      variable == "EXP_q24c_G1" ~ "Receive effective and\ntimely medical and\npsychological care",
+      variable == "EXP_q24d_G1" ~ "Receive information\nand legal advice\nwhen going to the\nauthorities",
+      variable == "EXP_q24a_G2" ~ "Receive protection\nfrom the police if\ntheir safety is in\ndanger",
+      variable == "EXP_q24b_G2" ~ paste0("Receive protection\nduring criminal\nproceedings", 
+                                         " to\nprevent repeat\nvictimization"),
+      variable == "EXP_q24c_G2" ~ "Receive adequate\ncare and protection\nas victims of sexual\ncrimes",
+      variable == "EXP_q24d_G2" ~ "Receive adequate\ncare and protection\nas victims of\ndomestic violence",
+      variable == "EXP_q24f_G2" ~ paste0("Receive a clear\nexplanation of\nthe process when\nreporting",
+                                         " a crime to\nthe police"),
+      variable == "EXP_q24g_G2" ~ "Are addressed by\nthe police using\naccessible language"
+    ))
+}
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
