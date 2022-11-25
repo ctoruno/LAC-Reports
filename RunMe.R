@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 17th, 2022
 ##
-## This version:      November 24th, 2022
+## This version:      November 25th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -65,6 +65,7 @@ figure01.fn()
 # Figure 2:
 
 # Figure 3:
+figure03.fn()
 
 # Figure 4:
 figure04.fn()
@@ -91,10 +92,12 @@ figure07.fn()
 figure08.fn()
 
 # Figure 9:
+figure09.fn()
 
 # Figure 10:
 
 # Figure 11:
+figure11.fn()
 
 # Figure 12:
 figure12.fn()
@@ -117,6 +120,7 @@ figure12.fn()
 # Figure 14.2:
 
 # Figure 15:
+figure15.fn()
 
 # Figure 16:
 figure16.fn()
