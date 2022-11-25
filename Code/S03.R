@@ -24,6 +24,111 @@
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+security.universe <- function(master_data) {
+  
+  security.universe <- master_data %>%
+    filter(country %in% params$country) %>%
+    filter(year == 2022) %>%
+    select(# All variables related with security
+      starts_with("EXP_q8"), 
+      # Security perception
+      q9, 
+      # Sociodemographics 
+      skin_color, income_aux, gender, disability2, disability, area, age, edu,
+      # Variables related to institutions perfomance
+      q48b_G1, q48f_G1, q49a, CAR_q58_G1, q48f_G2, q48g_G2, 
+      # Trust in institutions
+      q1c, q1d, q1e, q1g, q1i, q41d) %>%
+    # This variable assigns the victim condition to each observation
+    mutate(victim = if_else(EXP_q8a_1 == 1 | EXP_q8a_2 == 1 | EXP_q8a_3 == 1 | EXP_q8a_4 == 1 | EXP_q8a_5 == 1 | EXP_q8a_6 == 1 | EXP_q8a_7 == 1 |
+                              EXP_q8a_8 == 1 | EXP_q8a_9 == 1 | EXP_q8a_10 == 1 | EXP_q8a_11 == 1 | EXP_q8a_12 == 1 | EXP_q8a_13 == 1 | EXP_q8a_14 == 1 |
+                              EXP_q8b_1 == 1 | EXP_q8b_2 == 1 | EXP_q8b_3 == 1 | EXP_q8b_4 == 1 | EXP_q8b_5 == 1, 1, 0, 0))
+  
+  return(security.universe)
+} # This is going to be refactoring
+
+security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
+
+victims <- security_universe %>%
+  summarise(victim = round(mean(victim, na.rm = T),2)) %>%
+  mutate(non_victim = 1 - victim)
+
+report <- security_universe %>%
+  mutate(EXP_q8d = if_else(EXP_q8d == 1, 1, 0)) %>%
+  filter(victim == 1) %>%
+  summarise(report = round(mean(EXP_q8d, na.rm = T),2)) %>%
+  mutate(non_report = 1 - report)
+
+fill_report <- security_universe %>%
+  filter(victim == 1) %>%
+  mutate(EXP_q8d = if_else(EXP_q8d == 1, 1, 0),
+         EXP_q8f = if_else(EXP_q8f == 1, 1, 0)) %>%
+  group_by(EXP_q8d) %>%
+  summarise(fill_report = round(mean(EXP_q8f, na.rm = T),2)) %>%
+  mutate(non_fill_report = 1 - fill_report) %>%
+  filter(EXP_q8d == 1) %>%
+  select(!EXP_q8d)
+
+t1 <- sample(x = c("Victim", "Non-Victim"), size = 1000, replace = TRUE, prob = c(1,0))
+t2 <- sample(x = c("Non-Report", "Report"), size = 1000, replace = TRUE, prob = c(report$non_report, report$report))
+t3 <- sample(x = c("Non-Official", "Official"), size = 1000, replace = TRUE, prob = c(fill_report$non_fill_report,fill_report$fill_report))
+
+d <- data.frame(cbind(t1, t2))
+names(d) <- c("Victim", "Report")
+
+
+df <- d %>%
+  mutate(`Official Crime Report` = if_else(Report %in% "Report", t3, " ")) 
+
+data2plot <- df %>%
+  make_long(Victim, Report, `Official Crime Report`)
+
+y <- c(1, 725, -250, 600, 125)
+x <- c(0.8, 2, 2.25, 3.25, 3.25)
+label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> of Colombians <br>were victims <br>of a crime"),
+           paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> reported <br> the crime"),
+           paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> did not report <br>the crime"),
+           paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> filed an official <br> crime report"),
+           paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> did not file an <br>official crime report"))
+df <- data.frame(label)
+
+pl <- ggplot(data = data2plot, aes(x = x, 
+                                   next_x = next_x,
+                                   node = node,
+                                   next_node = next_node,
+                                   fill = factor(node))) +
+  geom_sankey(flow.alpha = 0.5,
+              node.color = "white",
+              show.legend = FALSE) +
+  geom_richtext(data = df, aes(x = x, label = label, y = y, 
+                               next_x = NULL, node = NULL, 
+                               next_node = NULL, fill = NULL), 
+                fill = NA, label.color = NA, hjust = 0.5, vjust = 0.5) +
+  scale_fill_manual(values = c("Victim" = "#003b8a",
+                               'Non-Victim' = "#003b8a",
+                               "Report" = "#003b8a",
+                               "Non-Report" = "white",
+                               "Official" = "#003b8a",
+                               "Non-Official" = "#fa4d57",
+                               ' ' = "white")) +
+  theme_sankey(base_size = 10, base_rect_size = 10) +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(family ="Lato Black", 
+                                   size = 14, 
+                                   hjust = -0.0,
+                                   color = "Black"),
+        axis.text.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.subtitle = element_text(family = "Lato Light Italic",
+                                     size = 10,
+                                     color ="Black"),
+        plot.title= element_text(family ="Lato Black", 
+                                 size = 12, 
+                                 hjust = -0.0,
+                                 color = "Black"));pl
+pl
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
