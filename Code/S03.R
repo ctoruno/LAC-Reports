@@ -27,14 +27,14 @@
 security.universe <- function(master_data) {
   
   security.universe <- master_data %>%
-    filter(country %in% params$country) %>%
+    filter(country %in% mainCountry) %>%
     filter(year == 2022) %>%
     select(# All variables related with security
       starts_with("EXP_q8"), 
       # Security perception
       q9, 
       # Sociodemographics 
-      skin_color, income_aux, gender, disability2, disability, area, age, edu,
+      COLOR, income_aux, gender, disability2, disability, Urban, age, edu,
       # Variables related to institutions perfomance
       q48b_G1, q48f_G1, q49a, CAR_q58_G1, q48f_G2, q48g_G2, 
       # Trust in institutions
@@ -83,13 +83,13 @@ df <- d %>%
 data2plot <- df %>%
   make_long(Victim, Report, `Official Crime Report`)
 
-y <- c(1, 725, -250, 600, 125)
-x <- c(0.8, 2, 2.25, 3.25, 3.25)
-label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> of Colombians <br>were victims <br>of a crime"),
-           paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> reported <br> the crime"),
-           paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> did not report <br>the crime"),
-           paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> filed an official <br> crime report"),
-           paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:4.217518mm'> did not file an <br>official crime report"))
+y <- c(1, 1000, -300, 600, 75)
+x <- c(0.6, 2, 2.3, 3.3, 3.3)
+label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of Colombians <br>were victims <br>of a crime"),
+           paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> reported <br> the crime"),
+           paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not report <br>the crime"),
+           paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> filed an official <br> crime report"),
+           paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not file an <br>official crime report"))
 df <- data.frame(label)
 
 pl <- ggplot(data = data2plot, aes(x = x, 
@@ -104,6 +104,7 @@ pl <- ggplot(data = data2plot, aes(x = x,
                                next_x = NULL, node = NULL, 
                                next_node = NULL, fill = NULL), 
                 fill = NA, label.color = NA, hjust = 0.5, vjust = 0.5) +
+  scale_y_continuous(expand = expansion(mult = c(0.225,0.225))) +
   scale_fill_manual(values = c("Victim" = "#003b8a",
                                'Non-Victim' = "#003b8a",
                                "Report" = "#003b8a",
@@ -116,19 +117,18 @@ pl <- ggplot(data = data2plot, aes(x = x,
         axis.title.x = element_blank(),
         axis.title.y = element_blank(),
         axis.text.x = element_text(family ="Lato Black", 
-                                   size = 14, 
+                                   size = 3.514598*.pt, 
                                    hjust = -0.0,
                                    color = "Black"),
         axis.text.y = element_blank(),
-        axis.ticks.x = element_blank(),
-        plot.subtitle = element_text(family = "Lato Light Italic",
-                                     size = 10,
-                                     color ="Black"),
-        plot.title= element_text(family ="Lato Black", 
-                                 size = 12, 
-                                 hjust = -0.0,
-                                 color = "Black"));pl
+        axis.ticks.x = element_blank());pl
 pl
+
+saveIT.fn(chart  = pl,
+          n      = 13,
+          suffix = "B",
+          w      = 175.027,
+          h      = 94.54267)
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
