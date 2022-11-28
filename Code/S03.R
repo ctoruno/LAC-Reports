@@ -383,10 +383,7 @@ figure16.fn <- function() {
                    h      = 49.90729)
          
        })
-  
 } 
-
-
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -394,36 +391,6 @@ figure16.fn <- function() {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure17.fn <- function() {
-  
-  nchart = 17
-  
-  # Defining data frame for plot
-  data2plot <- data_subset.df %>%
-    filter(country == mainCountry) %>%
-    slice_max(year) %>%
-    select(starts_with("EXP_q24") & !(matches("EXP_q24h_G2|EXP_q24e_G2"))) %>%
-    mutate(across(everything(), section.fn)) %>%
-    summarise(across(.fns = mean, na.rm = T)) %>%
-    pivot_longer(everything(),
-                 names_to  = "variable",
-                 values_to = "avg") %>%
-    arrange(desc(avg)) %>%
-    mutate(variable = case_when(
-      variable == "EXP_q24a_G1" ~ "Receive prompt and\ncourteous attention\nwhen they report a\ncrime",
-      variable == "EXP_q24b_G1" ~ "Are believed when\nthey report a crime",
-      variable == "EXP_q24c_G1" ~ "Receive effective and\ntimely medical and\npsychological care",
-      variable == "EXP_q24d_G1" ~ "Receive information\nand legal advice\nwhen going to the\nauthorities",
-      variable == "EXP_q24a_G2" ~ "Receive protection\nfrom the police if\ntheir safety is in\ndanger",
-      variable == "EXP_q24b_G2" ~ paste0("Receive protection\nduring criminal\nproceedings", 
-                                         " to\nprevent repeat\nvictimization"),
-      variable == "EXP_q24c_G2" ~ "Receive adequate\ncare and protection\nas victims of sexual\ncrimes",
-      variable == "EXP_q24d_G2" ~ "Receive adequate\ncare and protection\nas victims of\ndomestic violence",
-      variable == "EXP_q24f_G2" ~ paste0("Receive a clear\nexplanation of\nthe process when\nreporting",
-                                         " a crime to\nthe police"),
-      variable == "EXP_q24g_G2" ~ "Are addressed by\nthe police using\naccessible language"
-    ))
-}
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -431,4 +398,81 @@ figure17.fn <- function() {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure18.fn <- function() {
+  
+  nchart = 18
+  
+  # Defining variables to use in rose chart
+  vars4plot <- c("EXP_q24a_G1", "EXP_q24b_G1", "EXP_q24c_G1", "EXP_q24d_G1", "EXP_q24a_G2", "EXP_q24b_G2",
+                 "EXP_q24c_G2", "EXP_q24d_G2", "EXP_q24f_G2", "EXP_q24g_G2", "EXP_q23f_G1")
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry & year == latestYear) %>%
+    select(all_of(vars4plot)) %>%
+    mutate(
+      across(everything(), 
+             ~if_else(.x == 1 | .x == 2, 1, 
+                      if_else(!is.na(.x), 0,
+                              NA_real_)))
+    ) %>%
+    summarise(across(everything(),
+                     mean, 
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "category",
+                 values_to = "avg") %>%
+    arrange(desc(avg)) %>%
+    mutate(
+      percentage = to_percentage.fn(avg*100),
+      label = case_when(
+        category == "EXP_q24a_G1" ~ "Receive prompt and\ncourteous attention\nwhen they report a\ncrime",
+        category == "EXP_q24b_G1" ~ "Are believed when\nthey report a crime",
+        category == "EXP_q24c_G1" ~ "Receive effective and\ntimely medical and\npsychological care",
+        category == "EXP_q24d_G1" ~ "Receive information\nand legal advice\nwhen going to the\nauthorities",
+        category == "EXP_q24a_G2" ~ "Receive protection\nfrom the police if\ntheir safety is in\ndanger",
+        category == "EXP_q24b_G2" ~ paste0("Receive protection\nduring criminal\nproceedings", 
+                                           " to\nprevent repeat\nvictimization"),
+        category == "EXP_q24c_G2" ~ "Receive adequate\ncare and protection\nas victims of sexual\ncrimes",
+        category == "EXP_q24d_G2" ~ "Receive adequate\ncare and protection\nas victims of\ndomestic violence",
+        category == "EXP_q24f_G2" ~ paste0("Receive a clear\nexplanation of\nthe process when\nreporting",
+                                           " a crime to\nthe police"),
+        category == "EXP_q24g_G2" ~ "Are addressed by\nthe police using\naccessible language",
+        category == "EXP_q23f_G1" ~ "Are guaranteed\ntheir rights in\ncriminal justice\nproceedings"
+      ),
+      
+      # Converting labels into HTML syntax
+      across(label,
+             function(raw_label){
+               html <- paste0("<span style='color:#000000;font-size:6.326276mm;font-weight:bold'>",  
+                              percentage, "</span>",
+                              "<br>",
+                              "<span style='color:#524F4C;font-size:3.514598mm'>",
+                              str_replace_all(raw_label, "\\n", "<br>"),
+                              "</span>")
+               return(html)
+             })
+    )
+  
+  # Defining colors
+  colors4plot        <- rosePalette
+  names(colors4plot) <- data2plot %>% arrange(avg) %>% pull(category)
+  
+  # Applying plotting function
+  chart <- LAC_roseChart(data = data2plot,
+                         target_var    = "avg",
+                         grouping_var  = "category",
+                         alabels_var   = "label",
+                         plabels_var   = "percentage",
+                         colors        = colors4plot)
+  
+  # Saving panels
+  saveIT.fn(chart  = chart,
+            n      = nchart,
+            suffix = NULL,
+            w      = 189.7883,
+            h      = 168.7007)
+  
+  
+}
 
