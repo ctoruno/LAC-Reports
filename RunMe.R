@@ -112,11 +112,9 @@ figure12.fn()
 # for more information.
 
 # Figure 13.1:
-
 figure13_1.fn()
 
 # Figure 13.2:
-
 figure13_2.fn()
 
 # Figure 14.1:
@@ -133,5 +131,6 @@ figure16.fn()
 # Figure 17:
 
 # Figure 18:
+figure18.fn()
 
 
