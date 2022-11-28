@@ -43,7 +43,7 @@ figure01.fn <- function(){
     mutate(
       across(!country,
              ~if_else(.x == 1 | .x == 2, 1,
-                      if_else(!is.na(.x), 0, 
+                      if_else(!is.na(.x) & .x != 99, 0, 
                               NA_real_)))
     ) %>%
     group_by(country) %>%
@@ -121,11 +121,7 @@ figure01.fn <- function(){
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure02.fn <- function(){
-  
-  nchart = 2
-  
-}
+# Omitted from final Outline
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -158,7 +154,7 @@ figure03.fn <- function(){
                         "Non Gov. Supporter"),
       across(!c(paff3, govSupp),
              ~if_else(.x == 1 | .x == 2, 1,
-                      if_else(!is.na(.x), 0, 
+                      if_else(!is.na(.x) & .x != 99, 0, 
                               NA_real_)))
     ) %>%
     group_by(govSupp) %>%
@@ -253,7 +249,9 @@ figure04.fn <- function(){
              ~if_else(.x < 3, 1, 0),
              .names = "{.col}_pos"),
       across(c(q50, q51, q52, CAR_q73, CAR_q74),
-             ~if_else(.x == 3 | .x == 4, 1, 0),
+             ~if_else(.x == 3 | .x == 4, 1,
+                      if_else(!is.na(.x) & .x != 99, 0, 
+                              NA_real_)),
              .names = "{.col}_neg")
     ) %>%
     group_by(country) %>%
@@ -353,7 +351,7 @@ figure05.fn <- function() {
       across(!year,
              ~ case_when(
                .x == 1 | .x == 2 ~ 1,
-               .x == 3 | .x == 4 | .x == 99 ~ 0
+               .x == 3 | .x == 4 ~ 0
              )),
       year = paste0("'", str_sub(year, start = -2))
     ) %>%
@@ -412,6 +410,25 @@ figure05.fn <- function() {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure06.fn <- function() {
+  
+  nchart = 6
+  
+  # Defining variables to include in plot
+  vars4plot <- list("Expression"    = c("q46c_G2", "q46f_G2", "q46g_G2", "q46c_G1", "q46e_G2"),
+                    "Participation" = c("q46d_G2", "q46f_G1", "q46a_G2"),
+                    "Election"      = c("q46d_G1", "q46e_G1"),
+                    "Religion"      = c("q46h_G2"))
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear & country %in% countrySet) %>%
+    select(country, all_of(unlist(vars4plot, use.names = F)))
+    mutate(across(!country,
+                  ~if_else(.x == 3 | .x == 4, 1, 
+                           if_else(!is.na(.x) & .x != 99, 0, NA_real_))))
+  
+}
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -428,7 +445,8 @@ figure07.fn <- function() {
     select(country, year, q43_G2) %>% 
     mutate(
       q43_G2 = if_else(q43_G2 == 3, 1, 
-                       if_else(!is.na(q43_G2), 0, NA_real_)),
+                       if_else(!is.na(q43_G2) & .x != 99, 0, 
+                               NA_real_)),
       year = paste0("'", str_sub(year, start = -2))
     ) %>%     
     group_by(year, country) %>%

@@ -63,6 +63,7 @@ data_subset.df <- master_data.df %>%
 figure01.fn()
 
 # Figure 2:
+# Dropped from Outline
 
 # Figure 3:
 figure03.fn()

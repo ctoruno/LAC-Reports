@@ -202,7 +202,7 @@ figure15.fn <- function() {
       # Transforming everything into binary variables
       across(!year,
              ~if_else(.x == 1 | .x == 2, 1,
-                      if_else(!is.na(.x), 0, NA_real_)))
+                      if_else(!is.na(.x) & .x != 99, 0, NA_real_)))
     ) %>%
     select(!c(q49d_G1, EXP_q23d_G1)) %>%
     group_by(year) %>%
@@ -329,7 +329,8 @@ figure16.fn <- function() {
     mutate(
       across(!year,
              ~if_else(.x == 1 | .x == 2, 1,
-                      if_else(!is.na(.x), 0, NA_real_))),
+                      if_else(!is.na(.x) & .x != 99, 0, 
+                              NA_real_))),
       year = paste0("'", str_sub(year, start = -2))
     ) %>%
     group_by(year) %>%
@@ -413,7 +414,7 @@ figure18.fn <- function() {
     mutate(
       across(everything(), 
              ~if_else(.x == 1 | .x == 2, 1, 
-                      if_else(!is.na(.x), 0,
+                      if_else(!is.na(.x) & .x != 99, 0,
                               NA_real_)))
     ) %>%
     summarise(across(everything(),

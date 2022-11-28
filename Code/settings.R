@@ -72,7 +72,7 @@ if (Sys.info()["user"] == "carlostorunopaniagua") {
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Loading fonts
-path2fontsx<- paste0(path2SP, "Country Reports/0. Fonts/")
+path2fonts <- paste0(path2SP, "6. Country Reports/0. Fonts/")
 font_add(family     = "Lato Full",
          regular    = paste0(path2fonts, "Lato-Regular.ttf"),
          italic     = paste0(path2fonts, "Lato-LightItalic.ttf"),

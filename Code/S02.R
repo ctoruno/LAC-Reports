@@ -41,7 +41,8 @@ figure08.fn <- function() {
     mutate(
       across(!year,
              ~if_else(.x == 3 | .x == 4, 1,
-                      if_else(!is.na(.x), 0, NA_real_))),
+                      if_else(!is.na(.x)  & .x != 99, 0, 
+                              NA_real_))),
       year = paste0("'", str_sub(year, start = -2))
     ) %>%
     group_by(year) %>%
@@ -126,7 +127,7 @@ figure09.fn <- function(){
     mutate(
       across(!country,
              ~if_else(.x == 3 | .x == 4, 1,
-                      if_else(!is.na(.x), 0, 
+                      if_else(!is.na(.x) & .x != 99, 0, 
                               NA_real_)))
     ) %>%
     group_by(country) %>%
@@ -242,7 +243,7 @@ figure11.fn <- function(){
     mutate(
       across(!country,
              ~if_else(.x == 1 | .x == 2, 1,
-                      if_else(!is.na(.x), 0, 
+                      if_else(!is.na(.x) & .x != 99, 0, 
                               NA_real_)))
     ) %>%
     group_by(country) %>%
@@ -332,7 +333,8 @@ figure12.fn <- function() {
     mutate(
       across(!year,
              ~if_else(.x == 1 | .x == 2, 1,
-                      if_else(!is.na(.x), 0, NA_real_))),
+                      if_else(!is.na(.x) & .x != 99, 0, 
+                              NA_real_))),
       year = paste0("'", str_sub(year, start = -2))
     ) %>%
     group_by(year) %>%
