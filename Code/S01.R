@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 18th, 2022
 ##
-## This version:      November 24th, 2022
+## This version:      November 25th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -28,6 +28,7 @@ figure01.fn <- function(){
   
   nchart = 1
   
+  # Defining variables to use in the plot
   vars4plot <- list(
     "Independent" = c("CAR_q67_G1", "CAR_q67_G2", "CAR_q68_G1", "CAR_q61_G1"),
     "Judiciary"   = c("CAR_q66_G1", "CAR_q65_G1", "CAR_q64_G1"),
@@ -37,7 +38,8 @@ figure01.fn <- function(){
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
     filter(country %in% countrySet & year == latestYear) %>%
-    select(country, unlist(vars4plot, use.names = F)) %>%
+    select(country, unlist(vars4plot, 
+                           use.names = F)) %>%
     mutate(
       across(!country,
              ~if_else(.x == 1 | .x == 2, 1,
@@ -119,6 +121,11 @@ figure01.fn <- function(){
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure02.fn <- function(){
+  
+  nchart = 2
+  
+}
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -126,6 +133,98 @@ figure01.fn <- function(){
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure03.fn <- function(){
+  
+  nchart = 3
+  
+  # Incumbent political party
+  ipp <- incumbentPP.ls[[mainCountry]]
+  
+  # Defining variables to use in the plot
+  vars4plot <- list(
+    "Independent" = c("CAR_q67_G1", "CAR_q67_G2", "CAR_q68_G1", "CAR_q61_G1"),
+    "Judiciary"   = c("CAR_q66_G1", "CAR_q65_G1", "CAR_q64_G1"),
+    "Media"       = c( "CAR_q64_G2", "CAR_q60_G2", "CAR_q65_G2", "CAR_q60_G1")
+  )
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry & year == latestYear) %>%
+    select(paff3, unlist(vars4plot, 
+                           use.names = F)) %>%
+    mutate(
+      govSupp = if_else(str_detect(paff3, regex(ipp)),
+                        "Gov. Supporter",
+                        "Non Gov. Supporter"),
+      across(!c(paff3, govSupp),
+             ~if_else(.x == 1 | .x == 2, 1,
+                      if_else(!is.na(.x), 0, 
+                              NA_real_)))
+    ) %>%
+    group_by(govSupp) %>%
+    select(-paff3) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(!govSupp,
+                 names_to   = "category",
+                 values_to  = "value2plot") %>%
+    mutate(
+      labels = case_when(
+        category == "CAR_q60_G1" ~ "Censoring information that comes from\noutside the country",
+        category == "CAR_q61_G1" ~ "Censoring opinions from opposition\ngroups",
+        category == "CAR_q60_G2" ~ "Resorting to misinformation to shape\npublic opinion in its favor",
+        category == "CAR_q64_G2" ~ "Attacking the media and civil society\norganizations that criticize them",
+        category == "CAR_q67_G1" ~ "Attacking or attempting to discredit\nopposition parties",
+        category == "CAR_q67_G2" ~ "Attacking the electoral system and other\nsupervisory organs", 
+        category == "CAR_q64_G1" ~ "They seek to limit the courts’ competences\nand freedom to interpret the law.",
+        category == "CAR_q66_G1" ~ "They seek to influence the promotion and\nremoval of judges.",
+        category == "CAR_q65_G2" ~ "They promote the judicial persecution of\njournalists and civil society leaders.",
+        category == "CAR_q68_G1" ~ "They promote the prosecution and conviction\nof members of opposition parties.",
+        category == "CAR_q65_G1" ~ "They refuse to comply with court rulings\nthat are not in their favor."
+      ),
+      value2plot = round(value2plot*100,1)
+    )
+  
+  # Defining color palette
+  colors4plot <- binPalette
+  names(colors4plot) <- data2plot %>% distinct(govSupp) %>% pull(govSupp)
+  
+  # Plotting each panel of Figure 12
+  imap(c("A" = "Independent", 
+         "B" = "Judiciary", 
+         "C" = "Media"),
+       function(varSet, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(category %in% vars4plot[[varSet]])
+         
+         # Applying plotting function
+         chart <- LAC_dotsChart(data         = data2plot,
+                                target_var   = "value2plot",
+                                grouping_var = "govSupp",
+                                labels_var   = "labels",
+                                colors       = colors4plot)
+         
+         # Defining height
+         if (length(vars4plot[[varSet]]) == 3 ) {
+           h = 47.44707
+         }
+         
+         if (length(vars4plot[[varSet]]) == 4 ) {
+           h = 56.23357
+         }
+         
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 189.7883,
+                   h      = h)
+         
+       })
+}
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##

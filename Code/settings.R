@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 17th, 2022
 ##
-## This version:      November 24th, 2022
+## This version:      November 25th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -267,5 +267,45 @@ to_percentage.fn <- function(value){
   
   return(perc)
 }
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## 10.  Incumbent political parties                                                                         ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+incumbentPP.ls <- list(
+  "Antigua and Barbuda"              = "Antigua and Barbuda Labor Party or ABLP", 
+  "Barbados"                         = "Barbados Labour Party (BLP)",
+  "Dominica"                         = "The Dominica Labour Party (DLP)",
+  "Grenada"                          = "National Democratic Congress (NDC)",
+  "St. Kitts and Nevis"              = "Labour Party  (SKNLP)",
+  "St. Lucia"                        = "St. Lucia Labour Party (SLP)",
+  "St. Vincent and the Grenadines"   = "Unity Labour Party (ULP)",
+  "Trinidad and Tobago"              = "People National Movement",
+  "Bahamas"                          = "Progressive Liberal Party (PLP)",
+  "Dominican Republic"               = "Partido Revolucionario Moderno PRM",
+  "Guyana"                           = "People's Progressive Party",
+  "Haiti"                            = "Parti haïtien Tèt Kale (PHTK)",         # 18/507
+  "Jamaica"                          = "Jamaica Labour Party (JLP)",
+  "Suriname"                         = "VHP",                                   # 10/502
+  "Argentina"                        = "IN FRONT OF EVERYONE|Peronism",
+  "Brazil"                           = "PL- Partido Liberal",                   # 29/1,109
+  "Paraguay"                         = "Partido Colorado (ANR)",
+  "Bolivia"                          = "Movimiento al Socialismo",
+  "Colombia"                         = "Partido Centro Democr",                 # 31/1,000
+  "Ecuador"                          = paste0("CREO Movement|",
+                                              "Christian Social Party (PSC)|",
+                                              "Patriotic Society Party (PSP)"),
+  "Peru"                             = "Party 1",                               # No info about political parties
+  "Belize"                           = "PUP: People's United Party",            # No Data, re-check
+  "Costa Rica"                       = paste0("Partido Social Democrático (PSD)|",
+                                              "Unidos Podemos (UP)"),
+  "El Salvador"                      = "Nuevas Ideas|GANA",                     # No Data, re-check
+  "Guatemala"                        = "VAMOS",                                 # No Data re-check
+  "Honduras"                         = "Partido Libertad y Refundación",        # No Data, re-check
+  "Nicaragua"                        = "FSLN",                                  # No Data, re-check
+  "Panama"                           = "Partido Revolucionario Democrático PRD" # No Data, re-check
+)
 
   
