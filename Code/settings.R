@@ -72,7 +72,7 @@ if (Sys.info()["user"] == "carlostorunopaniagua") {
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Loading fonts
-path2fonts <- paste0(path2SP, "Country Reports/0. Fonts/")
+path2fontsx<- paste0(path2SP, "Country Reports/0. Fonts/")
 font_add(family     = "Lato Full",
          regular    = paste0(path2fonts, "Lato-Regular.ttf"),
          italic     = paste0(path2fonts, "Lato-LightItalic.ttf"),
@@ -84,6 +84,8 @@ font_add(family  = "Lato Black",
          regular = paste0(path2fonts, "Lato-Black.ttf"))
 font_add(family  = "Lato Black Italic",
          regular = paste0(path2fonts, "Lato-BlackItalic.ttf"))
+font_add(family  = "Lato Medium",
+         regular = paste0(path2fonts, "Lato-Medium.ttf"))
 showtext_auto()
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
