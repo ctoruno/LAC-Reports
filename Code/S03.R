@@ -172,6 +172,57 @@ figure13_2.fn <- function() {
 ##    Figure 14                                                                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Upper Panel
+figure14_1.fn <- function() {
+  
+  nchart = 14
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry) %>%
+    select(year, q9) %>%
+    mutate(
+      q9   = case_when(
+        q9 == 1 | q9 == 2    ~ 1,
+        q9 == 3 | q9 == 4    ~ 0,
+        q9 == 99 | is.na(q9) ~ NA_real_,
+      ),
+      year = paste0("'", str_sub(year, start = -2))
+    ) %>%
+    group_by(year) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    mutate(value2plot = q9*100,
+           label      = to_percentage.fn(value2plot),
+           category   = mainCountry)
+  
+    # Defining colors4plot
+    colors4plot <- mainCOLOR
+    names(colors4plot) <- mainCountry
+    
+    
+    # Applying plotting function
+    chart <- LAC_lineChart(data           = data2plot,
+                           target_var     = "value2plot",
+                           grouping_var   = "year",
+                           ngroups        = 1, 
+                           labels_var     = "label",
+                           colors_var     = "category",
+                           colors         = colors4plot,
+                           repel          = F
+    )
+    
+    # Saving panels
+    saveIT.fn(chart  = chart,
+              n      = nchart,
+              suffix = "A",
+              w      = 189.7883,
+              h      = 68.88612)
+} 
+
+# Lower Panel
 figure14_2.fn <- function() {
   
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction

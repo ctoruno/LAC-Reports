@@ -99,6 +99,7 @@ figure08.fn()
 figure09.fn()
 
 # Figure 10:
+figure10.fn()
 
 # Figure 11:
 figure11.fn()
@@ -122,6 +123,7 @@ figure13_1.fn()
 figure13_2.fn()
 
 # Figure 14.1:
+figure14_1.fn()
 
 # Figure 14.2:
 figure14_2.fn()
