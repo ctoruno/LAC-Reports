@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 18th, 2022
 ##
-## This version:      November 25th, 2022
+## This version:      November 29th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -111,7 +111,6 @@ figure01.fn <- function(){
                    suffix = panelName,
                    w      = 189.7883,
                    h      = h)
-         
        })
 }
 
@@ -325,8 +324,6 @@ figure04.fn <- function(){
                    suffix = panelName,
                    w      = 100.8689,
                    h      = h)
-         
-         
        })
 }
 
@@ -399,9 +396,6 @@ figure05.fn <- function() {
                    h      = 45.68977)
          
        })
-    
-  
-  
 }
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -420,14 +414,64 @@ figure06.fn <- function() {
                     "Election"      = c("q46d_G1", "q46e_G1"),
                     "Religion"      = c("q46h_G2"))
   
+  # Country names or country codes?
+  if (length(countrySet) > 4) {
+    data_subset.df <- data_subset.df %>%
+      mutate(country = country_code)
+  }
+  
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
     filter(year == latestYear & country %in% countrySet) %>%
-    select(country, all_of(unlist(vars4plot, use.names = F)))
+    select(country, all_of(unlist(vars4plot, use.names = F))) %>%
     mutate(across(!country,
                   ~if_else(.x == 3 | .x == 4, 1, 
-                           if_else(!is.na(.x) & .x != 99, 0, NA_real_))))
+                           if_else(!is.na(.x) & .x != 99, 0, 
+                                   NA_real_)))) %>%
+    group_by(country) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(!country,
+                 names_to   = "category",
+                 values_to  = "value2plot") %>%
+    mutate(value2plot  = value2plot*100,
+           highlighted = if_else(country == mainCountry, "Highlighted", "Regular"),
+           labels      = to_percentage.fn(value2plot))
   
+  # Defining colors
+  colors4plot <- barsPalette
+  names(colors4plot) <- c("Highlighted", "Regular")
+  
+  # Plotting each panel of Figure 5
+  imap(c("A" = "q46c_G2", "B" = "q46f_G2", "C" = "q46g_G2", "D" = "q46c_G1", "E" = "q46e_G2",
+         "F" = "q46d_G2", "G" = "q46f_G1", "H" = "q46a_G2",
+         "I" = "q46d_G1", "J" = "q46e_G1", 
+         "K" = "q46h_G2"),
+       function(tvar, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(category %in% tvar)
+         
+         # Applying plotting function
+         chart <- LAC_barsChart(data           = data2plot,
+                                target_var     = "value2plot",
+                                grouping_var   = "country",
+                                labels_var     = "labels",
+                                colors_var     = "highlighted",
+                                colors         = colors4plot,
+                                direction      = "vertical"
+         )
+         
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 90.67663,
+                   h      = 43.58102)
+         
+       })
 }
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -478,6 +522,5 @@ figure07.fn <- function() {
             suffix = NULL,
             w      = 189.7883,
             h      = 149.7219)
-  
 }
 

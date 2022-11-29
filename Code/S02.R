@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 21st, 2022
 ##
-## This version:      November 21st, 2022
+## This version:      November 29th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -217,6 +217,78 @@ figure09.fn <- function(){
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure10.fn <- function() {
+  
+  nchart = 10
+  
+  # Defining variables to include in plot
+  vars4plot <- c("q4a", "q4b", "q4c", "q4d", "q4e")
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear & country %in% countrySet) %>%
+    select(country, all_of(unlist(vars4plot, use.names = F))) %>%
+    mutate(across(!country,
+                  ~if_else(.x == 99, NA_real_, as.double(.x)))) %>%
+    group_by(country) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(!country,
+                 names_to   = "category",
+                 values_to  = "value2plot") %>%
+    mutate(value2plot  = value2plot*100,
+           highlighted = if_else(country == mainCountry, "Highlighted", "Regular"),
+           labels      = to_percentage.fn(value2plot))
+  
+  # Defining colors
+  colors4plot <- barsPalette
+  names(colors4plot) <- c("Highlighted", "Regular")
+  
+  # Plotting each panel of Figure 5
+  imap(c("A" = "q4a", 
+         "B" = "q4b", 
+         "C" = "q4c", 
+         "D" = "q4d", 
+         "E" = "q4e"),
+       function(tvar, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(category %in% tvar)
+         
+         # Applying plotting function
+         chart <- LAC_barsChart(data           = data2plot,
+                                target_var     = "value2plot",
+                                grouping_var   = "country",
+                                colors_var     = "highlighted",
+                                colors         = colors4plot,
+                                direction      = "horizontal"
+         )
+         
+         # Defining height
+         if (length(countrySet) == 3) {
+           h = 24.60219
+         }
+         if (length(countrySet) == 4) {
+           h = 30.92846
+         }
+         if (length(countrySet) == 6) {
+           h = 43.22956
+         }
+         if (length(countrySet) > 6) {
+           h = 55.17919
+         }
+         
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 189.7883,
+                   h      = 43.58102)
+         
+       })
+}
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
