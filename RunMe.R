@@ -34,6 +34,8 @@ source("Code/settings.R")
 # Loading functions for sections
 source("Code/S01.R")
 source("Code/S02.R")
+source("Code/S03.R")
+
 
 # Loading plotting functions from GitHub
 source("https://raw.githubusercontent.com/ctoruno/WJP-Data-Viz/main/loading.R")
@@ -121,12 +123,12 @@ figure13_2.fn()
 # Figure 14.1:
 
 # Figure 14.2:
+figure14_2.fn()
 
 # Figure 15:
 figure15.fn()
 
 # Figure 16:
-
 figure16.fn()
 
 # Figure 17:

@@ -24,8 +24,6 @@
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure13_1.fn <- function() {
-
   security.universe <- function(master_data) {
     
     security.universe <- master_data %>%
@@ -36,7 +34,7 @@ figure13_1.fn <- function() {
         # Security perception
         q9, 
         # Sociodemographics 
-        COLOR, income_aux, gender, disability2, disability, Urban, age, edu,
+        COLOR, income_aux, gend, disability2, disability, Urban, age, edu,
         # Variables related to institutions perfomance
         q48b_G1, q48f_G1, q49a, CAR_q58_G1, q48f_G2, q48g_G2, 
         # Trust in institutions
@@ -48,7 +46,9 @@ figure13_1.fn <- function() {
     
     return(security.universe)
   } # This is going to be refactoring, and this function guarantee the automatization 
-  
+
+figure13_1.fn <- function() {
+    
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
   
   # Panel A
@@ -81,11 +81,14 @@ figure13_1.fn <- function() {
 
 figure13_2.fn <- function() {
   
+  security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
+  
   victims <- security_universe %>%
     summarise(victim = round(mean(victim, na.rm = T),2)) %>%
     mutate(non_victim = 1 - victim)
   
   report <- security_universe %>%
+    filter(EXP_q8d != 99) %>%
     mutate(EXP_q8d = if_else(EXP_q8d == 1, 1, 0)) %>%
     filter(victim == 1) %>%
     summarise(report = round(mean(EXP_q8d, na.rm = T),2)) %>%
@@ -93,8 +96,10 @@ figure13_2.fn <- function() {
   
   fill_report <- security_universe %>%
     filter(victim == 1) %>%
-    mutate(EXP_q8d = if_else(EXP_q8d == 1, 1, 0),
-           EXP_q8f = if_else(EXP_q8f == 1, 1, 0)) %>%
+    mutate(EXP_q8d = if_else(EXP_q8d == 1, 1,
+                             if_else(EXP_q8d == 1, 0, NA_real_)),
+           EXP_q8f = if_else(EXP_q8f == 1, 1, 
+                             if_else(EXP_q8f == 0, 0, NA_real_))) %>%
     group_by(EXP_q8d) %>%
     summarise(fill_report = round(mean(EXP_q8f, na.rm = T),2)) %>%
     mutate(non_fill_report = 1 - fill_report) %>%
@@ -117,11 +122,11 @@ figure13_2.fn <- function() {
   
   y <- c(1, 900, -300, 600, 75)
   x <- c(0.7, 2, 2.3, 3.3, 3.3)
-  label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm;font-family:Lato'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm;font-family:'Lato'> of Colombians <br>were victims <br>of a crime"),
-             paste0("<span style='color:#003b8a;font-size:4.217518mm;font-family:Lato'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm;font-family:'Lato'> reported <br> the crime"),
-             paste0("<span style='color:#fa4d57;font-size:4.217518mm;font-family:'Lato'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm;font-family:'Lato'> did not report <br>the crime"),
-             paste0("<span style='color:#003b8a;font-size:4.217518mm;font-family:'Lato'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm;font-family:'Lato'> filed an official <br> crime report"),
-             paste0("<span style='color:#fa4d57;font-size:4.217518mm;font-family:'Lato'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm;font-family:'Lato'> did not file an <br>official crime report"))
+  label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of Colombians <br>were victims <br>of a crime"),
+             paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> reported <br> the crime"),
+             paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not report <br>the crime"),
+             paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> filed an official <br> crime report"),
+             paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not file an <br>official crime report"))
   df <- data.frame(label)
   
   pl <- ggplot(data = data2plot, aes(x = x, 
@@ -134,7 +139,7 @@ figure13_2.fn <- function() {
                 show.legend = FALSE) +
     geom_richtext(data = df, aes(x = x, label = label, y = y, 
                                  next_x = NULL, node = NULL, 
-                                 next_node = NULL, fill = NULL), 
+                                 next_node = NULL, fill = NULL, family = "Lato Medium"), 
                   fill = NA, label.color = NA, hjust = 0.5, vjust = 0.5) +
     scale_y_continuous(expand = expansion(mult = c(0,0.2))) +
     scale_fill_manual(values = c("Victim" = "#003b8a",
@@ -167,8 +172,108 @@ figure13_2.fn <- function() {
 ##    Figure 14                                                                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
+figure14_2.fn <- function() {
+  
+  security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
+  
+  perception <- security_universe %>%
+    mutate(unsafe_bin    =  if_else(q9 == 1 | q9 == 2, 1, 
+                                    if_else(q9 == 3 | q9 ==4, 0, NA_real_)),
+           victim        =  if_else(victim == 1, "Victim", "Non Victim"),
+           white         =  if_else(COLOR == 1 | COLOR == 2 | COLOR == 3 | COLOR == 4, "White" , 
+                                    if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10, "No White", NA_character_)),
+           young         =  if_else(age < 31, "Less than 30 years", 
+                                    if_else(age > 30, "More than 30 years", NA_character_)),
+           poor          =  if_else(income_aux == 1 | income_aux == 2, "Poor",
+                                    if_else(income_aux == 3 | income_aux == 4 | income_aux == 5, "No Poor", NA_character_)),
+           area          =  if_else(Urban == 1, "Urban", "Rural"),
+           gender        =  if_else(gend == 1, "Male", "Female"),
+           diploma       =  if_else(edu == 5 | edu == 6, "High Education Level", 
+                                    if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
+  
+  logit_demo <- function(mainData, Yvar) {
+  
+  logit_data <- perception
+  
+  logit_data$young <- recode(logit_data$young, "More than 30 years" = "1More than 30 years")
+  logit_data$gender <- recode(logit_data$gender, Male = "1male")
+  
+  logit_data<- logit_data %>%
+    select(gender, victim, white, poor, young, area, diploma,
+           unsafe_bin) # We didn't include the non answer
+  
+  models <- lapply(list("unsafe_bin"), 
+                   function(depVar) {
+                     formula  <- as.formula(paste(depVar, "~ gender + victim + white + poor + young + area + diploma"))
+                     logit  <- glm(formula,  
+                                   data   = logit_data, 
+                                   family = "binomial")})
+  margEff    <- margins_summary(models[[1]], data = models[[1]]$model)
+  
+  data2plot <- margEff
+  
+  data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Poor", "victimVictim" = "Victim",
+                             "areaUrban" = "Urban", "whiteWhite" = "White", "youngLess than 30 years" = "Less than \n30 years",
+                             "diplomaNo High Education Level" = "Low Education \nLevel")
+  
+  data2plot <- data2plot %>%
+    mutate(category = "Colombia",
+           order_variable = if_else(factor %in% "Female", 1,
+                                    if_else(factor %in% "White", 2,
+                                            if_else(factor %in% "Poor", 3,
+                                                    if_else(factor %in% "Victim", 4,
+                                                            if_else(factor %in% "Urban", 5, 
+                                                                    if_else(factor %in% "Young", 6, 7)))))))
+  }
+  
+  data2plot <- logit_demo(mainData = perception, Yvar = 'unsafe_bin')
+  
+  logit_demo_panel <- function(mainData = data2plot,
+                          line_color = "#003b8a",
+                          line_size  = 2,
+                          point_color = "#003b8a",
+                          point_size   = 4) {
+    
+    plot <- ggplot(mainData, aes(x = reorder(factor, -order_variable), y = AME)) +
+      geom_hline(yintercept = 0, lty = 1, color = "#fa4d57", lwd = 1)  +
+      geom_linerange(aes(x = reorder(factor, -order_variable),  ymin = lower, ymax = upper),
+                     lwd = line_size, position = position_dodge(width = .7), 
+                     stat = "identity", color = line_color)+
+      geom_point(aes(x = reorder(factor, -order_variable), y = AME), 
+                 size = point_size, position = position_dodge(width = .7), color = point_color) +
+      geom_point(aes(x = reorder(factor, -order_variable), y = AME), 
+                 size = 2, position = position_dodge(width = .7), color = "white") +
+      labs(y = "Less likely                               More likely") +
+      scale_y_continuous(limits = c(-0.5, 0.5),
+                         breaks = seq(-0.5, 0.5, by = 0.25),
+                         expand = expansion(mult = 0.025), position = "right")+
+      WJP_theme()+
+      coord_flip() +
+      theme(legend.position = "none",
+            panel.background   = element_blank(),
+            panel.grid.major.x = element_line(colour = "#d1cfd1", 
+                                              size = 0.5, linetype = "dotted"),
+            legend.title = element_blank(),
+            axis.title.y       = element_blank(),
+            axis.text.y        = element_text(family = "Lato Medium",
+                                              size     = 3.514598*.pt,
+                                              color    = "#4a4a49",
+                                              hjust    = 0),
+            panel.grid.major.y = element_blank(),
+            panel.grid.minor.x  = element_blank(),
+            panel.grid.minor.y = element_blank())
+    
+    return(plot)
+  }
+  
+  logit_plot <- logit_demo_panel(mainData = data2plot)
+  
+  saveIT.fn(chart  = logit_plot,
+            n      = 14,
+            suffix = "B",
+            w      = 175.027,
+            h      = 81.89012)
+}
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ##    Figure 15                                                                                             ----
