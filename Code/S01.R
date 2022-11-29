@@ -132,9 +132,6 @@ figure03.fn <- function(){
   
   nchart = 3
   
-  # Incumbent political party
-  ipp <- incumbentPP.ls[[mainCountry]]
-  
   # Defining variables to use in the plot
   vars4plot <- list(
     "Independent" = c("CAR_q67_G1", "CAR_q67_G2", "CAR_q68_G1", "CAR_q61_G1"),
@@ -145,19 +142,25 @@ figure03.fn <- function(){
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
     filter(country == mainCountry & year == latestYear) %>%
-    select(paff3, unlist(vars4plot, 
-                           use.names = F)) %>%
+    select(CAR_q59_G1, 
+           CAR_q59_G2, 
+           unlist(vars4plot, 
+                  use.names = F)) %>%
     mutate(
-      govSupp = if_else(str_detect(paff3, regex(ipp)),
-                        "Gov. Supporter",
-                        "Non Gov. Supporter"),
-      across(!c(paff3, govSupp),
+      govSupp = case_when(
+        CAR_q59_G1 == 1   | CAR_q59_G2 == 1   ~ "Gov. Supporter",
+        CAR_q59_G1 == 2   | CAR_q59_G2 == 2   ~ "Non Gov. Supporter",
+        CAR_q59_G1 == 99  | CAR_q59_G2 == 99  ~ NA_character_,
+        is.na(CAR_q59_G1) & is.na(CAR_q59_G2) ~ NA_character_
+      ),
+      across(!c(CAR_q59_G1, CAR_q59_G2, govSupp),
              ~if_else(.x == 1 | .x == 2, 1,
                       if_else(!is.na(.x) & .x != 99, 0, 
                               NA_real_)))
     ) %>%
     group_by(govSupp) %>%
-    select(-paff3) %>%
+    select(-c(CAR_q59_G1, CAR_q59_G2)) %>%
+    filter(!is.na(govSupp)) %>%
     summarise(across(everything(),
                      mean,
                      na.rm = T)) %>%
