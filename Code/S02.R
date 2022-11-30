@@ -239,7 +239,7 @@ figure10.fn <- function() {
                  values_to  = "value2plot") %>%
     mutate(value2plot  = value2plot*100,
            highlighted = if_else(country == mainCountry, "Highlighted", "Regular"),
-           labels      = to_percentage.fn(value2plot))
+           labels_var      = to_percentage.fn(value2plot))
   
   # Defining colors
   colors4plot <- barsPalette
@@ -263,9 +263,8 @@ figure10.fn <- function() {
                                 grouping_var   = "country",
                                 colors_var     = "highlighted",
                                 colors         = colors4plot,
-                                direction      = "horizontal"
-         )
-         
+                                direction      = "horizontal",
+                                labels_var     = NULL)
          # Defining height
          if (length(countrySet) == 3) {
            h = 24.60219

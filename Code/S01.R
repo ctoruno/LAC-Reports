@@ -492,7 +492,7 @@ figure07.fn <- function() {
     select(country, year, q43_G2) %>% 
     mutate(
       q43_G2 = if_else(q43_G2 == 3, 1, 
-                       if_else(!is.na(q43_G2) & .x != 99, 0, 
+                       if_else(!is.na(q43_G2) & q43_G2 != 99, 0, 
                                NA_real_)),
       year = paste0("'", str_sub(year, start = -2))
     ) %>%     
