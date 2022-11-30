@@ -135,6 +135,7 @@ figure15.fn()
 figure16.fn()
 
 # Figure 17:
+figure_17.fn 
 
 # Figure 18:
 figure18.fn()

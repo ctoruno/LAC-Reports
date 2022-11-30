@@ -142,6 +142,7 @@ figure13_2.fn <- function() {
                                  next_node = NULL, fill = NULL, family = "Lato Medium"), 
                   fill = NA, label.color = NA, hjust = 0.5, vjust = 0.5) +
     scale_y_continuous(expand = expansion(mult = c(0,0.2))) +
+    scale_x_discrete(position = "top") +
     scale_fill_manual(values = c("Victim" = "#003b8a",
                                  'Non-Victim' = "#003b8a",
                                  "Report" = "#003b8a",
@@ -153,7 +154,7 @@ figure13_2.fn <- function() {
     theme(legend.position = "none",
           axis.title.x = element_blank(),
           axis.title.y = element_blank(),
-          axis.text.x = element_text(family ="Lato Regular", 
+          axis.text.x = element_text(family ="Lato Full", 
                                      size = 3.514598*.pt,
                                      color = "Black"),
           axis.text.y = element_blank(),
@@ -279,7 +280,7 @@ figure14_2.fn <- function() {
   
   data2plot <- logit_demo(mainData = perception, Yvar = 'unsafe_bin')
   
-  logit_plot <- logit_demo_panel(mainData = data2plot)
+  logit_plot <- logit_demo_panel(mainData = data2plot, line_size = 1.5)
   
   saveIT.fn(chart  = logit_plot,
             n      = 14,
@@ -510,7 +511,455 @@ figure16.fn <- function() {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
+# Panel A: Serve the Public
+figure_17.fn <- function() {
+  
+  panelA <- data_subset.df %>%
+    filter(year == 2022 & country == "Colombia") %>%
+    select(q48c_G2, EXP_q22i_G2 , EXP_q22h_G2) %>%
+    mutate(
+      q48c_G2 = case_when(
+        q48c_G2 == 1  ~ 1,
+        q48c_G2 == 2  ~ 1,
+        q48c_G2 == 3  ~ 0,
+        q48c_G2 == 4  ~ 0,
+        q48c_G2 == 99 ~ 0,
+        is.na(q48c_G2) ~ NA_real_
+      ),
+      EXP_q22i_G2 = case_when(
+        EXP_q22i_G2 == 1  ~ 1,
+        EXP_q22i_G2 == 2  ~ 1,
+        EXP_q22i_G2 == 3  ~ 0,
+        EXP_q22i_G2 == 4  ~ 0,
+        EXP_q22i_G2 == 99 ~ 0,
+        is.na(EXP_q22i_G2) ~ NA_real_
+      ),
+      EXP_q22h_G2 = case_when(
+        EXP_q22h_G2 == 1  ~ 1,
+        EXP_q22h_G2 == 2  ~ 1,
+        EXP_q22h_G2 == 3  ~ 0,
+        EXP_q22h_G2 == 4  ~ 0,
+        EXP_q22h_G2 == 99 ~ 0,
+        is.na(EXP_q22h_G2) ~ NA_real_
+      ),
+    ) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(
+      empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate(
+      x_pos = if_else(variable %in% "q48c_G2", 1.25,
+                  if_else(variable %in% "EXP_q22i_G2", 2.25,
+                          if_else(variable %in% "EXP_q22h_G2", 3.25, NA_real_))),
+      order_value = if_else(variable %in% "q48c_G2", 1,
+                            if_else(variable %in% "EXP_q22i_G2", 2,
+                                    if_else(variable %in% "EXP_q22h_G2", 3, NA_real_))),
+      variable = case_when(
+        variable == "q48c_G2" ~ "Are available to help when needed",
+        variable == "EXP_q22i_G2" ~ "Serve the interests of the community",
+        variable == "EXP_q22h_G2" ~ "Serve the interests of regular citizens"
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+    );panelA
+  
+  a <- horizontal_edgebars(data2plot    = panelA,
+                           y_value      = value,
+                           x_var        = variable,
+                           order_value  = order_value, 
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94");a
+  
+  saveIT.fn(chart  = a,
+            n      = 17,
+            suffix = "a",
+            w      = 82.59305,
+            h      = 45.33831)
+  
+  # Panel B: Crime Control and Safety
+  
+  panelB <- data_subset.df %>%
+    filter(year == 2022 & country == "Colombia") %>%
+    select(EXP_q24a_G1, q48a_G2, q48b_G1, EXP_q24a_G2) %>%
+    mutate(
+      across(everything(),
+             ~ case_when(
+               .x == 1  ~ 1,
+               .x == 2  ~ 1,
+               .x == 3  ~ 0,
+               .x == 4  ~ 0,
+               .x == 99 ~ 0,
+               is.na(.x) ~ NA_real_
+             ))
+    ) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate(
+      x_pos = if_else(variable %in% "EXP_q24a_G1", 1.15,
+                      if_else(variable %in% "q48a_G2", 2.15,
+                              if_else(variable %in% "q48b_G1", 3.15, 4.15))),
+      order_value = if_else(variable %in% "EXP_q24a_G1", 1,
+                            if_else(variable %in% "q48a_G2", 2,
+                                    if_else(variable %in% "q48b_G1", 3, 4))),
+      variable = case_when(
+        variable == "EXP_q24a_G1" ~ "Crime victims receive prompt <br> and courteous attention",
+        variable == "q48a_G2"     ~ "Resolve security problems in <br>  the community",
+        variable == "q48b_G1"     ~ "Perform effective and lawful <br> investigations",
+        variable == "EXP_q24a_G2" ~ "Crime victims receive protection <br>  from the police",
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label)
+    );panelB
+  
+  b <- horizontal_edgebars(data2plot    = panelB,
+                           y_value      = value,
+                           x_var        = variable,
+                           order_value  = order_value,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94");b
+  
+  saveIT.fn(chart  = b,
+            n      = 17,
+            suffix = "b",
+            w      = 82.59305,
+            h      = 74.86094)
+  
+  # Panel C: Due Process
+  panelC <- data_subset.df %>%
+    filter(year == 2022 & country == "Colombia") %>%
+    select(q48a_G1, EXP_q22e_G1, q48c_G1, q48d_G2) %>%
+    mutate(
+      across(everything(),
+             ~ case_when(
+               .x == 1  ~ 1,
+               .x == 2  ~ 1,
+               .x == 3  ~ 0,
+               .x == 4  ~ 0,
+               .x == 99 ~ 0,
+               is.na(.x) ~ NA_real_
+             )),
+      EXP_q22e_G1 = if_else(EXP_q22e_G1 == 1, 0, 
+                            if_else(EXP_q22e_G1 == 0, 1, NA_real_))
+    ) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate(
+      x_pos = if_else(variable %in% "q48a_G1", 1.25,
+                           if_else(variable %in% "EXP_q22e_G1", 2.25,
+                                   if_else(variable %in% "q48c_G1", 3.25, 4.25))),
+      order_value = if_else(variable %in% "q48a_G1", 1,
+                            if_else(variable %in% "EXP_q22e_G1", 2,
+                                    if_else(variable %in% "q48c_G1", 3, 4))),
+      variable = case_when(
+        variable == "q48a_G1"     ~ "Act lawfully",
+        variable == "EXP_q22e_G1" ~ "Do not use excessive force",
+        variable == "q48c_G1"     ~ "Respect the rights of suspects",
+        variable == "q48d_G2"     ~ "Treat all people with respect",
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label)
+    );panelC
+  
+  c <- horizontal_edgebars(data2plot    = panelC,
+                           y_value      = value,
+                           x_var        = variable,
+                           order_value  = order_value,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94");c
+  
+  saveIT.fn(chart  = c,
+            n      = 17,
+            suffix = "c",
+            w      = 82.59305,
+            h      = 59.74817)
+  
+  # Panel D: Discrimination
+  
+  panelD <- data_subset.df %>%
+    filter(year == 2022 & country == "Colombia") %>%
+    select(q18b, EXP_q17g, EXP_q17h, EXP_q17i, EXP_q17j) %>%
+    mutate(
+      across(everything(),
+             ~ case_when(
+               .x == 0  ~ 0,
+               .x == 1  ~ 1,
+               .x == 99 ~ NA_real_,
+               is.na(.x) ~ NA_real_
+             ))
+    ) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate(
+      x_pos = if_else(variable %in% "q18b", 1.25,
+                      if_else(variable %in% "EXP_q17g", 2.25,
+                              if_else(variable %in% "EXP_q17h", 3.25, 
+                                      if_else(variable %in% "EXP_q17i", 4.25, 5.25)))),
+      order_value = if_else(variable %in% "q18b", 1,
+                            if_else(variable %in% "EXP_q17g", 2,
+                                    if_else(variable %in% "EXP_q17h", 3, 
+                                            if_else(variable %in% "EXP_q17i", 4, 5)))),
+      variable = case_when(
+        variable == "q18b"        ~ "Gender",
+        variable == "EXP_q17g"    ~ "Skin color",
+        variable == "EXP_q17h"    ~ "Indigenous identity",
+        variable == "EXP_q17i"    ~ "Tattoos",
+        variable == "EXP_q17j"    ~ "Age"
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label)
+    );panelD
+  
+  d <- horizontal_edgebars(data2plot    = panelD,
+                           y_value      = value,
+                           x_var        = variable,
+                           order_value  = order_value,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94");d
+  
+  saveIT.fn(chart  = d,
+            n      = 17,
+            suffix = "d",
+            w      = 82.59305,
+            h      = 74.86094)
+  
+  # Panel E: Discrimination
+  
+  panelE <- data_subset.df %>%
+    filter(year == 2022 & country == "Colombia") %>%
+    select(q2d, q48e_G2, EXP_q22k_G2, EXP_q22j_G2) %>%
+    mutate(
+      across(everything(),
+             ~ case_when(
+               .x == 1  ~ 1,
+               .x == 2  ~ 1,
+               .x == 3  ~ 0,
+               .x == 4  ~ 0,
+               .x == 99 ~ 0,
+               is.na(.x) ~ NA_real_
+             )),
+      EXP_q22k_G2 = if_else(EXP_q22k_G2 == 1, 0, 
+                            if_else(EXP_q22k_G2 == 0, 1, NA_real_)),
+      EXP_q22j_G2 = if_else(EXP_q22j_G2 == 1, 0, 
+                            if_else(EXP_q22j_G2 == 0, 1, NA_real_))
+    ) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate(
+      x_pos = if_else(variable %in% "q2d", 1.25,
+                      if_else(variable %in% "q48e_G2", 2.25,
+                              if_else(variable %in% "EXP_q22k_G2", 3.25, 
+                                      if_else(variable %in% "EXP_q22j_G2", 4.25, NA_real_)))),
+      order_value = if_else(variable %in% "q2d", 1,
+                            if_else(variable %in% "q48e_G2", 2,
+                                    if_else(variable %in% "EXP_q22k_G2", 3, 4))),
+      variable = case_when(
+        variable == "q2d"         ~ "Are not involved in corrupt practices",
+        variable == "q48e_G2"     ~ "Investigate crimes in an independent <br> manner",
+        variable == "EXP_q22k_G2" ~ "Do not serve the interests of gangs",
+        variable == "EXP_q22j_G2" ~ "Do not serve the interests of politicians"
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label)
+    );panelE
+  
+  e <- horizontal_edgebars(data2plot    = panelE,
+                           y_value      = value,
+                           x_var        = variable,
+                           order_value  = order_value, 
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94");e
+  
+  saveIT.fn(chart  = e,
+            n      = 17,
+            suffix = "e",
+            w      = 82.59305,
+            h      = 59.74817)
+  
+  # Panel F: Trust and Safety
+  
+  panelF <- data_subset.df %>%
+    filter(year == 2022 & country == "Colombia") %>%
+    select(q1d, q9, q48b_G2) %>%
+    mutate(
+      across(everything(),
+             ~ case_when(
+               .x == 1  ~ 1,
+               .x == 2  ~ 1,
+               .x == 3  ~ 0,
+               .x == 4  ~ 0,
+               .x == 99 ~ 0,
+               is.na(.x) ~ NA_real_
+             ))
+    ) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate(
+      x_pos = if_else(variable %in% "q1d", 1.25,
+                      if_else(variable %in% "q9", 2.25,
+                              if_else(variable %in% "q48b_G2", 3.25, NA_real_))),
+      order_value = if_else(variable %in% "q1d", 1,
+                            if_else(variable %in% "q9", 2, 3)),
+      variable = case_when(
+        variable == "q1d"     ~ "Trust the police",
+        variable == "q9"      ~ "Feel safe in their neighborhoods",
+        variable == "q48b_G2" ~ "Feel the police contributes to their safety"
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label)
+    );panelF
+  
+  f <- horizontal_edgebars(data2plot    = panelF,
+                           y_value      = value,
+                           x_var        = variable,
+                           order_value  = order_value,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94");f
+  
+  saveIT.fn(chart  = f,
+            n      = 17,
+            suffix = "f",
+            w      = 82.59305,
+            h      = 45.33831)
+  
+  # Panel G: Accountability
+  
+  panelG <- data_subset.df %>%
+    filter(year == 2022 & country == "Colombia") %>%
+    select(q48d_G1, EXP_q22f_G1, EXP_q22g_G1, EXP_q22h_G1) %>%
+    mutate(
+      across(everything(),
+             ~ case_when(
+               .x == 1  ~ 1,
+               .x == 2  ~ 1,
+               .x == 3  ~ 0,
+               .x == 4  ~ 0,
+               .x == 99 ~ 0,
+               is.na(.x) ~ NA_real_
+             ))
+    ) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate(
+      x_pos = if_else(variable %in% "q48d_G1", 1.25,
+                      if_else(variable %in% "EXP_q22f_G1", 2.25,
+                              if_else(variable %in% "EXP_q22g_G1", 3.25, 
+                                      if_else(variable %in% "EXP_q22h_G1", 4.25, NA_real_)))),
+      order_value = if_else(variable %in% "q48d_G1", 1,
+                            if_else(variable %in% "EXP_q22f_G1", 2, 
+                                    if_else(variable %in% "EXP_q22g_G1", 3, 4))),
+      variable = case_when(
+        variable == "q48d_G1"     ~ "Are held accountable for violating laws",
+        variable == "EXP_q22f_G1"     ~ "Are held accountable for seeking bribes",
+        variable == "EXP_q22g_G1"     ~ "Are held accountable for accepting bribes",
+        variable == "EXP_q22h_G1" ~ "Are investigated for misconduct"
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label)
+    );panelG
+  
+  g <- horizontal_edgebars(data2plot    = panelG,
+                           y_value      = value,
+                           x_var        = variable,
+                           order_value  = order_value,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94");g
+  
+  saveIT.fn(chart  = g,
+            n      = 17,
+            suffix = "g",
+            w      = 82.59305,
+            h      = 59.74817)
+}
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ##    Figure 18                                                                                             ----
