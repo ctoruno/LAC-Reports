@@ -140,4 +140,5 @@ figure_17.fn()
 # Figure 18:
 figure18.fn()
 
-
+# Figure 19:
+figure19.fn()
