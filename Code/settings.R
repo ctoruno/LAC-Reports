@@ -44,7 +44,11 @@ p_load(char = c(
   
   # Logit
   
-  "margins"
+  "margins",
+  
+  #Patchwork
+  
+  "patchwork"
   
 ))
 
