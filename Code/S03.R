@@ -511,8 +511,8 @@ figure16.fn <- function() {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# Panel A: Serve the Public
 figure_17.fn <- function() {
+  # Panel A: Serve the Public
   
   panelA <- data_subset.df %>%
     filter(year == 2022 & country == "Colombia") %>%
@@ -555,9 +555,9 @@ figure_17.fn <- function() {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q48c_G2", 1.25,
-                  if_else(variable %in% "EXP_q22i_G2", 2.25,
-                          if_else(variable %in% "EXP_q22h_G2", 3.25, NA_real_))),
+      x_pos = if_else(variable %in% "q48c_G2", 1.15,
+                  if_else(variable %in% "EXP_q22i_G2", 2.15,
+                          if_else(variable %in% "EXP_q22h_G2", 3.15, NA_real_))),
       order_value = if_else(variable %in% "q48c_G2", 1,
                             if_else(variable %in% "EXP_q22i_G2", 2,
                                     if_else(variable %in% "EXP_q22h_G2", 3, NA_real_))),
@@ -580,7 +580,8 @@ figure_17.fn <- function() {
                            label_var    = label,
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
-                           bar_color    = "#2a2a94");a
+                           bar_color    = "#2a2a94",
+                           margin_top   = 10);a
   
   saveIT.fn(chart  = a,
             n      = 17,
@@ -615,17 +616,17 @@ figure_17.fn <- function() {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "EXP_q24a_G1", 1.15,
+      x_pos = if_else(variable %in% "EXP_q24a_G1", 1.1,
                       if_else(variable %in% "q48a_G2", 2.15,
                               if_else(variable %in% "q48b_G1", 3.15, 4.15))),
       order_value = if_else(variable %in% "EXP_q24a_G1", 1,
                             if_else(variable %in% "q48a_G2", 2,
                                     if_else(variable %in% "q48b_G1", 3, 4))),
       variable = case_when(
-        variable == "EXP_q24a_G1" ~ "Crime victims receive prompt <br> and courteous attention",
-        variable == "q48a_G2"     ~ "Resolve security problems in <br>  the community",
-        variable == "q48b_G1"     ~ "Perform effective and lawful <br> investigations",
-        variable == "EXP_q24a_G2" ~ "Crime victims receive protection <br>  from the police",
+        variable == "EXP_q24a_G1" ~ "Crime victims receive prompt and courteous <br> attention",
+        variable == "q48a_G2"     ~ "Resolve security problems in  the community",
+        variable == "q48b_G1"     ~ "Perform effective and lawful investigations",
+        variable == "EXP_q24a_G2" ~ "Crime victims receive protection from the police",
       ),
       multiplier = if_else(group == "empty_value", 0, 1),
       label      = paste0(format(round(value*100, 0), nsmall = 0),
@@ -641,13 +642,14 @@ figure_17.fn <- function() {
                            label_var    = label,
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
-                           bar_color    = "#2a2a94");b
+                           bar_color    = "#2a2a94",
+                           margin_top   = 0);b
   
   saveIT.fn(chart  = b,
             n      = 17,
             suffix = "b",
             w      = 82.59305,
-            h      = 74.86094)
+            h      = 59.74817)
   
   # Panel C: Due Process
   panelC <- data_subset.df %>%
@@ -677,9 +679,9 @@ figure_17.fn <- function() {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q48a_G1", 1.25,
-                           if_else(variable %in% "EXP_q22e_G1", 2.25,
-                                   if_else(variable %in% "q48c_G1", 3.25, 4.25))),
+      x_pos = if_else(variable %in% "q48a_G1", 1.15,
+                           if_else(variable %in% "EXP_q22e_G1", 2.15,
+                                   if_else(variable %in% "q48c_G1", 3.15, 4.15))),
       order_value = if_else(variable %in% "q48a_G1", 1,
                             if_else(variable %in% "EXP_q22e_G1", 2,
                                     if_else(variable %in% "q48c_G1", 3, 4))),
@@ -703,7 +705,8 @@ figure_17.fn <- function() {
                            label_var    = label,
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
-                           bar_color    = "#2a2a94");c
+                           bar_color    = "#2a2a94",
+                           margin_top   = 10);c
   
   saveIT.fn(chart  = c,
             n      = 17,
@@ -736,10 +739,10 @@ figure_17.fn <- function() {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q18b", 1.25,
-                      if_else(variable %in% "EXP_q17g", 2.25,
-                              if_else(variable %in% "EXP_q17h", 3.25, 
-                                      if_else(variable %in% "EXP_q17i", 4.25, 5.25)))),
+      x_pos = if_else(variable %in% "q18b", 1.15,
+                      if_else(variable %in% "EXP_q17g", 2.15,
+                              if_else(variable %in% "EXP_q17h", 3.15, 
+                                      if_else(variable %in% "EXP_q17i", 4.15, 5.15)))),
       order_value = if_else(variable %in% "q18b", 1,
                             if_else(variable %in% "EXP_q17g", 2,
                                     if_else(variable %in% "EXP_q17h", 3, 
@@ -765,7 +768,8 @@ figure_17.fn <- function() {
                            label_var    = label,
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
-                           bar_color    = "#2a2a94");d
+                           bar_color    = "#2a2a94",
+                           margin_top   = 10);d
   
   saveIT.fn(chart  = d,
             n      = 17,
@@ -804,16 +808,16 @@ figure_17.fn <- function() {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q2d", 1.25,
-                      if_else(variable %in% "q48e_G2", 2.25,
-                              if_else(variable %in% "EXP_q22k_G2", 3.25, 
-                                      if_else(variable %in% "EXP_q22j_G2", 4.25, NA_real_)))),
+      x_pos = if_else(variable %in% "q2d", 1.15,
+                      if_else(variable %in% "q48e_G2", 2.15,
+                              if_else(variable %in% "EXP_q22k_G2", 3.15, 
+                                      if_else(variable %in% "EXP_q22j_G2", 4.15, NA_real_)))),
       order_value = if_else(variable %in% "q2d", 1,
                             if_else(variable %in% "q48e_G2", 2,
                                     if_else(variable %in% "EXP_q22k_G2", 3, 4))),
       variable = case_when(
         variable == "q2d"         ~ "Are not involved in corrupt practices",
-        variable == "q48e_G2"     ~ "Investigate crimes in an independent <br> manner",
+        variable == "q48e_G2"     ~ "Investigate crimes in an independent manner",
         variable == "EXP_q22k_G2" ~ "Do not serve the interests of gangs",
         variable == "EXP_q22j_G2" ~ "Do not serve the interests of politicians"
       ),
@@ -831,7 +835,8 @@ figure_17.fn <- function() {
                            label_var    = label,
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
-                           bar_color    = "#2a2a94");e
+                           bar_color    = "#2a2a94",
+                           margin_top   = 10);e
   
   saveIT.fn(chart  = e,
             n      = 17,
@@ -866,9 +871,9 @@ figure_17.fn <- function() {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q1d", 1.25,
-                      if_else(variable %in% "q9", 2.25,
-                              if_else(variable %in% "q48b_G2", 3.25, NA_real_))),
+      x_pos = if_else(variable %in% "q1d", 1.15,
+                      if_else(variable %in% "q9", 2.15,
+                              if_else(variable %in% "q48b_G2", 3.15, NA_real_))),
       order_value = if_else(variable %in% "q1d", 1,
                             if_else(variable %in% "q9", 2, 3)),
       variable = case_when(
@@ -890,7 +895,8 @@ figure_17.fn <- function() {
                            label_var    = label,
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
-                           bar_color    = "#2a2a94");f
+                           bar_color    = "#2a2a94",
+                           margin_top   = 10);f
   
   saveIT.fn(chart  = f,
             n      = 17,
@@ -925,10 +931,10 @@ figure_17.fn <- function() {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q48d_G1", 1.25,
-                      if_else(variable %in% "EXP_q22f_G1", 2.25,
-                              if_else(variable %in% "EXP_q22g_G1", 3.25, 
-                                      if_else(variable %in% "EXP_q22h_G1", 4.25, NA_real_)))),
+      x_pos = if_else(variable %in% "q48d_G1", 1.15,
+                      if_else(variable %in% "EXP_q22f_G1", 2.15,
+                              if_else(variable %in% "EXP_q22g_G1", 3.15, 
+                                      if_else(variable %in% "EXP_q22h_G1", 4.15, NA_real_)))),
       order_value = if_else(variable %in% "q48d_G1", 1,
                             if_else(variable %in% "EXP_q22f_G1", 2, 
                                     if_else(variable %in% "EXP_q22g_G1", 3, 4))),
@@ -952,7 +958,8 @@ figure_17.fn <- function() {
                            label_var    = label,
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
-                           bar_color    = "#2a2a94");g
+                           bar_color    = "#2a2a94",
+                           margin_top   = 10);g
   
   saveIT.fn(chart  = g,
             n      = 17,
@@ -1045,3 +1052,256 @@ figure18.fn <- function() {
   
 }
 
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 19                                                                                            ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure19.fn <- function() {
+
+legal_assigment <- function(data_subset) {
+  
+  target_variables <- c(
+    # Advice
+    "q25_1", "q25_2", "q25_3", "q25_4", "q25_5", "q25_6", "q25_7", "q25_8", "q25_9",
+    # Representation
+    "q24", 
+    # Claim to court (A2J)
+    "q28", 
+    # Persistance of the problem
+    "q30", 
+    # Fair Process
+    "q36a", 
+    # Slow Process
+    "q36b", 
+    # Expensive Process
+    "q36c", 
+    # Time of the process
+    "q37b", 
+    # Economic Issues
+    "q37d",
+    # Satisfaction with the outcome
+    "q38",
+    # Sources of help
+    "q41a", "q41b", "q41c",
+    # Confidence in the system
+    "q41d",
+    # Hardships: Stress-related illness, injuries, or physical ill healt
+    "q42a",
+    # Hardships: Relationship breakdown or damage to a family relationship
+    "q42b",
+    # Hardships: Loss of income, loss of employment
+    "q42c",
+    # Hardships: Problem with alcohol or drugs
+    "q42d",
+    # Sociodemographics
+    "area", "income_bin", "skin_color","skin_color_bin", "gender", "income_aux")
+  
+  a <- data_subset %>%
+    mutate(a2j_consumer = ifelse(q19_A1 == 1 | q19_A2 == 1 | q19_A3 == 1, 1, 0),
+           a2j_land = ifelse(q19_B1 == 1 | q19_B2 == 1 | q19_B3 == 1, 1, 0),
+           a2j_housing = ifelse(q19_C1 == 1 | q19_C2 == 1 | q19_C3 == 1, 1, 0),
+           a2j_family = ifelse(q19_D1 == 1 | q19_D2 == 1 | q19_D3 == 1 | q19_D4 == 1 | q19_D5 == 1 |q19_D6 == 1, 1, 0),
+           a2j_education = ifelse(q19_E1 == 1 | q19_E2 == 1 | q19_E3 == 1, 1, 0),
+           a2j_accidental = ifelse(q19_F1 == 1 | q19_F2 == 1 , 1, 0),
+           a2j_employment = ifelse(q19_G1 == 1, q19_G2 == 1, q19_G3 == 1),
+           a2j_public = ifelse(q19_H1 == 1 | q19_H2 == 1 | q19_H3 == 1, 1, 0),
+           a2j_law = ifelse(q19_I1 == 1, 1, 0),
+           a2j_id = ifelse(q19_J1 == 1 | q19_J2 == 1 | q19_J3 == 1 | q19_J4 == 1, 1, 0),
+           a2j_money =  ifelse(q19_K1 == 1 | q19_K2 == 1 | q19_K3 == 1, 1, 0),
+           a2j_community = ifelse(q19_L1 == 1 | q19_L2 == 1, 1, 0)) %>%
+    mutate(legal = ifelse(a2j_consumer == 1 | a2j_land == 1 | a2j_housing == 1 | a2j_family == 1 | a2j_education == 1 | a2j_accidental == 1 |
+                            a2j_employment == 1 | a2j_public == 1 | a2j_law == 1 | a2j_id == 1 | a2j_money == 1 | a2j_community == 1, 1, 0)) %>%
+    group_by(country) %>%
+    filter(year == 2022) %>%
+    ungroup() %>%
+    select(country, year, ends_with(target_variables), starts_with("a2j_"), legal) %>%
+    filter(country %in% mainCountry)
+}
+
+aes_function <- function(mainData) {
+  
+  data2plot <- mainData %>%
+  mutate(empty_value = 1 - value) %>%
+  pivot_longer(!problem,
+               names_to = "group",
+               values_to = "value") %>%
+  mutate(x_pos = c(4.1, 4.1, 3.1, 3.1, 2.1, 2.1, 1.1, 1.1),
+         order_value = c(1,1,2,2,3,3,4,4),
+         empty_value = 1 - value,
+         label = paste(round(value*100,0), "%"),
+         multiplier = if_else(group == "empty_value", 0, 1),
+         label = if_else(multiplier == 0, NA_character_, label))
+  return(data2plot)
+}
+
+# Figure 19a
+
+a2j <- legal_assigment(data_subset = data_subset.df)
+
+a2j_a <- a2j %>%
+  select(starts_with("a2j_")) %>%  
+  rename("Accidental Illness & <br> Injury" = "a2j_accidental",
+    "Citizenship & ID" = "a2j_id",
+    "Community & Natural <br> Resources" = "a2j_community",
+    "Consumer" = "a2j_consumer",
+    "Employment" = "a2j_employment",
+    "Education"  = "a2j_education",
+    "Family" =  "a2j_family",
+    "Housing" = "a2j_housing",
+    "Land" = "a2j_land",
+    "Law Enforcement" = "a2j_law",
+    "Money & Debt" = "a2j_money",
+    "Public Services" = "a2j_public"
+    ) %>%
+  summarise(across(everything(),mean, na.rm = T)) %>%
+  pivot_longer(cols = everything(),names_to = "problem", values_to = "value") %>%
+  arrange(-value)
+
+first_panel <- a2j_a %>%
+  top_n(n = 4) %>%
+  aes_function(.)
+
+a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
+                         y_value      = value,
+                         x_var        = problem,
+                         order_value  = order_value,
+                         group_var    = group,
+                         label_var    = label,
+                         x_lab_pos    = x_pos,
+                         y_lab_pos    = 0,
+                         bar_color    = "#2a2a94")
+
+second_panel <- a2j_a[5:8,] %>%
+  aes_function(.)
+
+a2j_p2 <- horizontal_edgebars(data2plot    = second_panel,
+                              y_value      = value,
+                              x_var        = problem,
+                              order_value  = order_value,
+                              group_var    = group,
+                              label_var    = label,
+                              x_lab_pos    = x_pos,
+                              y_lab_pos    = 0,
+                              bar_color    = "#2a2a94")
+
+third_panel <- a2j_a[9:12,] %>%
+  aes_function(.)
+
+a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
+                              y_value      = value,
+                              x_var        = problem,
+                              order_value  = order_value,
+                              group_var    = group,
+                              label_var    = label,
+                              x_lab_pos    = x_pos,
+                              y_lab_pos    = 0,
+                              bar_color    = "#2a2a94")
+
+figures_problems<- list()
+figures_problems[["Panel A"]] <- a2j_p1
+figures_problems[["Panel B"]] <- a2j_p2
+figures_problems[["Panel C"]] <- a2j_p3
+
+figure19a <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
+  plot_layout(ncol = 3,
+              nrow = 1,
+              widths = unit(42, "mm"),
+              heights = unit(52, "mm"))
+  
+# Saving Patchwork
+saveIT.fn(chart  = figure19a,
+          n      = 19,
+          suffix = "a",
+          w      = 131.7974,
+          h      = 53.42189)
+
+# Figure 19B
+
+aes_function_v2 <- function(mainData) {
+  
+  data2plot <- mainData %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!help,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate(x_pos = c(3.1, 3.1, 2.1, 2.1, 1.1, 1.1),
+           order_value = c(3,3,2,2,1,1),
+           empty_value = 1 - value,
+           label = paste(round(value*100,0), "%"),
+           multiplier = if_else(group == "empty_value", 0, 1),
+           label = if_else(multiplier == 0, NA_character_, label))
+  return(data2plot)
+}
+
+a2j_b <- a2j %>%
+  filter(legal == 1) %>%
+  summarise("Friend or Family" = mean(q25_1, na.rm = T),
+            "Lawyer or Professional <br> Advice Service" = mean(q25_2, na.rm = T),
+            "Government Legal Aid <br> Office" = mean(q25_3, na.rm = T),
+            "Court or Government <br> Body or Police" = mean(q25_4, na.rm = T),
+            "Health or Welfare <br> Professional" = mean(q25_5, na.rm = T),
+            "Trade Union or Employer" = mean(q25_6, na.rm = T),
+            "Religious or Community <br> Leader" = mean(q25_7, na.rm = T),
+            "Civil Society <br> Organization or Charity" = mean(q25_8, na.rm = T),
+            "Other Organization" = mean(q25_9, na.rm = T)) %>%
+  pivot_longer(cols = everything(),names_to = "help", values_to = "value") %>%
+  arrange(-value)
+  
+first_panel <- a2j_b[1:3,] %>%
+  aes_function_v2(.)
+
+a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
+                              y_value      = value,
+                              x_var        = help,
+                              order_value  = order_value,
+                              group_var    = group,
+                              label_var    = label,
+                              x_lab_pos    = x_pos,
+                              y_lab_pos    = 0,
+                              bar_color    = "#2a2a94")
+
+second_panel <- a2j_b[4:6,] %>%
+  aes_function_v2(.)
+
+a2j_p2 <- horizontal_edgebars(data2plot    = second_panel,
+                              y_value      = value,
+                              x_var        = help,
+                              order_value  = order_value,
+                              group_var    = group,
+                              label_var    = label,
+                              x_lab_pos    = x_pos,
+                              y_lab_pos    = 0,
+                              bar_color    = "#2a2a94")
+
+third_panel <- a2j_b[7:9,] %>%
+  aes_function_v2(.)
+
+a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
+                              y_value      = value,
+                              x_var        = help,
+                              order_value  = order_value,
+                              group_var    = group,
+                              label_var    = label,
+                              x_lab_pos    = x_pos,
+                              y_lab_pos    = 0,
+                              bar_color    = "#2a2a94")
+
+figures_problems<- list()
+figures_problems[["Panel A"]] <- a2j_p1
+figures_problems[["Panel B"]] <- a2j_p2
+figures_problems[["Panel C"]] <- a2j_p3
+
+figure19b <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
+  plot_layout(ncol = 3,
+              nrow = 1,
+              widths = unit(42, "mm"),
+              heights = unit(45, "mm"))
+
+saveIT.fn(chart  = figure19b,
+          n      = 19,
+          suffix = "b",
+          w      = 131.7974,
+          h      = 53.42189)
+}

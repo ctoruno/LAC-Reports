@@ -235,7 +235,7 @@ dir.create(file.path("Outputs",
            showWarnings = FALSE)
 
 # Creating folders for each chart output within the country directory
-for (plot in 1:18) {
+for (plot in 1:19) {
   dir.create(file.path("Outputs", 
                        str_replace(mainCountry, " ", "_"),
                        paste0("figure_", plot),
