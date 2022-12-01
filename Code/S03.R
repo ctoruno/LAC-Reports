@@ -581,7 +581,7 @@ figure_17.fn <- function() {
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
                            bar_color    = "#2a2a94",
-                           margin_top   = 10);a
+                           margin_top   = 0);a
   
   saveIT.fn(chart  = a,
             n      = 17,
@@ -706,7 +706,7 @@ figure_17.fn <- function() {
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
                            bar_color    = "#2a2a94",
-                           margin_top   = 10);c
+                           margin_top   = 0);c
   
   saveIT.fn(chart  = c,
             n      = 17,
@@ -769,7 +769,7 @@ figure_17.fn <- function() {
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
                            bar_color    = "#2a2a94",
-                           margin_top   = 10);d
+                           margin_top   = 0);d
   
   saveIT.fn(chart  = d,
             n      = 17,
@@ -836,7 +836,7 @@ figure_17.fn <- function() {
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
                            bar_color    = "#2a2a94",
-                           margin_top   = 10);e
+                           margin_top   = 0);e
   
   saveIT.fn(chart  = e,
             n      = 17,
@@ -896,7 +896,7 @@ figure_17.fn <- function() {
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
                            bar_color    = "#2a2a94",
-                           margin_top   = 10);f
+                           margin_top   = 0);f
   
   saveIT.fn(chart  = f,
             n      = 17,
@@ -959,7 +959,7 @@ figure_17.fn <- function() {
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
                            bar_color    = "#2a2a94",
-                           margin_top   = 10);g
+                           margin_top   = 0);g
   
   saveIT.fn(chart  = g,
             n      = 17,

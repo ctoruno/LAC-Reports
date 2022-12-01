@@ -284,7 +284,7 @@ figure10.fn <- function() {
          saveIT.fn(chart  = chart,
                    n      = nchart,
                    suffix = panelName,
-                   w      = 189.7883,
+                   w      = 86.81057,
                    h      = 43.58102)
          
        })

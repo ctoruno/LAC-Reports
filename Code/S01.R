@@ -252,35 +252,51 @@ figure04.fn <- function(){
              .names = "{.col}_pos"),
       across(c(q50, q51, q52, CAR_q73, CAR_q74),
              ~if_else(.x == 3 | .x == 4, 1,
-                      if_else(!is.na(.x) & .x != 99, 0, 
+                      if_else(.x == 1 | .x == 2, 0, 
                               NA_real_)),
-             .names = "{.col}_neg")
+             .names = "{.col}_neg"),
+      across(c(q50, q51, q52, CAR_q73, CAR_q74),
+             ~if_else(.x == 5, 1, 0),
+             .names = "{.col}_neither")
     ) %>%
     group_by(country) %>%
     summarise(
-      total = n(),
       across(c(ends_with("_pos"),
-               ends_with("_neg")),
+               ends_with("_neg"),
+               ends_with("_neither")),
              sum,
              na.rm = T)
-    ) %>%
-    pivot_longer(!c(country, total),
-                 values_to = "abs_value",
-                 names_to  = "category") %>%
-    mutate(
-      perc    = round((abs_value/total)*100, 
-                      1),
-      status  = if_else(str_detect(category, "_neg"), 
-                        "Negative", 
-                        "Positive"),
-      perc    = if_else(str_detect(category, "_neg"), 
-                        perc*-1, 
-                        perc),
-      label   = paste0(format(abs(perc),
-                              nsmall = 1),
-                       "%"),
-      group   = str_replace_all(category, "_pos|_neg", "")
     )
+  
+  # We need to dynamically generate the totals for each variable
+  data2plot <- map_dfr(c("q50", "q51", "q52", "CAR_q73", "CAR_q74"),
+                       function(categories) {
+                         
+                         data2plot %>%
+                           select(country, starts_with(categories)) %>%
+                           mutate(
+                             "{categories}_total" := rowSums(across(starts_with(categories)))
+                           ) %>%
+                           select(-ends_with("_neither")) %>%
+                           rename(total = ends_with("_total")) %>%
+                           pivot_longer(!c(country, total),
+                                        values_to = "abs_value",
+                                        names_to  = "category") %>%
+                           mutate(
+                             perc    = round((abs_value/total)*100, 
+                                             1),
+                             status  = if_else(str_detect(category, "_neg"), 
+                                               "Negative", 
+                                               "Positive"),
+                             perc    = if_else(str_detect(category, "_neg"), 
+                                               perc*-1, 
+                                               perc),
+                             label   = paste0(format(abs(perc),
+                                                     nsmall = 1),
+                                              "%"),
+                             group   = str_replace_all(category, "_pos|_neg", "")
+                           )
+                       })
   
   # Customizing colorPalette for plot
   colors4plot <- binPalette
@@ -428,7 +444,7 @@ figure06.fn <- function() {
     filter(year == latestYear & country %in% countrySet) %>%
     select(country, all_of(unlist(vars4plot, use.names = F))) %>%
     mutate(across(!country,
-                  ~if_else(.x == 3 | .x == 4, 1, 
+                  ~if_else(.x == 1 | .x == 2, 1, 
                            if_else(!is.na(.x) & .x != 99, 0, 
                                    NA_real_)))) %>%
     group_by(country) %>%
@@ -504,9 +520,13 @@ figure07.fn <- function() {
                           "%"),
            label = if_else(country == mainCountry, label, NA_character_))
   
-  # # Defining colors4plot
+  # Defining colors4plot
   colors4plot <- countryPalette
   names(colors4plot) <- countrySet
+  
+  # Defining alphas4plot
+  alphas4plot <- c(1, rep(0.5, length(comparison_countries.ls)))
+  names(alphas4plot) <- countrySet
   
   # Applying plotting function
   chart <- LAC_lineChart(data           = data2plot,
@@ -516,7 +536,9 @@ figure07.fn <- function() {
                          labels_var     = "label",
                          colors_var     = "country",
                          colors         = colors4plot,
-                         repel          = T
+                         repel          = T,
+                         transparency   = T,
+                         transparencies = alphas4plot
   )
   
   # Saving panels
