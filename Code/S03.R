@@ -47,6 +47,7 @@
     return(security.universe)
   } # This is going to be refactoring, and this function guarantee the automatization 
 
+# Upper Panel
 figure13_1.fn <- function() {
     
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
@@ -77,8 +78,7 @@ figure13_1.fn <- function() {
             h      = 46.74415)
 }
 
-# Panel B
-
+# Lower Panel
 figure13_2.fn <- function() {
   
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
