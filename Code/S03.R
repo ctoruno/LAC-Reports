@@ -240,7 +240,7 @@ figure14_2.fn <- function() {
                                     if_else(income_aux == 3 | income_aux == 4 | income_aux == 5, "No Poor", NA_character_)),
            area          =  if_else(Urban == 1, "Urban", "Rural"),
            gender        =  if_else(gend == 1, "Male", "Female"),
-           diploma       =  if_else(edu == 5 | edu == 6, "High Education Level", 
+           diploma       =  if_else(edu == 4 | edu == 5 | edu == 6, "High Education Level", 
                                     if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
   
   logit_demo <- function(mainData, Yvar) {
@@ -264,9 +264,9 @@ figure14_2.fn <- function() {
   
   data2plot <- margEff
   
-  data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Poor", "victimVictim" = "Victim",
-                             "areaUrban" = "Urban", "whiteWhite" = "Lighter Skin \nTone", "youngLess than 30 years" = "Less than \n30 years",
-                             "diplomaNo High Education Level" = "Low Education \nLevel")
+  data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially Insecure", "victimVictim" = "Previous Crime \n Victimization",
+                             "areaUrban" = "Urban", "whiteWhite" = "Light Skin \nTone", "youngLess than 30 years" = "Younger than 30",
+                             "diplomaNo High Education Level" = "No High School \n Diploma")
   
   data2plot <- data2plot %>%
     mutate(category = "Colombia",
