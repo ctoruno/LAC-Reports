@@ -265,7 +265,7 @@ figure14_2.fn <- function() {
   data2plot <- margEff
   
   data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Poor", "victimVictim" = "Victim",
-                             "areaUrban" = "Urban", "whiteWhite" = "White", "youngLess than 30 years" = "Less than \n30 years",
+                             "areaUrban" = "Urban", "whiteWhite" = "Lighter Skin \nTone", "youngLess than 30 years" = "Less than \n30 years",
                              "diplomaNo High Education Level" = "Low Education \nLevel")
   
   data2plot <- data2plot %>%
@@ -1242,12 +1242,12 @@ a2j_b <- a2j %>%
   filter(legal == 1) %>%
   summarise("Friend or Family" = mean(q25_1, na.rm = T),
             "Lawyer or Professional <br> Advice Service" = mean(q25_2, na.rm = T),
-            "Government Legal Aid <br> Office" = mean(q25_3, na.rm = T),
+            "Government <br> Legal Aid Office" = mean(q25_3, na.rm = T),
             "Court or Government <br> Body or Police" = mean(q25_4, na.rm = T),
             "Health or Welfare <br> Professional" = mean(q25_5, na.rm = T),
-            "Trade Union or Employer" = mean(q25_6, na.rm = T),
-            "Religious or Community <br> Leader" = mean(q25_7, na.rm = T),
-            "Civil Society <br> Organization or Charity" = mean(q25_8, na.rm = T),
+            "Trade Union or <br> Employer" = mean(q25_6, na.rm = T),
+            "Religious or <br> Community Leader" = mean(q25_7, na.rm = T),
+            "Civil Society <br> Organization" = mean(q25_8, na.rm = T),
             "Other Organization" = mean(q25_9, na.rm = T)) %>%
   pivot_longer(cols = everything(),names_to = "help", values_to = "value") %>%
   arrange(-value)
