@@ -515,7 +515,7 @@ figure_17.fn <- function() {
   # Panel A: Serve the Public
   
   panelA <- data_subset.df %>%
-    filter(year == 2022 & country == "Colombia") %>%
+    filter(year == 2022 & country == mainCountry) %>%
     select(q48c_G2, EXP_q22i_G2 , EXP_q22h_G2) %>%
     mutate(
       q48c_G2 = case_when(
@@ -592,7 +592,7 @@ figure_17.fn <- function() {
   # Panel B: Crime Control and Safety
   
   panelB <- data_subset.df %>%
-    filter(year == 2022 & country == "Colombia") %>%
+    filter(year == 2022 & country == mainCountry) %>%
     select(EXP_q24a_G1, q48a_G2, q48b_G1, EXP_q24a_G2) %>%
     mutate(
       across(everything(),
@@ -653,7 +653,7 @@ figure_17.fn <- function() {
   
   # Panel C: Due Process
   panelC <- data_subset.df %>%
-    filter(year == 2022 & country == "Colombia") %>%
+    filter(year == 2022 & country == mainCountry) %>%
     select(q48a_G1, EXP_q22e_G1, q48c_G1, q48d_G2) %>%
     mutate(
       across(everything(),
@@ -717,7 +717,7 @@ figure_17.fn <- function() {
   # Panel D: Discrimination
   
   panelD <- data_subset.df %>%
-    filter(year == 2022 & country == "Colombia") %>%
+    filter(year == 2022 & country == mainCountry) %>%
     select(q18b, EXP_q17g, EXP_q17h, EXP_q17i, EXP_q17j) %>%
     mutate(
       across(everything(),
@@ -780,7 +780,7 @@ figure_17.fn <- function() {
   # Panel E: Discrimination
   
   panelE <- data_subset.df %>%
-    filter(year == 2022 & country == "Colombia") %>%
+    filter(year == 2022 & country == mainCountry) %>%
     select(q2d, q48e_G2, EXP_q22k_G2, EXP_q22j_G2) %>%
     mutate(
       across(everything(),
@@ -847,7 +847,7 @@ figure_17.fn <- function() {
   # Panel F: Trust and Safety
   
   panelF <- data_subset.df %>%
-    filter(year == 2022 & country == "Colombia") %>%
+    filter(year == 2022 & country == mainCountry) %>%
     select(q1d, q9, q48b_G2) %>%
     mutate(
       across(everything(),
@@ -907,7 +907,7 @@ figure_17.fn <- function() {
   # Panel G: Accountability
   
   panelG <- data_subset.df %>%
-    filter(year == 2022 & country == "Colombia") %>%
+    filter(year == 2022 & country == mainCountry) %>%
     select(q48d_G1, EXP_q22f_G1, EXP_q22g_G1, EXP_q22h_G1) %>%
     mutate(
       across(everything(),
