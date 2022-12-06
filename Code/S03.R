@@ -34,7 +34,7 @@
         # Security perception
         q9, 
         # Sociodemographics 
-        COLOR, income_aux, gend, disability2, disability, Urban, age, edu,
+        COLOR, fin, gend, disability2, disability, Urban, age, edu,
         # Variables related to institutions perfomance
         q48b_G1, q48f_G1, q49a, CAR_q58_G1, q48f_G2, q48g_G2, 
         # Trust in institutions
@@ -236,8 +236,8 @@ figure14_2.fn <- function() {
                                     if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10, "No White", NA_character_)),
            young         =  if_else(age < 31, "Less than 30 years", 
                                     if_else(age > 30, "More than 30 years", NA_character_)),
-           poor          =  if_else(income_aux == 1 | income_aux == 2, "Poor",
-                                    if_else(income_aux == 3 | income_aux == 4 | income_aux == 5, "No Poor", NA_character_)),
+           poor          =  if_else(fin == 1 | fin == 2, "Poor",
+                                    if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
            area          =  if_else(Urban == 1, "Urban", "Rural"),
            gender        =  if_else(gend == 1, "Male", "Female"),
            diploma       =  if_else(edu == 4 | edu == 5 | edu == 6, "High Education Level", 
@@ -264,9 +264,9 @@ figure14_2.fn <- function() {
   
   data2plot <- margEff
   
-  data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially Insecure", "victimVictim" = "Previous Crime \n Victimization",
+  data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \nInsecure", "victimVictim" = "Previous Crime \nVictimization",
                              "areaUrban" = "Urban", "whiteWhite" = "Light Skin \nTone", "youngLess than 30 years" = "Younger than 30",
-                             "diplomaNo High Education Level" = "No High School \n Diploma")
+                             "diplomaNo High Education Level" = "No High School \nDiploma")
   
   data2plot <- data2plot %>%
     mutate(category = "Colombia",
