@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 17th, 2022
 ##
-## This version:      November 25th, 2022
+## This version:      December 7th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -232,18 +232,35 @@ names(countryPalette) <- countrySet
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# Creating country folder within the Outputs directory
-dir.create(file.path("Outputs", 
-                     str_replace(mainCountry, " ", "_")), 
-           showWarnings = FALSE)
-
-# Creating folders for each chart output within the country directory
-for (plot in 1:19) {
+# Defining a function to delete previous outputs and create the country directory
+ordnung.fn <- function(targetCountry){
+  
+  # Defining the country directory in the Outputs
+  outPath <- file.path("Outputs", 
+                       str_replace(targetCountry, " ", "_"))
+  
+  # Listing previous outputs
+  prevOutputs <- list.files(outPath, 
+                            include.dirs = F, 
+                            full.names   = T, 
+                            recursive    = T)
+  
+  # Deleting previous outputs
+  file.remove(prevOutputs)
+  
+  # Creating country folder within the Outputs directory
   dir.create(file.path("Outputs", 
-                       str_replace(mainCountry, " ", "_"),
-                       paste0("figure_", plot),
-                       fsep = "/"), 
+                       str_replace(mainCountry, " ", "_")), 
              showWarnings = FALSE)
+  
+  # Creating folders for each chart output within the country directory
+  for (plot in 1:19) {
+    dir.create(file.path("Outputs", 
+                         str_replace(mainCountry, " ", "_"),
+                         paste0("figure_", plot),
+                         fsep = "/"), 
+               showWarnings = FALSE)
+  }
 }
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

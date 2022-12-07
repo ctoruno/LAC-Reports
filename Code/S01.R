@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 18th, 2022
 ##
-## This version:      December 1st, 2022
+## This version:      December 7th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -266,7 +266,16 @@ figure04.fn <- function(){
                ends_with("_neither")),
              sum,
              na.rm = T)
-    )
+    ) %>%
+    mutate(
+      across(ends_with("_neither"),
+             ~.x/2,
+             .names = "{.col}_pos"),
+      across(ends_with("_neither"),
+             ~.x/2,
+             .names = "{.col}_neg")
+    ) %>%
+    select(-ends_with("_neither"))
   
   # We need to dynamically generate the totals for each variable
   data2plot <- map_dfr(c("q50", "q51", "q52", "CAR_q73", "CAR_q74"),
@@ -277,7 +286,6 @@ figure04.fn <- function(){
                            mutate(
                              "{categories}_total" := rowSums(across(starts_with(categories)))
                            ) %>%
-                           select(-ends_with("_neither")) %>%
                            rename(total = ends_with("_total")) %>%
                            pivot_longer(!c(country, total),
                                         values_to = "abs_value",
@@ -285,22 +293,26 @@ figure04.fn <- function(){
                            mutate(
                              perc    = round((abs_value/total)*100, 
                                              1),
-                             status  = if_else(str_detect(category, "_neg"), 
-                                               "Negative", 
-                                               "Positive"),
+                             status  = case_when(
+                               str_detect(category, "_neither") ~ "Neutral",
+                               str_detect(category, "_neg")     ~ "Negative",
+                               str_detect(category, "_pos")     ~ "Positive"
+                             ),
+                             status  = factor(status, levels = c("Negative", "Positive", "Neutral")),
                              perc    = if_else(str_detect(category, "_neg"), 
                                                perc*-1, 
                                                perc),
                              label   = paste0(format(abs(perc),
                                                      nsmall = 1),
                                               "%"),
-                             group   = str_replace_all(category, "_pos|_neg", "")
+                             label   = if_else(status == "Neutral", NA_character_, label), 
+                             group   = str_replace_all(category, "_pos|_neg|_neither", "")
                            )
                        })
   
   # Customizing colorPalette for plot
-  colors4plot <- binPalette
-  names(colors4plot) <- c("Positive", "Negative")
+  colors4plot <- c(binPalette, "#A6A8AA")
+  names(colors4plot) <- c("Positive", "Negative", "Neutral")
   
   # The height of the plot depends on the number of countries
   if (length(countrySet) == 3) {
