@@ -1127,7 +1127,7 @@ aes_function <- function(mainData) {
   pivot_longer(!problem,
                names_to = "group",
                values_to = "value") %>%
-  mutate(x_pos = c(4.1, 4.1, 3.1, 3.1, 2.1, 2.1, 1.1, 1.1),
+  mutate(x_pos = c(4.2, 4.2, 3.2, 3.2, 2.2, 2.2, 1.2, 1.2),
          order_value = c(1,1,2,2,3,3,4,4),
          empty_value = 1 - value,
          label = paste(round(value*100,0), "%"),
@@ -1157,7 +1157,7 @@ a2j_a <- a2j %>%
     ) %>%
   summarise(across(everything(),mean, na.rm = T)) %>%
   pivot_longer(cols = everything(),names_to = "problem", values_to = "value") %>%
-  arrange(-value)
+  arrange(value)
 
 first_panel <- a2j_a %>%
   top_n(n = 4) %>%
@@ -1172,7 +1172,7 @@ a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
                          x_lab_pos    = x_pos,
                          y_lab_pos    = 0,
                          bar_color    = "#2a2a94",
-                         margin_top = 10)
+                         margin_top   = 5)
 
 second_panel <- a2j_a[5:8,] %>%
   aes_function(.)
@@ -1186,9 +1186,9 @@ a2j_p2 <- horizontal_edgebars(data2plot    = second_panel,
                               x_lab_pos    = x_pos,
                               y_lab_pos    = 0,
                               bar_color    = "#2a2a94",
-                              margin_top   = 10)
+                              margin_top   = 5)
 
-third_panel <- a2j_a[9:12,] %>%
+third_panel <- a2j_a[1:4,] %>%
   aes_function(.)
 
 a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
@@ -1200,7 +1200,7 @@ a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
                               x_lab_pos    = x_pos,
                               y_lab_pos    = 0,
                               bar_color    = "#2a2a94",
-                              margin_top   = 10)
+                              margin_top   = 5)
 
 figures_problems<- list()
 figures_problems[["Panel A"]] <- a2j_p1
@@ -1211,14 +1211,14 @@ figure19a <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + fig
   plot_layout(ncol = 3,
               nrow = 1,
               widths = unit(42, "mm"),
-              heights = unit(52, "mm"))
+              heights = unit(63, "mm"))
   
 # Saving Patchwork
 saveIT.fn(chart  = figure19a,
           n      = 19,
           suffix = "a",
           w      = 131.7974,
-          h      = 53.42189)
+          h      = 65.02006)
 
 # Figure 19B
 
@@ -1229,7 +1229,7 @@ aes_function_v2 <- function(mainData) {
     pivot_longer(!help,
                  names_to = "group",
                  values_to = "value") %>%
-    mutate(x_pos = c(3.1, 3.1, 2.1, 2.1, 1.1, 1.1),
+    mutate(x_pos = c(3.2, 3.2, 2.2, 2.2, 1.2, 1.2),
            order_value = c(3,3,2,2,1,1),
            empty_value = 1 - value,
            label = paste(round(value*100,0), "%"),
@@ -1262,7 +1262,8 @@ a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
                               group_var    = group,
                               label_var    = label,
                               x_lab_pos    = x_pos,
-                              y_lab_pos    = 0,
+                              y_lab_pos    = 0, 
+                              margin_top   = 5,
                               bar_color    = "#2a2a94")
 
 second_panel <- a2j_b[4:6,] %>%
@@ -1276,6 +1277,7 @@ a2j_p2 <- horizontal_edgebars(data2plot    = second_panel,
                               label_var    = label,
                               x_lab_pos    = x_pos,
                               y_lab_pos    = 0,
+                              margin_top   = 5,
                               bar_color    = "#2a2a94")
 
 third_panel <- a2j_b[7:9,] %>%
@@ -1289,6 +1291,7 @@ a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
                               label_var    = label,
                               x_lab_pos    = x_pos,
                               y_lab_pos    = 0,
+                              margin_top   = 5,
                               bar_color    = "#2a2a94")
 
 figures_problems<- list()
@@ -1300,11 +1303,11 @@ figure19b <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + fig
   plot_layout(ncol = 3,
               nrow = 1,
               widths = unit(42, "mm"),
-              heights = unit(45, "mm"))
+              heights = unit(63, "mm"))
 
 saveIT.fn(chart  = figure19b,
           n      = 19,
           suffix = "b",
           w      = 131.7974,
-          h      = 53.42189)
+          h      = 65.02006)
 }
