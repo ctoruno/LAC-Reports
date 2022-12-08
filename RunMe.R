@@ -44,6 +44,9 @@ source("Code/S03.R")
 source("https://raw.githubusercontent.com/ctoruno/WJP-Data-Viz/main/loading.R")
 loadVIZ(set = "LAC")
 
+# Cleaning the Outputs directory for this country
+ordnung.fn(targetCountry = mainCountry)
+
 # Loading data
 master_data.df <- read_dta("Data/LAC - Merged.dta")
 
