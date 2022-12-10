@@ -1172,7 +1172,7 @@ a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
                          x_lab_pos    = x_pos,
                          y_lab_pos    = 0,
                          bar_color    = "#2a2a94",
-                         margin_top   = 5)
+                         margin_top   = 20)
 
 second_panel <- a2j_a[5:8,] %>%
   aes_function(.)
@@ -1186,7 +1186,7 @@ a2j_p2 <- horizontal_edgebars(data2plot    = second_panel,
                               x_lab_pos    = x_pos,
                               y_lab_pos    = 0,
                               bar_color    = "#2a2a94",
-                              margin_top   = 5)
+                              margin_top   = 20)
 
 third_panel <- a2j_a[1:4,] %>%
   aes_function(.)
@@ -1200,7 +1200,7 @@ a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
                               x_lab_pos    = x_pos,
                               y_lab_pos    = 0,
                               bar_color    = "#2a2a94",
-                              margin_top   = 5)
+                              margin_top   = 20)
 
 figures_problems<- list()
 figures_problems[["Panel A"]] <- a2j_p1
@@ -1263,7 +1263,7 @@ a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
                               label_var    = label,
                               x_lab_pos    = x_pos,
                               y_lab_pos    = 0, 
-                              margin_top   = 5,
+                              margin_top   = 10,
                               bar_color    = "#2a2a94")
 
 second_panel <- a2j_b[4:6,] %>%
@@ -1277,7 +1277,7 @@ a2j_p2 <- horizontal_edgebars(data2plot    = second_panel,
                               label_var    = label,
                               x_lab_pos    = x_pos,
                               y_lab_pos    = 0,
-                              margin_top   = 5,
+                              margin_top   = 10,
                               bar_color    = "#2a2a94")
 
 third_panel <- a2j_b[7:9,] %>%
@@ -1291,7 +1291,7 @@ a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
                               label_var    = label,
                               x_lab_pos    = x_pos,
                               y_lab_pos    = 0,
-                              margin_top   = 5,
+                              margin_top   = 10,
                               bar_color    = "#2a2a94")
 
 figures_problems<- list()

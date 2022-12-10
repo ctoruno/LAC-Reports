@@ -37,7 +37,7 @@ p_load(char = c(
   "showtext", "ggtext", "ggsankey", "ggrepel", "ggplotify", "gridExtra", "ggradar2",
   
   # Data Loading
-  "haven", "readxl",
+  "haven", "readxl", "writexl",
   
   # Good 'ol Tidyverse
   "tidyverse",
@@ -49,6 +49,7 @@ p_load(char = c(
   #Patchwork
   
   "patchwork"
+  
   
 ))
 
