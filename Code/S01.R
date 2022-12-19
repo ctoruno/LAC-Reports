@@ -448,26 +448,32 @@ figure06.fn <- function() {
   # Country names or country codes?
   if (length(countrySet) > 4) {
     data_subset.df <- data_subset.df %>%
-      mutate(country = country_code)
+      mutate(country_name = country,
+             country      = country_code)
+  } else {
+    data_subset.df <- data_subset.df %>%
+      mutate(country_name = country)
   }
   
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
-    filter(year == latestYear & country %in% countrySet) %>%
-    select(country, all_of(unlist(vars4plot, use.names = F))) %>%
-    mutate(across(!country,
+    filter(year == latestYear) %>%
+    select(country, 
+           country_name, 
+           all_of(unlist(vars4plot, use.names = F))) %>%
+    mutate(across(!c(country, country_name),
                   ~if_else(.x == 1 | .x == 2, 1, 
                            if_else(!is.na(.x) & .x != 99, 0, 
                                    NA_real_)))) %>%
-    group_by(country) %>%
+    group_by(country, country_name) %>%
     summarise(across(everything(),
                      mean,
                      na.rm = T)) %>%
-    pivot_longer(!country,
+    pivot_longer(!c(country, country_name),
                  names_to   = "category",
                  values_to  = "value2plot") %>%
     mutate(value2plot  = value2plot*100,
-           highlighted = if_else(country == mainCountry, "Highlighted", "Regular"),
+           highlighted = if_else(country_name == mainCountry, "Highlighted", "Regular"),
            labels      = to_percentage.fn(value2plot))
   
   # Defining colors

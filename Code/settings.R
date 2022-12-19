@@ -224,7 +224,7 @@ map(
 countrySet <- c(mainCountry, comparison_countries.ls)
 
 # Updating the country color palette to match the length of the group of countries
-countryPalette <- countryPalette[1:4]
+countryPalette <- countryPalette[1:length(countrySet)]
 names(countryPalette) <- countrySet
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
