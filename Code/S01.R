@@ -314,7 +314,7 @@ figure03.fn <- function(nchart = 3){
     h = 41.823711
   }
   
-  # Plotting each panel of Figure 4
+  # Plotting each figure panel
   imap(c("A" = "q50", 
          "B" = "q51", 
          "C" = "q52",

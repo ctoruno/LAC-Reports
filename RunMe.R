@@ -106,7 +106,9 @@ for (mainCountry in group) {
   
   # Figure 2:
   print("Designing Figure 2")
-  figure02.fn()
+  if (mainCountry != "Paraguay") {
+    figure02.fn()
+  }
   
   # Figure 3:
   print("Designing Figure 3")
@@ -118,20 +120,22 @@ for (mainCountry in group) {
   print("Designing Figure 4")
   if (mainCountry != "Paraguay") {
     figure04.fn()
-  } else {
-    print("We forgot to add Paraguay")
   }
   
   # Figure 5:
   print("Designing Figure 5")
-  figure05.fn()
+  if (mainCountry != "Paraguay") {
+    figure05.fn()
+  } else {
+    figure05.fn(nchart = 4)
+  }
   
   # Figure 6:
   print("Designing Figure 6")
   if (mainCountry != "Paraguay") {
     figure06.fn()
   } else {
-    figure06_1_PARAGUAY.fn()
+    figure06.fn(nchart = 5)
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -145,23 +149,42 @@ for (mainCountry in group) {
   
   # Figure 7:
   print("Designing Figure 7")
-  figure07.fn()
+  if (mainCountry != "Paraguay") {
+    figure07.fn()
+  } else {
+    # figure06_A_PRY.fn() // SANTIAGO
+    figure06_B_PRY.fn()
+  }
   
   # Figure 8:
   print("Designing Figure 8")
-  figure08.fn()
+  if (mainCountry != "Paraguay") {
+    figure08.fn()
+  } else {
+    figure08.fn(nchart = 7)
+  }
   
   # Figure 9:
   print("Designing Figure 9")
-  figure09.fn()
+  if (mainCountry != "Paraguay") {
+    figure09.fn()
+  } else {
+    figure09.fn(nchart = 8)
+  }
   
   # Figure 10:
   print("Designing Figure 10")
-  figure10.fn()
+  if (mainCountry != "Paraguay") {
+    figure10.fn()
+  } else {
+    figure10.fn(nchart = 9)
+  }
   
   # Figure 11:
   print("Designing Figure 11")
-  figure11.fn()
+  if (mainCountry != "Paraguay") {
+    figure11.fn()
+  }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -172,36 +195,66 @@ for (mainCountry in group) {
   # All the figure functions from this section are contained in the "Code/S03.R" file. Please refer to it
   # for more information.
   
+  # Figure 12:
   print("Designing Figure 12")
-  # Figure 12.1:
-  figure12_1.fn()
-  # Figure 12.2:
-  figure12_2.fn()
+  if (mainCountry != "Paraguay") {
+    figure12_1.fn()
+    figure12_2.fn()
+    
+  } else {
+    # figure12_1.fn(nchart = 10) // CHECK
+    # figure12_2.fn(nchart = 10) // CHECK
+  }
   
+  # Figure 13:
   print("Designing Figure 13")
-  # Figure 13.1:
-  figure13_1.fn()
-  # Figure 13.2:
-  # figure13_2.fn() // NOT WORKING FOR BOLIVIA
+  if (mainCountry != "Paraguay") {
+    figure13_1.fn()
+    # figure13_2.fn() // NOT WORKING FOR BOLIVIA
+    
+  } else {
+    # figure11_A_PRY.fn() // SANTIAGO
+    # figure13_2.fn(nchart = 11) // NOT RUNNING FOR PARAGUAY
+  }
   
   # Figure 14:
   print("Designing Figure 14")
-  figure14.fn()
+  if (mainCountry != "Paraguay") {
+    figure14.fn()
+  } else {
+    figure12_PRY.fn()
+  }
   
   # Figure 15:
   print("Designing Figure 15")
-  figure15.fn()
+  if (mainCountry != "Paraguay") {
+    figure15.fn()
+  } else {
+    # figure13_PRY.fn() // SANTIAGO
+  }
   
   # Figure 16:
   print("Designing Figure 16")
-  figure_16.fn()
+  if (mainCountry != "Paraguay") {
+    figure16.fn()
+  } else {
+    figure16.fn(nchart = 14)
+  }
   
   # Figure 17:
   print("Designing Figure 17")
-  figure17.fn()
+  if (mainCountry != "Paraguay") {
+    figure17.fn()
+  } else {
+    figure17.fn(nchart = 15)
+  }
   
   # Figure 18:
   print("Designing Figure 18")
-  figure18.fn()
+  if (mainCountry != "Paraguay") {
+    figure18.fn()
+  } else {
+    # figure18.fn(nchart = 16) // NOT RUNNING FOR PARAGUAY
+  }
 
 }

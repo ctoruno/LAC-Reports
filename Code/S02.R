@@ -454,5 +454,113 @@ figure11.fn <- function(nchart = 11) {
   
 } 
 
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 6 - PARAGUAY                                                                                   ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Upper Panel
+figure06_A_PRY.fn <- function(nchart = 6){
+  
+}
+
+# Lower Panel
+figure06_B_PRY.fn <- function(nchart = 6){
+  
+  # Variables to plot
+  vars4plot = list("Executive"    = c("q1b", "q1c", "q2b", "q2c"), 
+                   "Judiciary"    = c("q1e", "q1f", "q1g", "q2e", "q2f", "q2g"),
+                   "Other"        = c("q1d", "q2a", "q2d"))
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry & year == latestYear) %>%
+    select(all_of(unlist(vars4plot,
+                         use.names = F))) %>%
+    mutate(
+      across(starts_with("q1"),
+             ~case_when(
+               .x == 1  ~ 1,
+               .x == 2  ~ 1,
+               .x == 3  ~ 0,
+               .x == 4  ~ 0,
+               .x == 99 ~ NA_real_
+             )),
+      across(starts_with("q2"),
+             ~case_when(
+               .x == 1  ~ 0,
+               .x == 2  ~ 0,
+               .x == 3  ~ 1,
+               .x == 4  ~ 1,
+               .x == 99 ~ NA_real_
+             ))
+    ) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "category",
+                 values_to = "perc") %>%
+    mutate(
+      perc   = round(perc*100, 0),
+      status = if_else(str_detect(category, "q1"), "Positive", "Negative"),
+      grp  = case_when(
+        str_detect(category, "b|c")   ~ "Executive",
+        str_detect(category, "e|f|g") ~ "Judiciary",
+        str_detect(category, "a|d")   ~ "Other",
+      ),
+      perc     = if_else(status == "Positive", perc, -perc),
+      label    = to_percentage.fn(perc),
+      row      = str_replace(category, "q1|q2", ""),
+      row      = case_when(
+        row == "a" ~ "Members of the Legislative",
+        row == "b" ~ "Local Government Officers",
+        row == "c" ~ "National Government Officers",
+        row == "d" ~ "Police Officers",
+        row == "e" ~ "Criminal Prosecutors",
+        row == "f" ~ "Public Defense Attorneys",
+        row == "g" ~ "Judges and Magistrates",
+      )
+    )
+    
+  # Customizing colorPalette for plot
+  colors4plot <- c(binPalette)
+  names(colors4plot) <- c("Positive", "Negative")
+  
+  # Plotting each panel
+  imap(c("B1" = "Executive", 
+         "B2" = "Judiciary", 
+         "B3" = "Other"),
+       function(var4plot, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(grp == var4plot)
+         
+         # The height of the plot depends on the number of categories
+         if (panelName == "Judiciary") {
+           h = 16.51861
+         } else {
+           h = 23.19635
+         }
+         
+         # Applying plotting function
+         chart <- LAC_divBars(data           = data2plot,
+                              target_var     = "perc",
+                              grouping_var   = "row",
+                              diverging_var  = "status",
+                              negative_value = "Negative",
+                              colors         = colors4plot,
+                              labels_var     = "label")
+         
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 141.6383,
+                   h      = h)
+       })
+}
 
 

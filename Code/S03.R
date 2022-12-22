@@ -505,9 +505,9 @@ figure15.fn <- function(nchart = 15) {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure_16.fn <- function() {
-  # Panel A: Serve the Public
+figure16.fn <- function(nchart = 16) {
   
+  # Panel A: Serve the Public
   panelA <- data_subset.df %>%
     filter(year == 2022 & country == mainCountry) %>%
     select(q48c_G2, EXP_q22i_G2 , EXP_q22h_G2) %>%
@@ -578,7 +578,7 @@ figure_16.fn <- function() {
                            margin_top   = 0);a
   
   saveIT.fn(chart  = a,
-            n      = 17,
+            n      = nchart,
             suffix = "a",
             w      = 82.59305,
             h      = 45.33831)
@@ -640,7 +640,7 @@ figure_16.fn <- function() {
                            margin_top   = 0);b
   
   saveIT.fn(chart  = b,
-            n      = 17,
+            n      = nchart,
             suffix = "b",
             w      = 82.59305,
             h      = 59.74817)
@@ -703,7 +703,7 @@ figure_16.fn <- function() {
                            margin_top   = 0);c
   
   saveIT.fn(chart  = c,
-            n      = 17,
+            n      = nchart,
             suffix = "c",
             w      = 82.59305,
             h      = 59.74817)
@@ -766,7 +766,7 @@ figure_16.fn <- function() {
                            margin_top   = 0);d
   
   saveIT.fn(chart  = d,
-            n      = 17,
+            n      = nchart,
             suffix = "d",
             w      = 82.59305,
             h      = 74.86094)
@@ -833,7 +833,7 @@ figure_16.fn <- function() {
                            margin_top   = 0);e
   
   saveIT.fn(chart  = e,
-            n      = 17,
+            n      = nchart,
             suffix = "e",
             w      = 82.59305,
             h      = 59.74817)
@@ -893,7 +893,7 @@ figure_16.fn <- function() {
                            margin_top   = 0);f
   
   saveIT.fn(chart  = f,
-            n      = 17,
+            n      = nchart,
             suffix = "f",
             w      = 82.59305,
             h      = 45.33831)
@@ -956,7 +956,7 @@ figure_16.fn <- function() {
                            margin_top   = 0);g
   
   saveIT.fn(chart  = g,
-            n      = 17,
+            n      = nchart,
             suffix = "g",
             w      = 82.59305,
             h      = 59.74817)
@@ -1040,8 +1040,6 @@ figure17.fn <- function(nchart = 17) {
             suffix = NULL,
             w      = 189.7883,
             h      = 168.7007)
-  
-  
 }
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1303,3 +1301,101 @@ saveIT.fn(chart  = figure19b,
           w      = 131.7974,
           h      = 65.02006)
 }
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 11.A - PARAGUAY                                                                                ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 12 - PARAGUAY                                                                                  ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure12_PRY.fn <- function(nchart = 12) {
+  
+  # Defining variables to use in rose chart
+  vars4plot <- c("q49a", "q49b_G2", "q49e_G2", "q49c_G2", "q49e_G1", "q49d_G1",
+                 "q49c_G1", "q49b_G1")
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry & year == latestYear) %>%
+    select(all_of(vars4plot)) %>%
+    mutate(
+      across(everything(), 
+             ~if_else(.x == 1 | .x == 2, 1, 
+                      if_else(!is.na(.x) & .x != 99, 0,
+                              NA_real_)))
+    ) %>%
+    summarise(across(everything(),
+                     mean, 
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "category",
+                 values_to = "avg") %>%
+    arrange(desc(avg)) %>%
+    mutate(
+      percentage = to_percentage.fn(avg*100),
+      label = case_when(
+        category == 'q49a'          ~ paste("<span style='color:#524F4C;font-size:3.514598mm;font-weight:bold'>",
+                                            "Is **effective** in bringing<br>people who commit<br>crimes to justice"),
+        category == 'q49b_G2'       ~ paste("Ensures **equal treatment<br>of victims** by allowing all<br>",
+                                            "victims to seek justice<br>regardless of who they are"),
+        category == 'q49e_G2'       ~ paste("Safeguards the<br>**presumption of<br>innocence** by treating<br>those",
+                                            "accused of<br>crimes as innocent<br>until proven guilty"),
+        category == 'q49c_G2'       ~ paste("Ensures **equal treatment of<br>the accused** by giving all a<br>",
+                                            "fair trial regardless of who<br>they are"),
+        category == 'q49e_G1'       ~ paste("Gives **appropriate<br>punishments** that fit<br>the crime"),
+        category == 'q49d_G1_merge' ~ paste("Ensures **uniform quality** by<br>providing equal service<br>",
+                                            "regardless of where<br>they live"),
+        category == 'q49c_G1'       ~ paste("Ensures everyone<br>has **access** to the<br>justice system"),
+        category == 'q49b_G1'       ~ paste("Ensures **timeliness**<br>by dealing with<br>cases promptly",
+                                            "and<br>efficiently")
+      ),
+      
+      # Converting labels into HTML syntax
+      across(label,
+             function(raw_label){
+               html <- paste0("<span style='color:#000000;font-size:6.326276mm;font-weight:bold'>",  
+                              percentage, "</span>",
+                              "<br>",
+                              "<span style='color:#524F4C;font-size:3.514598mm'>",
+                              str_replace_all(raw_label, "\\n", "<br>"),
+                              "</span>")
+               return(html)
+             })
+    )
+  
+  # Defining colors
+  colors4plot        <- rosePalette
+  names(colors4plot) <- data2plot %>% arrange(avg) %>% pull(category)
+  
+  # Applying plotting function
+  chart <- LAC_roseChart(data = data2plot,
+                         target_var    = "avg",
+                         grouping_var  = "category",
+                         alabels_var   = "label",
+                         plabels_var   = "percentage",
+                         colors        = colors4plot)
+  
+  # Saving panels
+  saveIT.fn(chart  = chart,
+            n      = nchart,
+            suffix = NULL,
+            w      = 189.7883,
+            h      = 168.7007)
+  
+}
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 13 - PARAGUAY                                                                                  ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
