@@ -198,38 +198,9 @@ centralAmerica.ls <- c(
   "Panama"
 )
 
-# Which country group is gonna be the comparison group?
-map(
-  # We define a list of lists with all possible groups of countries
-  list(eastCaribbean.ls,
-       westCaribbean_and_guianas.ls,
-       southCone.ls,
-       andeanCountries.ls,
-       centralAmerica.ls),
-  
-  # We define a matching function
-  function(country_group){
-    
-    # IF the mainCountry is within the corresponding list of countries then
-    if (!is.na(match(mainCountry, country_group))) {
-      
-      # We set the corresponding list as the comparison group (minus the mainCountry value)
-      comparison_countries.ls <<- country_group[-match(mainCountry, country_group)]
-      
-    }
-  }
-)
-
-# Country Set to include in the reports
-countrySet <- c(mainCountry, comparison_countries.ls)
-
-# Updating the country color palette to match the length of the group of countries
-countryPalette <- countryPalette[1:length(countrySet)]
-names(countryPalette) <- countrySet
-
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-## 7.  Creating directories for Outputs                                                                     ----
+## 7.  Creating a function that will reset the Ouputs directory                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

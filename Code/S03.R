@@ -20,7 +20,7 @@
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 13                                                                                             ----
+##    Figure 12                                                                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -48,7 +48,7 @@
   } # This is going to be refactoring, and this function guarantee the automatization 
 
 # Upper Panel
-figure13_1.fn <- function() {
+figure12_1.fn <- function(nchart = 12) {
     
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
   
@@ -72,14 +72,14 @@ figure13_1.fn <- function() {
                            categories = category)
   
   saveIT.fn(chart  = crimes,
-            n      = 13,
+            n      = nchart,
             suffix = "A",
             w      = 175.027,
             h      = 46.74415)
 }
 
 # Lower Panel
-figure13_2.fn <- function() {
+figure12_2.fn <- function(nchart = 12) {
   
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
   
@@ -161,7 +161,7 @@ figure13_2.fn <- function() {
           axis.ticks.x = element_blank());pl
   
   saveIT.fn(chart  = pl,
-            n      = 13,
+            n      = nchart,
             suffix = "B",
             w      = 175.027,
             h      = 94.54267)
@@ -170,14 +170,12 @@ figure13_2.fn <- function() {
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 14                                                                                             ----
+##    Figure 13                                                                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Upper Panel
-figure14_1.fn <- function() {
-  
-  nchart = 14
+figure13_1.fn <- function(nchart = 13) {
   
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
@@ -224,7 +222,7 @@ figure14_1.fn <- function() {
 } 
 
 # Lower Panel
-figure14_2.fn <- function() {
+figure13_2.fn <- function(nchart = 13) {
   
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
   
@@ -283,20 +281,18 @@ figure14_2.fn <- function() {
   logit_plot <- logit_demo_panel(mainData = data2plot, line_size = 1.5)
   
   saveIT.fn(chart  = logit_plot,
-            n      = 14,
+            n      = nchart,
             suffix = "B",
             w      = 175.027,
             h      = 81.89012)
 }
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 15                                                                                             ----
+##    Figure 14                                                                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure15.fn <- function() {
-  
-  nchart = 15
+figure14.fn <- function(nchart = 14) {
   
   # Defining which years to show in the plot: Two latest years for each country
   yrs <- data_subset.df %>%
@@ -428,13 +424,11 @@ figure15.fn <- function() {
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 16                                                                                             ----
+##    Figure 15                                                                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure16.fn <- function() {
-  
-  nchart = 16
+figure15.fn <- function(nchart = 15) {
   
   # Variables to plot
   vars4plot = list("Trust"         = c("q1e", "q1f", "q1g"), 
@@ -507,11 +501,11 @@ figure16.fn <- function() {
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 17                                                                                             ----
+##    Figure 16                                                                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure_17.fn <- function() {
+figure_16.fn <- function() {
   # Panel A: Serve the Public
   
   panelA <- data_subset.df %>%
@@ -970,13 +964,11 @@ figure_17.fn <- function() {
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 18                                                                                             ----
+##    Figure 17                                                                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure18.fn <- function() {
-  
-  nchart = 18
+figure17.fn <- function(nchart = 17) {
   
   # Defining variables to use in rose chart
   vars4plot <- c("EXP_q24a_G1", "EXP_q24b_G1", "EXP_q24c_G1", "EXP_q24d_G1", "EXP_q24a_G2", "EXP_q24b_G2",
@@ -1054,11 +1046,11 @@ figure18.fn <- function() {
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 19                                                                                            ----
+##    Figure 18                                                                                            ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure19.fn <- function() {
+figure18.fn <- function(nchart = 18) {
 
 legal_assigment <- function(data_subset) {
   
@@ -1215,7 +1207,7 @@ figure19a <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + fig
   
 # Saving Patchwork
 saveIT.fn(chart  = figure19a,
-          n      = 19,
+          n      = nchart,
           suffix = "a",
           w      = 131.7974,
           h      = 65.02006)
@@ -1306,7 +1298,7 @@ figure19b <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + fig
               heights = unit(63, "mm"))
 
 saveIT.fn(chart  = figure19b,
-          n      = 19,
+          n      = nchart,
           suffix = "b",
           w      = 131.7974,
           h      = 65.02006)
