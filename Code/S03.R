@@ -47,6 +47,19 @@
     return(security.universe)
   } # This is going to be refactoring, and this function guarantee the automatization 
 
+  condition_categories <- function(main_data, group_var, name_var) {
+    
+    condition <-  main_data %>%
+      group_by({{group_var}}) %>%
+      summarise(N_obs = sum(counter, na.rm = T)) %>%
+      ungroup() %>%
+      mutate(variable = as.character({{name_var}})) %>%
+      rename(category = {{group_var}}) %>%
+      drop_na()
+    
+    return(condition)
+  } # This function will organize categories in the LOGIT
+  
 # Upper Panel
 figure12_1.fn <- function(nchart = 12) {
     
@@ -241,40 +254,69 @@ figure13_2.fn <- function(nchart = 13) {
            diploma       =  if_else(edu == 4 | edu == 5 | edu == 6, "High Education Level", 
                                     if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
   
+  condition <- perception %>%
+    select(victim, white, young, poor, area, gender, diploma) %>%
+    mutate(counter = 1)
+  
+  victim  <- condition_categories(main_data = condition, group_var = victim, name_var = "victim")
+  color   <- condition_categories(main_data = condition, group_var = white, name_var = "white")
+  age     <- condition_categories(main_data = condition, group_var = young, name_var = "young")
+  income  <- condition_categories(main_data = condition, group_var = poor, name_var = "poor")
+  area    <- condition_categories(main_data = condition, group_var = area, name_var = "area")
+  gender  <- condition_categories(main_data = condition, group_var = gender, name_var = "gender")
+  diploma <- condition_categories(main_data = condition, group_var = diploma, name_var = "diploma")
+  
+  selectables <- rbind(victim, color, age, income, area, gender, diploma) %>%
+    group_by(variable) %>%
+    summarise(min_group = min(N_obs, na.rm = T),
+              total_group = sum(N_obs, na.rm = T)) %>%
+    filter(min_group > 30) %>%
+    filter(min_group != total_group) %>%
+    pull(variable)
+  
   logit_demo <- function(mainData, Yvar) {
   
-  logit_data <- perception
-  
-  logit_data$young <- recode(logit_data$young, "More than 30 years" = "1More than 30 years")
-  logit_data$gender <- recode(logit_data$gender, Male = "1male")
-  
-  logit_data<- logit_data %>%
-    select(gender, victim, white, poor, young, area, diploma,
-           unsafe_bin) # We didn't include the non answer
-  
-  models <- lapply(list("unsafe_bin"), 
-                   function(depVar) {
-                     formula  <- as.formula(paste(depVar, "~ gender + victim + white + poor + young + area + diploma"))
-                     logit  <- glm(formula,  
-                                   data   = logit_data, 
-                                   family = "binomial")})
-  margEff    <- margins_summary(models[[1]], data = models[[1]]$model)
-  
-  data2plot <- margEff
-  
-  data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \nInsecure", "victimVictim" = "Previous Crime \nVictimization",
-                             "areaUrban" = "Urban", "whiteWhite" = "Light Skin \nTone", "youngLess than 30 years" = "Younger than 30",
-                             "diplomaNo High Education Level" = "No High School \nDiploma")
-  
-  data2plot <- data2plot %>%
-    mutate(category = "Colombia",
-           order_variable = if_else(factor %in% "Female", 1,
-                                    if_else(factor %in% "White", 2,
-                                            if_else(factor %in% "Poor", 3,
-                                                    if_else(factor %in% "Victim", 4,
-                                                            if_else(factor %in% "Urban", 5, 
-                                                                    if_else(factor %in% "Young", 6, 7)))))))
-  }
+    logit_data <- perception %>%
+      select(unsafe_bin, all_of(selectables)) %>%
+      rowid_to_column("id") %>%
+      pivot_longer(cols = !c(unsafe_bin, id), names_to = "categories", values_to = "values") %>%
+      mutate(values = if_else(categories %in% "young" & values %in% "More than 30 years", "1More than 30 years", values),
+             values = if_else(categories %in% "gender" & values %in% "Male", "1Male", values)) %>%
+      pivot_wider(id_cols = c(unsafe_bin, id), names_from = categories, values_from = values)
+    
+    logit_data<- logit_data %>%
+      select(all_of(selectables),
+             unsafe_bin) # We didn't include the non answer
+    
+    formula <- selectables %>%
+      t() %>%
+      as.data.frame() %>%
+      unite(., formula, sep = "+") %>%
+      as.character()
+    
+    models <- lapply(list("unsafe_bin"), 
+                     function(depVar) {
+                       formula  <- as.formula(paste(depVar, "~", formula))
+                       logit  <- glm(formula,  
+                                     data   = logit_data, 
+                                     family = "binomial")})
+    margEff    <- margins_summary(models[[1]], data = models[[1]]$model)
+    
+    data2plot <- margEff
+    
+    data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \nInsecure", "victimVictim" = "Previous Crime \nVictimization",
+                               "areaUrban" = "Urban", "whiteWhite" = "Light Skin \nTone", "youngLess than 30 years" = "Younger than 30",
+                               "diplomaNo High Education Level" = "No High School \nDiploma")
+    
+    data2plot <- data2plot %>%
+      mutate(category = "Colombia",
+             order_variable = if_else(factor %in% "Female", 1,
+                                      if_else(factor %in% "White", 2,
+                                              if_else(factor %in% "Poor", 3,
+                                                      if_else(factor %in% "Victim", 4,
+                                                              if_else(factor %in% "Urban", 5, 
+                                                                      if_else(factor %in% "Young", 6, 7)))))))
+    }
   
   data2plot <- logit_demo(mainData = perception, Yvar = 'unsafe_bin')
   

@@ -463,6 +463,48 @@ figure11.fn <- function(nchart = 11) {
 # Upper Panel
 figure06_A_PRY.fn <- function(nchart = 6){
   
+
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry) %>%
+    filter(year == 2021) %>%
+    select(year, q1a) %>%
+    mutate("Trust in Community" = if_else(q1a == 3 | q1a == 4, 1, 
+                                          if_else(!is.na(q1a) & q1a != 99, 0,
+                                                  NA_real_))) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    select(`Trust in Community`) %>%
+    pivot_longer(everything(),
+                 names_to  = "category",
+                 values_to = "value") %>%
+    mutate(value = value*100,
+           label = paste0(format(round(value, 0),
+                                 nsmall = 0),
+                          "%"),
+           empty_value = 100 - value) %>%
+    pivot_longer(cols = !c(category, label), names_to = "group", values_to = "value") %>%
+    mutate(label = if_else(group %in% "empty_value", NA_character_, label),
+           x_pos = 1.15,
+           order_value = 1)
+  
+  b <- horizontal_edgebars(data2plot    = data2plot,
+                           y_value      = value,
+                           x_var        = category,
+                           order_value  = order_value,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94",
+                           margin_top   = 0);b
+  # Saving panels
+  saveIT.fn(chart  = b,
+            n      = nchart,
+            suffix = "b",
+            w      = 111.7642,
+            h      = 14.40985)
 }
 
 # Lower Panel

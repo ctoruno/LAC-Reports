@@ -210,7 +210,7 @@ for (mainCountry in group) {
   print("Designing Figure 13")
   if (mainCountry != "Paraguay") {
     figure13_1.fn()
-    # figure13_2.fn() // NOT WORKING FOR BOLIVIA
+    figure13_2.fn()
     
   } else {
     # figure11_A_PRY.fn() // SANTIAGO
