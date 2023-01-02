@@ -152,7 +152,7 @@ for (mainCountry in group) {
   if (mainCountry != "Paraguay") {
     figure07.fn()
   } else {
-    # figure06_A_PRY.fn() // SANTIAGO
+    figure06_A_PRY.fn()
     figure06_B_PRY.fn()
   }
   
@@ -213,8 +213,8 @@ for (mainCountry in group) {
     figure13_2.fn()
     
   } else {
-    # figure11_A_PRY.fn() // SANTIAGO
-    # figure13_2.fn(nchart = 11) // NOT RUNNING FOR PARAGUAY
+    figure11_A_PRY.fn(nchart = 11)
+    figure13_2.fn(nchart = 11) 
   }
   
   # Figure 14:
@@ -230,7 +230,7 @@ for (mainCountry in group) {
   if (mainCountry != "Paraguay") {
     figure15.fn()
   } else {
-    # figure13_PRY.fn() // SANTIAGO
+    figure13_PRY.fn(nchart = 13)
   }
   
   # Figure 16:

@@ -479,7 +479,7 @@ figure06_A_PRY.fn <- function(nchart = 6){
     pivot_longer(everything(),
                  names_to  = "category",
                  values_to = "value") %>%
-    mutate(value = value*100,
+    mutate(value = round(value*100,0),
            label = paste0(format(round(value, 0),
                                  nsmall = 0),
                           "%"),
@@ -489,7 +489,7 @@ figure06_A_PRY.fn <- function(nchart = 6){
            x_pos = 1.15,
            order_value = 1)
   
-  b <- horizontal_edgebars(data2plot    = data2plot,
+  figure6_a <- horizontal_edgebars(data2plot    = data2plot,
                            y_value      = value,
                            x_var        = category,
                            order_value  = order_value,
@@ -498,11 +498,11 @@ figure06_A_PRY.fn <- function(nchart = 6){
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
                            bar_color    = "#2a2a94",
-                           margin_top   = 0);b
+                           margin_top   = 0);figure6_a
   # Saving panels
-  saveIT.fn(chart  = b,
+  saveIT.fn(chart  = figure6_a,
             n      = nchart,
-            suffix = "b",
+            suffix = "A",
             w      = 111.7642,
             h      = 14.40985)
 }
