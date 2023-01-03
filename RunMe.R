@@ -202,8 +202,8 @@ for (mainCountry in group) {
     figure12_2.fn()
     
   } else {
-    # figure12_1.fn(nchart = 10) // CHECK
-    # figure12_2.fn(nchart = 10) // CHECK
+     figure12_1.fn(nchart = 10) 
+     #figure12_2.fn(nchart = 10) 
   }
   
   # Figure 13:
@@ -254,7 +254,7 @@ for (mainCountry in group) {
   if (mainCountry != "Paraguay") {
     figure18.fn()
   } else {
-    # figure18.fn(nchart = 16) // NOT RUNNING FOR PARAGUAY
+    figure18.fn(nchart = 16)
   }
 
 }

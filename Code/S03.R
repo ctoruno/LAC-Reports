@@ -28,9 +28,9 @@
     
     security.universe <- master_data %>%
       filter(country %in% mainCountry) %>%
-      filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
+      filter(year == if_else(country %in% "Paraguay", 2021, 2022)) %>%
       select(# All variables related with security
-        starts_with("EXP_q8"), 
+        starts_with("EXP_q8"), starts_with("q8"),
         # Security perception
         q9, 
         # Sociodemographics 
@@ -42,7 +42,9 @@
       # This variable assigns the victim condition to each observation
       mutate(victim = if_else(EXP_q8a_1 == 1 | EXP_q8a_2 == 1 | EXP_q8a_3 == 1 | EXP_q8a_4 == 1 | EXP_q8a_5 == 1 | EXP_q8a_6 == 1 | EXP_q8a_7 == 1 |
                                 EXP_q8a_8 == 1 | EXP_q8a_9 == 1 | EXP_q8a_10 == 1 | EXP_q8a_11 == 1 | EXP_q8a_12 == 1 | EXP_q8a_13 == 1 | EXP_q8a_14 == 1 |
-                                EXP_q8b_1 == 1 | EXP_q8b_2 == 1 | EXP_q8b_3 == 1 | EXP_q8b_4 == 1 | EXP_q8b_5 == 1, 1, 0, 0))
+                                EXP_q8b_1 == 1 | EXP_q8b_2 == 1 | EXP_q8b_3 == 1 | EXP_q8b_4 == 1 | EXP_q8b_5 == 1| 
+                                q8b_1 == 1 | q8b_2 == 1 | q8b_3 == 1 | q8b_4 == 1 | q8b_5 == 1 | q8b_6 == 1 | q8b_7 == 1 | q8b_8 == 1 | q8b_9 == 1 |
+                                q8b_10 == 1 | q8b_11 == 1 | q8b_12 == 1 | q8b_13 == 1 | q8b_14 == 1 | q8b_15 == 1 | q8b_16 == 1 | q8b_17 == 1, 1, 0, 0))
     
     return(security.universe)
   } # This is going to be refactoring, and this function guarantee the automatization 
@@ -68,11 +70,16 @@ figure12_1.fn <- function(nchart = 12) {
   # Panel A
   
   data2plot <- security_universe %>%
-    mutate(prop_crimes = if_else(EXP_q8a_1 == 1 |EXP_q8a_2 == 1 |EXP_q8a_3 == 1| EXP_q8a_4 == 1 
-                                 |EXP_q8a_5 == 1| EXP_q8a_6 == 1 |EXP_q8a_8 == 1, 1, 0),
-           life_crimes = if_else(EXP_q8a_7 == 1 |EXP_q8a_12 == 1 |EXP_q8b_1 == 1 |EXP_q8b_2 == 1
-                                 |EXP_q8b_3 == 1, 1, 0),
-           corr_crimes = if_else(EXP_q8a_9 == 1| EXP_q8a_10 == 1|EXP_q8a_11 == 1, 1, 0)) %>%
+    filter(victim == 1) %>%
+    mutate(prop_crimes = if_else(EXP_q8a_1 == 1 | EXP_q8a_2 == 1 | EXP_q8a_3 == 1|  EXP_q8a_4 == 1 |
+                                 EXP_q8a_5 == 1|  EXP_q8a_6 == 1 | EXP_q8a_8 == 1| EXP_q8a_12 == 1 |
+                                 q8b_1 == 1 | q8b_2 == 1 | q8b_3 == 1 | q8b_4 == 1 | q8b_5 == 1 |
+                                 q8b_6 == 1 | q8b_7 == 1 | q8b_8 == 1 | q8b_10  == 1, 1, 0, 0),
+           life_crimes = if_else(EXP_q8a_7 == 1 | EXP_q8b_1 == 1 | EXP_q8b_2 == 1 | EXP_q8b_3 == 1 |
+                                 EXP_q8b_4 == 1 | EXP_q8b_5 == 1 | q8b_9 == 1 | q8b_14 == 1 |
+                                 q8b_15 == 1 | q8b_16 == 1 | q8b_17 == 1, 1, 0, 0),
+           corr_crimes = if_else(EXP_q8a_9 == 1|  EXP_q8a_10 == 1| EXP_q8a_11 == 1 | q8b_11 == 1 |
+                                 q8b_12 == 1 | q8b_13 == 1, 1, 0, 0)) %>%
     summarise(prop_crimes = round(mean(prop_crimes, na.rm=T), 2),
               life_crimes = round(mean(life_crimes, na.rm=T), 2),
               corr_crimes = round(mean(corr_crimes, na.rm=T), 2))  %>%
@@ -1146,7 +1153,7 @@ figure18.fn <- function(nchart = 18) {
       mutate(legal = ifelse(a2j_consumer == 1 | a2j_land == 1 | a2j_housing == 1 | a2j_family == 1 | a2j_education == 1 | a2j_accidental == 1 |
                               a2j_employment == 1 | a2j_public == 1 | a2j_law == 1 | a2j_id == 1 | a2j_money == 1 | a2j_community == 1, 1, 0)) %>%
       group_by(country) %>%
-      filter(year == 2022) %>%
+      filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
       ungroup() %>%
       select(country, year, ends_with(target_variables), starts_with("a2j_"), legal) %>%
       filter(country %in% mainCountry)
