@@ -203,7 +203,7 @@ for (mainCountry in group) {
     
   } else {
      figure12_1.fn(nchart = 10) 
-     #figure12_2.fn(nchart = 10) 
+     figure12_2.fn(nchart = 10) 
   }
   
   # Figure 13:

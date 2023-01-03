@@ -99,32 +99,63 @@ figure12_1.fn <- function(nchart = 12) {
 }
 
 # Lower Panel
-figure12_2.fn <- function(nchart = 12) {
+figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
   
   victims <- security_universe %>%
     summarise(victim = round(mean(victim, na.rm = T),2)) %>%
     mutate(non_victim = 1 - victim)
+
+  if (country == "Paraguay") {
+    
+    report <- security_universe %>%
+      filter(q8d != 99) %>%
+      mutate(q8d = if_else(q8d == 1, 1, 0)) %>%
+      filter(victim == 1) %>%
+      summarise(report = round(mean(q8d, na.rm = T),2)) %>%
+      mutate(non_report = 1 - report)
+  }
+  else {
+    
+    report <- security_universe %>%
+      filter(EXP_q8d != 99) %>%
+      mutate(EXP_q8d = if_else(EXP_q8d == 1, 1, 0)) %>%
+      filter(victim == 1) %>%
+      summarise(report = round(mean(EXP_q8d, na.rm = T),2)) %>%
+      mutate(non_report = 1 - report)
+  }
   
-  report <- security_universe %>%
-    filter(EXP_q8d != 99) %>%
-    mutate(EXP_q8d = if_else(EXP_q8d == 1, 1, 0)) %>%
-    filter(victim == 1) %>%
-    summarise(report = round(mean(EXP_q8d, na.rm = T),2)) %>%
-    mutate(non_report = 1 - report)
+  if (country == "Paraguay") {
+    
+    fill_report <- security_universe %>%
+      filter(victim == 1) %>%
+      mutate(q8d = if_else(q8d == 1, 1,
+                           if_else(q8d == 1, 0, NA_real_)),
+             q8f = if_else(q8f == 1, 1,
+                           if_else(q8f == 0, 0, NA_real_))) %>%
+      group_by(q8d) %>%
+      summarise(fill_report = round(mean(q8f, na.rm = T),2)) %>%
+      mutate(non_fill_report = 1 - fill_report) %>%
+      filter(q8d == 1) %>%
+      select(!q8d)
+  }
   
-  fill_report <- security_universe %>%
-    filter(victim == 1) %>%
-    mutate(EXP_q8d = if_else(EXP_q8d == 1, 1,
-                             if_else(EXP_q8d == 1, 0, NA_real_)),
-           EXP_q8f = if_else(EXP_q8f == 1, 1, 
-                             if_else(EXP_q8f == 0, 0, NA_real_))) %>%
-    group_by(EXP_q8d) %>%
-    summarise(fill_report = round(mean(EXP_q8f, na.rm = T),2)) %>%
-    mutate(non_fill_report = 1 - fill_report) %>%
-    filter(EXP_q8d == 1) %>%
-    select(!EXP_q8d)
+  else {
+    
+    fill_report <- security_universe %>%
+      filter(victim == 1) %>%
+      mutate(EXP_q8d = if_else(EXP_q8d == 1, 1,
+                               if_else(EXP_q8d == 1, 0, NA_real_)),
+             EXP_q8f = if_else(EXP_q8f == 1, 1, 
+                               if_else(EXP_q8f == 0, 0, NA_real_))) %>%
+      group_by(EXP_q8d) %>%
+      summarise(fill_report = round(mean(EXP_q8f, na.rm = T),2)) %>%
+      mutate(non_fill_report = 1 - fill_report) %>%
+      filter(EXP_q8d == 1) %>%
+      select(!EXP_q8d)
+    
+  }
   
   t1 <- sample(x = c("Victim", "Non-Victim"), size = 1000, replace = TRUE, prob = c(1,0))
   t2 <- sample(x = c("Non-Report", "Report"), size = 1000, replace = TRUE, prob = c(report$non_report, report$report))
