@@ -213,84 +213,7 @@ figure08.fn <- function(nchart = 8){
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure09.fn <- function(nchart = 9) {
-  
-  # Defining variables to include in plot
-  vars4plot <- c("q4a", "q4b", "q4c", "q4d", "q4e")
-  
-  # Defining data frame for plot
-  data2plot <- data_subset.df %>%
-    filter(year == latestYear & country %in% countrySet) %>%
-    select(country, all_of(unlist(vars4plot, use.names = F))) %>%
-    mutate(across(!country,
-                  ~if_else(.x == 99, NA_real_, as.double(.x)))) %>%
-    group_by(country) %>%
-    summarise(across(everything(),
-                     mean,
-                     na.rm = T)) %>%
-    pivot_longer(!country,
-                 names_to   = "category",
-                 values_to  = "value2plot") %>%
-    mutate(value2plot  = value2plot*100,
-           highlighted = if_else(country == mainCountry, "Highlighted", "Regular"),
-           labels      = to_percentage.fn(value2plot))
-  
-  # Defining colors
-  colors4plot <- barsPalette
-  names(colors4plot) <- c("Highlighted", "Regular")
-  
-  # Plotting each panel of Figure 5
-  imap(c("A" = "q4a", 
-         "B" = "q4b", 
-         "C" = "q4c", 
-         "D" = "q4d", 
-         "E" = "q4e"),
-       function(tvar, panelName) {
-         
-         # Filtering data2plot to leave the variable for each panel
-         data2plot <- data2plot %>%
-           filter(category %in% tvar)
-         
-         # Applying plotting function
-         chart <- LAC_barsChart(data           = data2plot,
-                                target_var     = "value2plot",
-                                grouping_var   = "country",
-                                labels_var     = "labels",
-                                colors_var     = "highlighted",
-                                colors         = colors4plot,
-                                direction      = "horizontal")
-         
-         # Defining height
-         if (length(countrySet) == 3) {
-           h = 24.60219
-         }
-         if (length(countrySet) == 4) {
-           h = 30.92846
-         }
-         if (length(countrySet) == 6) {
-           h = 43.22956
-         }
-         if (length(countrySet) > 6) {
-           h = 55.17919
-         }
-         
-         # Saving panels
-         saveIT.fn(chart  = chart,
-                   n      = nchart,
-                   suffix = panelName,
-                   w      = 86.81057,
-                   h      = 43.58102)
-         
-       })
-}
-
-## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-##
-##    Figure 10                                                                                             ----
-##
-## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-figure10.fn <- function(nchart = 10){
+figure09.fn <- function(nchart = 9){
   
   # Defining variables to use in the plot
   vars4plot <- list(
@@ -370,6 +293,84 @@ figure10.fn <- function(nchart = 10){
                    suffix = panelName,
                    w      = 189.7883,
                    h      = h)
+         
+       })
+}
+
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 10                                                                                            ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure10.fn <- function(nchart = 10) {
+  
+  # Defining variables to include in plot
+  vars4plot <- c("q4a", "q4b", "q4c", "q4d", "q4e")
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear & country %in% countrySet) %>%
+    select(country, all_of(unlist(vars4plot, use.names = F))) %>%
+    mutate(across(!country,
+                  ~if_else(.x == 99, NA_real_, as.double(.x)))) %>%
+    group_by(country) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(!country,
+                 names_to   = "category",
+                 values_to  = "value2plot") %>%
+    mutate(value2plot  = value2plot*100,
+           highlighted = if_else(country == mainCountry, "Highlighted", "Regular"),
+           labels      = to_percentage.fn(value2plot))
+  
+  # Defining colors
+  colors4plot <- barsPalette
+  names(colors4plot) <- c("Highlighted", "Regular")
+  
+  # Plotting each panel of Figure 5
+  imap(c("A" = "q4a", 
+         "B" = "q4b", 
+         "C" = "q4c", 
+         "D" = "q4d", 
+         "E" = "q4e"),
+       function(tvar, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(category %in% tvar)
+         
+         # Applying plotting function
+         chart <- LAC_barsChart(data           = data2plot,
+                                target_var     = "value2plot",
+                                grouping_var   = "country",
+                                labels_var     = "labels",
+                                colors_var     = "highlighted",
+                                colors         = colors4plot,
+                                direction      = "horizontal")
+         
+         # Defining height
+         if (length(countrySet) == 3) {
+           h = 24.60219
+         }
+         if (length(countrySet) == 4) {
+           h = 30.92846
+         }
+         if (length(countrySet) == 6) {
+           h = 43.22956
+         }
+         if (length(countrySet) > 6) {
+           h = 55.17919
+         }
+         
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 86.81057,
+                   h      = 43.58102)
          
        })
 }
@@ -486,13 +487,11 @@ figure06_A_PRY.fn <- function(nchart = 6){
            empty_value = 100 - value) %>%
     pivot_longer(cols = !c(category, label), names_to = "group", values_to = "value") %>%
     mutate(label = if_else(group %in% "empty_value", NA_character_, label),
-           x_pos = 1.15,
-           order_value = 1)
+           x_pos = 1.15)
   
   figure6_a <- horizontal_edgebars(data2plot    = data2plot,
                            y_value      = value,
                            x_var        = category,
-                           order_value  = order_value,
                            group_var    = group,
                            label_var    = label,
                            x_lab_pos    = x_pos,

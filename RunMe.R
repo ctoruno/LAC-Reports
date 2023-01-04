@@ -112,10 +112,8 @@ for (mainCountry in group) {
   
   # Figure 3:
   print("Designing Figure 3")
-  if (mainCountry != "Paraguay") {
-    figure03.fn()
-  }
-  
+  figure03.fn()
+
   # Figure 4:
   print("Designing Figure 4")
   if (mainCountry != "Paraguay") {

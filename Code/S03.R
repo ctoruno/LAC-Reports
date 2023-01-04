@@ -632,9 +632,6 @@ figure16.fn <- function(nchart = 16) {
       x_pos = if_else(variable %in% "q48c_G2", 1.15,
                   if_else(variable %in% "EXP_q22i_G2", 2.15,
                           if_else(variable %in% "EXP_q22h_G2", 3.15, NA_real_))),
-      order_value = if_else(variable %in% "q48c_G2", 1,
-                            if_else(variable %in% "EXP_q22i_G2", 2,
-                                    if_else(variable %in% "EXP_q22h_G2", 3, NA_real_))),
       variable = case_when(
         variable == "q48c_G2" ~ "Are available to help when needed",
         variable == "EXP_q22i_G2" ~ "Serve the interests of the community",
@@ -692,9 +689,6 @@ figure16.fn <- function(nchart = 16) {
       x_pos = if_else(variable %in% "EXP_q24a_G1", 1.1,
                       if_else(variable %in% "q48a_G2", 2.15,
                               if_else(variable %in% "q48b_G1", 3.15, 4.15))),
-      order_value = if_else(variable %in% "EXP_q24a_G1", 1,
-                            if_else(variable %in% "q48a_G2", 2,
-                                    if_else(variable %in% "q48b_G1", 3, 4))),
       variable = case_when(
         variable == "EXP_q24a_G1" ~ "Crime victims receive prompt and courteous <br> attention",
         variable == "q48a_G2"     ~ "Resolve security problems in  the community",
@@ -754,9 +748,6 @@ figure16.fn <- function(nchart = 16) {
       x_pos = if_else(variable %in% "q48a_G1", 1.15,
                            if_else(variable %in% "EXP_q22e_G1", 2.15,
                                    if_else(variable %in% "q48c_G1", 3.15, 4.15))),
-      order_value = if_else(variable %in% "q48a_G1", 1,
-                            if_else(variable %in% "EXP_q22e_G1", 2,
-                                    if_else(variable %in% "q48c_G1", 3, 4))),
       variable = case_when(
         variable == "q48a_G1"     ~ "Act lawfully",
         variable == "EXP_q22e_G1" ~ "Do not use excessive force",
@@ -814,10 +805,6 @@ figure16.fn <- function(nchart = 16) {
                       if_else(variable %in% "EXP_q17g", 2.15,
                               if_else(variable %in% "EXP_q17h", 3.15, 
                                       if_else(variable %in% "EXP_q17i", 4.15, 5.15)))),
-      order_value = if_else(variable %in% "q18b", 1,
-                            if_else(variable %in% "EXP_q17g", 2,
-                                    if_else(variable %in% "EXP_q17h", 3, 
-                                            if_else(variable %in% "EXP_q17i", 4, 5)))),
       variable = case_when(
         variable == "q18b"        ~ "Gender",
         variable == "EXP_q17g"    ~ "Skin color",
@@ -882,9 +869,6 @@ figure16.fn <- function(nchart = 16) {
                       if_else(variable %in% "q48e_G2", 2.15,
                               if_else(variable %in% "EXP_q22k_G2", 3.15, 
                                       if_else(variable %in% "EXP_q22j_G2", 4.15, NA_real_)))),
-      order_value = if_else(variable %in% "q2d", 1,
-                            if_else(variable %in% "q48e_G2", 2,
-                                    if_else(variable %in% "EXP_q22k_G2", 3, 4))),
       variable = case_when(
         variable == "q2d"         ~ "Are not involved in corrupt practices",
         variable == "q48e_G2"     ~ "Investigate crimes in an independent manner",
@@ -943,8 +927,6 @@ figure16.fn <- function(nchart = 16) {
       x_pos = if_else(variable %in% "q1d", 1.15,
                       if_else(variable %in% "q9", 2.15,
                               if_else(variable %in% "q48b_G2", 3.15, NA_real_))),
-      order_value = if_else(variable %in% "q1d", 1,
-                            if_else(variable %in% "q9", 2, 3)),
       variable = case_when(
         variable == "q1d"     ~ "Trust the police",
         variable == "q9"      ~ "Feel safe in their neighborhoods",
@@ -1003,9 +985,6 @@ figure16.fn <- function(nchart = 16) {
                       if_else(variable %in% "EXP_q22f_G1", 2.15,
                               if_else(variable %in% "EXP_q22g_G1", 3.15, 
                                       if_else(variable %in% "EXP_q22h_G1", 4.15, NA_real_)))),
-      order_value = if_else(variable %in% "q48d_G1", 1,
-                            if_else(variable %in% "EXP_q22f_G1", 2, 
-                                    if_else(variable %in% "EXP_q22g_G1", 3, 4))),
       variable = case_when(
         variable == "q48d_G1"     ~ "Are held accountable for violating laws",
         variable == "EXP_q22f_G1"     ~ "Are held accountable for seeking bribes",
@@ -1290,7 +1269,6 @@ figure18.fn <- function(nchart = 18) {
                    names_to = "group",
                    values_to = "value") %>%
       mutate(x_pos = c(3.2, 3.2, 2.2, 2.2, 1.2, 1.2),
-             order_value = c(3,3,2,2,1,1),
              empty_value = 1 - value,
              label = paste(round(value*100,0), "%"),
              multiplier = if_else(group == "empty_value", 0, 1),
@@ -1578,7 +1556,6 @@ figure13_PRY.fn <- function (nchart = 13) {
   figure13_b <- horizontal_edgebars(data2plot    = data2plot,
                                     y_value      = value,
                                     x_var        = category,
-                                    order_value  = x_pos,
                                     group_var    = group,
                                     label_var    = label,
                                     x_lab_pos    = x_pos,
