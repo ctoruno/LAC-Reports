@@ -70,6 +70,8 @@ if (Sys.info()["user"] == "carlostorunopaniagua") {
   path2SP <- paste0("/Users/jaeheelee/Library/CloudStorage/OneDrive-SharedLibraries-WorldJusticeProject/",
                     "Research - Data Analytics/")
   
+} else if (Sys.info()["user"] == "macbookprosolido") {
+  path2SP <- paste0("/Users/macbookprosolido/Documents/WJP/")
 } else{
   path2SP <- "PLEASE INSERT YOUR PERSONAL PATH TO THE  WJP - DATA ANALYTICS DIRECTORY"
 }
@@ -80,7 +82,8 @@ if (Sys.info()["user"] == "carlostorunopaniagua") {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# Loading fonts
+#Loading fonts
+
 path2fonts<- paste0(path2SP, "6. Country Reports/0. Fonts/")
 font_add(family     = "Lato Full",
          regular    = paste0(path2fonts, "Lato-Regular.ttf"),
@@ -96,6 +99,13 @@ font_add(family  = "Lato Black Italic",
 font_add(family  = "Lato Medium",
          regular = paste0(path2fonts, "Lato-Medium.ttf"))
 showtext_auto()
+
+# font_add_google(name = "lato", family = "Lato Regular")
+# font_add_google(name = "lato", family = "Lato Black")
+# font_add_google(name = "lato", family = "Lato Medium")
+# font_add_google(name = "lato", family = "Lato Light")
+# font_add_google(name = "lato", family = "Lato Black Italic")
+# 
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##

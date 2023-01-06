@@ -62,7 +62,9 @@
     return(condition)
   } # This function will organize categories in the LOGIT
   
+
 # Upper Panel
+  
 figure12_1.fn <- function(nchart = 12) {
     
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
