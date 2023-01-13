@@ -552,7 +552,7 @@ figure06_B_PRY.fn <- function(nchart = 6){
         str_detect(category, "a|d")   ~ "Other",
       ),
       perc     = if_else(status == "Positive", perc, -perc),
-      label    = to_percentage.fn(perc),
+      label    = to_percentage.fn(abs(perc)),
       row      = str_replace(category, "q1|q2", ""),
       row      = case_when(
         row == "a" ~ "Members of the Legislative",
