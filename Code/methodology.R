@@ -15,7 +15,7 @@
 
 method_input.ls <- list(
   "sf_country"         = mainCountry,         
-  "sf_ssize"           = ,           
+  "sf_ssize"           = mainCountry,           
   "sf_company"         = "",         
   "sf_dates"           = "",           
   "sf_nationality"     = "",     
