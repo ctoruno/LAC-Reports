@@ -52,7 +52,7 @@ The General Population Poll used to collect data in `r params$sf_country` in 202
 
 ## Data Collection
 
-The GPP in `r params$sf_country` was conducted for the WJP's The Rule of Law in `r params$sf_country`: *Key Findings from the General Population Poll 2022* with sampling, fieldwork, and data processing by `r params$sf_company`, based in `r params$sf_location`. `r params$sf_company` administered the surveys between `r params$sf_dates`, conducting face-to-face interviews using a multi-stage random sampling design. The target population group for this survey included `r tolower(params$sf_nationality)` aged 18 years or older residing across `r params$ad_number` `r params$af_term` throughout the country.
+The GPP in `r params$sf_country` was conducted for the WJP's The Rule of Law in `r params$sf_country`: *Key Findings from the General Population Poll 2022* with sampling, fieldwork, and data processing by `r params$sf_company`, based in `r params$sf_location`. `r params$sf_company` administered the surveys between `r params$sf_dates`, conducting face-to-face interviews using a multi-stage random sampling design. The target population group for this survey included `r tolower(params$sf_nationality)` aged 18 years or older residing across `r params$af_sub1_number` `r params$af_sub1_term` throughout the country.
 
 ## Sample Size & Sample Frame
 

@@ -42,10 +42,10 @@ loadVIZ(set = "LAC")
 
 # Loading data
 master_data.df <- read_dta("Data/LAC - Merged.dta")
-method.ls      <- list(
+method_data.ls <- list(
   "sf" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
                                         sheet = "Sampling Frame"),
-  "ad" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
+  "af" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
                     sheet = "AdminDivs"),
   "sd" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
                     sheet = "SampleDesc")
@@ -268,5 +268,8 @@ for (mainCountry in group) {
 ##   Methodology                                                                                            ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  
+  print("Compiling Methodology Page")
+  create_methodPage.fn()
 
 }
