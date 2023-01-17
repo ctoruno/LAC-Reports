@@ -42,6 +42,14 @@ loadVIZ(set = "LAC")
 
 # Loading data
 master_data.df <- read_dta("Data/LAC - Merged.dta")
+method.ls      <- list(
+  "sf" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
+                                        sheet = "Sampling Frame"),
+  "ad" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
+                    sheet = "AdminDivs"),
+  "sd" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
+                    sheet = "SampleDesc")
+)
 
 # Defining group of countries to work with
 if (args[1] == "andean") {
@@ -254,5 +262,11 @@ for (mainCountry in group) {
   } else {
     figure18.fn(nchart = 16)
   }
+  
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##   Methodology                                                                                            ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 }

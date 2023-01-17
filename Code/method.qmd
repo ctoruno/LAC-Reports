@@ -1,0 +1,116 @@
+---
+title: "Methodology"
+format: 
+  html:
+    embed-resources: true
+editor: visual
+params:
+  sf_country:         "!!TEXT!!"
+  sf_ssize:           "!!TEXT!!"
+  sf_company:         "!!TEXT!!"
+  sf_dates:           "!!TEXT!!"
+  sf_nationality:     "!!TEXT!!"
+  sf_location:        "!!TEXT!!"
+  sf_comparison:      "!!TEXT!!"
+  af_sub1_term:       "!!TEXT!!"
+  af_sub1_number:     "!!TEXT!!"
+  af_region_term:     "!!TEXT!!"
+  af_region_number:   "!!TEXT!!"
+  sd_region1_name:    "!!TEXT!!"
+  sd_region1_value:   "!!TEXT!!"
+  sd_region2_name:    "!!TEXT!!"
+  sd_region2_value:   "!!TEXT!!"
+  sd_region3_name:    "!!TEXT!!"
+  sd_region3_value:   "!!TEXT!!"
+  sd_rural_valueTXT:  "!!TEXT!!"
+  sd_rural_value:     "!!TEXT!!"
+  sd_urban_value:     "!!TEXT!!"
+  sd_female_valueTXT: "!!TEXT!!"
+  sd_female_value:    "!!TEXT!!"
+  sd_male_value:      "!!TEXT!!"
+  sd_highedu_value:   "!!TEXT!!"
+  sd_lowedu_value:    "!!TEXT!!"
+---
+
+<style>
+  .content{
+    text-align: justify;
+    text-justify: auto;
+    color: #393B3B;
+  }
+  
+  #description-of-the-sample{
+    text-align: left;
+    color: #393B3B;
+    background-color: #FAFAFA;
+  }
+</style>
+
+To present an image that accurately portrays the rule of law as experienced by ordinary people, data in this report is drawn from the General Population Poll (GPP), an original data source designed and collected by the World Justice Project (WJP). The GPP captures the experiences and perceptions of ordinary citizens concerning the performance of the state and its agents and the actual operation of the legal framework in their country.
+
+The General Population Poll used to collect data in `r params$sf_country` in 2022 features several new questions that highlight perceptions on issues salient to the region, including corruption, authoritarian behaviors, and police performance, criminal justice, and security. In total, the General Population Poll questionnaire includes 115 perception-based questions and 77 experience-based questions, along with sociodemographic information on all respondents. Additionally, the GPP in `r params$sf_country` was administered to a sample of `r params$sf_ssize` respondents.
+
+## Data Collection
+
+The GPP in `r params$sf_country` was conducted for the WJP's The Rule of Law in `r params$sf_country`: *Key Findings from the General Population Poll 2022* with sampling, fieldwork, and data processing by `r params$sf_company`, based in `r params$sf_location`. `r params$sf_company` administered the surveys between `r params$sf_dates`, conducting face-to-face interviews using a multi-stage random sampling design. The target population group for this survey included `r tolower(params$sf_nationality)` aged 18 years or older residing across `r params$ad_number` `r params$af_term` throughout the country.
+
+## Sample Size & Sample Frame
+
+The General Population Poll in `r params$sf_country` represents an achieved total sample size of `r params$sf_ssize` interviews distributed proportionally across all `r params$af_region_number` `r params$af_region_term`. `r params$sf_company` based the sampling frame on the 2022 projected population figures from the National Administrative Department of Statistics (DANE), acquiring a proportionally stratified sample by department, age, gender, socioeconomic status, and level of urbanization.
+
+In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Spanish, can be found in the Appendix of this report.
+
+## Sampling
+
+Regions and cities were selected to achieve a nationally representative sample of the country. Within cities, neighborhood blocks were selected using probability proportional to size sampling. In rural areas, vereda zones, or sub-municipalities, were selected using probability proportional to size sampling. Each sampling unit was then selected randomly. Within the sampled segments, survey administrators performed a systematic random route to sample households and used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
+
+<br>
+
+::: columns
+::: {.column width="37.5%"}
+## Description of the Sample
+
+**COVERAGE:** Interviews were distributed across regions to create a nationally representative sample. The majority of interviews were conducted in the `r params$sd_region1_name` region (`r params$sd_region1_value`), followed by the `r params$sd_region2_name` region (`r params$sd_region2_value`) and the `r params$sd_region3_name` region (`r params$sd_region3_value`).
+
+**GEOGRAPHY:** `r params$sd_rural_valueTXT` percent (`r params$sd_rural_value`) of respondents reside in rural areas and municipalities, while `r params$sd_urban_value` of respondents reside in metro areas or cities.
+
+**ETHNICITY:** Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+**GENDER:** `r params$sd_female_valueTXT` percent (`r params$sd_female_value`) of respondents were female and `r params$sd_male_value` were male.
+
+**EDUCATION:** Most respondents (`r params$sd_highedu_value`) reported that they had received at least a high school diploma or vocational degree, and the remaining `r params$sd_lowedu_value` of respondents received a middle school diploma or less. 
+
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="57.5%"}
+
+<br><br><br>
+<center><strong>INSERT TABLE A HERE</strong></center>
+<br><br>
+
+## Interviewing and Quality Control
+
+In total, 42 interviewers worked on this project, including 28 female interviewers. Enumerators worked in ten groups of four to five interviewers with one supervisor per group. Interviews were conducted in Spanish.
+
+The supervisory team directly oversaw 20% of all interviews in the field. During data processing, 200 interviews (approximately 20% of the sample) were selected for audio review by the central office and 300 interviews (30% of the sample) were backchecked via telephone. After quality control, 2 interviews were rejected from the final sample. Additional quality control measures included GPS validation of all sampling segment interviews, checks for abnormal answer patterns, and photo verification. Interviews averaged 44 minutes in length and ranged from 26 to 81 minutes.
+
+## Data Review and Justification
+As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s AmericasBarometer, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International’s Corruption Perceptions Index, the Bertelsmann Stiftung’s Transformation Index (BTI), and Freedom House’s Freedom in the World. While certain trends captured by the 2022 General Population Poll in `r params$sf_country` are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of `r params$sf_country`’s rule of law performance as measured by other sources.
+
+:::
+:::
+
+## Historical Data
+Historical data in this report derives from the _WJP Rule of Law Index®’s General Population Poll_ that is typically administered every two to three years using a nationally representative probability sample of 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year’s reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2013, 2016, 2018, and 2022. Data for Ecuador was collected in 2012, 2014, 2017, and 2022.
+
+## Additional Countries 
+_The Rule of Law in `r params$sf_country`: Key Findings from the General Population Poll 2022_ includes comparisons to the following countries surveyed by the World Justice Project during the same period: `r params$sf_comparison`. This report is additionally part of a series that presents findings from the following five sub-regions within Latin America and the Caribbean: Andes (Bolivia, Colombia, Ecuador, Peru); Southern Cone (Argentina, Brazil, Paraguay); Eastern Caribbean (Antigua and Barbuda, Barbados, Dominica, Grenada, St. Kitts and Nevis, St. Lucia, St. Vincent and the Grenadines, Trinidad and Tobago); Greater Antilles, The Bahamas, Suriname, and Guyana (The Bahamas, Dominican Republic, Guyana, Haiti, Jamaica, Suriname); and Central America (Belize, Costa Rica, El Salvador, Guatemala, Honduras, Panama). Together, these 27 countries are a portion of the 140 countries and jurisdictions included in the _WJP Rule of Law Index 2022_ report. Detailed information regarding the methodology of the _Rule of Law Index_ is available at: [www.worldjusticeproject.org](www.worldjusticeproject.org).
+
+<br><br>
+<center><strong>INSERT TABLE B HERE</strong></center>
+<br><br>
+

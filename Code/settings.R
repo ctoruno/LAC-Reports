@@ -318,5 +318,3 @@ incumbentPP.ls <- list(
   "Nicaragua"                        = "FSLN",                                  # No Data, re-check
   "Panama"                           = "Partido Revolucionario Democrático PRD" # No Data, re-check
 )
-
-  
