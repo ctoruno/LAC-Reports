@@ -35,6 +35,7 @@ source("Code/settings.R")
 source("Code/S01.R")
 source("Code/S02.R")
 source("Code/S03.R")
+source("Code/methodology.R")
 
 # Loading plotting functions from GitHub
 source("https://raw.githubusercontent.com/ctoruno/WJP-Data-Viz/main/loading.R")
