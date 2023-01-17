@@ -13,7 +13,7 @@
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-create_methodPage.fn(){
+create_methodPage.fn <- function(){
   
   # Filtering data
   data4quarto.ls <- list(
@@ -151,15 +151,6 @@ create_methodPage.fn(){
                             fsep = "/"),
     execute_params = method_input.ls
     )
-  
-  # Moving HTML to directory
-  file.copy(from = "Code/method.html", 
-            to   = file.path("Outputs", 
-                             str_replace(mainCountry, " ", "_"),
-                             "Method",
-                             "colombia_method.html",
-                             fsep = "/"), 
-            overwrite = T)
 }
 
 

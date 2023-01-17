@@ -272,5 +272,14 @@ for (mainCountry in group) {
   
   print("Compiling Methodology Page")
   create_methodPage.fn()
+  
+  # Moving HTML to corresponding directory
+  file.copy(from = "Code/method.html", 
+            to   = file.path("Outputs", 
+                             str_replace(mainCountry, " ", "_"),
+                             "Method",
+                             str_replace(mainCountry, " ", "_"), "_method.html",
+                             fsep = "/"), 
+            overwrite = T)
 
 }

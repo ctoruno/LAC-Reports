@@ -40,7 +40,7 @@ p_load(char = c(
   "haven", "readxl", "writexl",
   
   # Utilities
-  "margins", "english",
+  "margins", "english", "quarto",
   
   # Good 'ol Tidyverse
   "tidyverse"
@@ -56,6 +56,7 @@ p_load(char = c(
 # SharePoint path
 if (Sys.info()["user"] == "carlostorunopaniagua") {
   path2SP <- paste0("/Users/carlostorunopaniagua/OneDrive - World Justice Project/Data Analytics/")
+  # quarto_path("/Library/Frameworks/R.framework/Versions/4.1/Resources/library/quarto/R/")
   
 } else if (Sys.info()["user"] == "santiagopardo") {
   path2SP <- paste0("/Users/santiagopardo/OneDrive - World Justice Project/Data Analytics/")

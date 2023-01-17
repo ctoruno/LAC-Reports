@@ -51,7 +51,14 @@ $ cd PATH_TO_LOCAL_REPOSITORY
 $ Rscript --vanilla RunMe.R "andean"
 ```
 
-The script will run entirely and you will now have the final visualizations in the `Outcomes` directory, ordered by country and figure number.
+The script will run entirely and you will now have the final visualizations in the `Outcomes` directory, ordered by country and figure number. If you happen to find an error such as: 
+
+```
+ERROR: --output option cannot specify a relative or absolute path
+```
+
+It means that you haven't installed Quarto in your computer. Please check the [Get Started tab at quarto.org](https://quarto.org/docs/get-started/) in order to install Quarto in your local machine.
+
 
 ## Contact
 For inqueries please contact _Carlos Toruño_ (ctoruno@worldjusticeproject.org) or _Santiago Pardo_ (spardo@worldjusticeproject.org). For general information, please contact _Ana María Montoya_ (amontoya@worldjusticeproject.org).
