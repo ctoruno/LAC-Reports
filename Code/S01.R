@@ -53,17 +53,17 @@ figure01.fn <- function(nchart = 1){
                  values_to  = "value2plot") %>%
     mutate(
       labels = case_when(
-        category == "CAR_q60_G1" ~ "Censoring information that comes from\noutside the country",
-        category == "CAR_q61_G1" ~ "Censoring opinions from opposition\ngroups",
-        category == "CAR_q60_G2" ~ "Resorting to misinformation to shape\npublic opinion in its favor",
-        category == "CAR_q64_G2" ~ "Attacking the media and civil society\norganizations that criticize them",
-        category == "CAR_q67_G1" ~ "Attacking or attempting to discredit\nopposition parties",
-        category == "CAR_q67_G2" ~ "Attacking the electoral system and other\nsupervisory organs", 
-        category == "CAR_q64_G1" ~ "They seek to limit the courts’ competences\nand freedom to interpret the law.",
-        category == "CAR_q66_G1" ~ "They seek to influence the promotion and\nremoval of judges.",
-        category == "CAR_q65_G2" ~ "They promote the judicial persecution of\njournalists and civil society leaders.",
-        category == "CAR_q68_G1" ~ "They promote the prosecution and conviction\nof members of opposition parties.",
-        category == "CAR_q65_G1" ~ "They refuse to comply with court rulings\nthat are not in their favor."
+        category == "CAR_q60_G1" ~ "Censor information that comes from \nabroad",
+        category == "CAR_q61_G1" ~ "Censor opinions from opposition groups",
+        category == "CAR_q60_G2" ~ "Resort to misinformation to shape public \nopinion in their favor",
+        category == "CAR_q64_G2" ~ "Attack or attempt to discredit the media \nand civil society organizations that criticize them",
+        category == "CAR_q67_G1" ~ "Attack or attempt to discredit opposition \nparties",
+        category == "CAR_q67_G2" ~ "Attack or attempt to discredit the \nelectoral system and other supervisory organs", 
+        category == "CAR_q64_G1" ~ "Seek to limit the courts' competencies \nand freedom to interpret the law",
+        category == "CAR_q66_G1" ~ "Seek to influence the promotion and \nremoval of judges",
+        category == "CAR_q65_G2" ~ "Prosecute and convict journalists and \nleaders of civil society organizations",
+        category == "CAR_q68_G1" ~ "Prosecute and convict members of \nopposition parties",
+        category == "CAR_q65_G1" ~ "Refuse to comply with court rulings that are not in their favor"
       ),
       value2plot = round(value2plot*100,1)
     )
@@ -157,17 +157,17 @@ figure02.fn <- function(nchart = 2){
                  values_to  = "value2plot") %>%
     mutate(
       labels = case_when(
-        category == "CAR_q60_G1" ~ "Censoring information that comes from\noutside the country",
-        category == "CAR_q61_G1" ~ "Censoring opinions from opposition\ngroups",
-        category == "CAR_q60_G2" ~ "Resorting to misinformation to shape\npublic opinion in its favor",
-        category == "CAR_q64_G2" ~ "Attacking the media and civil society\norganizations that criticize them",
-        category == "CAR_q67_G1" ~ "Attacking or attempting to discredit\nopposition parties",
-        category == "CAR_q67_G2" ~ "Attacking the electoral system and other\nsupervisory organs", 
-        category == "CAR_q64_G1" ~ "They seek to limit the courts’ competences\nand freedom to interpret the law.",
-        category == "CAR_q66_G1" ~ "They seek to influence the promotion and\nremoval of judges.",
-        category == "CAR_q65_G2" ~ "They promote the judicial persecution of\njournalists and civil society leaders.",
-        category == "CAR_q68_G1" ~ "They promote the prosecution and conviction\nof members of opposition parties.",
-        category == "CAR_q65_G1" ~ "They refuse to comply with court rulings\nthat are not in their favor."
+        category == "CAR_q60_G1" ~ "Censor information that comes from \nabroad",
+        category == "CAR_q61_G1" ~ "Censor opinions from opposition groups",
+        category == "CAR_q60_G2" ~ "Resort to misinformation to shape public \nopinion in their favor",
+        category == "CAR_q64_G2" ~ "Attack or attempt to discredit the media \nand civil society organizations that criticize them",
+        category == "CAR_q67_G1" ~ "Attack or attempt to discredit opposition \nparties",
+        category == "CAR_q67_G2" ~ "Attack or attempt to discredit the \nelectoral system and other supervisory organs", 
+        category == "CAR_q64_G1" ~ "Seek to limit the courts' competencies \nand freedom to interpret the law",
+        category == "CAR_q66_G1" ~ "Seek to influence the promotion and \nremoval of judges",
+        category == "CAR_q65_G2" ~ "Prosecute and convict journalists and \nleaders of civil society organizations",
+        category == "CAR_q68_G1" ~ "Prosecute and convict members of \nopposition parties",
+        category == "CAR_q65_G1" ~ "Refuse to comply with court rulings that are not in their favor"
       ),
       value2plot = round(value2plot*100,1)
     )
