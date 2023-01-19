@@ -1057,21 +1057,35 @@ figure17.fn <- function(nchart = 17) {
     #arrange(desc(avg)) %>%
     mutate(
       percentage = to_percentage.fn(avg*100),
-      label = case_when(
-        category == "EXP_q24a_G1" ~ "Receive prompt and\ncourteous attention\nwhen they report a\ncrime",
-        category == "EXP_q24b_G1" ~ "Are believed when\nthey report a crime",
-        category == "EXP_q24c_G1" ~ "Receive effective and\ntimely medical and\npsychological care",
-        category == "EXP_q24d_G1" ~ "Receive information\nand legal advice\nwhen going to the\nauthorities",
-        category == "EXP_q24a_G2" ~ "Receive protection\nfrom the police if\ntheir safety is in\ndanger",
-        category == "EXP_q24b_G2" ~ paste0("Receive protection\nduring criminal\nproceedings", 
-                                           " to\nprevent repeat\nvictimization"),
-        category == "EXP_q24c_G2" ~ "Receive adequate\ncare and protection\nas victims of sexual\ncrimes",
-        category == "EXP_q24d_G2" ~ "Receive adequate\ncare and protection\nas victims of\ndomestic violence",
-        category == "EXP_q24f_G2" ~ paste0("Receive a clear\nexplanation of\nthe process when\nreporting",
-                                           " a crime to\nthe police"),
-        category == "EXP_q24g_G2" ~ "Are addressed by\nthe police using\naccessible language",
-        category == "EXP_q23f_G1" ~ "Are guaranteed\ntheir rights in\ncriminal justice\nproceedings"
+      order_value = case_when (
+        category == "EXP_q24c_G1" ~ 1,
+        category == "EXP_q24d_G1" ~ 2,
+        category == "EXP_q24a_G2" ~ 3,
+        category == "EXP_q24b_G2" ~ 4,
+        category == "EXP_q24c_G2" ~ 5,
+        category == "EXP_q24d_G2" ~ 6,
+        category == "EXP_q24f_G2" ~ 7,
+        category == "EXP_q24g_G2" ~ 8,
+        category == "EXP_q23f_G1" ~ 9,
+        category == "EXP_q24a_G1" ~ 10,
+        category == "EXP_q24b_G1" ~ 11
       ),
+      label = case_when(
+        category == "EXP_q24c_G1" ~ "Receive effective and\ntimely **medical and\npsychological care**",
+        category == "EXP_q24d_G1" ~ "Receive **information\nand legal advice**\nwhen going to the\nauthorities",
+        category == "EXP_q24a_G2" ~ "Receive **protection**\nfrom the police if\ntheir safety is in\ndanger",
+        category == "EXP_q24b_G2" ~ paste0("Receive protection\nduring criminal\nproceedings", 
+                                           " to\n**prevent repeat\nvictimization**"),
+        category == "EXP_q24c_G2" ~ "Receive adequate\ncare and protection\nas **victims of sexual\ncrimes**",
+        category == "EXP_q24d_G2" ~ "Receive adequate\ncare and protection\nas **victims of\ndomestic violence**",
+        category == "EXP_q24f_G2" ~ paste0("Receive a **clear\nexplanation** of\nthe process when\nreporting",
+                                           " a crime to\nthe police"),
+        category == "EXP_q24g_G2" ~ "Are addressed by\nthe police using\n**accessible language**",
+        category == "EXP_q23f_G1" ~ "Are **guaranteed\ntheir rights** in\ncriminal justice\nproceedings",
+        category == "EXP_q24a_G1" ~ "Receive **prompt and\ncourteous attention**\nwhen they report a\ncrime",
+        category == "EXP_q24b_G1" ~ "Are **believed** when\nthey report a crime"
+        ),
+      
       
       # Converting labels into HTML syntax
       across(label,
@@ -1084,11 +1098,12 @@ figure17.fn <- function(nchart = 17) {
                               "</span>")
                return(html)
              })
-    )
+    ) %>%
+    arrange(order_value)
   
   # Defining colors
   colors4plot        <- rosePalette
-  names(colors4plot) <- data2plot %>% arrange(avg) %>% pull(category)
+  names(colors4plot) <- data2plot %>% arrange(order_value) %>% pull(category)
   
   # Applying plotting function
   chart <- LAC_roseChart(data = data2plot,
@@ -1096,7 +1111,8 @@ figure17.fn <- function(nchart = 17) {
                          grouping_var  = "category",
                          alabels_var   = "label",
                          plabels_var   = "percentage",
-                         colors        = colors4plot)
+                         colors        = colors4plot,
+                         order_value   = "order_value")
   
   # Saving panels
   saveIT.fn(chart  = chart,
