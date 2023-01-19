@@ -1054,7 +1054,7 @@ figure17.fn <- function(nchart = 17) {
     pivot_longer(everything(),
                  names_to  = "category",
                  values_to = "avg") %>%
-    arrange(desc(avg)) %>%
+    #arrange(desc(avg)) %>%
     mutate(
       percentage = to_percentage.fn(avg*100),
       label = case_when(
