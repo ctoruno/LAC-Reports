@@ -1054,22 +1054,22 @@ figure17.fn <- function(nchart = 17) {
     pivot_longer(everything(),
                  names_to  = "category",
                  values_to = "avg") %>%
-    #arrange(desc(avg)) %>%
+    arrange(desc(avg)) %>%
     mutate(
       percentage = to_percentage.fn(avg*100),
-      order_value = case_when (
-        category == "EXP_q24c_G1" ~ 1,
-        category == "EXP_q24d_G1" ~ 2,
-        category == "EXP_q24a_G2" ~ 3,
-        category == "EXP_q24b_G2" ~ 4,
-        category == "EXP_q24c_G2" ~ 5,
-        category == "EXP_q24d_G2" ~ 6,
-        category == "EXP_q24f_G2" ~ 7,
-        category == "EXP_q24g_G2" ~ 8,
-        category == "EXP_q23f_G1" ~ 9,
-        category == "EXP_q24a_G1" ~ 10,
-        category == "EXP_q24b_G1" ~ 11
-      ),
+    #   order_value = case_when (
+    #     category == "EXP_q24c_G1" ~ 1,
+    #     category == "EXP_q24d_G1" ~ 2,
+    #     category == "EXP_q24a_G2" ~ 3,
+    #     category == "EXP_q24b_G2" ~ 4,
+    #     category == "EXP_q24c_G2" ~ 5,
+    #     category == "EXP_q24d_G2" ~ 6,
+    #     category == "EXP_q24f_G2" ~ 7,
+    #     category == "EXP_q24g_G2" ~ 8,
+    #     category == "EXP_q23f_G1" ~ 9,
+    #     category == "EXP_q24a_G1" ~ 10,
+    #     category == "EXP_q24b_G1" ~ 11
+    #   ),
       label = case_when(
         category == "EXP_q24c_G1" ~ "Receive effective and\ntimely **medical and\npsychological care**",
         category == "EXP_q24d_G1" ~ "Receive **information\nand legal advice**\nwhen going to the\nauthorities",
@@ -1098,12 +1098,11 @@ figure17.fn <- function(nchart = 17) {
                               "</span>")
                return(html)
              })
-    ) %>%
-    arrange(order_value)
+    ) 
   
   # Defining colors
   colors4plot        <- rosePalette
-  names(colors4plot) <- data2plot %>% arrange(order_value) %>% pull(category)
+  names(colors4plot) <- data2plot %>% arrange(avg) %>% pull(category)
   
   # Applying plotting function
   chart <- LAC_roseChart(data = data2plot,
@@ -1111,8 +1110,7 @@ figure17.fn <- function(nchart = 17) {
                          grouping_var  = "category",
                          alabels_var   = "label",
                          plabels_var   = "percentage",
-                         colors        = colors4plot,
-                         order_value   = "order_value")
+                         colors        = colors4plot)
   
   # Saving panels
   saveIT.fn(chart  = chart,
@@ -1197,7 +1195,7 @@ figure18.fn <- function(nchart = 18) {
     pivot_longer(!problem,
                  names_to = "group",
                  values_to = "value") %>%
-    mutate(x_pos = c(4.2, 4.2, 3.2, 3.2, 2.2, 2.2, 1.2, 1.2),
+    mutate(x_pos = c(1.2, 1.2, 2.2, 2.2, 3.2, 3.2, 4.2, 4.2),
            order_value = c(1,1,2,2,3,3,4,4),
            empty_value = 1 - value,
            label = paste(round(value*100,0), "%"),
@@ -1231,7 +1229,8 @@ figure18.fn <- function(nchart = 18) {
   
   first_panel <- a2j_a %>%
     top_n(n = 4) %>%
-    aes_function(.)
+    aes_function(.) %>%
+    arrange(-value)
   
   a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
                            y_value      = value,

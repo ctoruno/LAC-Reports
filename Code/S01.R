@@ -278,7 +278,7 @@ figure03.fn <- function(nchart = 3){
                                         names_to  = "category") %>%
                            mutate(
                              perc    = round((abs_value/total)*100, 
-                                             1),
+                                             0),
                              status  = case_when(
                                str_detect(category, "_neither") ~ "Neutral",
                                str_detect(category, "_neg")     ~ "Negative",
@@ -289,7 +289,7 @@ figure03.fn <- function(nchart = 3){
                                                perc*-1, 
                                                perc),
                              label   = paste0(format(abs(perc),
-                                                     nsmall = 1),
+                                                     nsmall = 0),
                                               "%"),
                              label   = if_else(status == "Neutral", NA_character_, label), 
                              group   = str_replace_all(category, "_pos|_neg|_neither", "")
