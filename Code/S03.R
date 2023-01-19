@@ -401,7 +401,7 @@ figure14.fn <- function(nchart = 14) {
              ~if_else(.x == 1 | .x == 2, 1,
                       if_else(!is.na(.x) & .x != 99, 0, NA_real_)))
     ) %>%
-    select(!c(q49d_G1, EXP_q23d_G1)) %>%
+    select(year, q49a, q49b_G2, q49e_G2, q49c_G2, q49e_G1, q49d_G1_merge, q49c_G1, q49b_G1) %>%
     group_by(year) %>%
     summarise(across(everything(),
                      mean,
@@ -418,7 +418,17 @@ figure14.fn <- function(nchart = 14) {
     pivot_longer(!group,
                  values_to = "values",
                  names_to  = "vars") %>%
+    mutate(order_value = case_when(vars     == 'q49a'          ~ 1,
+                                   vars     == 'q49b_G2'       ~ 2,
+                                   vars     == 'q49e_G2'       ~ 3,
+                                   vars     == 'q49c_G2'       ~ 4,
+                                   vars     == 'q49e_G1'       ~ 5,
+                                   vars     == 'q49d_G1_merge' ~ 6,
+                                   vars     == 'q49c_G1'       ~ 7,
+                                   vars     == 'q49b_G1'       ~ 8)) %>% # This variable guarantee the order of the chart
+    arrange(order_value) %>%
     pull(values)
+  
   vals <- to_percentage.fn(vals*100)
   names(vals) <- names(data2plot %>% select(!group))
   
