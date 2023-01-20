@@ -181,7 +181,9 @@ for (mainCountry in group) {
   
   # Figure 10:
   print("Designing Figure 10")
-  if (mainCountry != "Paraguay") {
+  if (all(group == westCaribbean_and_guianas.ls)) {
+    figure10_CAR.fn()
+  } else if (mainCountry != "Paraguay") {
     figure10.fn()
   } else {
     figure10.fn(nchart = 9)
