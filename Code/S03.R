@@ -1204,7 +1204,7 @@ figure18.fn <- function(nchart = 18) {
     return(data2plot)
   }
   
-  # Figure 19a
+  # Figure 18a
   
   a2j <- legal_assigment(data_subset = data_subset.df)
   
@@ -1286,7 +1286,7 @@ figure18.fn <- function(nchart = 18) {
             w      = 131.7974,
             h      = 65.02006)
   
-  # Figure 19B
+  # Figure 18B
   
   aes_function_v2 <- function(mainData) {
     
