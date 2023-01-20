@@ -278,7 +278,7 @@ for (mainCountry in group) {
             to   = file.path("Outputs", 
                              str_replace(mainCountry, " ", "_"),
                              "Method",
-                             str_replace(mainCountry, " ", "_"), "_method.html",
+                             paste0(mainCountry, "_method.html"),
                              fsep = "/"), 
             overwrite = T)
 
