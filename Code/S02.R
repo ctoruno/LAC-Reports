@@ -370,7 +370,7 @@ figure10.fn <- function(nchart = 10) {
                    n      = nchart,
                    suffix = panelName,
                    w      = 86.81057,
-                   h      = 43.58102)
+                   h      = h)
          
        })
 }
@@ -603,5 +603,92 @@ figure06_B_PRY.fn <- function(nchart = 6){
                    h      = h)
        })
 }
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 10 - CARIBBEAN                                                                                 ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure10_CAR.fn <- function(nchart = 10){
+  
+  # Defining variables to include in plot
+  vars4plot <- c("CAR_q7a", "CAR_q7b", "CAR_q7d", "CAR_q7e", "CAR_q7f", "CAR_q7i",
+                 "CAR_q8a", "CAR_q8b", "CAR_q8d", "CAR_q8e", "CAR_q8f", "CAR_q8i")
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear & country %in% countrySet) %>%
+    select(country, all_of(unlist(vars4plot, use.names = F))) %>%
+    mutate(across(!country,
+                  ~if_else(.x == 99, NA_real_, as.double(.x)))) %>%
+    group_by(country) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(!country,
+                 names_to   = "category",
+                 values_to  = "value2plot") %>%
+    mutate(value2plot  = value2plot*100,
+           highlighted = if_else(country == mainCountry, "Highlighted", "Regular"),
+           labels      = to_percentage.fn(value2plot))
+  
+  # Defining colors
+  colors4plot <- barsPalette
+  names(colors4plot) <- c("Highlighted", "Regular")
+  
+  # Plotting each panel of Figure 5
+  imap(c("A" = "a", 
+         "B" = "b", 
+         "C" = "d", 
+         "D" = "e", 
+         "E" = "f",
+         "F" = "i"),
+       function(tvar, panelName) {
+         
+         # Filtering data2plot to plot bars
+         tvar1 <- paste0("CAR_q8", tvar)
+         data2plot1 <- data2plot %>%
+           filter(str_detect(category, tvar1))
+         
+         # Filtering data2plot to plot bars
+         tvar2 <- paste0("CAR_q7", tvar)
+         data2plot2 <- data2plot %>%
+           filter(str_detect(category, tvar2))
+         
+         # Applying plotting function
+         chart <- ggplot() +
+           geom_bar(data = data2plot1,
+                    aes(x     = country,
+                        y     = value2plot,
+                        fill  = highlighted),
+                    stat = "identity",
+                    show.legend = F) +
+           geom_point(data = data2plot2,
+                      aes(x     = country,
+                          y     = value2plot),
+                      color     = "#F0A202",
+                      show.legend = F) +
+           scale_fill_manual(values  = colors4plot) + 
+           scale_y_continuous(limits = c(0, 105),
+                              breaks = seq(0,100,20),
+                              labels = paste0(seq(0,100,20), "%")) +
+           coord_flip() + 
+           WJP_theme() +
+           theme(panel.grid.major.x = element_line(color = "#D0D1D3"),
+                 panel.grid.major.y = element_blank(),
+                 axis.title.x       = element_blank(),
+                 axis.title.y       = element_blank())
+           
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 86.81057,
+                   h      = 43.22956)
+         
+       })
+}
+
 
 

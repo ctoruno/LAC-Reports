@@ -181,9 +181,13 @@ for (mainCountry in group) {
   
   # Figure 10:
   print("Designing Figure 10")
-  if (mainCountry != "Paraguay") {
+  if (mainCountry != "Paraguay" & args[1] != "carib1" & args[1] != "carib2") {
     figure10.fn()
-  } else {
+  } 
+  if (args[1] == "carib1") { 
+    figure10_CAR.fn()
+  }
+  if (mainCountry == "Paraguay") {
     figure10.fn(nchart = 9)
   }
   
