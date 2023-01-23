@@ -193,8 +193,11 @@ for (mainCountry in group) {
   
   # Figure 11:
   print("Designing Figure 11")
-  if (mainCountry != "Paraguay") {
+  if (mainCountry != "Paraguay" & args[1] != "carib2") {
     figure11.fn()
+  }
+  if (args[1] == "carib2") {
+    figure11.fn(nchart = 10)
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -208,64 +211,95 @@ for (mainCountry in group) {
   
   # Figure 12:
   print("Designing Figure 12")
-  if (mainCountry != "Paraguay") {
+  if (mainCountry != "Paraguay" & args[1] != "carib2") {
     figure12_1.fn()
     figure12_2.fn()
     
-  } else {
+  } 
+  if (args[1] == "carib2") {
+    figure12_1.fn(nchart = 11)
+    figure12_2.fn(nchart = 11)
+  }
+  if (mainCountry == "Paraguay") {
      figure12_1.fn(nchart = 10) 
      figure12_2.fn(nchart = 10) 
   }
   
   # Figure 13:
   print("Designing Figure 13")
-  if (mainCountry != "Paraguay") {
+  if (mainCountry != "Paraguay" & args[1] != "carib2") {
     figure13_1.fn()
     figure13_2.fn()
     
-  } else {
+  }
+  if (args[1] == "carib2") {
+    figure13_1.fn(nchart = 12)
+    figure13_2.fn(nchart = 12)
+  }
+  if (mainCountry == "Paraguay") {
     figure11_A_PRY.fn(nchart = 11)
     figure13_2.fn(nchart = 11) 
   }
   
   # Figure 14:
   print("Designing Figure 14")
-  if (mainCountry != "Paraguay") {
+  if (mainCountry != "Paraguay" & args[1] != "carib2") {
     figure14.fn()
-  } else {
+  }
+  if (args[1] == "carib2") {
+    figure14.fn(nchart = 13)
+  }
+  if (mainCountry == "Paraguay") {
     figure12_PRY.fn()
   }
   
   # Figure 15:
   print("Designing Figure 15")
-  if (mainCountry != "Paraguay") {
+  if (mainCountry != "Paraguay" & args[1] != "carib2") {
     figure15.fn()
-  } else {
+  }
+  if (args[1] == "carib2") {
+    figure15.fn(nchart = 14)
+  }
+  if (mainCountry == "Paraguay") {
     figure13_PRY.fn(nchart = 13)
   }
   
   # Figure 16:
   print("Designing Figure 16")
-  if (mainCountry != "Paraguay") {
+  if (mainCountry != "Paraguay" & args[1] != "carib2") {
     figure16.fn()
-  } else {
+  }
+  if (args[1] == "carib2") {
+    figure16.fn(nchart = 15)
+  }
+  if (mainCountry == "Paraguay") {
     figure16.fn(nchart = 14)
   }
   
   # Figure 17:
-  print("Designing Figure 17")
-  if (mainCountry != "Paraguay") {
-    figure17.fn()
-  } else {
-    figure17.fn(nchart = 15)
-  }
+  
+  # 2ND PAGE POLICE DASH
   
   # Figure 18:
-  print("Designing Figure 18")
-  if (mainCountry != "Paraguay") {
+  print("Designing Figure 17")
+  if (mainCountry != "Paraguay" & args[1] != "carib2") {
     figure18.fn()
-  } else {
+  }
+  if (args[1] == "carib2") {
+    figure18.fn(nchart = 17)
+  }
+  if (mainCountry == "Paraguay") {
     figure18.fn(nchart = 16)
+  }
+  
+  # Figure 19:
+  print("Designing Figure 18")
+  if (mainCountry != "Paraguay" & args[1] != "carib1" & args[1] != "carib2") {
+    figure19.fn()
+  }
+  if (mainCountry == "Paraguay") {
+    figure19.fn(nchart = 17)
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
