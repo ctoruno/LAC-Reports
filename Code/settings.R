@@ -94,13 +94,6 @@ font_add(family  = "Lato Medium",
          regular = paste0(path2fonts, "Lato-Medium.ttf"))
 showtext_auto()
 
-# font_add_google(name = "lato", family = "Lato Regular")
-# font_add_google(name = "lato", family = "Lato Black")
-# font_add_google(name = "lato", family = "Lato Medium")
-# font_add_google(name = "lato", family = "Lato Light")
-# font_add_google(name = "lato", family = "Lato Black Italic")
-# 
-
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ## 4.  WJP theme                                                                                            ----
