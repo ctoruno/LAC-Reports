@@ -102,8 +102,7 @@ showtext_auto()
 
 # Defining a ggplot WJP theme
 WJP_theme <- function() {
-  theme(panel.background   = element_rect(fill = "white",
-                                          size = 2),
+  theme(panel.background   = element_blank(),
         panel.grid.major   = element_line(size     = 0.25,
                                           colour   = "#5e5c5a",
                                           linetype = "dashed"),

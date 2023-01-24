@@ -208,6 +208,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
                                  ' ' = "white")) +
     theme_sankey(base_size = 10, base_rect_size = 10) +
     theme(legend.position = "none",
+          panel.background   = element_blank(),
           axis.title.x = element_blank(),
           axis.title.y = element_blank(),
           axis.text.x = element_text(family ="Lato Full", 
