@@ -185,7 +185,7 @@ for (mainCountry in group) {
     figure10.fn()
   } 
   if (args[1] == "carib1") { 
-    figure10_CAR.fn()
+    figure10.fn(carib = TRUE)
   }
   if (mainCountry == "Paraguay") {
     figure10.fn(nchart = 9)
