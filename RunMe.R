@@ -44,11 +44,11 @@ loadVIZ(set = "LAC")
 # Loading data
 master_data.df <- read_dta("Data/LAC - Merged.dta")
 method_data.ls <- list(
-  "sf" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
-                                        sheet = "Sampling Frame"),
-  "af" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
+  "sf" = read_excel("Data/method_summaryData.xlsx",
+                    sheet = "Sampling_Frame"),
+  "af" = read_excel("Data/method_summaryData.xlsx",
                     sheet = "AdminDivs"),
-  "sd" = read_excel("Data/Methodology Summary_Andes 12.16.xlsx",
+  "sd" = read_excel("Data/method_summaryData.xlsx",
                     sheet = "SampleDesc")
 )
 

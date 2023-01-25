@@ -25,23 +25,43 @@ create_methodPage.fn <- function(){
   # Defining Parameters
   method_input.ls <- list(
     
-    # Samplinf Frame
-    "sf_country"         = mainCountry,         
+    # Sampling Frame
+    "sf_country"         = mainCountry, 
+    "sf_year"            = data_subset.df %>% 
+                              group_by(country) %>% 
+                              summarise(latestYear = first(latestYear)) %>%
+                              filter(country == mainCountry) %>% 
+                              pull(latestYear),
+    "sf_perception"      = data4quarto.ls[["sf"]] %>% pull(`Perception`),
+    "sf_experience"      = data4quarto.ls[["sf"]] %>% pull(`Experience`),
     "sf_ssize"           = data4quarto.ls[["sf"]] %>% pull(`Sample Size`),           
     "sf_company"         = data4quarto.ls[["sf"]] %>% pull(`Polling Company`),         
-    "sf_dates"           = data4quarto.ls[["sf"]] %>% pull(`Fieldwork Dates`),           
+    "sf_dates"           = data4quarto.ls[["sf"]] %>% pull(`FW Dates`),           
     "sf_nationality"     = data4quarto.ls[["sf"]] %>% pull(`Sample Size`),     
-    "sf_location"        = "!!NO LOCATION AVAILABLE!!",        
+    "sf_location"        = data4quarto.ls[["sf"]] %>% pull(`Polling Company Location`),
+    "sf_projPop"        = data4quarto.ls[["sf"]] %>% pull(`ProjPop`),
     "sf_comparison"      = str_replace(paste(comparison_countries.ls, collapse = ", "), 
                                        "(,)(?!.*\\1)", 
                                        " and"),  
+    "sf_surveyLang"      = data4quarto.ls[["sf"]] %>% pull(`SurveyLang`),
+    "sf_sampling"        = data4quarto.ls[["sf"]] %>% pull(`Sampling`),
+    "sf_ethnicity"       = data4quarto.ls[["sf"]] %>% pull(`Ethnicity`),
+    "sf_qcontrol"        = data4quarto.ls[["sf"]] %>% pull(`Quality Control`),
+    "sf_education"       = data4quarto.ls[["sf"]] %>% pull(`Education`),
+    "sf_total"           = data4quarto.ls[["sf"]] %>% pull(`Total`),
+    "sf_female"          = data4quarto.ls[["sf"]] %>% pull(`Female`),
+    "sf_OptEnumerators"  = data4quarto.ls[["sf"]] %>% pull(`OptEnumerators`),
+    "sf_language"        = data4quarto.ls[["sf"]] %>% pull(`Language`),
+    "sf_probSample"      = data4quarto.ls[["sf"]] %>% pull(`Prob Sample`),
+    "sf_historical"      = data4quarto.ls[["sf"]] %>% pull(`Historical Data`),
+    "sf_region"          = tolower(data4quarto.ls[["sf"]] %>% pull(`Region`)),
     
     # Administrative Divisions
-    "af_sub1_term"       = data4quarto.ls[["af"]] %>% 
-                              filter(`Administration Divisions` == "Sample Sub-Units 1") %>% 
+    "af_sunit_term"      = data4quarto.ls[["af"]] %>% 
+                              filter(`Administration Divisions` == "Sample Units") %>% 
                               pull(`Term`),    
-    "af_sub1_number"     = data4quarto.ls[["af"]] %>% 
-                              filter(`Administration Divisions` == "Sample Sub-Units 1") %>% 
+    "af_sunit_number"    = data4quarto.ls[["af"]] %>% 
+                              filter(`Administration Divisions` == "Sample Units") %>% 
                               pull(`Number`),     
     "af_region_term"     = data4quarto.ls[["af"]] %>% 
                               filter(`Administration Divisions` == "region") %>% 
@@ -125,14 +145,14 @@ create_methodPage.fn <- function(){
   )
   
   # Modifying specific changes
-  if (mainCountry == "Colombia"){
-    method_input.ls[["af_sub1_term"]] <- data4quarto.ls[["af"]] %>% 
-      filter(`Administration Divisions` == "Sample Units") %>% 
-      pull(`Term`)
-    method_input.ls[["af_sub1_number"]] <- data4quarto.ls[["af"]] %>% 
-      filter(`Administration Divisions` == "Sample Units") %>% 
-      pull(`Number`)
-  }
+  # if (mainCountry == "Colombia"){
+  #   method_input.ls[["af_sub1_term"]] <- data4quarto.ls[["af"]] %>% 
+  #     filter(`Administration Divisions` == "Sample Units") %>% 
+  #     pull(`Term`)
+  #   method_input.ls[["af_sub1_number"]] <- data4quarto.ls[["af"]] %>% 
+  #     filter(`Administration Divisions` == "Sample Units") %>% 
+  #     pull(`Number`)
+  # }
   
   # Creating Directory to store Methodology files
   dir.create(file.path("Outputs", 
