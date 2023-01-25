@@ -1069,22 +1069,24 @@ figure18.fn <- function(nchart = 18) {
     pivot_longer(everything(),
                  names_to  = "category",
                  values_to = "avg") %>%
-    arrange(desc(avg)) %>%
+    #arrange(desc(avg)) %>%
     mutate(
       percentage = to_percentage.fn(avg*100),
-    #   order_value = case_when (
-    #     category == "EXP_q24c_G1" ~ 1,
-    #     category == "EXP_q24d_G1" ~ 2,
-    #     category == "EXP_q24a_G2" ~ 3,
-    #     category == "EXP_q24b_G2" ~ 4,
-    #     category == "EXP_q24c_G2" ~ 5,
-    #     category == "EXP_q24d_G2" ~ 6,
-    #     category == "EXP_q24f_G2" ~ 7,
-    #     category == "EXP_q24g_G2" ~ 8,
-    #     category == "EXP_q23f_G1" ~ 9,
-    #     category == "EXP_q24a_G1" ~ 10,
-    #     category == "EXP_q24b_G1" ~ 11
-    #   ),
+      order_value = case_when (
+        category == "EXP_q24c_G1" ~ 1,
+        category == "EXP_q24d_G1" ~ 2,
+        category == "EXP_q24a_G2" ~ 3,
+        category == "EXP_q24b_G2" ~ 4,
+        category == "EXP_q24c_G2" ~ 5,
+        category == "EXP_q24d_G2" ~ 6,
+        category == "EXP_q24f_G2" ~ 7,
+        category == "EXP_q24g_G2" ~ 8,
+        category == "EXP_q23f_G1" ~ 9,
+        category == "EXP_q24a_G1" ~ 10,
+        category == "EXP_q24b_G1" ~ 11
+      )) %>%
+    arrange(order_value) %>%
+    mutate(
       label = case_when(
         category == "EXP_q24c_G1" ~ "Receive effective and\ntimely **medical and\npsychological care**",
         category == "EXP_q24d_G1" ~ "Receive **information\nand legal advice**\nwhen going to the\nauthorities",
@@ -1113,8 +1115,8 @@ figure18.fn <- function(nchart = 18) {
                               "</span>")
                return(html)
              })
-    ) 
-  
+    )
+
   # Defining colors
   colors4plot        <- rosePalette
   names(colors4plot) <- data2plot %>% arrange(avg) %>% pull(category)
@@ -1125,6 +1127,7 @@ figure18.fn <- function(nchart = 18) {
                          grouping_var  = "category",
                          alabels_var   = "label",
                          plabels_var   = "percentage",
+                         order_var     = "order_value",
                          colors        = colors4plot)
   
   # Saving panels
