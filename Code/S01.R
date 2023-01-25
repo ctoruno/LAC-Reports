@@ -174,7 +174,7 @@ figure02.fn <- function(nchart = 2){
   
   # Defining color palette
   colors4plot <- binPalette
-  names(colors4plot) <- data2plot %>% distinct(govSupp) %>% pull(govSupp)
+  names(colors4plot) <- data2plot %>% distinct(govSupp) %>% arrange(desc(govSupp)) %>% pull(govSupp)
   
   # Plotting each panel of Figure 12
   imap(c("A" = "Independent", 
@@ -315,11 +315,11 @@ figure03.fn <- function(nchart = 3){
   }
   
   # Plotting each figure panel
-  imap(c("A" = "q50", 
-         "B" = "q51", 
-         "C" = "q52",
-         "D" = "CAR_q73",
-         "E" = "CAR_q74"),
+  imap(c("C" = "q50", 
+         "D" = "q51", 
+         "E" = "q52",
+         "A" = "CAR_q73",
+         "B" = "CAR_q74"),
        function(var4plot, panelName) {
          
          # Filtering data2plot to leave the variable for each panel
