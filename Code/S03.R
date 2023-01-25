@@ -72,7 +72,7 @@ figure12_1.fn <- function(nchart = 12) {
   # Panel A
   
   data2plot <- security_universe %>%
-    filter(victim == 1) %>%
+    #filter(victim == 1) %>%
     mutate(prop_crimes = if_else(EXP_q8a_1 == 1 | EXP_q8a_2 == 1 | EXP_q8a_3 == 1|  EXP_q8a_4 == 1 |
                                  EXP_q8a_5 == 1|  EXP_q8a_6 == 1 | EXP_q8a_8 == 1| EXP_q8a_12 == 1 |
                                  q8b_1 == 1 | q8b_2 == 1 | q8b_3 == 1 | q8b_4 == 1 | q8b_5 == 1 |
