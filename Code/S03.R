@@ -436,7 +436,6 @@ figure14.fn <- function(nchart = 14) {
   vals <- to_percentage.fn(vals*100)
   names(vals) <- names(data2plot %>% select(!group))
   
-  
   # Defining labels - Part II: Percentages + text as HTML
   applying_labels.fn <- function(text = text, color_code, value_vectors){
     case_when(
