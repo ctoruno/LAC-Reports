@@ -1118,7 +1118,7 @@ figure18.fn <- function(nchart = 18) {
 
   # Defining colors
   colors4plot        <- rosePalette
-  names(colors4plot) <- data2plot %>% arrange(avg) %>% pull(category)
+  names(colors4plot) <- data2plot %>% arrange(order_value) %>% pull(category)
   
   # Applying plotting function
   chart <- LAC_roseChart(data = data2plot,
