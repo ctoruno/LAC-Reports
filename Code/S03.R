@@ -89,9 +89,9 @@ figure12_1.fn <- function(nchart = 12) {
     mutate(category = case_when(category == "prop_crimes" ~ "Property crimes",
                                 category == "life_crimes" ~ "Crimes against life and integrity \nof individuals",
                                 category == "corr_crimes" ~ "Corruption, financial, \nand commercial crimes"),
-           order_value = case_when(category ==  "Property crimes" ~ 1,
+           order_value = case_when(category ==  "Property crimes" ~ 3,
                                    category == "Crimes against life and integrity \nof individuals" ~ 2,
-                                   category == "Corruption, financial, \nand commercial crimes" ~ 3))
+                                   category == "Corruption, financial, \nand commercial crimes" ~ 1))
   
   crimes <- lollipop_chart(data2plot = data2plot, 
                            categories = category,
