@@ -929,7 +929,7 @@ figure16.fn <- function(nchart = 16) {
   
   panelF <- data_subset.df %>%
     filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
-    select(q1d, q9, q48b_G2) %>%
+    select(q1d, EXP_q8d, q9, q48b_G2) %>%
     mutate(
       across(everything(),
              ~ case_when(
