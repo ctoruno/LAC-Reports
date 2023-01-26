@@ -94,7 +94,8 @@ figure12_1.fn <- function(nchart = 12) {
                                    category == "Corruption, financial, \nand commercial crimes" ~ 3))
   
   crimes <- lollipop_chart(data2plot = data2plot, 
-                           categories = category)
+                           categories = category,
+                           order_var = order_value)
   
   saveIT.fn(chart  = crimes,
             n      = nchart,
