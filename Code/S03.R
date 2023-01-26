@@ -548,8 +548,12 @@ figure15.fn <- function(nchart = 15) {
     filter(country == mainCountry) %>%
     select(year, all_of(unlist(vars4plot))) %>%
     mutate(
-      across(!year,
+      across(starts_with(c("Trust", "Effect")),
              ~if_else(.x == 1 | .x == 2, 1,
+                      if_else(!is.na(.x) & .x != 99, 0, 
+                              NA_real_))),
+      across(starts_with("Corruption"),
+             ~if_else(.x == 3 | .x == 4, 1,
                       if_else(!is.na(.x) & .x != 99, 0, 
                               NA_real_))),
       year = paste0("'", str_sub(year, start = -2))
