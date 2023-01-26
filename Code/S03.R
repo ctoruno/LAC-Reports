@@ -924,6 +924,7 @@ figure16.fn <- function(nchart = 16) {
                .x == 2  ~ 1,
                .x == 3  ~ 0,
                .x == 4  ~ 0,
+               .x == 0  ~ 0,
                .x == 99 ~ 0,
                is.na(.x) ~ NA_real_
              ))
@@ -940,10 +941,12 @@ figure16.fn <- function(nchart = 16) {
                  values_to = "value") %>%
     mutate(
       x_pos = if_else(variable %in% "q1d", 1.15,
-                      if_else(variable %in% "q9", 2.15,
-                              if_else(variable %in% "q48b_G2", 3.15, NA_real_))),
+                      if_else(variable %in% "EXP_q8d", 2.15,
+                              if_else(variable %in% "q9", 3.15, 
+                                      ifelse(variable %in% "q48b_G2", 4.15, NA_real_)))),
       variable = case_when(
         variable == "q1d"     ~ "Trust the police",
+        variable == "EXP_q8d" ~ "Report a crime when they are a victim",
         variable == "q9"      ~ "Feel safe in their neighborhoods",
         variable == "q48b_G2" ~ "Feel the police contributes to their safety"
       ),
@@ -967,7 +970,7 @@ figure16.fn <- function(nchart = 16) {
             n      = nchart,
             suffix = "f",
             w      = 82.59305,
-            h      = 45.33831)
+            h      = 56.23357)
   
   # Panel G: Accountability
   
