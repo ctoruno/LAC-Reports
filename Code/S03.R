@@ -119,7 +119,11 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   if (country == "Paraguay") {
     
     report <- security_universe %>%
-      filter(q8d != 99) %>%
+      mutate(q8d = case_when(
+        q8d == 1 ~ 1,
+        q8d == 2 ~ 2,
+        q8d == 99 ~ NA_real_
+      )) %>%
       mutate(q8d = if_else(q8d == 1, 1, 0)) %>%
       filter(victim == 1) %>%
       summarise(report = round(mean(q8d, na.rm = T),2)) %>%
@@ -128,7 +132,11 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   else {
     
     report <- security_universe %>%
-      filter(EXP_q8d != 99) %>%
+      mutate(q8d = case_when(
+        q8d == 1 ~ 1,
+        q8d == 2 ~ 2,
+        q8d == 99 ~ NA_real_
+      )) %>%
       mutate(EXP_q8d = if_else(EXP_q8d == 1, 1, 0)) %>%
       filter(victim == 1) %>%
       summarise(report = round(mean(EXP_q8d, na.rm = T),2)) %>%
@@ -139,10 +147,10 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     
     fill_report <- security_universe %>%
       filter(victim == 1) %>%
-      mutate(q8d = if_else(q8d == 1, 1,
-                           if_else(q8d == 1, 0, NA_real_)),
-             q8f = if_else(q8f == 1, 1,
-                           if_else(q8f == 0, 0, NA_real_))) %>%
+      select(q8d, q8f) %>%
+      mutate(across(~if_else(.x == 1, 1,
+                             if_else(!is.na(.x) & .x != 99, 0, 
+                                     NA_real_)))) %>%
       group_by(q8d) %>%
       summarise(fill_report = round(mean(q8f, na.rm = T),2)) %>%
       mutate(non_fill_report = 1 - fill_report) %>%
@@ -154,10 +162,10 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     
     fill_report <- security_universe %>%
       filter(victim == 1) %>%
-      mutate(EXP_q8d = if_else(EXP_q8d == 1, 1,
-                               if_else(EXP_q8d == 1, 0, NA_real_)),
-             EXP_q8f = if_else(EXP_q8f == 1, 1, 
-                               if_else(EXP_q8f == 0, 0, NA_real_))) %>%
+      select(EXP_q8d, EXP_q8f) %>%
+      mutate(across(~if_else(.x == 1, 1,
+                             if_else(!is.na(.x) & .x != 99, 0, 
+                                     NA_real_)))) %>%
       group_by(EXP_q8d) %>%
       summarise(fill_report = round(mean(EXP_q8f, na.rm = T),2)) %>%
       mutate(non_fill_report = 1 - fill_report) %>%
