@@ -65,7 +65,7 @@ create_methodPage.fn <- function(){
                               pull(`Number`),     
     "af_region_term"     = data4quarto.ls[["af"]] %>% 
                               filter(`Administration Divisions` == "region") %>% 
-                              pull(`Term`),     
+                              pull(`Number`),     
     "af_region_number"   = data4quarto.ls[["af"]] %>% 
                               filter(`Administration Divisions` == "region") %>% 
                               pull(`Number`),   
