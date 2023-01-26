@@ -132,10 +132,10 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   else {
     
     report <- security_universe %>%
-      mutate(q8d = case_when(
-        q8d == 1 ~ 1,
-        q8d == 2 ~ 2,
-        q8d == 99 ~ NA_real_
+      mutate(EXP_q8d = case_when(
+        EXP_q8d == 1 ~ 1,
+        EXP_q8d == 0 ~ 0,
+        EXP_q8d == 99 ~ NA_real_
       )) %>%
       mutate(EXP_q8d = if_else(EXP_q8d == 1, 1, 0)) %>%
       filter(victim == 1) %>%
@@ -163,7 +163,8 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     fill_report <- security_universe %>%
       filter(victim == 1) %>%
       select(EXP_q8d, EXP_q8f) %>%
-      mutate(across(~if_else(.x == 1, 1,
+      mutate(across(everything(), 
+                    ~if_else(.x == 1, 1,
                              if_else(!is.na(.x) & .x != 99, 0, 
                                      NA_real_)))) %>%
       group_by(EXP_q8d) %>%
