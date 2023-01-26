@@ -226,7 +226,7 @@ ordnung.fn <- function(targetCountry){
   for (plot in 1:19) {
     dir.create(file.path("Outputs", 
                          str_replace(mainCountry, " ", "_"),
-                         paste0("figure_", plot),
+                         paste0("imgChart", plot),
                          fsep = "/"), 
                showWarnings = FALSE)
   }
@@ -242,7 +242,7 @@ saveIT.fn <- function(chart, n, suffix = NULL, w, h) {
   ggsave(plot   = chart,
          file   = file.path("Outputs", 
                             str_replace(mainCountry, " ", "_"),
-                            paste0("figure_", n),
+                            paste0("imgChart", n),
                             paste0("figure_", n, suffix, ".svg"),
                             fsep = "/"), 
          width  = w, 
