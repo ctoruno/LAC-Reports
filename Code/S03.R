@@ -95,7 +95,7 @@ figure12_1.fn <- function(nchart = 12) {
   
   crimes <- lollipop_chart(data2plot = data2plot, 
                            categories = category,
-                           order_var = order_value)
+                           order_value = order_value)
   
   saveIT.fn(chart  = crimes,
             n      = nchart,
