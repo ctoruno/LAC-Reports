@@ -74,14 +74,15 @@ figure12_1.fn <- function(nchart = 12) {
   data2plot <- security_universe %>%
     #filter(victim == 1) %>%
     mutate(prop_crimes = if_else(EXP_q8a_1 == 1 | EXP_q8a_2 == 1 | EXP_q8a_3 == 1|  EXP_q8a_4 == 1 |
-                                 EXP_q8a_5 == 1|  EXP_q8a_6 == 1 | EXP_q8a_8 == 1| EXP_q8a_12 == 1 |
+                                 EXP_q8a_5 == 1|  EXP_q8a_6 == 1 | EXP_q8a_8 == 1|
                                  q8b_1 == 1 | q8b_2 == 1 | q8b_3 == 1 | q8b_4 == 1 | q8b_5 == 1 |
                                  q8b_6 == 1 | q8b_7 == 1 | q8b_8 == 1 | q8b_10  == 1, 1, 0, 0),
            life_crimes = if_else(EXP_q8a_7 == 1 | EXP_q8b_1 == 1 | EXP_q8b_2 == 1 | EXP_q8b_3 == 1 |
-                                 EXP_q8b_4 == 1 | EXP_q8b_5 == 1 | q8b_9 == 1 | q8b_14 == 1 |
-                                 q8b_15 == 1 | q8b_16 == 1 | q8b_17 == 1, 1, 0, 0),
-           corr_crimes = if_else(EXP_q8a_9 == 1|  EXP_q8a_10 == 1| EXP_q8a_11 == 1 | q8b_11 == 1 |
-                                 q8b_12 == 1 | q8b_13 == 1, 1, 0, 0)) %>%
+                                 EXP_q8a_12 == 1 | 
+                                 q8b_9 == 1 | q8b_14 == 1 | q8b_15 == 1 | q8b_16 == 1 | 
+                                 q8b_17 == 1, 1, 0, 0),
+           corr_crimes = if_else(EXP_q8a_9 == 1|  EXP_q8a_10 == 1| EXP_q8a_11 == 1 | 
+                                 q8b_11 == 1 | q8b_12 == 1 | q8b_13 == 1, 1, 0, 0)) %>%
     summarise(prop_crimes = round(mean(prop_crimes, na.rm=T), 2),
               life_crimes = round(mean(life_crimes, na.rm=T), 2),
               corr_crimes = round(mean(corr_crimes, na.rm=T), 2))  %>%
