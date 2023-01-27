@@ -629,7 +629,7 @@ figure16.fn <- function(nchart = 16) {
         q48c_G2 == 2  ~ 1,
         q48c_G2 == 3  ~ 0,
         q48c_G2 == 4  ~ 0,
-        q48c_G2 == 99 ~ 0,
+        q48c_G2 == 99 ~ NA_real_,
         is.na(q48c_G2) ~ NA_real_
       ),
       EXP_q22i_G2 = case_when(
@@ -637,7 +637,7 @@ figure16.fn <- function(nchart = 16) {
         EXP_q22i_G2 == 2  ~ 1,
         EXP_q22i_G2 == 3  ~ 0,
         EXP_q22i_G2 == 4  ~ 0,
-        EXP_q22i_G2 == 99 ~ 0,
+        EXP_q22i_G2 == 99 ~ NA_real_,
         is.na(EXP_q22i_G2) ~ NA_real_
       ),
       EXP_q22h_G2 = case_when(
@@ -645,7 +645,7 @@ figure16.fn <- function(nchart = 16) {
         EXP_q22h_G2 == 2  ~ 1,
         EXP_q22h_G2 == 3  ~ 0,
         EXP_q22h_G2 == 4  ~ 0,
-        EXP_q22h_G2 == 99 ~ 0,
+        EXP_q22h_G2 == 99 ~ NA_real_,
         is.na(EXP_q22h_G2) ~ NA_real_
       ),
     ) %>%
@@ -703,7 +703,7 @@ figure16.fn <- function(nchart = 16) {
                .x == 2  ~ 1,
                .x == 3  ~ 0,
                .x == 4  ~ 0,
-               .x == 99 ~ 0,
+               .x == 99 ~ NA_real_,
                is.na(.x) ~ NA_real_
              ))
     ) %>%
@@ -760,7 +760,7 @@ figure16.fn <- function(nchart = 16) {
                .x == 2  ~ 1,
                .x == 3  ~ 0,
                .x == 4  ~ 0,
-               .x == 99 ~ 0,
+               .x == 99 ~ NA_real_,
                is.na(.x) ~ NA_real_
              )),
       EXP_q22e_G1 = if_else(EXP_q22e_G1 == 1, 0, 
@@ -878,7 +878,7 @@ figure16.fn <- function(nchart = 16) {
                .x == 2  ~ 1,
                .x == 3  ~ 0,
                .x == 4  ~ 0,
-               .x == 99 ~ 0,
+               .x == 99 ~ NA_real_,
                is.na(.x) ~ NA_real_
              )),
       EXP_q22k_G2 = if_else(EXP_q22k_G2 == 1, 0, 
@@ -942,7 +942,7 @@ figure16.fn <- function(nchart = 16) {
                .x == 3  ~ 0,
                .x == 4  ~ 0,
                .x == 0  ~ 0,
-               .x == 99 ~ 0,
+               .x == 99 ~ NA_real_,
                is.na(.x) ~ NA_real_
              ))
     ) %>%
@@ -1001,7 +1001,7 @@ figure16.fn <- function(nchart = 16) {
                .x == 2  ~ 1,
                .x == 3  ~ 0,
                .x == 4  ~ 0,
-               .x == 99 ~ 0,
+               .x == 99 ~ NA_real_,
                is.na(.x) ~ NA_real_
              ))
     ) %>%
