@@ -40,7 +40,7 @@ p_load(char = c(
   "haven", "readxl", "writexl", "xlsx",
   
   # Utilities
-  "margins", "english", "quarto",
+  "margins", "english", "quarto", "kableExtra",
   
   # Good 'ol Tidyverse
   "tidyverse"
