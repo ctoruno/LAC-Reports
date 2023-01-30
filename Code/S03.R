@@ -678,32 +678,26 @@ figure16.fn <- function(nchart = 16) {
   
   # Panel A: Serve the Public
   panelA <- data_subset.df %>%
-    filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
+    filter(year == latestYear & country == mainCountry) %>%
     select(q48c_G2, EXP_q22i_G2 , EXP_q22h_G2) %>%
     mutate(
       q48c_G2 = case_when(
         q48c_G2 == 1  ~ 1,
         q48c_G2 == 2  ~ 1,
         q48c_G2 == 3  ~ 0,
-        q48c_G2 == 4  ~ 0,
-        q48c_G2 == 99 ~ NA_real_,
-        is.na(q48c_G2) ~ NA_real_
+        q48c_G2 == 4  ~ 0
       ),
       EXP_q22i_G2 = case_when(
         EXP_q22i_G2 == 1  ~ 1,
         EXP_q22i_G2 == 2  ~ 1,
         EXP_q22i_G2 == 3  ~ 0,
-        EXP_q22i_G2 == 4  ~ 0,
-        EXP_q22i_G2 == 99 ~ NA_real_,
-        is.na(EXP_q22i_G2) ~ NA_real_
+        EXP_q22i_G2 == 4  ~ 0
       ),
       EXP_q22h_G2 = case_when(
         EXP_q22h_G2 == 1  ~ 1,
         EXP_q22h_G2 == 2  ~ 1,
         EXP_q22h_G2 == 3  ~ 0,
-        EXP_q22h_G2 == 4  ~ 0,
-        EXP_q22h_G2 == 99 ~ NA_real_,
-        is.na(EXP_q22h_G2) ~ NA_real_
+        EXP_q22h_G2 == 4  ~ 0
       ),
     ) %>%
     summarise(across(everything(),
@@ -751,7 +745,7 @@ figure16.fn <- function(nchart = 16) {
   # Panel B: Crime Control and Safety
   
   panelB <- data_subset.df %>%
-    filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
+    filter(year == latestYear & country == mainCountry) %>%
     select(EXP_q24a_G1, q48a_G2, q48b_G1, EXP_q24a_G2) %>%
     mutate(
       across(everything(),
@@ -808,7 +802,7 @@ figure16.fn <- function(nchart = 16) {
   
   # Panel C: Due Process
   panelC <- data_subset.df %>%
-    filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
+    filter(year == latestYear & country == mainCountry) %>%
     select(q48a_G1, EXP_q22e_G1, q48c_G1, q48d_G2) %>%
     mutate(
       across(everything(),
@@ -868,7 +862,7 @@ figure16.fn <- function(nchart = 16) {
   # Panel D: Discrimination
   
   panelD <- data_subset.df %>%
-    filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
+    filter(year == latestYear & country == mainCountry) %>%
     select(q18b, EXP_q17g, EXP_q17h, EXP_q17i, EXP_q17j) %>%
     mutate(
       across(everything(),
@@ -926,7 +920,7 @@ figure16.fn <- function(nchart = 16) {
   # Panel E: Discrimination
   
   panelE <- data_subset.df %>%
-    filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
+    filter(year == latestYear & country == mainCountry) %>%
     select(q2d, q48e_G2, EXP_q22k_G2, EXP_q22j_G2) %>%
     mutate(
       across(everything(),
@@ -989,7 +983,7 @@ figure16.fn <- function(nchart = 16) {
   # Panel F: Trust and Safety
   
   panelF <- data_subset.df %>%
-    filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
+    filter(year == latestYear & country == mainCountry) %>%
     select(q1d, EXP_q8d, q9, q48b_G2) %>%
     mutate(
       across(everything(),
@@ -1049,7 +1043,7 @@ figure16.fn <- function(nchart = 16) {
   # Panel G: Accountability
   
   panelG <- data_subset.df %>%
-    filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
+    filter(year == latestYear & country == mainCountry) %>%
     select(q48d_G1, EXP_q22f_G1, EXP_q22g_G1, EXP_q22h_G1) %>%
     mutate(
       across(everything(),
