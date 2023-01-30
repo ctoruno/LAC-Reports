@@ -75,6 +75,16 @@ figure01.fn <- function(nchart = 1){
   opacities4plot <- c(1, rep(0.5, length(countrySet)-1))
   names(opacities4plot) <- countrySet
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart), 
+             append    = T,
+             row.names = T)
+  
   # Plotting each panel of Figure 12
   imap(c("A" = "Independent", 
          "B" = "Judiciary", 
@@ -171,6 +181,16 @@ figure02.fn <- function(nchart = 2){
       ),
       value2plot = round(value2plot*100,1)
     )
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
   
   # Defining color palette
   colors4plot <- binPalette
@@ -296,6 +316,16 @@ figure03.fn <- function(nchart = 3){
                            )
                        })
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% select(country, group, status, perc, label) %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   # Customizing colorPalette for plot
   colors4plot <- c(binPalette, "#A6A8AA")
   names(colors4plot) <- c("Positive", "Negative", "Neutral")
@@ -379,6 +409,16 @@ figure04.fn <- function(nchart = 4) {
                                  nsmall = 0),
                           "%"))
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   # Plotting each panel of Figure 5
   imap(c("A" = "q46c_G2", "B" = "q46f_G2", "C" = "q46g_G2", "D" = "q46c_G1", "E" = "q46e_G2",
          "F" = "q46d_G2", "G" = "q46f_G1", "H" = "q46a_G2",
@@ -458,6 +498,16 @@ figure05.fn <- function(nchart = 5) {
            highlighted = if_else(country_name == mainCountry, "Highlighted", "Regular"),
            labels      = to_percentage.fn(value2plot))
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% select(!highlighted) %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   # Defining colors
   colors4plot <- barsPalette
   names(colors4plot) <- c("Highlighted", "Regular")
@@ -517,6 +567,16 @@ figure06.fn <- function(nchart = 6) {
                                  nsmall = 0),
                           "%"),
            label = if_else(country == mainCountry, label, NA_character_))
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
   
   # Defining colors4plot
   colors4plot <- countryPalette

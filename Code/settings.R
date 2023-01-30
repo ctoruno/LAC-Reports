@@ -37,7 +37,7 @@ p_load(char = c(
   "showtext", "ggtext", "ggsankey", "ggrepel", "ggplotify", "gridExtra", "ggradar2", "patchwork",
   
   # Data Loading
-  "haven", "readxl", "writexl",
+  "haven", "readxl", "writexl", "xlsx",
   
   # Utilities
   "margins", "english", "quarto",

@@ -55,6 +55,16 @@ figure07.fn <- function(nchart = 7) {
                                  nsmall = 0),
                           "%"))
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   # Plotting each panel of Figure 8
   imap(c("A" = "Legislative", 
          "B" = "Police", 
@@ -156,6 +166,16 @@ figure08.fn <- function(nchart = 8){
       value2plot = round(value2plot*100,1)
     )
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   # Defining color palette
   colors4plot <- countryPalette
   
@@ -253,6 +273,16 @@ figure09.fn <- function(nchart = 9){
       value2plot = round(value2plot*100,1)
     )
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   # Defining color palette
   colors4plot <- countryPalette
   
@@ -329,6 +359,16 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
     mutate(value2plot  = value2plot*100,
            highlighted = if_else(country == mainCountry, "Highlighted", "Regular"),
            labels      = to_percentage.fn(value2plot))
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% select(!highlighted) %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
   
   # Defining colors
   colors4plot <- barsPalette
@@ -416,6 +456,16 @@ figure11.fn <- function(nchart = 11) {
                                  nsmall = 0),
                           "%"))
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   # Plotting each panel of Figure 12
   imap(c("A" = "Community", 
          "B" = "Police", 
@@ -468,7 +518,6 @@ figure11.fn <- function(nchart = 11) {
 # Upper Panel
 figure06_A_PRY.fn <- function(nchart = 6){
   
-
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
     filter(country == mainCountry) %>%
@@ -492,6 +541,16 @@ figure06_A_PRY.fn <- function(nchart = 6){
     pivot_longer(cols = !c(category, label), names_to = "group", values_to = "value") %>%
     mutate(label = if_else(group %in% "empty_value", NA_character_, label),
            x_pos = 1.15)
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "A"),
+             append    = T,
+             row.names = T)
   
   figure6_a <- horizontal_edgebars(data2plot    = data2plot,
                            y_value      = value,
@@ -568,6 +627,16 @@ figure06_B_PRY.fn <- function(nchart = 6){
         row == "g" ~ "Judges and Magistrates",
       )
     )
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "B"),
+             append    = T,
+             row.names = T)
     
   # Customizing colorPalette for plot
   colors4plot <- c(binPalette)

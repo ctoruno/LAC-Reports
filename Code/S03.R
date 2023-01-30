@@ -93,6 +93,16 @@ figure12_1.fn <- function(nchart = 12) {
                                    category == "Crimes against life and integrity \nof individuals" ~ 2,
                                    category == "Corruption, financial, \nand commercial crimes" ~ 1))
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "A"),
+             append    = T,
+             row.names = T)
+  
   crimes <- lollipop_chart(data2plot = data2plot, 
                            categories = category,
                            order_value = order_value)
@@ -128,8 +138,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
       filter(victim == 1) %>%
       summarise(report = round(mean(q8d, na.rm = T),2)) %>%
       mutate(non_report = 1 - report)
-  }
-  else {
+  } else {
     
     report <- security_universe %>%
       mutate(EXP_q8d = case_when(
@@ -156,9 +165,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
       mutate(non_fill_report = 1 - fill_report) %>%
       filter(q8d == 1) %>%
       select(!q8d)
-  }
-  
-  else {
+  } else {
     
     fill_report <- security_universe %>%
       filter(victim == 1) %>%
@@ -197,6 +204,16 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
              paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> filed an official <br> crime report"),
              paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not file an <br>official crime report"))
   df <- data.frame(label)
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "B"),
+             append    = T,
+             row.names = T)
   
   pl <- ggplot(data = data2plot, aes(x = x, 
                                      next_x = next_x,
@@ -266,6 +283,16 @@ figure13_1.fn <- function(nchart = 13) {
     mutate(value2plot = q9*100,
            label      = to_percentage.fn(value2plot),
            category   = mainCountry)
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "A"),
+             append    = T,
+             row.names = T)
   
     # Defining colors4plot
     colors4plot <- mainCOLOR
@@ -377,6 +404,16 @@ figure13_2.fn <- function(nchart = 13) {
   
   data2plot <- logit_demo(mainData = perception, Yvar = 'unsafe_bin')
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "B"),
+             append    = T,
+             row.names = T)
+  
   logit_plot <- logit_demo_panel(mainData = data2plot, line_size = 1.5)
   
   saveIT.fn(chart  = logit_plot,
@@ -424,6 +461,16 @@ figure14.fn <- function(nchart = 14) {
                      mean,
                      na.rm = T)) %>%
     rename(group = year)
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
   
   # Defining color palette
   colors4plot <- binPalette
@@ -569,6 +616,16 @@ figure15.fn <- function(nchart = 15) {
            label = paste0(format(round(value, 0),
                                  nsmall = 0),
                           "%"))
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
   
   # Plotting each panel of Figure 16
   imap(c("A" = "Trust", 
@@ -1047,6 +1104,16 @@ figure16.fn <- function(nchart = 16) {
             suffix = "g",
             w      = 82.59305,
             h      = 59.74817)
+  
+  # Saving data points
+  write.xlsx(as.data.frame(bind_rows(panelA, panelB, panelC, panelD, panelE, panelF, panelG) %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
 }
 
 
@@ -1136,6 +1203,16 @@ figure18.fn <- function(nchart = 18) {
              })
     )
 
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   # Defining colors
   colors4plot        <- rosePalette
   names(colors4plot) <- data2plot %>% arrange(order_value) %>% pull(category)
@@ -1442,6 +1519,16 @@ figure11_A_PRY.fn <- function(nchart = 11) {
     mutate(label = if_else(group %in% "empty_value", NA_character_, label),
            x_pos = 1.15)
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "A"),
+             append    = T,
+             row.names = T)
+  
   figure11_a <- horizontal_edgebars(data2plot    = data2plot,
                            y_value      = value,
                            x_var        = category,
@@ -1519,6 +1606,16 @@ figure12_PRY.fn <- function(nchart = 12) {
              })
     )
   
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   # Defining colors
   colors4plot        <- rosePalette
   names(colors4plot) <- data2plot %>% arrange(avg) %>% pull(category)
@@ -1547,6 +1644,7 @@ figure12_PRY.fn <- function(nchart = 12) {
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 figure13_PRY.fn <- function (nchart = 13) {
+  
   # Defining variables to use in rose chart
   vars4plot <- c("q1e", "q1f", "q1g",
                  "q2e", "q2f", "q2g",
@@ -1589,6 +1687,17 @@ figure13_PRY.fn <- function (nchart = 13) {
                            if_else(category %in% "Public Defense Attorneys", 2.15,
                                    if_else(category %in% "Judges and Magistrates", 3.15, NA_real_))),
       label = if_else(group %in% "value", label, NA_character_))
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2table %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
   
   # First Batch: Corruption
   
