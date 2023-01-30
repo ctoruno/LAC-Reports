@@ -223,6 +223,7 @@ figure08.fn <- function(nchart = 8){
                                 labels_var   = "labels",
                                 colors       = colors4plot,
                                 diffOpac     = T,
+                                order_var    = order_var,
                                 opacities    = opacities4plot)
          
          # Defining height

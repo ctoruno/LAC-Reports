@@ -1281,14 +1281,14 @@ figure19.fn <- function(nchart = 19) {
              a2j_family = ifelse(q19_D1 == 1 | q19_D2 == 1 | q19_D3 == 1 | q19_D4 == 1 | q19_D5 == 1 |q19_D6 == 1, 1, 0),
              a2j_education = ifelse(q19_E1 == 1 | q19_E2 == 1, 1, 0),
              a2j_accidental = ifelse(q19_F1 == 1 | q19_F2 == 1 , 1, 0),
-             a2j_employment = ifelse(q19_G1 == 1, q19_G2 == 1, q19_G3 == 1),
+             a2j_employment = ifelse(q19_G1 == 1| q19_G2 == 1 | q19_G3 == 1, 1, 0),
              a2j_public = ifelse(q19_H1 == 1 | q19_H2 == 1 | q19_J4 == 1, 1, 0),
              a2j_law = ifelse(q19_I1 == 1, 1, 0),
              a2j_id = ifelse(q19_J1 == 1 | q19_J2 == 1 | q19_J3 == 1, 1, 0),
              a2j_money =  ifelse(q19_K1 == 1 | q19_K2 == 1 | q19_K3 == 1 | q19_L1 == 1 | q19_L2 == 1, 1, 0),
              a2j_community = ifelse(q19_H3 == 1 | q19_E3 == 1, 1, 0)) %>%
       mutate(legal = ifelse(a2j_consumer == 1 | a2j_land == 1 | a2j_housing == 1 | a2j_family == 1 | a2j_education == 1 | a2j_accidental == 1 |
-                              a2j_employment == 1 | a2j_public == 1 | a2j_law == 1 | a2j_id == 1 | a2j_money == 1 | a2j_community == 1, 1, 0)) %>%
+                              a2j_employment == 1 | a2j_public == 1 | a2j_law == 1 | a2j_id == 1 | a2j_money == 1 | a2j_community == 1 | q19_99 == 1, 1, 0)) %>%
       group_by(country) %>%
       filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
       ungroup() %>%
