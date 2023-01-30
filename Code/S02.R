@@ -146,8 +146,8 @@ figure08.fn <- function(nchart = 8){
     mutate(
       labels = case_when(
         category == "q2a"     ~ "Members of the legislature",
-        category == "q2c"     ~ "Officers working in the\nnational government",
-        category == "q2b"     ~ "Officers working in the\nlocal government",
+        category == "q2c"     ~ "National government officers",
+        category == "q2b"     ~ "Local government officers",
         category == "q2g"     ~ "Judges and magistrates",
         category == "q2e"     ~ "Prosecutors in charge of\ncriminal investigations",
         category == "q2f"     ~ "Public defense attorneys",
@@ -164,6 +164,27 @@ figure08.fn <- function(nchart = 8){
         category == "CAR_q6q" ~ "Political parties"
       ),
       value2plot = round(value2plot*100,1)
+    ) %>%
+    mutate(
+      order_var = case_when(
+        category == "q2a"     ~ 1 ,
+        category == "q2c"     ~ 2,
+        category == "q2b"     ~ 3,
+        category == "q2g"     ~ 1,
+        category == "q2e"     ~ 2,
+        category == "q2f"     ~ 4,
+        category == "q2d"     ~ 3, 
+        category == "CAR_q6h" ~ 5,
+        category == "CAR_q6i" ~ 2,
+        category == "CAR_q6j" ~ 1 ,
+        category == "CAR_q6k" ~ 4,
+        category == "CAR_q6l" ~ 6, 
+        category == "CAR_q6m" ~ 7, 
+        category == "CAR_q6n" ~ 5, 
+        category == "CAR_q6o" ~ 3, 
+        category == "CAR_q6p" ~ 2, 
+        category == "CAR_q6q" ~ 1
+      )
     )
   
   # Saving data points
@@ -192,7 +213,8 @@ figure08.fn <- function(nchart = 8){
          
          # Filtering data2plot to leave the variable for each panel
          data2plot <- data2plot %>%
-           filter(category %in% vars4plot[[varSet]])
+           filter(category %in% vars4plot[[varSet]]) %>%
+           arrange(order_var)
          
          # Applying plotting function
          chart <- LAC_dotsChart(data         = data2plot,
