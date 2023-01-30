@@ -295,13 +295,13 @@ figure09.fn <- function(nchart = 9){
       ),
       value2plot = round(value2plot*100,1),
       order_var  = case_when(
-        category == "CAR_q2b" ~ "A public officer asking for a bribe \nto speed up administrative procedures" ~ 2,
-        category == "CAR_q2f" ~ "A law enforcement officer (police, \ncustoms, immigration, civil guard, military police) \nasking for a bribe" ~ 3,
-        category == "CAR_q2g" ~ "A company official asking for a bribe\nfrom a job applicant" ~ 1,
-        category == "CAR_q2c" ~ "A private citizen offering a bribe to a\npublic official to speed up administrative procedures" ~ 1,
-        category == "CAR_q2a" ~ "A public officer being recruited on the\nbasis of family ties and friendship networks" ~ 1,
-        category == "CAR_q2d" ~ "An elected official taking public funds\nfor private use" ~ 3,
-        category == "CAR_q2e" ~ "An elected official using stolen public\nfunds to assist his or her community" ~ 2
+        category == "CAR_q2b"  ~ 2,
+        category == "CAR_q2f"  ~ 3,
+        category == "CAR_q2g"  ~ 1,
+        category == "CAR_q2c"  ~ 1,
+        category == "CAR_q2a"  ~ 1,
+        category == "CAR_q2d"  ~ 3,
+        category == "CAR_q2e"  ~ 2
       )
     )
   
