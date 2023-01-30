@@ -51,14 +51,31 @@ $ cd PATH_TO_LOCAL_REPOSITORY
 $ Rscript --vanilla RunMe.R "andean"
 ```
 
-The script will run entirely and you will now have the final visualizations in the `Outcomes` directory, ordered by country and figure number. If you happen to find an error such as: 
+The script will run entirely and you will now have the final visualizations in the `Outcomes` directory, ordered by country and figure number. 
+
+## Identified Issues
+
+If you happen to find an error such as: 
 
 ```
 ERROR: --output option cannot specify a relative or absolute path
 ```
 
+or
+
+```
+ERROR: unnable to find quarto command line tools
+```
+
 It means that you haven't installed Quarto in your computer. Please check the [Get Started tab at quarto.org](https://quarto.org/docs/get-started/) in order to install Quarto in your local machine.
 
+If you are having issues installing the `xlsx` package and you are running the code on a M1 Mac. Please check if the error originates because of it was not possible to load the `rJava` namespace:
+
+```
+Error: package or namespace load failed for ‘xlsx’: .onLoad failed in loadNamespace() for 'rJava'
+```
+
+If this is the case, please read [this thread](https://stackoverflow.com/questions/74893942/error-running-xlsx-and-rjava-on-mac-with-m1) on StackOverflow.
 
 ## Contact
 For inqueries please contact _Carlos Toruño_ (ctoruno@worldjusticeproject.org) or _Santiago Pardo_ (spardo@worldjusticeproject.org). For general information, please contact _Ana María Montoya_ (amontoya@worldjusticeproject.org).
