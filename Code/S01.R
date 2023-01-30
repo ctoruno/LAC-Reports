@@ -65,7 +65,21 @@ figure01.fn <- function(nchart = 1){
         category == "CAR_q68_G1" ~ "Prosecute and convict members of \nopposition parties",
         category == "CAR_q65_G1" ~ "Refuse to comply with court rulings \nthat are not in their favor"
       ),
-      value2plot = round(value2plot*100,1)
+      value2plot = round(value2plot*100,1),
+      order_value = case_when(
+        category == "CAR_q60_G1" ~ 4,
+        category == "CAR_q61_G1" ~ 2,
+        category == "CAR_q60_G2" ~ 2,
+        category == "CAR_q64_G2" ~ 3,
+        category == "CAR_q67_G1" ~ 3,
+        category == "CAR_q67_G2" ~ 4, 
+        category == "CAR_q64_G1" ~ 1,
+        category == "CAR_q66_G1" ~ 2,
+        category == "CAR_q65_G2" ~ 1,
+        category == "CAR_q68_G1" ~ 1,
+        category == "CAR_q65_G1" ~ 3
+        
+    )
     )
   
   # Defining color palette
@@ -102,7 +116,8 @@ figure01.fn <- function(nchart = 1){
                                 labels_var   = "labels",
                                 colors       = colors4plot,
                                 diffOpac     = T,
-                                opacities    = opacities4plot)
+                                opacities    = opacities4plot,
+                                order_var    = "order_value")
          
          # Defining height
          if (length(vars4plot[[varSet]]) == 3 ) {
@@ -179,7 +194,22 @@ figure02.fn <- function(nchart = 2){
         category == "CAR_q68_G1" ~ "Prosecute and convict members of \nopposition parties",
         category == "CAR_q65_G1" ~ "Refuse to comply with court rulings \nthat are not in their favor"
       ),
-      value2plot = round(value2plot*100,1)
+      value2plot = round(value2plot*100,1),
+      
+      order_value = case_when(
+        category == "CAR_q60_G1" ~ 4,
+        category == "CAR_q61_G1" ~ 2,
+        category == "CAR_q60_G2" ~ 2,
+        category == "CAR_q64_G2" ~ 3,
+        category == "CAR_q67_G1" ~ 3,
+        category == "CAR_q67_G2" ~ 4, 
+        category == "CAR_q64_G1" ~ 1,
+        category == "CAR_q66_G1" ~ 2,
+        category == "CAR_q65_G2" ~ 1,
+        category == "CAR_q68_G1" ~ 1,
+        category == "CAR_q65_G1" ~ 3
+        
+      )
     )
   
   # Saving data points
@@ -211,7 +241,8 @@ figure02.fn <- function(nchart = 2){
                                 target_var   = "value2plot",
                                 grouping_var = "govSupp",
                                 labels_var   = "labels",
-                                colors       = colors4plot)
+                                colors       = colors4plot,
+                                order_var    = "order_value")
          
          # Defining height
          if (length(vars4plot[[varSet]]) == 3 ) {

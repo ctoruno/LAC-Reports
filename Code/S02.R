@@ -223,7 +223,7 @@ figure08.fn <- function(nchart = 8){
                                 labels_var   = "labels",
                                 colors       = colors4plot,
                                 diffOpac     = T,
-                                order_var    = order_var,
+                                order_var    = "order_var",
                                 opacities    = opacities4plot)
          
          # Defining height
@@ -293,7 +293,16 @@ figure09.fn <- function(nchart = 9){
         category == "CAR_q2d" ~ "An elected official taking public funds\nfor private use",
         category == "CAR_q2e" ~ "An elected official using stolen public\nfunds to assist his or her community"
       ),
-      value2plot = round(value2plot*100,1)
+      value2plot = round(value2plot*100,1),
+      order_var  = case_when(
+        category == "CAR_q2b" ~ "A public officer asking for a bribe \nto speed up administrative procedures" ~ 2,
+        category == "CAR_q2f" ~ "A law enforcement officer (police, \ncustoms, immigration, civil guard, military police) \nasking for a bribe" ~ 3,
+        category == "CAR_q2g" ~ "A company official asking for a bribe\nfrom a job applicant" ~ 1,
+        category == "CAR_q2c" ~ "A private citizen offering a bribe to a\npublic official to speed up administrative procedures" ~ 1,
+        category == "CAR_q2a" ~ "A public officer being recruited on the\nbasis of family ties and friendship networks" ~ 1,
+        category == "CAR_q2d" ~ "An elected official taking public funds\nfor private use" ~ 3,
+        category == "CAR_q2e" ~ "An elected official using stolen public\nfunds to assist his or her community" ~ 2
+      )
     )
   
   # Saving data points
@@ -330,7 +339,8 @@ figure09.fn <- function(nchart = 9){
                                 labels_var   = "labels",
                                 colors       = colors4plot,
                                 diffOpac     = T,
-                                opacities    = opacities4plot)
+                                opacities    = opacities4plot,
+                                order_var    = "order_var")
          
          # Defining height
          if (length(vars4plot[[varSet]]) == 1) {
