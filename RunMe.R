@@ -49,7 +49,9 @@ method_data.ls <- list(
   "af" = read_excel("Data/method_summaryData.xlsx",
                     sheet = "AdminDivs"),
   "sd" = read_excel("Data/method_summaryData.xlsx",
-                    sheet = "SampleDesc")
+                    sheet = "SampleDesc"),
+  "tA" = read_excel("Data/method_summaryData.xlsx",
+                    sheet = "Table_A")
 )
 
 # Defining group of countries to work with
@@ -308,6 +310,7 @@ for (mainCountry in group) {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
+  # Printing Methodology page
   print("Compiling Methodology Page")
   create_methodPage.fn()
   

@@ -19,7 +19,14 @@ create_methodPage.fn <- function(){
   data4quarto.ls <- list(
     "sf" = method_data.ls[["sf"]] %>% filter(Country == mainCountry),
     "af" = method_data.ls[["af"]] %>% filter(country == mainCountry),
-    "sd" = method_data.ls[["sd"]] %>% filter(country == mainCountry)
+    "sd" = method_data.ls[["sd"]] %>% filter(country == mainCountry),
+    "tA" = method_data.ls[["tA"]] %>%
+      filter(country == mainCountry) %>%
+      pivot_longer(!country,
+                   names_to  = "category",
+                   values_to = "value") %>%
+      select(!country) %>%
+      mutate(value = format(value, big.mark = ","))
   )
   
   # Defining Parameters
@@ -98,7 +105,7 @@ create_methodPage.fn <- function(){
                                            pull(value),
                                          nsmall = 0),
                                   "%"),   
-    "sd_rural_valueTXT"  = str_to_title(english(data4quarto.ls[["sd"]] %>% 
+    "sd_rural_valueTXT"  = str_to_sentence(english(data4quarto.ls[["sd"]] %>% 
                                                   filter(name == "Rural") %>%
                                                   mutate(value = round(value*100, 0)) %>%
                                                   pull(value))),  
@@ -114,7 +121,7 @@ create_methodPage.fn <- function(){
                                            pull(value),
                                          nsmall = 0),
                                   "%"),     
-    "sd_female_valueTXT" = str_to_title(english(data4quarto.ls[["sd"]] %>% 
+    "sd_female_valueTXT" = str_to_sentence(english(data4quarto.ls[["sd"]] %>% 
                                                   filter(name == "Female") %>%
                                                   mutate(value = round(value*100, 0)) %>%
                                                   pull(value))), 
@@ -141,7 +148,30 @@ create_methodPage.fn <- function(){
                                            mutate(value = round(value*100, 0)) %>%
                                            pull(value),
                                          nsmall = 0),
-                                  "%")    
+                                  "%"),    
+    
+    # Table A
+    "tA_elegible"      = data4quarto.ls[["tA"]] %>% 
+                              filter(category == "elegible_household") %>% 
+                              pull(value),
+    "tA_refusals"      = data4quarto.ls[["tA"]] %>% 
+                              filter(category == "refusals") %>% 
+                              pull(value),
+    "tA_breaks"        = data4quarto.ls[["tA"]] %>% 
+                              filter(category == "break_off") %>% 
+                              pull(value),
+    "tA_nocont"        = data4quarto.ls[["tA"]] %>% 
+                              filter(category == "non_contact") %>% 
+                              pull(value),
+    "tA_inelegible"    = data4quarto.ls[["tA"]] %>% 
+                              filter(category == "inelegible_household") %>% 
+                              pull(value),
+    "tA_noele"         = data4quarto.ls[["tA"]] %>% 
+                              filter(category == "no_elegible") %>% 
+                              pull(value),
+    "tA_quotafil"      = data4quarto.ls[["tA"]] %>% 
+                              filter(category == "quota_filled") %>% 
+                              pull(value)
   )
   
   # Modifying specific changes
@@ -164,7 +194,6 @@ create_methodPage.fn <- function(){
   # Rendering quarto document
   quarto::quarto_render(
     input        = "Code/method.qmd",
-    # output_file  = paste0(str_replace(mainCountry, " ", "_"), ".html"),
     execute_dir  = file.path("Outputs", 
                             str_replace(mainCountry, " ", "_"),
                             "Method",
@@ -172,5 +201,3 @@ create_methodPage.fn <- function(){
     execute_params = method_input.ls
     )
 }
-
-

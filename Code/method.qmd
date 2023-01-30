@@ -46,6 +46,13 @@ params:
   sd_male_value:      "!!TEXT!!"
   sd_highedu_value:   "!!TEXT!!"
   sd_lowedu_value:    "!!TEXT!!"
+  tA_elegible:        "!!TEXT!!"
+  tA_refusals:        "!!TEXT!!"
+  tA_breaks:          "!!TEXT!!"
+  tA_nocont:          "!!TEXT!!"
+  tA_inelegible:      "!!TEXT!!"
+  tA_noele:           "!!TEXT!!"
+  tA_quotafil:        "!!TEXT!!"
 ---
 
 ```{=html}
@@ -103,11 +110,20 @@ In order to address all relevant topics while controlling the questionnaire leng
 :::
 
 ::: {.column width="57.5%"}
-<br><br><br>
+## Response Rates
 
-<center><strong>INSERT TABLE A HERE</strong></center>
+| Eligible household, non-interview | `r params$tA_elegible` |
+|-----------------------------------|------------------------|
+| Refusals                          | `r params$tA_refusals` |
+| Break-off                         | `r params$tA_breaks`   |
+| Non-contact                       | `r params$tA_nocont`   |
 
-<br><br>
+| Ineligible household                    | `r params$tA_inelegible` |
+|-----------------------------------------|--------------------------|
+| No eligible respondent in the household | `r params$tA_noele`      |
+| Quota filled.                           | `r params$tA_quotafil`   |
+
+<br>
 
 ## Interviewing and Quality Control
 
@@ -115,11 +131,12 @@ In total, `r params$sf_total` interviewers worked on this project, including `r 
 
 `r params$sf_qcontrol`
 
+:::
+:::
+
 ## Data Review and Justification
 
 As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s AmericasBarometer, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International's Corruption Perceptions Index, the Bertelsmann Stiftung's Transformation Index (BTI), and Freedom House's Freedom in the World. While certain trends captured by the `r params$sf_year` General Population Poll in `r params$sf_country` are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of `r params$sf_country`'s rule of law performance as measured by other sources.
-:::
-:::
 
 ## Historical Data
 
@@ -134,3 +151,7 @@ Historical data in this report derives from the *WJP Rule of Law Index®'s Gener
 <center><strong>INSERT TABLE B HERE</strong></center>
 
 <br><br>
+
+
+
+
