@@ -773,10 +773,10 @@ figure16.fn <- function(nchart = 16) {
                       if_else(variable %in% "q48b_G1", 2.15,
                               if_else(variable %in% "q48a_G2", 3.15, 4.15))),
       variable = case_when(
-        variable == "EXP_q24a_G1" ~ "Crime victims receive prompt and courteous <br> attention",
+        variable == "q48b_G2"     ~ "Help them feel safe",
         variable == "q48a_G2"     ~ "Resolve security problems in  the community",
         variable == "q48b_G1"     ~ "Perform effective and lawful investigations",
-        variable == "EXP_q24a_G2" ~ "Respond to crime reports",
+        variable == "EXP_q24e_G2" ~ "Respond to crime reports",
       ),
       multiplier = if_else(group == "empty_value", 0, 1),
       label      = paste0(format(round(value*100, 0), nsmall = 0),
@@ -828,9 +828,9 @@ figure16.fn <- function(nchart = 16) {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q48a_G1", 1.15,
-                           if_else(variable %in% "EXP_q22e_G1", 2.15,
-                                   if_else(variable %in% "q48c_G1", 3.15, 4.15))),
+      x_pos = if_else(variable %in% "q48a_G1", 4.15,
+                           if_else(variable %in% "EXP_q22e_G1", 3.15,
+                                   if_else(variable %in% "q48c_G1", 2.15, 1.15))),
       variable = case_when(
         variable == "q48a_G1"     ~ "Act lawfully",
         variable == "EXP_q22e_G1" ~ "Do not use excessive force",
@@ -948,10 +948,10 @@ figure16.fn <- function(nchart = 16) {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q2d", 1.15,
-                      if_else(variable %in% "q48e_G2", 2.15,
-                              if_else(variable %in% "EXP_q22k_G2", 3.15, 
-                                      if_else(variable %in% "EXP_q22j_G2", 4.15, NA_real_)))),
+      x_pos = if_else(variable %in% "q2d", 4.15,
+                      if_else(variable %in% "q48e_G2", 3.15,
+                              if_else(variable %in% "EXP_q22k_G2", 2.15, 
+                                      if_else(variable %in% "EXP_q22j_G2", 1.15, NA_real_)))),
       variable = case_when(
         variable == "q2d"         ~ "Are not involved in corrupt practices",
         variable == "q48e_G2"     ~ "Investigate crimes in an independent manner",
@@ -1008,15 +1008,13 @@ figure16.fn <- function(nchart = 16) {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q1d", 1.15,
+      x_pos = if_else(variable %in% "q1d", 3.15,
                       if_else(variable %in% "EXP_q8d", 2.15,
-                              if_else(variable %in% "q9", 3.15, 
-                                      ifelse(variable %in% "q48b_G2", 4.15, NA_real_)))),
+                              if_else(variable %in% "q9", 1.15))),
       variable = case_when(
         variable == "q1d"     ~ "Trust the police",
         variable == "EXP_q8d" ~ "Report a crime when they are a victim",
-        variable == "q9"      ~ "Feel safe in their neighborhoods",
-        variable == "q48b_G2" ~ "Feel the police contributes to their safety"
+        variable == "q9"      ~ "Feel safe in their neighborhoods"
       ),
       multiplier = if_else(group == "empty_value", 0, 1),
       label      = paste0(format(round(value*100, 0), nsmall = 0),
@@ -1067,15 +1065,15 @@ figure16.fn <- function(nchart = 16) {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "q48d_G1", 1.15,
-                      if_else(variable %in% "EXP_q22f_G1", 2.15,
-                              if_else(variable %in% "EXP_q22g_G1", 3.15, 
-                                      if_else(variable %in% "EXP_q22h_G1", 4.15, NA_real_)))),
+      x_pos = if_else(variable %in% "q48d_G1", 4.15,
+                      if_else(variable %in% "EXP_q22f_G1", 3.15,
+                              if_else(variable %in% "EXP_q22g_G1", 2.15, 
+                                      if_else(variable %in% "EXP_q22h_G1", 1.15, NA_real_)))),
       variable = case_when(
-        variable == "q48d_G1"     ~ "Are held accountable for violating laws",
+        variable == "q48d_G1"         ~ "Are held accountable for violating laws",
         variable == "EXP_q22f_G1"     ~ "Are held accountable for seeking bribes",
         variable == "EXP_q22g_G1"     ~ "Are held accountable for accepting bribes",
-        variable == "EXP_q22h_G1" ~ "Are investigated for misconduct"
+        variable == "EXP_q22h_G1"     ~ "Are investigated for misconduct"
       ),
       multiplier = if_else(group == "empty_value", 0, 1),
       label      = paste0(format(round(value*100, 0), nsmall = 0),
