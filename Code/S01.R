@@ -69,8 +69,8 @@ figure01.fn <- function(nchart = 1){
       order_value = case_when(
         category == "CAR_q60_G1" ~ 4,
         category == "CAR_q61_G1" ~ 2,
-        category == "CAR_q60_G2" ~ 2,
-        category == "CAR_q64_G2" ~ 3,
+        category == "CAR_q60_G2" ~ 3,
+        category == "CAR_q64_G2" ~ 2,
         category == "CAR_q67_G1" ~ 3,
         category == "CAR_q67_G2" ~ 4, 
         category == "CAR_q64_G1" ~ 1,

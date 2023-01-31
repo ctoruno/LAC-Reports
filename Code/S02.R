@@ -152,7 +152,7 @@ figure08.fn <- function(nchart = 8){
         category == "q2e"     ~ "Prosecutors in charge of\ncriminal investigations",
         category == "q2f"     ~ "Public defense attorneys",
         category == "q2d"     ~ "Police officers", 
-        category == "CAR_q6h" ~ "Members of the Armed Forces",
+        category == "CAR_q6h" ~ "Members of the armed forces",
         category == "CAR_q6i" ~ "Tax/Revenue officers",
         category == "CAR_q6j" ~ "Customs officers",
         category == "CAR_q6k" ~ "Public utility company officers",
@@ -160,7 +160,7 @@ figure08.fn <- function(nchart = 8){
         category == "CAR_q6m" ~ "Teachers in public schools", 
         category == "CAR_q6n" ~ "Land registry officers", 
         category == "CAR_q6o" ~ "Car registration officers", 
-        category == "CAR_q6p" ~ "News Media", 
+        category == "CAR_q6p" ~ "News media", 
         category == "CAR_q6q" ~ "Political parties"
       ),
       value2plot = round(value2plot*100,1)
