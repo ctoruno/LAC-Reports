@@ -1010,7 +1010,7 @@ figure16.fn <- function(nchart = 16) {
     mutate(
       x_pos = if_else(variable %in% "q1d", 3.15,
                       if_else(variable %in% "EXP_q8d", 2.15,
-                              if_else(variable %in% "q9", 1.15))),
+                              if_else(variable %in% "q9", 1.15, NA_real_))),
       variable = case_when(
         variable == "q1d"     ~ "Trust the police",
         variable == "EXP_q8d" ~ "Report a crime when they are a victim",
