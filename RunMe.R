@@ -51,7 +51,9 @@ method_data.ls <- list(
   "sd" = read_excel("Data/method_summaryData.xlsx",
                     sheet = "SampleDesc"),
   "tA" = read_excel("Data/method_summaryData.xlsx",
-                    sheet = "Table_A")
+                    sheet = "Table_A"),
+  "tB" = read_excel("Data/method_summaryData.xlsx",
+                    sheet = "Table_B")
 )
 
 # Defining group of countries to work with
@@ -315,12 +317,13 @@ for (mainCountry in group) {
   create_methodPage.fn()
   
   # Moving HTML to corresponding directory
-  file.copy(from = "Code/method.html", 
+  file.copy(from = "Code/method.md", 
             to   = file.path("Outputs", 
                              str_replace(mainCountry, " ", "_"),
                              "Method",
-                             paste0(mainCountry, "_method.html"),
+                             paste0(mainCountry, "_method.md"),
                              fsep = "/"), 
             overwrite = T)
+  unlink("Code/method.md")
 
 }

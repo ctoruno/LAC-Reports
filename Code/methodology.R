@@ -13,6 +13,38 @@
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+gen.tableB <- function(data) {
+  
+  # Producing HTML table using Knittr
+  html <- data %>% 
+    filter(Country %in% countrySet) %>% 
+    kable(format = "html")
+  
+  # Adjusting HTML code
+  html <- str_remove_all(html, 
+                         pattern  = "<table>|</table>|<tbody>|</tbody>|<thead>|</thead>")
+  html <- str_replace_all(html,
+                          pattern     = "\\\n",
+                          replacement = "")
+  html <- str_replace_all(html,
+                          pattern     = '<th.+?>', 
+                          replacement = "<td>")
+  
+  html <- str_replace_all(html,
+                          pattern     = "</th>",
+                          replacement = "</td>")
+  html <- str_replace_all(html,
+                          pattern     = '<td style.+?>', 
+                          replacement = "<td>")
+  html <- str_replace(html, 
+                      pattern         = "<tr>", 
+                      replacement     = "<tr class=\\'bg-purple text-white\\'>")
+  
+  return(html)
+  
+}
+
+
 create_methodPage.fn <- function(){
   
   # Filtering data
@@ -26,7 +58,8 @@ create_methodPage.fn <- function(){
                    names_to  = "category",
                    values_to = "value") %>%
       select(!country) %>%
-      mutate(value = format(value, big.mark = ","))
+      mutate(value = format(value, big.mark = ",")),
+    "tB" = method_data.ls[["tB"]]
   )
   
   # Defining Parameters
@@ -171,7 +204,11 @@ create_methodPage.fn <- function(){
                               pull(value),
     "tA_quotafil"      = data4quarto.ls[["tA"]] %>% 
                               filter(category == "quota_filled") %>% 
-                              pull(value)
+                              pull(value),
+    
+    # Table B
+    "tB"  =  gen.tableB(data4quarto.ls[["tB"]])
+    
   )
   
   # Modifying specific changes
