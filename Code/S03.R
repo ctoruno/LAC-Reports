@@ -746,7 +746,7 @@ figure16.fn <- function(nchart = 16) {
   
   panelB <- data_subset.df %>%
     filter(year == latestYear & country == mainCountry) %>%
-    select(EXP_q24a_G1, q48a_G2, q48b_G1, EXP_q24a_G2) %>%
+    select(EXP_q24e_G2, q48a_G2, q48b_G2, q48b_G1) %>%
     mutate(
       across(everything(),
              ~ case_when(
@@ -769,7 +769,7 @@ figure16.fn <- function(nchart = 16) {
                  names_to = "group",
                  values_to = "value") %>%
     mutate(
-      x_pos = if_else(variable %in% "EXP_q24a_G1", 1.1,
+      x_pos = if_else(variable %in% "q48b_G2", 1.1,
                       if_else(variable %in% "q48b_G1", 2.15,
                               if_else(variable %in% "q48a_G2", 3.15, 4.15))),
       variable = case_when(
@@ -984,7 +984,7 @@ figure16.fn <- function(nchart = 16) {
   
   panelF <- data_subset.df %>%
     filter(year == latestYear & country == mainCountry) %>%
-    select(q1d, EXP_q8d, q9, q48b_G2) %>%
+    select(q1d, EXP_q8d, q9) %>%
     mutate(
       across(everything(),
              ~ case_when(
