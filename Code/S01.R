@@ -269,12 +269,19 @@ figure02.fn <- function(nchart = 2){
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure03.fn <- function(nchart = 3){
+figure03.fn <- function(nchart = 3, PAR = F) {
+  
+  # Defining variables to use
+  if (PAR = F) {
+    vars4plot <- c("q50", "q51", "q52", "CAR_q73", "CAR_q74")
+  } else {
+    vars4plot <- c("q50", "q51", "q52")
+  }
   
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
     filter(year == latestYear) %>%
-    select(country, q50, q51, q52, CAR_q73, CAR_q74) %>%
+    select(country, all_of(vars4plot)) %>%
     mutate(
       q52 = case_when(
         q52 == 1 ~ 4,
@@ -287,12 +294,12 @@ figure03.fn <- function(nchart = 3){
       across(!country,
              ~if_else(.x < 3, 1, 0),
              .names = "{.col}_pos"),
-      across(c(q50, q51, q52, CAR_q73, CAR_q74),
+      across(all_of(vars4plot),
              ~if_else(.x == 3 | .x == 4, 1,
                       if_else(.x == 1 | .x == 2, 0, 
                               NA_real_)),
              .names = "{.col}_neg"),
-      across(c(q50, q51, q52, CAR_q73, CAR_q74),
+      across(all_of(vars4plot),
              ~if_else(.x == 5, 1, 0),
              .names = "{.col}_neither")
     ) %>%
@@ -315,7 +322,7 @@ figure03.fn <- function(nchart = 3){
     select(-ends_with("_neither"))
   
   # We need to dynamically generate the totals for each variable
-  data2plot <- map_dfr(c("q50", "q51", "q52", "CAR_q73", "CAR_q74"),
+  data2plot <- map_dfr(vars4plot,
                        function(categories) {
                          
                          data2plot %>%
@@ -375,12 +382,22 @@ figure03.fn <- function(nchart = 3){
     h = 41.823711
   }
   
+  # Defining Panel order
+  if (PAR = F) {
+    vars4plot <- c("C" = "q50", 
+                   "D" = "q51", 
+                   "E" = "q52",
+                   "A" = "CAR_q73",
+                   "B" = "CAR_q74")
+  } else {
+    vars4plot <- c("A" = "q50", 
+                   "B" = "q51", 
+                   "C" = "q52")
+  }
+  
+  
   # Plotting each figure panel
-  imap(c("C" = "q50", 
-         "D" = "q51", 
-         "E" = "q52",
-         "A" = "CAR_q73",
-         "B" = "CAR_q74"),
+  imap(vars4plot,
        function(var4plot, panelName) {
          
          # Filtering data2plot to leave the variable for each panel
@@ -637,4 +654,15 @@ figure06.fn <- function(nchart = 6) {
             w      = 189.7883,
             h      = 149.7219)
 }
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 4 - PRY                                                                                        ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure04_PRY.fn <- function(nchart = 4){
+  
+}
+
 

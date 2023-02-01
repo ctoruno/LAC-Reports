@@ -197,7 +197,7 @@ centralAmerica.ls <- c(
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-## 7.  Creating a function that will reset the Ouputs directory                                             ----
+## 7.  Creating a function that will reset the Outputs directory                                            ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -223,7 +223,7 @@ ordnung.fn <- function(targetCountry){
              showWarnings = FALSE)
   
   # Creating folders for each chart output within the country directory
-  for (plot in 1:19) {
+  for (plot in 1:18) {
     dir.create(file.path("Outputs", 
                          str_replace(mainCountry, " ", "_"),
                          paste0("imgChart", plot),

@@ -115,7 +115,9 @@ for (mainCountry in group) {
   
   # Figure 1:
   print("Designing Figure 1")
-  figure01.fn()
+  if (mainCountry != "Paraguay") {
+    figure01.fn()
+  }
   
   # Figure 2:
   print("Designing Figure 2")
@@ -125,7 +127,11 @@ for (mainCountry in group) {
   
   # Figure 3:
   print("Designing Figure 3")
-  figure03.fn()
+  if (mainCountry != "Paraguay") {
+    figure03.fn()
+  } else {
+    figure03.fn(nchart = 1)
+  }
 
   # Figure 4:
   print("Designing Figure 4")
@@ -138,7 +144,7 @@ for (mainCountry in group) {
   if (mainCountry != "Paraguay") {
     figure05.fn()
   } else {
-    figure05.fn(nchart = 4)
+    figure05.fn(nchart = 2)
   }
   
   # Figure 6:
@@ -146,7 +152,12 @@ for (mainCountry in group) {
   if (mainCountry != "Paraguay") {
     figure06.fn()
   } else {
-    figure06.fn(nchart = 5)
+    figure06.fn(nchart = 3)
+  }
+  
+  # Figure 4 for Paraguay
+  if (mainCountry == "Paraguay") {
+    figure04_PRY.fn()                    # JEISON!!!
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -158,29 +169,28 @@ for (mainCountry in group) {
   # All the figure functions from this section are contained in the "Code/S02.R" file. Please refer to it
   # for more information.
   
+  # Figure 5 for Paraguay
+  if (mainCountry == "Paraguay") {
+    figure05_A_PRY.fn()               # SANTIAGO!!!
+    figure05_B_PRY.fn()               # CARLOS!!!
+  }
+  
   # Figure 7:
   print("Designing Figure 7")
   if (mainCountry != "Paraguay") {
     figure07.fn()
-  } else {
-    figure06_A_PRY.fn()
-    figure06_B_PRY.fn()
   }
   
   # Figure 8:
   print("Designing Figure 8")
   if (mainCountry != "Paraguay") {
     figure08.fn()
-  } else {
-    figure08.fn(nchart = 7)
   }
   
   # Figure 9:
   print("Designing Figure 9")
   if (mainCountry != "Paraguay") {
     figure09.fn()
-  } else {
-    figure09.fn(nchart = 8)
   }
   
   # Figure 10:
@@ -192,7 +202,7 @@ for (mainCountry in group) {
     figure10.fn(carib = TRUE)
   }
   if (mainCountry == "Paraguay") {
-    figure10.fn(nchart = 9)
+    figure10.fn(nchart = 6)
   }
   
   # Figure 11:
@@ -225,8 +235,8 @@ for (mainCountry in group) {
     figure12_2.fn(nchart = 11)
   }
   if (mainCountry == "Paraguay") {
-     figure12_1.fn(nchart = 10) 
-     figure12_2.fn(nchart = 10) 
+     figure12_1.fn(nchart = 7) 
+     figure12_2.fn(nchart = 7)                # SANTIAGO!!!
   }
   
   # Figure 13:
@@ -241,8 +251,8 @@ for (mainCountry in group) {
     figure13_2.fn(nchart = 12)
   }
   if (mainCountry == "Paraguay") {
-    figure11_A_PRY.fn(nchart = 11)
-    figure13_2.fn(nchart = 11) 
+    figure08_A_PRY.fn()
+    figure13_2.fn(nchart = 8) 
   }
   
   # Figure 14:
@@ -254,7 +264,7 @@ for (mainCountry in group) {
     figure14.fn(nchart = 13)
   }
   if (mainCountry == "Paraguay") {
-    figure12_PRY.fn()
+    figure09_PRY.fn()
   }
   
   # Figure 15:
@@ -266,7 +276,7 @@ for (mainCountry in group) {
     figure15.fn(nchart = 14)
   }
   if (mainCountry == "Paraguay") {
-    figure13_PRY.fn(nchart = 13)
+    figure10_PRY.fn()
   }
   
   # Figure 16:
@@ -278,32 +288,25 @@ for (mainCountry in group) {
     figure16.fn(nchart = 15)
   }
   if (mainCountry == "Paraguay") {
-    figure16.fn(nchart = 14)
+    figure11_PRY.fn()                         # JEISON!!!
   }
   
   # Figure 17:
-  
-  # 2ND PAGE POLICE DASH
-  
-  # Figure 18:
   print("Designing Figure 17")
   if (mainCountry != "Paraguay" & args[1] != "carib2") {
-    figure18.fn()
+    figure17.fn()
   }
   if (args[1] == "carib2") {
-    figure18.fn(nchart = 17)
-  }
-  if (mainCountry == "Paraguay") {
-    figure18.fn(nchart = 16)
+    figure17.fn(nchart = 16)
   }
   
-  # Figure 19:
+  # Figure 18:
   print("Designing Figure 18")
   if (mainCountry != "Paraguay" & args[1] != "carib1" & args[1] != "carib2") {
-    figure19.fn()
+    figure18.fn()
   }
   if (mainCountry == "Paraguay") {
-    figure19.fn(nchart = 17)
+    figure18.fn(nchart = 12)
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

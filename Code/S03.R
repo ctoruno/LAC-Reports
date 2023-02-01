@@ -1115,17 +1115,7 @@ figure16.fn <- function(nchart = 16) {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
-#TBD
-
-
-## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-##
-##    Figure 18                                                                                             ----
-##
-## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-figure18.fn <- function(nchart = 18) {
+figure17.fn <- function(nchart = 17) {
   
   # Defining variables to use in rose chart
   vars4plot <- c("EXP_q24a_G1", "EXP_q24b_G1", "EXP_q24c_G1", "EXP_q24d_G1", "EXP_q24a_G2", "EXP_q24b_G2",
@@ -1228,11 +1218,11 @@ figure18.fn <- function(nchart = 18) {
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 19                                                                                            ----
+##    Figure 18                                                                                            ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure19.fn <- function(nchart = 19) {
+figure18.fn <- function(nchart = 18) {
 
   legal_assigment <- function(data_subset) {
     
@@ -1310,7 +1300,7 @@ figure19.fn <- function(nchart = 19) {
     return(data2plot)
   }
   
-  # Figure 19a
+  # Figure 18a
   
   a2j <- legal_assigment(data_subset = data_subset.df)
   
@@ -1379,20 +1369,20 @@ figure19.fn <- function(nchart = 19) {
   figures_problems[["Panel B"]] <- a2j_p2
   figures_problems[["Panel C"]] <- a2j_p3
   
-  figure19a <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
+  figure18a <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
     plot_layout(ncol = 3,
                 nrow = 1,
                 widths = unit(42, "mm"),
                 heights = unit(63, "mm"))
     
   # Saving Patchwork
-  saveIT.fn(chart  = figure19a,
+  saveIT.fn(chart  = figure18a,
             n      = nchart,
             suffix = "a",
             w      = 131.7974,
             h      = 65.02006)
   
-  # Figure 19b
+  # Figure 18b
   aes_function_v2 <- function(mainData) {
     
     data2plot <- mainData %>%
@@ -1466,13 +1456,13 @@ figure19.fn <- function(nchart = 19) {
   figures_problems[["Panel B"]] <- a2j_p2
   figures_problems[["Panel C"]] <- a2j_p3
   
-  figure19b <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
+  figure18b <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
     plot_layout(ncol = 3,
                 nrow = 1,
                 widths = unit(42, "mm"),
                 heights = unit(63, "mm"))
   
-  saveIT.fn(chart  = figure19b,
+  saveIT.fn(chart  = figure18b,
             n      = nchart,
             suffix = "b",
             w      = 131.7974,
@@ -1481,12 +1471,12 @@ figure19.fn <- function(nchart = 19) {
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 11.A - PARAGUAY                                                                                ----
+##    Figure 08.A - PARAGUAY                                                                                ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Upper Panel
-figure11_A_PRY.fn <- function(nchart = 11) {
+figure08_A_PRY.fn <- function(nchart = 8) {
   
   data2plot <- data_subset.df %>%
     filter(country == mainCountry) %>%
@@ -1537,13 +1527,14 @@ figure11_A_PRY.fn <- function(nchart = 11) {
             w      = 111.7642,
             h      = 14.40985)
 }
+
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 12 - PARAGUAY                                                                                  ----
+##    Figure 09 - PARAGUAY                                                                                  ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure12_PRY.fn <- function(nchart = 12) {
+figure09_PRY.fn <- function(nchart = 9) {
   
   # Defining variables to use in rose chart
   vars4plot <- c("q49a", "q49b_G2", "q49e_G2", "q49c_G2", "q49e_G1", "q49d_G1",
@@ -1631,11 +1622,11 @@ figure12_PRY.fn <- function(nchart = 12) {
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 13 - PARAGUAY                                                                                  ----
+##    Figure 10 - PARAGUAY                                                                                  ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure13_PRY.fn <- function (nchart = 13) {
+figure10_PRY.fn <- function (nchart = 10) {
   
   # Defining variables to use in rose chart
   vars4plot <- c("q1e", "q1f", "q1g",
@@ -1754,3 +1745,18 @@ figure13_PRY.fn <- function (nchart = 13) {
             w      = 85.05327,
             h      = 48.14999)
 }
+
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 11 - PARAGUAY                                                                                  ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure11_PRY.fn <- function (nchart = 11) {
+  
+}
+
+
+
+

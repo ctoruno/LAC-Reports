@@ -544,12 +544,12 @@ figure11.fn <- function(nchart = 11) {
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 6 - PARAGUAY                                                                                   ----
+##    Figure 5 - PARAGUAY                                                                                   ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Upper Panel
-figure06_A_PRY.fn <- function(nchart = 6){
+figure05_A_PRY.fn <- function(nchart = 5){
   
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
@@ -603,7 +603,7 @@ figure06_A_PRY.fn <- function(nchart = 6){
 }
 
 # Lower Panel
-figure06_B_PRY.fn <- function(nchart = 6){
+figure05_B_PRY.fn <- function(nchart = 5){
   
   # Variables to plot
   vars4plot = list("Executive"    = c("q1b", "q1c", "q2b", "q2c"), 
