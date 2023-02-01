@@ -29,7 +29,6 @@ gen.tableB <- function(data) {
   html <- str_replace_all(html,
                           pattern     = '<th.+?>', 
                           replacement = "<td>")
-  
   html <- str_replace_all(html,
                           pattern     = "</th>",
                           replacement = "</td>")
@@ -74,7 +73,10 @@ create_methodPage.fn <- function(){
                               pull(latestYear),
     "sf_perception"      = data4quarto.ls[["sf"]] %>% pull(`Perception`),
     "sf_experience"      = data4quarto.ls[["sf"]] %>% pull(`Experience`),
-    "sf_ssize"           = data4quarto.ls[["sf"]] %>% pull(`Sample Size`),           
+    "sf_ssize"           = data4quarto.ls[["sf"]] %>% 
+                              mutate(`Sample Size` = format(`Sample Size`, 
+                                                            big.mark = ",")) %>%
+                              pull(`Sample Size`),           
     "sf_company"         = data4quarto.ls[["sf"]] %>% pull(`Polling Company`),         
     "sf_dates"           = data4quarto.ls[["sf"]] %>% pull(`FW Dates`),           
     "sf_nationality"     = data4quarto.ls[["sf"]] %>% pull(`Sample Size`),     
@@ -92,7 +94,10 @@ create_methodPage.fn <- function(){
     "sf_female"          = data4quarto.ls[["sf"]] %>% pull(`Female`),
     "sf_OptEnumerators"  = data4quarto.ls[["sf"]] %>% pull(`OptEnumerators`),
     "sf_language"        = data4quarto.ls[["sf"]] %>% pull(`Language`),
-    "sf_probSample"      = data4quarto.ls[["sf"]] %>% pull(`Prob Sample`),
+    "sf_probSample"      = data4quarto.ls[["sf"]] %>% 
+                                    mutate(`Prob Sample` = format(`Prob Sample`, 
+                                                                  big.mark = ",")) %>%
+                                    pull(`Prob Sample`),
     "sf_historical"      = data4quarto.ls[["sf"]] %>% pull(`Historical Data`),
     "sf_region"          = tolower(data4quarto.ls[["sf"]] %>% pull(`Region`)),
     
