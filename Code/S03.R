@@ -1036,7 +1036,7 @@ figure16.fn <- function(nchart = 16) {
             n      = nchart,
             suffix = "f",
             w      = 82.59305,
-            h      = 56.23357)
+            h      = 45.33831)
   
   # Panel G: Accountability
   
