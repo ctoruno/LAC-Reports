@@ -272,7 +272,7 @@ figure02.fn <- function(nchart = 2){
 figure03.fn <- function(nchart = 3, PAR = F) {
   
   # Defining variables to use
-  if (PAR = F) {
+  if (PAR == F) {
     vars4plot <- c("q50", "q51", "q52", "CAR_q73", "CAR_q74")
   } else {
     vars4plot <- c("q50", "q51", "q52")
@@ -383,7 +383,7 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   }
   
   # Defining Panel order
-  if (PAR = F) {
+  if (PAR == F) {
     vars4plot <- c("C" = "q50", 
                    "D" = "q51", 
                    "E" = "q52",
