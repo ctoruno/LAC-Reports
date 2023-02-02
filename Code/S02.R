@@ -606,58 +606,66 @@ figure05_A_PRY.fn <- function(nchart = 5){
 figure05_B_PRY.fn <- function(nchart = 5){
   
   # Variables to plot
-  vars4plot = list("Executive"    = c("q1b", "q1c", "q2b", "q2c"), 
-                   "Judiciary"    = c("q1e", "q1f", "q1g", "q2e", "q2f", "q2g"),
-                   "Other"        = c("q1d", "q2a", "q2d"))
+  vars4plot = list("Trust"      = c("q1b", "q1c", "q1d", "q1e", "q1f", "q1g", "q1h", "q1i", "q1j"),
+                   "Corruption" = c("q2a", "q2b", "q2c", "q2d", "q2e", "q2f", "q2g"))
   
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
-    filter(country == mainCountry & year == latestYear) %>%
-    select(all_of(unlist(vars4plot,
-                         use.names = F))) %>%
+    filter(year == latestYear) %>%
+    select(country, all_of(unlist(vars4plot,
+                                  use.names = F))) %>%
     mutate(
       across(starts_with("q1"),
              ~case_when(
                .x == 1  ~ 1,
                .x == 2  ~ 1,
                .x == 3  ~ 0,
-               .x == 4  ~ 0,
-               .x == 99 ~ NA_real_
+               .x == 4  ~ 0
              )),
       across(starts_with("q2"),
              ~case_when(
                .x == 1  ~ 0,
                .x == 2  ~ 0,
                .x == 3  ~ 1,
-               .x == 4  ~ 1,
-               .x == 99 ~ NA_real_
+               .x == 4  ~ 1
              ))
     ) %>%
+    group_by(country) %>%
     summarise(across(everything(),
                      mean,
                      na.rm = T)) %>%
-    pivot_longer(everything(),
+    pivot_longer(!country,
                  names_to  = "category",
                  values_to = "perc") %>%
     mutate(
       perc   = round(perc*100, 0),
-      status = if_else(str_detect(category, "q1"), "Positive", "Negative"),
-      grp  = case_when(
-        str_detect(category, "b|c")   ~ "Executive",
-        str_detect(category, "e|f|g") ~ "Judiciary",
-        str_detect(category, "a|d")   ~ "Other",
+      grp    = case_when(
+        str_detect(category, "q1") ~ "Trust",
+        str_detect(category, "q2") ~ "Corruption"
       ),
-      perc     = if_else(status == "Positive", perc, -perc),
-      label    = to_percentage.fn(abs(perc)),
-      row      = str_replace(category, "q1|q2", ""),
-      row      = case_when(
-        row == "a" ~ "Members of the Legislative",
-        row == "b" ~ "Local Government Officers",
-        row == "c" ~ "National Government Officers",
-        row == "d" ~ "Police Officers",
-        row == "e" ~ "Criminal Prosecutors",
-        row == "f" ~ "Public Defense Attorneys",
-        row == "g" ~ "Judges and Magistrates",
+      order_var = case_when(
+        str_detect(category, "a") ~ 1,
+        str_detect(category, "b") ~ 3,
+        str_detect(category, "c") ~ 2,
+        str_detect(category, "d") ~ 7,
+        str_detect(category, "e") ~ 4,
+        str_detect(category, "f") ~ 6,
+        str_detect(category, "g") ~ 5,
+        str_detect(category, "h") ~ 8,
+        str_detect(category, "i") ~ 10,
+        str_detect(category, "j") ~ 9
+      ),
+      labels = case_when(
+        str_detect(category, "a") ~ "Members of the Legislative",
+        str_detect(category, "b") ~ "Local Government Officers",
+        str_detect(category, "c") ~ "National Government Officers",
+        str_detect(category, "d") ~ "Police Officers",
+        str_detect(category, "e") ~ "Criminal Prosecutors",
+        str_detect(category, "f") ~ "Public Defense Attorneys",
+        str_detect(category, "g") ~ "Judges and Magistrates",
+        str_detect(category, "h") ~ "Civil Servants",
+        str_detect(category, "i") ~ "News Media",
+        str_detect(category, "j") ~ "Political Parties"
       )
     )
   
@@ -670,36 +678,41 @@ figure05_B_PRY.fn <- function(nchart = 5){
              sheetName = paste0("Chart_", nchart, "B"),
              append    = T,
              row.names = T)
-    
-  # Customizing colorPalette for plot
-  colors4plot <- c(binPalette)
-  names(colors4plot) <- c("Positive", "Negative")
+  
+  # Defining color palette
+  colors4plot <- countryPalette
+  
+  # Defining opacity vector
+  opacities4plot <- c(1, rep(0.5, length(countrySet)-1))
+  names(opacities4plot) <- countrySet
   
   # Plotting each panel
-  imap(c("B1" = "Executive", 
-         "B2" = "Judiciary", 
-         "B3" = "Other"),
+  imap(c("B1" = "Trust", 
+         "B2" = "Corruption"),
        function(var4plot, panelName) {
          
          # Filtering data2plot to leave the variable for each panel
          data2plot <- data2plot %>%
-           filter(grp == var4plot)
+           filter(grp == var4plot) %>%
+           rename(value2plot = perc)
          
          # The height of the plot depends on the number of categories
-         if (panelName == "Judiciary") {
-           h = 16.51861
-         } else {
-           h = 23.19635
+         if (var4plot == "Trust") {
+           h = 93.98386
+         }
+         if (var4plot == "Corruption") {
+           h = 65.72298
          }
          
          # Applying plotting function
-         chart <- LAC_divBars(data           = data2plot,
-                              target_var     = "perc",
-                              grouping_var   = "row",
-                              diverging_var  = "status",
-                              negative_value = "Negative",
-                              colors         = colors4plot,
-                              labels_var     = "label")
+         chart <- LAC_dotsChart(data         = data2plot,
+                                target_var   = "value2plot",
+                                grouping_var = "country",
+                                labels_var   = "labels",
+                                colors       = colors4plot,
+                                order_var    = "order_var",
+                                diffOpac     = T,
+                                opacities    = opacities4plot)
          
          # Saving panels
          saveIT.fn(chart  = chart,

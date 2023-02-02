@@ -172,7 +172,7 @@ for (mainCountry in group) {
   # Figure 5 for Paraguay
   if (mainCountry == "Paraguay") {
     figure05_A_PRY.fn()               # SANTIAGO!!!
-    figure05_B_PRY.fn()               # CARLOS!!!
+    figure05_B_PRY.fn()
   }
   
   # Figure 7:
