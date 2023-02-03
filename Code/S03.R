@@ -1605,7 +1605,17 @@ figure09_PRY.fn <- function(nchart = 9) {
         category == 'q49c_G1'       ~ paste("Ensures everyone<br>has **access** to the<br>justice system"),
         category == 'q49b_G1'       ~ paste("Ensures **timeliness**<br>by dealing with<br>cases promptly",
                                             "and<br>efficiently")
-      ),
+        ),
+      order_var = case_when (
+          category == "q49a"          ~ 1,
+          category == "q49b_G2"       ~ 2,
+          category == "q49e_G2"       ~ 3,
+          category == "q49c_G2"       ~ 4,
+          category == "q49e_G1"       ~ 5,
+          category == "q49d_G1_merge" ~ 6,
+          category == "q49c_G1"       ~ 7,
+          category == "q49b_G1"       ~ 8
+        ),
       
       # Converting labels into HTML syntax
       across(label,
@@ -1640,7 +1650,8 @@ figure09_PRY.fn <- function(nchart = 9) {
                          grouping_var  = "category",
                          alabels_var   = "label",
                          plabels_var   = "percentage",
-                         colors        = colors4plot)
+                         colors        = colors4plot,
+                         order_var     = order_var)
   
   # Saving panels
   saveIT.fn(chart  = chart,
