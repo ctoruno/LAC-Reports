@@ -1325,7 +1325,7 @@ figure18.fn <- function(nchart = 18) {
     mutate(x_pos = c(1.2, 1.2, 2.2, 2.2, 3.2, 3.2, 4.2, 4.2),
            order_value = c(1,1,2,2,3,3,4,4),
            empty_value = 1 - value,
-           label = paste(round(value*100,0), "%"),
+           label = paste0(round(value*100,0), "%"),
            multiplier = if_else(group == "empty_value", 0, 1),
            label = if_else(multiplier == 0, NA_character_, label))
     return(data2plot)
@@ -1423,7 +1423,7 @@ figure18.fn <- function(nchart = 18) {
                    values_to = "value") %>%
       mutate(x_pos = c(3.2, 3.2, 2.2, 2.2, 1.2, 1.2),
              empty_value = 1 - value,
-             label = paste(round(value*100,0), "%"),
+             label = paste0(round(value*100,0), "%"),
              multiplier = if_else(group == "empty_value", 0, 1),
              label = if_else(multiplier == 0, NA_character_, label))
     return(data2plot)
