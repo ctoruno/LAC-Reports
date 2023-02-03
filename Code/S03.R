@@ -214,7 +214,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
                paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> reported <br> the crime"),
                paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not report <br>the crime"),
                paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> The perpetrator <br> was prosecuted"),
-               paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> The perpetrator <br> was not prosecuted"))
+               paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> The perpetrator was <br> not prosecuted"))
     
   } else {
     
@@ -1593,14 +1593,14 @@ figure09_PRY.fn <- function(nchart = 9) {
       label = case_when(
         category == 'q49a'          ~ paste("<span style='color:#524F4C;font-size:3.514598mm;font-weight:bold'>",
                                             "Is **effective** in bringing<br>people who commit<br>crimes to justice"),
-        category == 'q49b_G2'       ~ paste("Ensures **equal treatment<br>of victims** by allowing all<br>",
-                                            "victims to seek justice<br>regardless of who they are"),
+        category == 'q49b_G2'       ~ paste("Ensures **equal treatment<br>of victims** by allowing <br> all",
+                                            "victims to seek <br> justice regardless of <br> who they are"),
         category == 'q49e_G2'       ~ paste("Safeguards the<br>**presumption of<br>innocence** by treating<br>those",
                                             "accused of<br>crimes as innocent<br>until proven guilty"),
         category == 'q49c_G2'       ~ paste("Ensures **equal treatment of<br>the accused** by giving all a<br>",
                                             "fair trial regardless of who<br>they are"),
         category == 'q49e_G1'       ~ paste("Gives **appropriate<br>punishments** that fit<br>the crime"),
-        category == 'q49d_G1_merge' ~ paste("Ensures **uniform quality** by<br>providing equal service<br>",
+        category == 'q49d_G1' ~ paste("Ensures **uniform quality** by<br>providing equal service<br>",
                                             "regardless of where<br>they live"),
         category == 'q49c_G1'       ~ paste("Ensures everyone<br>has **access** to the<br>justice system"),
         category == 'q49b_G1'       ~ paste("Ensures **timeliness**<br>by dealing with<br>cases promptly",
@@ -1651,7 +1651,7 @@ figure09_PRY.fn <- function(nchart = 9) {
                          alabels_var   = "label",
                          plabels_var   = "percentage",
                          colors        = colors4plot,
-                         order_var     = order_var)
+                         order_var     = "order_var")
   
   # Saving panels
   saveIT.fn(chart  = chart,
@@ -1840,14 +1840,14 @@ figure11_PRY.fn <- function (nchart = 11) {
     );panelA
 
   # Saving data points
-  write.xlsx(as.data.frame(panelA %>% ungroup()), 
-             file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
-                                   "dataPoints.xlsx",
-                                   fsep = "/"), 
-             sheetName = paste0("Chart_", nchart),
-             append    = T,
-             row.names = T)  
+  # write.xlsx(as.data.frame(panelA %>% ungroup()), 
+  #            file      = file.path("Outputs", 
+  #                                  str_replace(mainCountry, " ", "_"),
+  #                                  "dataPoints.xlsx",
+  #                                  fsep = "/"), 
+  #            sheetName = paste0("Chart_", nchart),
+  #            append    = T,
+  #            row.names = T)  
     
   a <- horizontal_edgebars(data2plot    = panelA,
                            y_value      = value,
@@ -1912,14 +1912,14 @@ figure11_PRY.fn <- function (nchart = 11) {
     );panelB
 
   # Saving data points
-  write.xlsx(as.data.frame(panelB %>% ungroup()), 
-             file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
-                                   "dataPoints.xlsx",
-                                   fsep = "/"), 
-             sheetName = paste0("Chart_", nchart),
-             append    = T,
-             row.names = T)    
+  # write.xlsx(as.data.frame(panelB %>% ungroup()), 
+  #            file      = file.path("Outputs", 
+  #                                  str_replace(mainCountry, " ", "_"),
+  #                                  "dataPoints.xlsx",
+  #                                  fsep = "/"), 
+  #            sheetName = paste0("Chart_", nchart),
+  #            append    = T,
+  #            row.names = T)    
     
   b <- horizontal_edgebars(data2plot    = panelB,
                            y_value      = value,
@@ -1933,7 +1933,7 @@ figure11_PRY.fn <- function (nchart = 11) {
   
   saveIT.fn(chart  = b,
             n      = nchart,
-            suffix = "a",
+            suffix = "b",
             w      = 82.59305,
             h      = 77.32116) #Validar para 6 filas
 
@@ -1981,14 +1981,14 @@ figure11_PRY.fn <- function (nchart = 11) {
     );panelC
 
   # Saving data points
-  write.xlsx(as.data.frame(panelC %>% ungroup()), 
-             file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
-                                   "dataPoints.xlsx",
-                                   fsep = "/"), 
-             sheetName = paste0("Chart_", nchart),
-             append    = T,
-             row.names = T)      
+  # write.xlsx(as.data.frame(panelC %>% ungroup()),
+  #            file      = file.path("Outputs",
+  #                                  str_replace(mainCountry, " ", "_"),
+  #                                  "dataPoints.xlsx",
+  #                                  fsep = "/"),
+  #            sheetName = paste0("Chart_", nchart),
+  #            append    = T,
+  #            row.names = T)
     
   c <- horizontal_edgebars(data2plot    = panelC,
                            y_value      = value,
@@ -2002,7 +2002,7 @@ figure11_PRY.fn <- function (nchart = 11) {
   
   saveIT.fn(chart  = c,
             n      = nchart,
-            suffix = "a",
+            suffix = "c",
             w      = 82.59305,
             h      = 77.32116) #Validar para 6 filas
       

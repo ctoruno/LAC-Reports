@@ -607,7 +607,7 @@ figure05_A_PRY.fn <- function(nchart = 5){
             n      = nchart,
             suffix = "A",
             w      = 111.7642,
-            h      = 14.40985)
+            h      = 65.72298)
 }
 
 # Lower Panel
