@@ -1444,7 +1444,11 @@ figure18.fn <- function(nchart = 18) {
     arrange(-value)
     
   first_panel <- a2j_b[1:3,] %>%
-    aes_function_v2(.)
+    aes_function_v2(.) %>%
+    mutate(value = if_else(value > 0.9 & group %in% "value", 0.85, value),
+           value = if_else(value < 0.1 & group %in% "empty_value", 0.15, value),
+           empty_value = if_else(empty_value < 0.15 & group %in% "value", 0.15, value),
+           empty_value = if_else(empty_value <  0.85 & group %in% "empty_value", 0.85, value))
   
   a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
                                 y_value      = value,
@@ -1490,7 +1494,7 @@ figure18.fn <- function(nchart = 18) {
   figure18b <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
     plot_layout(ncol = 3,
                 nrow = 1,
-                widths = unit(42, "mm"),
+                widths = unit(43, "mm"),
                 heights = unit(63, "mm"))
   
   saveIT.fn(chart  = figure18b,
