@@ -898,8 +898,8 @@ figure16.fn <- function(nchart = 16) {
     mutate(
       across(everything(),
              ~ case_when(
-               .x == 0  ~ 0,
-               .x == 1  ~ 1,
+               .x == 0  ~ 1,
+               .x == 1  ~ 0,
                .x == 99 ~ NA_real_,
                is.na(.x) ~ NA_real_
              ))
