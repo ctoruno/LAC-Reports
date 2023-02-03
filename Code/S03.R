@@ -283,6 +283,44 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
             suffix = "B",
             w      = 175.027,
             h      = 94.54267)
+  
+  # Reasons table 
+  
+  reasons <- security_universe %>%
+    filter(victim == 1) %>%
+    filter(EXP_q8d ==0) %>%
+    mutate(counter = 1,
+           total_people = n()) %>%
+    group_by(EXP_q8h) %>%
+    summarise(reasons = sum(counter, na.rm = T), universe = mean(total_people, na.rm = T))
+  
+  reasons2table <- reasons %>%
+    arrange(-reasons) %>%
+    filter(EXP_q8h != 99) %>%
+    mutate(proportion = paste0(round(reasons/universe,2)*100, "%"),
+           EXP_q8h    = case_when(
+             EXP_q8h  == 1 ~ "Respondent didn't know who to contact",
+             EXP_q8h  == 2 ~ "Respondent didn't think would be believed",
+             EXP_q8h  == 3 ~ "Respondent was afraid of retaliation or concerned about my safety",
+             EXP_q8h  == 4 ~ "Respondent didn't want other people to find out",
+             EXP_q8h  == 5 ~ "Respondent didn't think it would improve the situation",
+             EXP_q8h  == 6 ~ "A friend or family member convinced the respondent not to",
+             EXP_q8h  == 7 ~ "Respondent didn't think the police or other authority would do anything",
+             EXP_q8h  == 8 ~ "Respondent didn't have time",
+             EXP_q8h  == 9 ~ "Respondent thought would be blamed for the situation",
+             EXP_q8h  == 10 ~ "Respondent didn't trust the police or other authorities",
+             EXP_q8h  == 11 ~ "Respondent was embarrassed or ashamed",
+             EXP_q8h  == 12 ~ "Other",
+           ))
+  
+  # Saving data points
+  write.xlsx(reasons2table, 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "imgChart12",
+                                   "reasons.xlsx",
+                                   fsep = "/"),
+             row.names = T)
 
 }
 
