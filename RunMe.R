@@ -158,7 +158,7 @@ for (mainCountry in group) {
   
   # Figure 4 for Paraguay
   if (mainCountry == "Paraguay") {
-    figure04_PRY.fn()                    # JEISON!!!
+    figure04_PRY.fn()
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -172,7 +172,7 @@ for (mainCountry in group) {
   
   # Figure 5 for Paraguay
   if (mainCountry == "Paraguay") {
-    figure05_A_PRY.fn()               # SANTIAGO!!!
+    figure05_A_PRY.fn()
     figure05_B_PRY.fn()
   }
   
@@ -289,7 +289,7 @@ for (mainCountry in group) {
     figure16.fn(nchart = 15)
   }
   if (mainCountry == "Paraguay") {
-    figure11_PRY.fn()                         # JEISON!!!
+    figure11_PRY.fn()
   }
   
   # Figure 17:
