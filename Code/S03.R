@@ -1445,10 +1445,10 @@ figure18.fn <- function(nchart = 18) {
     
   first_panel <- a2j_b[1:3,] %>%
     aes_function_v2(.) %>%
-    mutate(value = if_else(value > 0.85 & group %in% "value", 0.8, value),
-           value = if_else(value < 0.15 & group %in% "empty_value", 0.2, value),
-           empty_value = if_else(empty_value < 0.15 & group %in% "value", 0.2, value),
-           empty_value = if_else(empty_value >  0.85 & group %in% "empty_value", 0.8, value))
+    mutate(value = if_else(value > 0.8 & group %in% "value", 0.75, value),
+           value = if_else(value < 0.1 & group %in% "empty_value", 0.25, value),
+           empty_value = if_else(empty_value < 0.1 & group %in% "value", 0.25, value),
+           empty_value = if_else(empty_value >  0.8 & group %in% "empty_value", 0.75, value))
   
   a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
                                 y_value      = value,

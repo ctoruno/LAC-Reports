@@ -237,7 +237,7 @@ for (mainCountry in group) {
   }
   if (mainCountry == "Paraguay") {
      figure12_1.fn(nchart = 7) 
-     figure12_2.fn(nchart = 7)                # SANTIAGO!!!
+     figure12_2.fn(nchart = 7)               
   }
   
   # Figure 13:
