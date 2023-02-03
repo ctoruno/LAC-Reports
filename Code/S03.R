@@ -1754,7 +1754,216 @@ figure10_PRY.fn <- function (nchart = 10) {
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 figure11_PRY.fn <- function (nchart = 11) {
+  # Panel A: Trust and Safety
+  panelA <- data_subset.df %>%
+    filter(year == latestYear & country == mainCountry) %>%
+    select(q1d, q48a_G2, q48b_G1, q48c_G2, q9) %>%
+    mutate(across(everything(),
+                  ~ case_when(
+                    .x == 1  ~ 1,
+                    .x == 2  ~ 1,
+                    .x == 3  ~ 0,
+                    .x == 4  ~ 0,
+                    .x == 99 ~ NA_real_,
+                    is.na(.x) ~ NA_real_
+                  ))) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(
+      empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate( 
+      x_pos = if_else(variable %in% "q1d", 5.15,
+                      if_else(variable %in% "q48a_G2", 4.15,
+                              if_else(variable %in% "q48b_G1", 3.15,
+                                      if_else(variable %in% "q48c_G2", 2.15,
+                                              if_else(variable %in% "q9", 1.15, NA_real_))))),
+      variable = case_when(
+        variable == "q1d" ~ "Trust the police",
+        variable == "q48a_G2" ~ "Resolve security problems in  the community",
+        variable == "q48b_G1" ~ "Perform effective and lawful investigations",
+        variable == "q48c_G2" ~ "Are available to help when needed",
+        variable == "q9" ~"Feel safe in their neighborhoods"
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+    );panelA
+
+  # Saving data points
+  write.xlsx(as.data.frame(panelA %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)  
+    
+  a <- horizontal_edgebars(data2plot    = panelA,
+                           y_value      = value,
+                           x_var        = variable,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94",
+                           margin_top   = 0);a
   
+  saveIT.fn(chart  = a,
+            n      = nchart,
+            suffix = "a",
+            w      = 82.59305,
+            h      = 71.34634)
+  
+  
+  # Panel B: Accountability and due process
+  panelB <- data_subset.df %>%
+    filter(year == latestYear & country == mainCountry) %>%
+    select(q48a_G1, q48c_G1, q48d_G2, q2d, q48e_G2, q48d_G1) %>%
+    mutate(across(everything(),
+                  ~ case_when(
+                    .x == 1  ~ 1,
+                    .x == 2  ~ 1,
+                    .x == 3  ~ 0,
+                    .x == 4  ~ 0,
+                    .x == 99 ~ NA_real_,
+                    is.na(.x) ~ NA_real_
+                  ))) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(
+      empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate( 
+      x_pos = if_else(variable %in% "q48a_G1", 6.15,
+                      if_else(variable %in% "q48c_G1", 5.15,
+                              if_else(variable %in% "q48d_G2", 4.15,
+                                      if_else(variable %in% "q2d", 3.15,
+                                              if_else(variable %in% "q48e_G2", 2.15, 
+                                                      if_else(variable %in% "q48d_G1", 1.15, NA_real_)))))),
+      variable = case_when(
+        variable == "q48a_G1" ~ "Act lawfully",
+        variable == "q48c_G1" ~ "Respect the rights of suspects",
+        variable == "q48d_G2" ~ "Treat all people with respect",
+        variable == "q2d" ~ "Are not involved in corrupt practices",
+        variable == "q48e_G2" ~ "Investigate crimes in an independent manner",
+        variable == "q48d_G1" ~ "Are held accountable for violating laws"
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+    );panelB
+
+  # Saving data points
+  write.xlsx(as.data.frame(panelB %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)    
+    
+  b <- horizontal_edgebars(data2plot    = panelB,
+                           y_value      = value,
+                           x_var        = variable,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94",
+                           margin_top   = 0);a
+  
+  saveIT.fn(chart  = b,
+            n      = nchart,
+            suffix = "a",
+            w      = 82.59305,
+            h      = 77.32116) #Validar para 6 filas
+
+  # Panel C: Discrimination
+  panelC <- data_subset.df %>%
+    filter(year == latestYear & country == mainCountry) %>%
+    select(q18a, q18b, q18c, q18d, q18e, q18f) %>%
+    mutate(across(everything(),
+                  ~ case_when(
+                    .x == 0  ~ 0,
+                    .x == 1  ~ 1,
+                    .x == 99 ~ NA_real_,
+                    is.na(.x) ~ NA_real_
+                  ))) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(everything(),
+                 names_to  = "variable",
+                 values_to = "value") %>%
+    mutate(
+      empty_value = 1 - value) %>%
+    pivot_longer(!variable,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate( 
+      x_pos = if_else(variable %in% "q18a", 6.15,
+                      if_else(variable %in% "q18b", 5.15,
+                              if_else(variable %in% "q18c", 4.15,
+                                      if_else(variable %in% "q18d", 3.15,
+                                              if_else(variable %in% "q18e", 2.15, 
+                                                      if_else(variable %in% "q18f", 1.15, NA_real_)))))),
+      variable = case_when(
+        variable == "q18a" ~ "A poor person",
+        variable == "q18b" ~ "A female",
+        variable == "q18c" ~ "A person from an ethnic group or tribe other than of the police officer involved",
+        variable == "q18d" ~ "A person from a religion other than that of the police officer involved",
+        variable == "q18e" ~ "A foreigner (inmigrant)",
+        variable == "q18f" ~ "A homosexual"
+      ),
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+    );panelC
+
+  # Saving data points
+  write.xlsx(as.data.frame(panelC %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)      
+    
+  c <- horizontal_edgebars(data2plot    = panelC,
+                           y_value      = value,
+                           x_var        = variable,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94",
+                           margin_top   = 0);a
+  
+  saveIT.fn(chart  = c,
+            n      = nchart,
+            suffix = "a",
+            w      = 82.59305,
+            h      = 77.32116) #Validar para 6 filas
+      
 }
 
 
