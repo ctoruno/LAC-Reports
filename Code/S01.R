@@ -663,6 +663,96 @@ figure06.fn <- function(nchart = 6) {
 
 figure04_PRY.fn <- function(nchart = 4){
   
+  # Defining the variables to use in the plot
+  vars4plot <- c("q45a_G1", "q45b_G1", "q45c_G1")
+  
+  # Defining the data to be used in the plot
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear) %>%
+    select(country, all_of(unlist(vars4plot, 
+                                  use.names = F))) %>%
+    mutate(across(!country,
+                  ~if_else(.x == 99, 
+                           NA_real_, 
+                           as.double(.x)))) 
+  
+  data2plot <- lapply(vars4plot, 
+                      function(target) {
+                        
+                        as.data.frame(table(data2plot[["country"]], data2plot[[target]])) %>%
+                          group_by(Var1) %>%
+                          mutate(value2plot = (Freq/sum(Freq))*100,
+                                 labels     = to_percentage.fn(value2plot),
+                                 group      = target,
+                                 stack_y    = cumsum(value2plot) - (value2plot/2))
+                        
+                      }) %>%
+    bind_rows(.) %>%
+    rename(country  = Var1,
+           category = Var2) %>%
+    mutate(
+      category = case_when(
+        category == 1 ~ "Very Likely",
+        category == 2 ~ "Likely",
+        category == 3 ~ "Unlikely",
+        category == 4 ~ "Very Unlikely",
+      )
+    ) 
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
+  # Defining colors4plot
+  colors4plot <- c("Very Likely"   = "#2a2a94",
+                   "Likely"        = "#a90099",
+                   "Unlikely"      = "#3273ff",
+                   "Very Unlikely" = "#43a9a7")
+  
+  # Transforming 
+  data2plot$category <- factor(data2plot$category, 
+                               levels = c("Very Unlikely",
+                                          "Unlikely",
+                                          "Likely",
+                                          "Very Likely"))
+  
+  # Plotting each panel of Figure 5
+  imap(c("A" = "q45a_G1", 
+         "B" = "q45b_G1", 
+         "C" = "q45c_G1"),
+       function(tvar, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(group %in% tvar)
+         
+         # Applying plotting function
+         chart <- LAC_barsChart(data           = data2plot,
+                                target_var     = "value2plot",
+                                grouping_var   = "country",
+                                labels_var     = "labels",
+                                colors_var     = "category",
+                                colors         = colors4plot,
+                                direction      = "horizontal",
+                                stacked        = T,
+                                lab_pos        = "stack_y"
+         )
+         
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 169.7883,
+                   h      = 43.58102)
+         
+       })
+  
 }
 
 
