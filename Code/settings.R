@@ -34,7 +34,7 @@ library(pacman)
 
 p_load(char = c(
   # Visualizations
-  "showtext", "ggtext", "ggsankey", "ggrepel", "ggplotify", "gridExtra", "ggradar2", "patchwork",
+  "showtext", "ggtext", "ggsankey", "ggrepel", "ggplotify", "gridExtra", "ggradar2", "patchwork","waffle",
   
   # Data Loading
   "haven", "readxl", "writexl", "xlsx",

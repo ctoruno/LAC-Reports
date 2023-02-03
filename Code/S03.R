@@ -28,7 +28,7 @@
     
     security.universe <- master_data %>%
       filter(country %in% mainCountry) %>%
-      filter(year == if_else(country %in% "Paraguay", 2021, 2022)) %>%
+      filter(year == latestYear) %>%
       select(# All variables related with security
         starts_with("EXP_q8"), starts_with("q8"), CAR_q47a_12, CAR_q47b_5,
         # Security perception
@@ -131,10 +131,9 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     report <- security_universe %>%
       mutate(q8d = case_when(
         q8d == 1 ~ 1,
-        q8d == 2 ~ 2,
+        q8d == 0 ~ 0,
         q8d == 99 ~ NA_real_
       )) %>%
-      mutate(q8d = if_else(q8d == 1, 1, 0)) %>%
       filter(victim == 1) %>%
       summarise(report = round(mean(q8d, na.rm = T),2)) %>%
       mutate(non_report = 1 - report)
@@ -157,15 +156,25 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     fill_report <- security_universe %>%
       filter(victim == 1) %>%
       select(q8d, q8f) %>%
-      mutate(across(~if_else(.x == 1, 1,
-                             if_else(!is.na(.x) & .x != 99, 0, 
-                                     NA_real_)))) %>%
+      mutate(
+        q8d = case_when(
+        q8d == 1 ~ 1,
+        q8d == 0 ~ 0,
+        q8d == 99 ~ NA_real_
+      )) %>%
+      mutate(
+        q8f = case_when(
+          q8f == 1 ~ 1,
+          q8f == 0 ~ 0,
+          q8f == 99 ~ NA_real_
+        )) %>%
       group_by(q8d) %>%
       summarise(fill_report = round(mean(q8f, na.rm = T),2)) %>%
       mutate(non_fill_report = 1 - fill_report) %>%
       filter(q8d == 1) %>%
       select(!q8d)
-  } else {
+  
+    } else {
     
     fill_report <- security_universe %>%
       filter(victim == 1) %>%
@@ -189,20 +198,42 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   d <- data.frame(cbind(t1, t2))
   names(d) <- c("Victim", "Report")
   
+  if (country == "Paraguay") {
+    
+    df <- d %>%
+      mutate(`Crime Prosecution` = if_else(Report %in% "Report", t3, " ")) 
+    
+    data2plot <- df %>%
+      make_long(Victim, Report, `Crime Prosecution`)
+    
+    
+    y <- c(1, 900, -500, 600, 30)
+    x <- c(0.7, 2, 2.3, 3.3, 3.3)
+    
+    label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of ", demonym$Nationality ,"s","<br>were victims <br>of a crime"),
+               paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> reported <br> the crime"),
+               paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not report <br>the crime"),
+               paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> The perpetrator <br> was prosecuted"),
+               paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> The perpetrator <br> was not prosecuted"))
+    
+  } else {
+    
+    df <- d %>%
+      mutate(`Official Crime Report` = if_else(Report %in% "Report", t3, " ")) 
+    
+    data2plot <- df %>%
+      make_long(Victim, Report, `Official Crime Report`)
+    
+    y <- c(1, 900, -300, 600, 75)
+    x <- c(0.7, 2, 2.3, 3.3, 3.3)
+    
+    label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of ", demonym$Nationality ,"s","<br>were victims <br>of a crime"),
+               paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> reported <br> the crime"),
+               paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not report <br>the crime"),
+               paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> filed an official <br> crime report"),
+               paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not file an <br>official crime report"))
+  }
   
-  df <- d %>%
-    mutate(`Official Crime Report` = if_else(Report %in% "Report", t3, " ")) 
-  
-  data2plot <- df %>%
-    make_long(Victim, Report, `Official Crime Report`)
-  
-  y <- c(1, 900, -300, 600, 75)
-  x <- c(0.7, 2, 2.3, 3.3, 3.3)
-  label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of ", demonym$Nationality ,"s","<br>were victims <br>of a crime"),
-             paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> reported <br> the crime"),
-             paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not report <br>the crime"),
-             paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> filed an official <br> crime report"),
-             paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not file an <br>official crime report"))
   df <- data.frame(label)
   
   # Saving data points
@@ -246,7 +277,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
                                      color = "Black"),
           axis.text.y = element_blank(),
           axis.ticks.x = element_blank());pl
-  
+
   saveIT.fn(chart  = pl,
             n      = nchart,
             suffix = "B",

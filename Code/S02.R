@@ -554,7 +554,7 @@ figure05_A_PRY.fn <- function(nchart = 5){
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
     filter(country == mainCountry) %>%
-    filter(year == 2021) %>%
+    filter(year == latestYear) %>%
     select(year, q1a) %>%
     mutate("Trust in Community" = if_else(q1a == 3 | q1a == 4, 1, 
                                           if_else(!is.na(q1a) & q1a != 99, 0,
@@ -565,12 +565,12 @@ figure05_A_PRY.fn <- function(nchart = 5){
     select(`Trust in Community`) %>%
     pivot_longer(everything(),
                  names_to  = "category",
-                 values_to = "value") %>%
-    mutate(value = round(value*100,0),
-           label = paste0(format(round(value, 0),
+                 values_to = "Yes") %>%
+    mutate(Yes = round(Yes*100,0),
+           label = paste0(format(round(Yes, 0),
                                  nsmall = 0),
                           "%"),
-           empty_value = 100 - value) %>%
+           No = 100 - Yes) %>%
     pivot_longer(cols = !c(category, label), names_to = "group", values_to = "value") %>%
     mutate(label = if_else(group %in% "empty_value", NA_character_, label),
            x_pos = 1.15)
@@ -585,15 +585,23 @@ figure05_A_PRY.fn <- function(nchart = 5){
              append    = T,
              row.names = T)
   
-  figure6_a <- horizontal_edgebars(data2plot    = data2plot,
-                           y_value      = value,
-                           x_var        = category,
-                           group_var    = group,
-                           label_var    = label,
-                           x_lab_pos    = x_pos,
-                           y_lab_pos    = 0,
-                           bar_color    = "#2a2a94",
-                           margin_top   = 0);figure6_a
+  figure6_a <- ggplot(data2plot, aes(fill = group, values = value)) +
+    geom_waffle(color = "white", size = 1.125, n_rows = 5) + 
+    scale_x_discrete(expand=c(0,0)) +
+    scale_y_discrete(expand=c(0,0)) +
+    scale_fill_manual("", 
+                      values = c("Yes" = "#003b8a",
+                                 "No"  = "#fa4d57")) +
+    coord_equal() +
+    theme_enhance_waffle() +
+    theme(panel.spacing = unit(1, "cm"),
+          strip.background = element_blank(),
+          strip.text = element_text(size = 11.5, 
+                                    hjust = 0,
+                                    family = "Lato Full",
+                                    face = "italic"),
+          legend.position = "none")
+  
   # Saving panels
   saveIT.fn(chart  = figure6_a,
             n      = nchart,
