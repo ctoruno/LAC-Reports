@@ -66,12 +66,6 @@ The script will run entirely and you will now have the final visualizations in t
 If you happen to find an error such as: 
 
 ```
-ERROR: --output option cannot specify a relative or absolute path
-```
-
-or
-
-```
 ERROR: unnable to find quarto command line tools
 ```
 
