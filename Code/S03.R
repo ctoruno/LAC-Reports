@@ -1,6 +1,6 @@
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-## Script:            LAC Country Reports - Section III Functions
+## Script:            LAC Country Reports - Section III & IV Functions
 ##
 ## Author(s):         Carlos A. Toruño Paniagua   (ctoruno@worldjusticeproject.org)
 ##                    A. Santiago Pardo G.        (spardo@worldjusticeproject.org)
@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 22nd, 2022
 ##
-## This version:      December 1st, 2022
+## This version:      February 3rd, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##

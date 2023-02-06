@@ -301,6 +301,15 @@ for (mainCountry in group) {
     figure17.fn(nchart = 16)
   }
   
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##   Section 4                                                                                              ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  
+  # All the figure functions from this section are contained in the "Code/S03.R" file. Please refer to it
+  # for more information.
+  
   # Figure 18:
   print("Designing Figure 18")
   if (mainCountry != "Paraguay" & args[1] != "carib1" & args[1] != "carib2") {
@@ -312,9 +321,47 @@ for (mainCountry in group) {
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
+##   Section 5                                                                                              ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  
+  # All the figure functions from this section are contained in the "Code/S05.R" file. Please refer to it
+  # for more information.  
+  
+  if (args[1] != "central") {
+    
+    # Figure 19
+    print("Designing Figure 19")
+    figure19A.fn()            # CARLOS!!!!
+    figure19B.fn()            # SANTIAGO!!!!
+    
+    # Figure 20
+    print("Designing Figure 19")
+    figure20A.fn()            # CARLOS!!!!
+    figure20B.fn()            # CARLOS!!!!
+    
+    # Figure 21
+    
+    # Entirely done by Mariana
+    
+    # Figure 22
+    print("Designing Figure 19")
+    figure22A.fn()            # JEISON!!!!
+    figure22B.fn()            # SANTIAGO!!!!
+    figure22C.fn()            # JEISON!!!!
+    
+  }
+  
+  
+  
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
 ##   Methodology                                                                                            ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  
+  # All the figure functions from this section are contained in the "Code/methodology.R" file. Please refer to
+  # it for more information.
   
   # Printing Methodology page
   print("Compiling Methodology Page")
