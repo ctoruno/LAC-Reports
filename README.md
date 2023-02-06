@@ -25,9 +25,17 @@ The code is divided in three levels:
 
 3. Plotting functions: The role of the defining functions is to define the data to be used in a specific figure. However, the plotting is performed by a plotting function. There is one plotting function per chart type. For example, all line charts in this report are plotted by `the LAC_lineChart()` function. Therefore, the same plotting function can be called by several different defining functions in order to generate the same type of chart. All the plotting functions are publicly available in this [GitHub repository](https://github.com/ctoruno/WJP-Data-Viz/tree/main/LAC).
 
-Finally, there is an auxiliary file called `setting.R`. As its name could suggest, inside this file are all the pre-settings needed by the `RunMe.R` to perform smoothly. All the fonts, the ggplot theme, color palettes, and other related settings can be found here.
+There is an auxiliary file called `setting.R`. As its name could suggest, inside this file are all the pre-settings needed by the `RunMe.R` to perform smoothly. All the fonts, the ggplot theme, color palettes, and other related settings can be found here.
 
 ![Code Logic](Inputs/code_structure.png)
+
+Additionally, the program will automatically produce a raw code chunk containing the HTML needed to display the Methodology section of each country in their respective online reports. A HTML template of this section is contained in the `method.qmd` file. Rendering this quarto file will produce a GitHub Flavored Markdown (GFM) file that contains the raw HTML code chunks needed to produce the Methodology page in the online country reports. 
+
+However, given that some text segments of the outline change depending on the country in question, the quarto file needs to be called along with some pre-defined parameters containing the values that are unique for each country. For this, the `RunMe.R` will call the `methodology.R` script. The functions contained in this script are the ones responsible of asigning the parameters values for each country and, once all parameters are defined, the `methodology.R` script will render the `method.qmd` outline.
+
+The resulting markdown file is saved in the Outputs folder of each country.
+
+![Method Logic](Inputs/method_structure.png)
 
 ## How to use
 As mentioned above, in order to generate all the plots needed, you just need to call the RunMe.R file with the country group name that you wish to generate the visualizations for.
