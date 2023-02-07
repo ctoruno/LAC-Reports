@@ -161,10 +161,11 @@ figure02.fn <- function(nchart = 2){
                   use.names = F)) %>%
     mutate(
       govSupp = case_when(
-        CAR_q59_G1 == 1   | CAR_q59_G2 == 1   ~ "Gov. Supporter",
-        CAR_q59_G1 == 2   | CAR_q59_G2 == 2   ~ "Non Gov. Supporter",
-        CAR_q59_G1 == 99  | CAR_q59_G2 == 99  ~ NA_character_,
-        is.na(CAR_q59_G1) & is.na(CAR_q59_G2) ~ NA_character_
+        !is.na(CAR_q59_G1) & !is.na(CAR_q59_G2) ~ NA_character_,
+        CAR_q59_G1 == 1   | CAR_q59_G2 == 1     ~ "Gov. Supporter",
+        CAR_q59_G1 == 2   | CAR_q59_G2 == 2     ~ "Non Gov. Supporter",
+        CAR_q59_G1 == 99  | CAR_q59_G2 == 99    ~ NA_character_,
+        is.na(CAR_q59_G1) & is.na(CAR_q59_G2)   ~ NA_character_
       ),
       across(!c(CAR_q59_G1, CAR_q59_G2, govSupp),
              ~if_else(.x == 1 | .x == 2, 1,
