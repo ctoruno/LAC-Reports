@@ -328,7 +328,7 @@ for (mainCountry in group) {
   # All the figure functions from this section are contained in the "Code/S05.R" file. Please refer to it
   # for more information.  
   
-  if (args[1] != "central") {
+  if (args[1] == "central") {
     
     # Figure 19
     print("Designing Figure 19")
