@@ -488,7 +488,8 @@ figure04.fn <- function(nchart = 4) {
                                 ngroups        = 1, 
                                 labels_var     = "label",
                                 colors_var     = "category",
-                                colors         = colors4plot
+                                colors         = colors4plot,
+                                repel          = T
                                 )
          
          # Saving panels
