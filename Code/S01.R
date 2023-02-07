@@ -84,7 +84,7 @@ figure01.fn <- function(nchart = 1){
   
   # Defining color palette
   colors4plot <- countryPalette
-  
+
   # Defining opacity vector
   opacities4plot <- c(1, rep(0.5, length(countrySet)-1))
   names(opacities4plot) <- countrySet
@@ -630,8 +630,7 @@ figure06.fn <- function(nchart = 6) {
   
   # Defining colors4plot
   colors4plot <- countryPalette
-  names(colors4plot) <- countrySet
-  
+
   # Defining alphas4plot
   alphas4plot <- c(1, rep(0.5, length(comparison_countries.ls)))
   names(alphas4plot) <- countrySet

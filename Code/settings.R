@@ -138,7 +138,7 @@ WJP_theme <- function() {
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 mainCOLOR      <- c("#2a2a9A")
-countryPalette <- c("#2a2a94", "#a90099", "#3273ff", "#f0585f", "#b374ff", "#43a9a7", "#efa700", "#2c6d4f")
+countryPalette <- c("#2a2a94", "#a90099", "#3273ff", "#fa4d57", "#9d61f2", "#43a9a7", "#efa700", "#2c6d4f")
 binPalette     <- c("#003b8a", "#fa4d57")
 barsPalette    <- c("#2a2a9A", "#E2E2F7")
 glinesPalette  <- c("#2a2a94", "#a90099", "#3273ff")

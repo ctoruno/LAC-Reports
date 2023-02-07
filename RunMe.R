@@ -100,7 +100,13 @@ for (mainCountry in group) {
 
   # Updating the country color palette to match the length of the group of countries
   countryPalette <- countryPalette[1:length(countrySet)]
-  names(countryPalette) <- countrySet
+  if (args[1] == "andean") {
+    names(countryPalette) <- c("Colombia", "Bolivia", "Ecuador", "Peru")
+  } else if (args[1] == "south") {
+    names(countryPalette) <- c("Paraguay", "Argentina", "Brazil")
+  } else {
+    names(countryPalette) <- group
+  }
   
   # Cleaning the Outputs directory for this country
   ordnung.fn(targetCountry = mainCountry)

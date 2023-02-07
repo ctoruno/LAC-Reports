@@ -689,7 +689,7 @@ figure05_B_PRY.fn <- function(nchart = 5){
   
   # Defining color palette
   colors4plot <- countryPalette
-  
+
   # Defining opacity vector
   opacities4plot <- c(1, rep(0.5, length(countrySet)-1))
   names(opacities4plot) <- countrySet
