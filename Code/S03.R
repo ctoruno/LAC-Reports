@@ -317,7 +317,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   write.xlsx(reasons2table, 
              file      = file.path("Outputs", 
                                    str_replace(mainCountry, " ", "_"),
-                                   "imgChart12",
+                                   paste0("imgChart", nchart),
                                    "reasons.xlsx",
                                    fsep = "/"),
              row.names = T)
@@ -1441,7 +1441,7 @@ figure18.fn <- function(nchart = 18) {
   figure18a <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
     plot_layout(ncol = 3,
                 nrow = 1,
-                widths = unit(42, "mm"),
+                widths = unit(38, "mm"),
                 heights = unit(63, "mm"))
     
   # Saving Patchwork
@@ -1532,7 +1532,7 @@ figure18.fn <- function(nchart = 18) {
   figure18b <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
     plot_layout(ncol = 3,
                 nrow = 1,
-                widths = unit(43, "mm"),
+                widths = unit(38, "mm"),
                 heights = unit(63, "mm"))
   
   saveIT.fn(chart  = figure18b,
@@ -1783,7 +1783,7 @@ figure10_PRY.fn <- function (nchart = 10) {
   # Saving panels
   saveIT.fn(chart  = figure13_a,
             n      = nchart,
-            suffix = "_corruption",
+            suffix = "B",
             w      = 85.05327,
             h      = 48.14999)
   
@@ -1804,7 +1804,7 @@ figure10_PRY.fn <- function (nchart = 10) {
   # Saving panels
   saveIT.fn(chart  = figure13_a,
             n      = nchart,
-            suffix = "_trust",
+            suffix = "A",
             w      = 85.05327,
             h      = 48.14999)
   
@@ -1825,7 +1825,7 @@ figure10_PRY.fn <- function (nchart = 10) {
   # Saving panels
   saveIT.fn(chart  = figure13_c,
             n      = nchart,
-            suffix = "_effectiveness",
+            suffix = "C",
             w      = 85.05327,
             h      = 48.14999)
 }
@@ -2011,8 +2011,8 @@ figure11_PRY.fn <- function (nchart = 11) {
       variable = case_when(
         variable == "q18a" ~ "A poor person",
         variable == "q18b" ~ "A female",
-        variable == "q18c" ~ "A person from an ethnic group or tribe other than of the police officer involved",
-        variable == "q18d" ~ "A person from a religion other than that of the police officer involved",
+        variable == "q18c" ~ "A person from an ethnic group or tribe other \nthan of the police officer involved",
+        variable == "q18d" ~ "A person from a religion other than that of \nthe police officer involved",
         variable == "q18e" ~ "A foreigner (inmigrant)",
         variable == "q18f" ~ "A homosexual"
       ),
