@@ -288,7 +288,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   
   reasons <- security_universe %>%
     filter(victim == 1) %>%
-    filter(EXP_q8d ==0) %>%
+    filter(EXP_q8d == 0) %>%
     mutate(counter = 1,
            total_people = n()) %>%
     group_by(EXP_q8h) %>%
@@ -314,7 +314,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
            ))
   
   # Saving data points
-  write.xlsx(reasons2table, 
+  write.xlsx(as.data.frame(reasons2table %>% ungroup()), 
              file      = file.path("Outputs", 
                                    str_replace(mainCountry, " ", "_"),
                                    paste0("imgChart", nchart),
