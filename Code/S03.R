@@ -284,43 +284,47 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
             w      = 175.027,
             h      = 94.54267)
   
-  # Reasons table 
-
-  reasons <- security_universe %>%
-    filter(victim == 1) %>%
-    filter(EXP_q8d == 0) %>%
-    filter(EXP_q8h != 99) %>%
-    mutate(counter = 1,
-           total_people = n(),
-           category   = case_when(
-             EXP_q8h  == 3  ~ "Respondent was afraid or embarrased",
-             EXP_q8h  == 4  ~ "Respondent was afraid or embarrased",
-             EXP_q8h  == 9  ~ "Respondent was afraid or embarrased",
-             EXP_q8h  == 11 ~ "Respondent was afraid or embarrased",
-             EXP_q8h  == 2  ~ "Respondent did not think reporting would help",
-             EXP_q8h  == 5  ~ "Respondent did not think reporting would help",
-             EXP_q8h  == 6  ~ "Respondent did not think reporting would help",
-             EXP_q8h  == 7  ~ "Respondent did not think reporting would help",
-             EXP_q8h  == 10 ~ "Respondent did not trust the police",
-             EXP_q8h  == 1  ~ "Respondent had administrative issues",
-             EXP_q8h  == 8  ~ "Respondent had administrative issues",
-             EXP_q8h  == 12 ~ "Other",
-           )) %>%
-    group_by(category) %>%
-    summarise(reasons = sum(counter, na.rm = T), universe = mean(total_people, na.rm = T))
   
-  reasons2table <- reasons %>%
-    arrange(-reasons) %>%
-    mutate(proportion = paste0(round(reasons/universe,2)*100, "%"))
-  
-  # Saving data points
-  write.xlsx(as.data.frame(reasons2table %>% ungroup()), 
-             file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
-                                   paste0("imgChart", nchart),
-                                   "reasons.xlsx",
-                                   fsep = "/"),
-             row.names = T)
+  if (country != "Paraguay") {
+    
+    # Reasons table 
+    
+    reasons <- security_universe %>%
+      filter(victim == 1) %>%
+      filter(EXP_q8d == 0) %>%
+      filter(EXP_q8h != 99) %>%
+      mutate(counter = 1,
+             total_people = n(),
+             category   = case_when(
+               EXP_q8h  == 3  ~ "Respondent was afraid or embarrased",
+               EXP_q8h  == 4  ~ "Respondent was afraid or embarrased",
+               EXP_q8h  == 9  ~ "Respondent was afraid or embarrased",
+               EXP_q8h  == 11 ~ "Respondent was afraid or embarrased",
+               EXP_q8h  == 2  ~ "Respondent did not think reporting would help",
+               EXP_q8h  == 5  ~ "Respondent did not think reporting would help",
+               EXP_q8h  == 6  ~ "Respondent did not think reporting would help",
+               EXP_q8h  == 7  ~ "Respondent did not think reporting would help",
+               EXP_q8h  == 10 ~ "Respondent did not trust the police",
+               EXP_q8h  == 1  ~ "Respondent had administrative issues",
+               EXP_q8h  == 8  ~ "Respondent had administrative issues",
+               EXP_q8h  == 12 ~ "Other",
+             )) %>%
+      group_by(category) %>%
+      summarise(reasons = sum(counter, na.rm = T), universe = mean(total_people, na.rm = T))
+    
+    reasons2table <- reasons %>%
+      arrange(-reasons) %>%
+      mutate(proportion = paste0(round(reasons/universe,2)*100, "%"))
+    
+    # Saving data points
+    write.xlsx(as.data.frame(reasons2table %>% ungroup()), 
+               file      = file.path("Outputs", 
+                                     str_replace(mainCountry, " ", "_"),
+                                     paste0("imgChart", nchart),
+                                     "reasons.xlsx",
+                                     fsep = "/"),
+               row.names = T)
+  }
 
 }
 
