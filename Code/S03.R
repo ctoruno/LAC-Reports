@@ -1559,7 +1559,7 @@ figure08_A_PRY.fn <- function(nchart = 8) {
     filter(country == mainCountry) %>%
     filter(year == 2021) %>%
     select(year, q9) %>%
-    mutate("Percentage of respondants..." = if_else(q9 == 1 | q9 == 2, 1, 
+    mutate("Percentage of respondents..." = if_else(q9 == 1 | q9 == 2, 1, 
                                           if_else(!is.na(q9) & q9 != 99, 0,
                                                   NA_real_))) %>%
     summarise(across(everything(),
