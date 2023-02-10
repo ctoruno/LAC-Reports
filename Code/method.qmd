@@ -74,7 +74,7 @@ params:
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE & SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in `r params$sf_country` represents an achieved total sample size of `r params$sf_ssize` interviews distributed proportionally across all `r params$af_region_number` `r params$af_region_term`. `r params$sf_company` based the sampling frame on the `r params$sf_projPop`, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
+                                    The General Population Poll in `r params$sf_country` represents an achieved total sample size of `r params$sf_ssize` interviews distributed proportionally across `r params$af_region_number` `r params$af_region_term`. `r params$sf_company` based the sampling frame on the `r params$sf_projPop`, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
                                     <br><br>
                                     In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in `r params$sf_surveyLang`, can be found in the Appendix of this report.
                                 </p>
@@ -127,39 +127,39 @@ params:
                                         <p class="c-purple"><b>RESPONSE RATES</b></p>
                                         <div class="table-responsive mb-2">
                                             <table class="table table-sm">
-        <tr class="bg-purple text-white">
-            <td>Eligible household, non-interview</td>
-            <td class="text-right">`r params$tA_elegible`</td>
-        </tr>
-        <tr>
-            <td>Refusals</td>
-            <td class="text-right">`r params$tA_refusals`</td>
-        </tr>
-        <tr>
-            <td>Break-off</td>
-            <td class="text-right">`r params$tA_breaks`</td>
-        </tr>
-        <tr>
-            <td>Non-contact</td>
-            <td class="text-right">`r params$tA_nocont`</td>
-        </tr>
-    </table>
+                <tr class="bg-purple text-white">
+                    <td>Eligible household, non-interview</td>
+                    <td class="text-right">`r params$tA_elegible`</td>
+                </tr>
+                <tr>
+                    <td>Refusals</td>
+                    <td class="text-right">`r params$tA_refusals`</td>
+                </tr>
+                <tr>
+                    <td>Break-off</td>
+                    <td class="text-right">`r params$tA_breaks`</td>
+                </tr>
+                <tr>
+                    <td>Non-contact</td>
+                    <td class="text-right">`r params$tA_nocont`</td>
+                </tr>
+            </table>
                                         </div>
                                         <div class="table-responsive mb-4">
                                             <table class="table table-sm">
-        <tr class="bg-purple text-white">
-            <td>Ineligible household</td>
-            <td class="text-right">`r params$tA_inelegible`</td>
-        </tr>
-        <tr>
-            <td>No eligible respondent in the household</td>
-            <td class="text-right">`r params$tA_noele`</td>
-        </tr>
-        <tr>
-            <td>Quota filled</td>
-            <td class="text-right">`r params$tA_quotafil`</td>
-        </tr>
-    </table>
+                <tr class="bg-purple text-white">
+                    <td>Ineligible household</td>
+                    <td class="text-right">`r params$tA_inelegible`</td>
+                </tr>
+                <tr>
+                    <td>No eligible respondent in the household</td>
+                    <td class="text-right">`r params$tA_noele`</td>
+                </tr>
+                <tr>
+                    <td>Quota filled</td>
+                    <td class="text-right">`r params$tA_quotafil`</td>
+                </tr>
+            </table>
                                         </div>
                                         <p class="mb-0 c-purple"><b>INTERVIEWING AND QUALITY CONTROL</b></p>
                                         <p class="mb-4">
@@ -198,8 +198,8 @@ params:
                                 </p>
                                 <div class="table-responsive mb-4">
                                     <table class="table table-sm">
-        `r params$tB`
-    </table>
+                `r params$tB`
+            </table>
                                 </div>
                             </div>
                         </div>
@@ -216,7 +216,3 @@ params:
                     <div class="page-number left-number"><b>38</b> III Project Design</div>
                 </section>
                 <!-- end ADDITIONAL COUNTRIES -->
-
-
-
-
