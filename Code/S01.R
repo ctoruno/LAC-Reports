@@ -370,7 +370,7 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   names(colors4plot) <- c("Positive", "Negative", "Neutral")
   
   # The height of the plot depends on the number of countries
-  if (length(countrySet) == 3) {
+  if (length(countrySet) == 3 & mainCountry != "Paraguay") {
     h = 15.464229
   }
   if (length(countrySet) == 4) {
@@ -381,6 +381,9 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   }
   if (length(countrySet) > 6) {
     h = 41.823711
+  }
+  if (mainCountry == "Paraguay") {
+    h = 40.41788
   }
   
   # Defining Panel order

@@ -429,7 +429,7 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
                                 direction      = "horizontal")
          
          # Defining height
-         if (length(countrySet) == 3) {
+         if (length(countrySet) == 3 & mainCountry != "Paraguay") {
            h = 24.60219
          }
          if (length(countrySet) == 4) {
@@ -440,6 +440,9 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
          }
          if (length(countrySet) > 6) {
            h = 55.17919
+         }
+         if (mainCountry == "Paraguay") {
+           h = 35.14598
          }
          
          # Saving panels
@@ -706,10 +709,10 @@ figure05_B_PRY.fn <- function(nchart = 5){
          
          # The height of the plot depends on the number of categories
          if (var4plot == "Trust") {
-           h = 93.98386
+           h = 70.29196
          }
          if (var4plot == "Corruption") {
-           h = 65.72298
+           h = 52.01605
          }
          
          # Applying plotting function
@@ -726,7 +729,7 @@ figure05_B_PRY.fn <- function(nchart = 5){
          saveIT.fn(chart  = chart,
                    n      = nchart,
                    suffix = panelName,
-                   w      = 141.6383,
+                   w      = 189.7883,
                    h      = h)
        })
 }
