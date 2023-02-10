@@ -65,7 +65,8 @@ figure19B.fn(nchart = 19) {
                                     if_else(edu < 5, "No High Education Level", NA_character_))
            )
   
-  condition <- migrated %>%
+  condition <- migrated  %>%
+    filter(migrated == 1) %>%
     select(white, young, poor, area, gender, diploma) %>%
     mutate(counter = 1)
   
@@ -88,7 +89,7 @@ figure19B.fn(nchart = 19) {
                          Yvar) {
     
     data_logit <- mainData %>%
-      mutate(Yvar = all_of(Yvar))
+      mutate(Yvar = all_of({{Yvar}}))
     
     logit_data <- data_logit %>%
       select(Yvar, all_of(selectables)) %>%
@@ -98,7 +99,7 @@ figure19B.fn(nchart = 19) {
              values = if_else(categories %in% "gender" & values %in% "Male", "1Male", values)) %>%
       pivot_wider(id_cols = c(Yvar, id), names_from = categories, values_from = values)
     
-    logit_data<- data_logit %>%
+    logit_data<- logit_data %>%
       select(all_of(selectables),
              Yvar) # We didn't include the non answer
     
@@ -131,8 +132,16 @@ figure19B.fn(nchart = 19) {
                                                               if_else(factor %in% "Urban", 5, 
                                                                       if_else(factor %in% "Young", 6, 7)))))))
   }
-
-  data2plot <- logit_demo(mainData = migrated, Yvar = "migrated")
+  
+  # Panel 1
+  
+  data2plot_P1 <- logit_demo(mainData = migrated, Yvar = migrated)
+  logit_plot <- logit_demo_panel(mainData = data2plot_P1, line_size = 1.5)
+  
+  # Panel 2
+  
+  data2plot_P2 <- logit_demo(mainData = migrated, Yvar = migrated3yrs)
+  logit_plot <- logit_demo_panel(mainData = data2plot_P2, line_size = 1.5)
   
   }
 
