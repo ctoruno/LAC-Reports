@@ -17,7 +17,6 @@ gen.tableB <- function(data) {
   
   # Producing HTML table using Knittr
   html <- data %>% 
-    filter(Country %in% countrySet) %>% 
     kable(format = "html")
   
   # Adjusting HTML code
@@ -90,16 +89,9 @@ create_methodPage.fn <- function(){
     "sf_ethnicity"       = data4quarto.ls[["sf"]] %>% pull(`Ethnicity`),
     "sf_qcontrol"        = data4quarto.ls[["sf"]] %>% pull(`Quality Control`),
     "sf_education"       = data4quarto.ls[["sf"]] %>% pull(`Education`),
-    "sf_total"           = data4quarto.ls[["sf"]] %>% pull(`Total`),
-    "sf_female"          = data4quarto.ls[["sf"]] %>% pull(`Female`),
-    "sf_OptEnumerators"  = data4quarto.ls[["sf"]] %>% pull(`OptEnumerators`),
-    "sf_language"        = data4quarto.ls[["sf"]] %>% pull(`Language`),
-    "sf_probSample"      = data4quarto.ls[["sf"]] %>% 
-                                    mutate(`Prob Sample` = format(`Prob Sample`, 
-                                                                  big.mark = ",")) %>%
-                                    pull(`Prob Sample`),
     "sf_historical"      = data4quarto.ls[["sf"]] %>% pull(`Historical Data`),
     "sf_region"          = tolower(data4quarto.ls[["sf"]] %>% pull(`Region`)),
+    "sf_interviewing"    = data4quarto.ls[["sf"]] %>% pull(`Interviewing`),
     
     # Administrative Divisions
     "af_sunit_term"      = data4quarto.ls[["af"]] %>% 
@@ -116,33 +108,9 @@ create_methodPage.fn <- function(){
                               pull(`Number`),   
     
     # Sample Description
-    "sd_region1_name"    = data4quarto.ls[["sd"]] %>% 
-                              filter(item == "Region1") %>% 
-                              pull(name),    
-    "sd_region1_value"   = paste0(format(data4quarto.ls[["sd"]] %>% 
-                                           filter(item == "Region1") %>% 
-                                           mutate(value = round(value*100, 0)) %>%
-                                           pull(value),
-                                         nsmall = 0),
-                                  "%"),   
-    "sd_region2_name"    = data4quarto.ls[["sd"]] %>% 
-                              filter(item == "Region2") %>% 
-                              pull(name),    
-    "sd_region2_value"   = paste0(format(data4quarto.ls[["sd"]] %>% 
-                                           filter(item == "Region2") %>% 
-                                           mutate(value = round(value*100, 0)) %>%
-                                           pull(value),
-                                         nsmall = 0),
-                                  "%"),   
-    "sd_region3_name"    = data4quarto.ls[["sd"]] %>% 
-                              filter(item == "Region3") %>% 
-                              pull(name),    
-    "sd_region3_value"   = paste0(format(data4quarto.ls[["sd"]] %>% 
-                                           filter(item == "Region3") %>% 
-                                           mutate(value = round(value*100, 0)) %>%
-                                           pull(value),
-                                         nsmall = 0),
-                                  "%"),   
+    "sd_coverage"        = data4quarto.ls[["sd"]] %>% 
+                              filter(item == "Coverage") %>% 
+                              pull(name),
     "sd_rural_valueTXT"  = str_to_sentence(english(data4quarto.ls[["sd"]] %>% 
                                                   filter(name == "Rural") %>%
                                                   mutate(value = round(value*100, 0)) %>%
@@ -209,22 +177,14 @@ create_methodPage.fn <- function(){
                               pull(value),
     "tA_quotafil"      = data4quarto.ls[["tA"]] %>% 
                               filter(category == "quota_filled") %>% 
-                              pull(value),
+                              pull(value)
     
     # Table B
-    "tB"  =  gen.tableB(data4quarto.ls[["tB"]])
+    # "tB"  =  gen.tableB(data4quarto.ls[["tB"]] %>%
+    #                       mutate(Sample = format(Sample, 
+    #                                              big.mark = ",")))
     
   )
-  
-  # Modifying specific changes
-  # if (mainCountry == "Colombia"){
-  #   method_input.ls[["af_sub1_term"]] <- data4quarto.ls[["af"]] %>% 
-  #     filter(`Administration Divisions` == "Sample Units") %>% 
-  #     pull(`Term`)
-  #   method_input.ls[["af_sub1_number"]] <- data4quarto.ls[["af"]] %>% 
-  #     filter(`Administration Divisions` == "Sample Units") %>% 
-  #     pull(`Number`)
-  # }
   
   # Creating Directory to store Methodology files
   dir.create(file.path("Outputs", 
