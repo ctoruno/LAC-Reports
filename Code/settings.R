@@ -268,6 +268,25 @@ to_percentage.fn <- function(value){
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
+## 10.  Preparing order data in the logit                                                                    ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+condition_categories <- function(main_data, group_var, name_var) {
+  
+  condition <-  main_data %>%
+    group_by({{group_var}}) %>%
+    summarise(N_obs = sum(counter, na.rm = T)) %>%
+    ungroup() %>%
+    mutate(variable = as.character({{name_var}})) %>%
+    rename(category = {{group_var}}) %>%
+    drop_na()
+  
+  return(condition)
+}
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
 ## 10.  Incumbent political parties                                                                         ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

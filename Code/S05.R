@@ -25,19 +25,6 @@
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-condition_categories <- function(main_data, group_var, name_var) {
-  
-  condition <-  main_data %>%
-    group_by({{group_var}}) %>%
-    summarise(N_obs = sum(counter, na.rm = T)) %>%
-    ungroup() %>%
-    mutate(variable = as.character({{name_var}})) %>%
-    rename(category = {{group_var}}) %>%
-    drop_na()
-  
-  return(condition)
-}
-
 figure19A.fn(nchart = 19) {
   
   # CARLOS!!!!
@@ -225,5 +212,3 @@ figure22C.fn(nchart = 22) {
   # JEISON!!!!
   
 }
-
-

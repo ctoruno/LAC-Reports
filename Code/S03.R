@@ -49,20 +49,6 @@
     return(security.universe)
   } # This is going to be refactoring, and this function guarantee the automatization 
 
-  condition_categories <- function(main_data, group_var, name_var) {
-    
-    condition <-  main_data %>%
-      group_by({{group_var}}) %>%
-      summarise(N_obs = sum(counter, na.rm = T)) %>%
-      ungroup() %>%
-      mutate(variable = as.character({{name_var}})) %>%
-      rename(category = {{group_var}}) %>%
-      drop_na()
-    
-    return(condition)
-  } # This function will organize categories in the LOGIT
-  
-
 # Upper Panel
   
 figure12_1.fn <- function(nchart = 12) {
