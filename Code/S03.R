@@ -382,21 +382,40 @@ figure13_2.fn <- function(nchart = 13) {
   
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
   
-  perception <- security_universe %>%
-    mutate(unsafe_bin    =  if_else(q9 == 1 | q9 == 2, 1, 
-                                    if_else(q9 == 3 | q9 ==4, 0, NA_real_)),
-           victim        =  if_else(victim == 1, "Victim", "Non Victim"),
-           white         =  if_else(COLOR == 1 | COLOR == 2 | COLOR == 3 | COLOR == 4, "White" , 
-                                    if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10, "No White", NA_character_)),
-           young         =  if_else(age < 31, "Less than 30 years", 
-                                    if_else(age > 30, "More than 30 years", NA_character_)),
-           poor          =  if_else(fin == 1 | fin == 2, "Poor",
-                                    if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
-           area          =  if_else(Urban == 1, "Urban", "Rural"),
-           gender        =  if_else(gend == 1, "Male", "Female"),
-           diploma       =  if_else(edu == 4 | edu == 5 | edu == 6, "High Education Level", 
-                                    if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
-  
+  if (mainCountry == "Peru") {
+    
+    perception <- security_universe %>%
+      mutate(unsafe_bin    =  if_else(q9 == 1 | q9 == 2, 1, 
+                                      if_else(q9 == 3 | q9 ==4, 0, NA_real_)),
+             victim        =  if_else(victim == 1, "Victim", "Non Victim"),
+             white         =  if_else(COLOR == 1 | COLOR == 2 | COLOR == 3 | COLOR == 4, "White" , 
+                                      if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10, "No White", NA_character_)),
+             young         =  if_else(age < 4, "Less than 35 years", 
+                                      if_else(age > 3, "More than 35 years", NA_character_)),
+             poor          =  if_else(fin == 1 | fin == 2, "Poor",
+                                      if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
+             area          =  if_else(Urban == 1, "Urban", "Rural"),
+             gender        =  if_else(gend == 1, "Male", "Female"),
+             diploma       =  if_else(edu == 4 | edu == 5 | edu == 6, "High Education Level", 
+                                      if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
+  } else {
+    
+    perception <- security_universe %>%
+      mutate(unsafe_bin    =  if_else(q9 == 1 | q9 == 2, 1, 
+                                      if_else(q9 == 3 | q9 ==4, 0, NA_real_)),
+             victim        =  if_else(victim == 1, "Victim", "Non Victim"),
+             white         =  if_else(COLOR == 1 | COLOR == 2 | COLOR == 3 | COLOR == 4, "White" , 
+                                      if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10, "No White", NA_character_)),
+             young         =  if_else(age < 31, "Less than 30 years", 
+                                      if_else(age > 30, "More than 30 years", NA_character_)),
+             poor          =  if_else(fin == 1 | fin == 2, "Poor",
+                                      if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
+             area          =  if_else(Urban == 1, "Urban", "Rural"),
+             gender        =  if_else(gend == 1, "Male", "Female"),
+             diploma       =  if_else(edu == 4 | edu == 5 | edu == 6, "High Education Level", 
+                                      if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
+    
+  } 
   condition <- perception %>%
     select(victim, white, young, poor, area, gender, diploma) %>%
     mutate(counter = 1)
@@ -418,15 +437,29 @@ figure13_2.fn <- function(nchart = 13) {
     pull(variable)
   
   logit_demo <- function(mainData, Yvar) {
-  
-    logit_data <- perception %>%
-      select(unsafe_bin, all_of(selectables)) %>%
-      rowid_to_column("id") %>%
-      pivot_longer(cols = !c(unsafe_bin, id), names_to = "categories", values_to = "values") %>%
-      mutate(values = if_else(categories %in% "young" & values %in% "More than 30 years", "1More than 30 years", values),
-             values = if_else(categories %in% "gender" & values %in% "Male", "1Male", values)) %>%
-      pivot_wider(id_cols = c(unsafe_bin, id), names_from = categories, values_from = values)
     
+    if (mainCountry == "Peru") {
+      
+      logit_data <- perception %>%
+        select(unsafe_bin, all_of(selectables)) %>%
+        rowid_to_column("id") %>%
+        pivot_longer(cols = !c(unsafe_bin, id), names_to = "categories", values_to = "values") %>%
+        mutate(values = if_else(categories %in% "young" & values %in% "More than 35 years", "1More than 35 years", values),
+               values = if_else(categories %in% "gender" & values %in% "Male", "1Male", values)) %>%
+        pivot_wider(id_cols = c(unsafe_bin, id), names_from = categories, values_from = values)
+      
+    } else {
+      
+      logit_data <- perception %>%
+        select(unsafe_bin, all_of(selectables)) %>%
+        rowid_to_column("id") %>%
+        pivot_longer(cols = !c(unsafe_bin, id), names_to = "categories", values_to = "values") %>%
+        mutate(values = if_else(categories %in% "young" & values %in% "More than 30 years", "1More than 30 years", values),
+               values = if_else(categories %in% "gender" & values %in% "Male", "1Male", values)) %>%
+        pivot_wider(id_cols = c(unsafe_bin, id), names_from = categories, values_from = values)
+      
+    }
+  
     logit_data<- logit_data %>%
       select(all_of(selectables),
              unsafe_bin) # We didn't include the non answer
@@ -446,11 +479,18 @@ figure13_2.fn <- function(nchart = 13) {
     margEff    <- margins_summary(models[[1]], data = models[[1]]$model)
     
     data2plot <- margEff
-    
-    data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \nInsecure", "victimVictim" = "Previous Crime \nVictimization",
-                               "areaUrban" = "Urban", "whiteWhite" = "Light Skin \nTone", "youngLess than 30 years" = "Younger than 30",
+    if (mainCountry == "Peru") {
+      
+      data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \nInsecure", "victimVictim" = "Previous Crime \nVictimization",
+                               "areaUrban" = "Urban", "whiteWhite" = "Light Skin \nTone", "youngLess than 35 years" = "Younger than 35",
                                "diplomaNo High Education Level" = "No High School \nDiploma")
-    
+    } else {
+      
+      data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \nInsecure", "victimVictim" = "Previous Crime \nVictimization",
+                                 "areaUrban" = "Urban", "whiteWhite" = "Light Skin \nTone", "youngLess than 30 years" = "Younger than 30",
+                                 "diplomaNo High Education Level" = "No High School \nDiploma") 
+    }
+      
     data2plot <- data2plot %>%
       mutate(category = "Colombia",
              order_variable = if_else(factor %in% "Female", 1,
@@ -1543,7 +1583,7 @@ figure08_A_PRY.fn <- function(nchart = 8) {
   
   data2plot <- data_subset.df %>%
     filter(country == mainCountry) %>%
-    filter(year == 2021) %>%
+    filter(year == latestYear) %>%
     select(year, q9) %>%
     mutate("Percentage of respondents..." = if_else(q9 == 1 | q9 == 2, 1, 
                                           if_else(!is.na(q9) & q9 != 99, 0,
@@ -1551,7 +1591,7 @@ figure08_A_PRY.fn <- function(nchart = 8) {
     summarise(across(everything(),
                      mean,
                      na.rm = T)) %>%
-    select(`Percentage of respondants...`) %>%
+    select(`Percentage of respondents...`) %>%
     pivot_longer(everything(),
                  names_to  = "category",
                  values_to = "value") %>%
