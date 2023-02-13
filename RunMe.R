@@ -57,7 +57,7 @@ method_data.ls <- list(
   "tB" = read_excel("Data/method_summaryData.xlsx",
                     sheet = "Table_B")
 )
-# boundaries.sf <- st_read(paste0(path2SP, 
+# boundaries.sf <- st_read(paste0(path2SP,
 #                                 "Data/GeoBoundaries/geoBoundariesCGAZ_ADM1.shp"))
 
 # Defining group of countries to work with

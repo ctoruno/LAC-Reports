@@ -39,6 +39,9 @@ p_load(char = c(
   # Data Loading
   "haven", "readxl", "writexl", "xlsx",
   
+  # GIS
+  "tmap", "rmapshaper", "sf",
+  
   # Utilities
   "margins", "english", "quarto", "kableExtra",
   
