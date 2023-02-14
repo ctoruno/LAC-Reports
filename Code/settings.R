@@ -209,7 +209,7 @@ ordnung.fn <- function(targetCountry){
   
   # Defining the country directory in the Outputs
   outPath <- file.path("Outputs", 
-                       str_replace(targetCountry, " ", "_"))
+                       str_replace_all(targetCountry, " ", "_"))
   
   # Listing previous outputs
   prevOutputs <- list.files(outPath, 
@@ -222,13 +222,13 @@ ordnung.fn <- function(targetCountry){
   
   # Creating country folder within the Outputs directory
   dir.create(file.path("Outputs", 
-                       str_replace(mainCountry, " ", "_")), 
+                       str_replace_all(mainCountry, " ", "_")), 
              showWarnings = FALSE)
   
   # Creating folders for each chart output within the country directory
   for (plot in 1:18) {
     dir.create(file.path("Outputs", 
-                         str_replace(mainCountry, " ", "_"),
+                         str_replace_all(mainCountry, " ", "_"),
                          paste0("imgChart", plot),
                          fsep = "/"), 
                showWarnings = FALSE)
