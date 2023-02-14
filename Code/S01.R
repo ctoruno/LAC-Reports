@@ -760,12 +760,21 @@ figure04_PRY.fn <- function(nchart = 4){
                                 lab_pos        = "stack_y"
          )
          
+         # Defining height
+         if (length(table(data2plot$country)) == 3) {
+           h = 43.58102
+         }
+         
+         if (length(table(data2plot$country)) == 6) {
+           h = 54.12481
+         }
+         
          # Saving panels
          saveIT.fn(chart  = chart,
                    n      = nchart,
                    suffix = panelName,
                    w      = 169.7883,
-                   h      = 43.58102)
+                   h      = h)
          
        })
   
