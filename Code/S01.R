@@ -30,7 +30,7 @@ figure01.fn <- function(nchart = 1){
   vars4plot <- list(
     "Independent" = c("CAR_q67_G1", "CAR_q67_G2", "CAR_q68_G1", "CAR_q61_G1"),
     "Judiciary"   = c("CAR_q66_G1", "CAR_q65_G1", "CAR_q64_G1"),
-    "Media"       = c( "CAR_q64_G2", "CAR_q60_G2", "CAR_q65_G2", "CAR_q60_G1")
+    "Media"       = c("CAR_q64_G2", "CAR_q60_G2", "CAR_q65_G2", "CAR_q60_G1")
   )
   
   # Defining data frame for plot
@@ -277,6 +277,11 @@ figure03.fn <- function(nchart = 3, PAR = F) {
     vars4plot <- c("q50", "q51", "q52", "CAR_q73", "CAR_q74")
   } else {
     vars4plot <- c("q50", "q51", "q52")
+  }
+  
+  if (mainCountry %in% westCaribbean_and_guianas.ls){
+    data_subset.df <- data_subset.df %>%
+      filter(country != "Suriname")
   }
   
   # Defining data frame for plot
@@ -565,6 +570,12 @@ figure05.fn <- function(nchart = 5) {
   colors4plot <- barsPalette
   names(colors4plot) <- c("Highlighted", "Regular")
   
+  if (mainCountry %in% c(eastCaribbean.ls, westCaribbean_and_guianas.ls)){
+    exp <- TRUE
+  } else {
+    exp <- FALSE
+  }
+  
   # Plotting each panel of Figure 5
   imap(c("A" = "q46c_G2", "B" = "q46f_G2", "C" = "q46g_G2", "D" = "q46c_G1", "E" = "q46e_G2",
          "F" = "q46d_G2", "G" = "q46f_G1", "H" = "q46a_G2",
@@ -583,7 +594,8 @@ figure05.fn <- function(nchart = 5) {
                                 labels_var     = "labels",
                                 colors_var     = "highlighted",
                                 colors         = colors4plot,
-                                direction      = "vertical"
+                                direction      = "vertical",
+                                expand         = exp 
          )
          
          # Saving panels

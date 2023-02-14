@@ -124,49 +124,58 @@ for (mainCountry in group) {
   # for more information.
   
   # Figure 1:
-  print("Designing Figure 1")
-  if (mainCountry != "Paraguay") {
+  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 1")
     figure01.fn()
   }
   
   # Figure 2:
-  print("Designing Figure 2")
-  if (mainCountry != "Paraguay") {
+  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 2")
     figure02.fn()
   }
   
   # Figure 3:
-  print("Designing Figure 3")
-  if (mainCountry != "Paraguay") {
+  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 3")
     figure03.fn()
-  } else {
+  } 
+  if (mainCountry == "Paraguay") {
+    print("Designing Figure 1")
     figure03.fn(nchart = 1)
   }
 
   # Figure 4:
-  print("Designing Figure 4")
-  if (mainCountry != "Paraguay") {
+  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 4")
     figure04.fn()
+  }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 1")
+    figure04.fn(nchart = 1)
   }
   
   # Figure 5:
-  print("Designing Figure 5")
-  if (mainCountry != "Paraguay") {
+  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 5")
     figure05.fn()
   } else {
+    print("Designing Figure 2")
     figure05.fn(nchart = 2)
   }
   
   # Figure 6:
-  print("Designing Figure 6")
-  if (mainCountry != "Paraguay") {
+  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 6")
     figure06.fn()
   } else {
+    print("Designing Figure 3")
     figure06.fn(nchart = 3)
   }
   
-  # Figure 4 for Paraguay
-  if (mainCountry == "Paraguay") {
+  # Figure 4 for Paraguay and Suriname
+  if (mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 4")
     figure04_PRY.fn()
   }
   
@@ -181,47 +190,72 @@ for (mainCountry in group) {
   
   # Figure 5 for Paraguay
   if (mainCountry == "Paraguay") {
+    print("Designing Figure 5")
     figure05_A_PRY.fn()
     figure05_B_PRY.fn()
   }
   
   # Figure 7:
-  print("Designing Figure 7")
-  if (mainCountry != "Paraguay") {
+  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 7")
     figure07.fn()
+  }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 5")
+    figure07.fn(nchart = 5)
   }
   
   # Figure 8:
-  print("Designing Figure 8")
-  if (mainCountry != "Paraguay") {
+  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 8")
     figure08.fn()
+  }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 6")
+    figure08.fn(nchart = 6)
   }
   
   # Figure 9:
-  print("Designing Figure 9")
-  if (mainCountry != "Paraguay") {
+  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+    print("Designing Figure 9")
     figure09.fn()
+  }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 7")
+    figure09.fn(nchart = 7)
   }
   
   # Figure 10:
-  print("Designing Figure 10")
   if (mainCountry != "Paraguay" & args[1] != "carib1" & args[1] != "carib2") {
+    print("Designing Figure 10")
     figure10.fn()
   } 
-  if (args[1] == "carib1") { 
+  if (args[1] == "carib1" & mainCountry != "Suriname") { 
+    print("Designing Figure 10")
     figure10.fn(carib = TRUE)
   }
+  if (mainCountry == "Suriname") { 
+    print("Designing Figure 8")
+    figure10.fn(nchart = 8, 
+                carib  = TRUE)
+  }
   if (mainCountry == "Paraguay") {
+    print("Designing Figure 6")
     figure10.fn(nchart = 6)
   }
   
   # Figure 11:
-  print("Designing Figure 11")
-  if (mainCountry != "Paraguay" & args[1] != "carib2") {
+  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2") {
+    print("Designing Figure 11")
     figure11.fn()
   }
   if (args[1] == "carib2") {
+    print("Designing Figure 10")
     figure11.fn(nchart = 10)
+  }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 9")
+    figure11.fn(nchart = 9)
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -234,80 +268,115 @@ for (mainCountry in group) {
   # for more information.
   
   # Figure 12:
-  print("Designing Figure 12")
-  if (mainCountry != "Paraguay" & args[1] != "carib2") {
+  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2") {
+    print("Designing Figure 12")
     figure12_1.fn()
     figure12_2.fn()
     
   } 
   if (args[1] == "carib2") {
+    print("Designing Figure 11")
     figure12_1.fn(nchart = 11)
     figure12_2.fn(nchart = 11)
   }
   if (mainCountry == "Paraguay") {
+    print("Designing Figure 7")
      figure12_1.fn(nchart = 7) 
      figure12_2.fn(nchart = 7)               
   }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 10")
+    figure12_1.fn(nchart = 10) 
+    figure12_2.fn(nchart = 10)               
+  }
   
   # Figure 13:
-  print("Designing Figure 13")
-  if (mainCountry != "Paraguay" & args[1] != "carib2") {
+  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2") {
+    print("Designing Figure 13")
     figure13_1.fn()
     figure13_2.fn()
-    
   }
   if (args[1] == "carib2") {
+    print("Designing Figure 12")
     figure13_1.fn(nchart = 12)
     figure13_2.fn(nchart = 12)
   }
   if (mainCountry == "Paraguay") {
+    print("Designing Figure 8")
     figure08_A_PRY.fn()
     figure13_2.fn(nchart = 8) 
   }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 11")
+    figure13_1.fn(nchart = 11)
+    figure13_2.fn(nchart = 11)
+  }
   
   # Figure 14:
-  print("Designing Figure 14")
-  if (mainCountry != "Paraguay" & args[1] != "carib2") {
+  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2") {
+    print("Designing Figure 14")
     figure14.fn()
   }
   if (args[1] == "carib2") {
+    print("Designing Figure 13")
     figure14.fn(nchart = 13)
   }
   if (mainCountry == "Paraguay") {
+    print("Designing Figure 9")
     figure09_PRY.fn()
+  }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 12")
+    figure14.fn(nchart = 12)
   }
   
   # Figure 15:
-  print("Designing Figure 15")
-  if (mainCountry != "Paraguay" & args[1] != "carib2") {
+  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2") {
+    print("Designing Figure 15")
     figure15.fn()
   }
   if (args[1] == "carib2") {
+    print("Designing Figure 14")
     figure15.fn(nchart = 14)
   }
   if (mainCountry == "Paraguay") {
+    print("Designing Figure 10")
     figure10_PRY.fn()
+  }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 13")
+    figure15.fn(nchart = 13)
   }
   
   # Figure 16:
-  print("Designing Figure 16")
-  if (mainCountry != "Paraguay" & args[1] != "carib2") {
+  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2") {
+    print("Designing Figure 16")
     figure16.fn()
   }
   if (args[1] == "carib2") {
+    print("Designing Figure 15")
     figure16.fn(nchart = 15)
   }
   if (mainCountry == "Paraguay") {
+    print("Designing Figure 11")
     figure11_PRY.fn()
+  }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 14")
+    figure16.fn(nchart = 14)
   }
   
   # Figure 17:
   print("Designing Figure 17")
-  if (mainCountry != "Paraguay" & args[1] != "carib2") {
+  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2") {
     figure17.fn()
   }
   if (args[1] == "carib2") {
     figure17.fn(nchart = 16)
+  }
+  if (mainCountry == "Suriname") {
+    print("Designing Figure 15")
+    figure17.fn(nchart = 15)
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -320,11 +389,12 @@ for (mainCountry in group) {
   # for more information.
   
   # Figure 18:
-  print("Designing Figure 18")
   if (mainCountry != "Paraguay" & args[1] != "carib1" & args[1] != "carib2") {
+    print("Designing Figure 18")
     figure18.fn()
   }
   if (mainCountry == "Paraguay") {
+    print("Designing Figure 12")
     figure18.fn(nchart = 12)
   }
   
@@ -360,8 +430,6 @@ for (mainCountry in group) {
     figure22C.fn()            # JEISON!!!!
     
   }
-  
-  
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
