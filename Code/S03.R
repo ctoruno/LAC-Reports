@@ -492,7 +492,7 @@ figure13_2.fn <- function(nchart = 13) {
     }
       
     data2plot <- data2plot %>%
-      mutate(category = "Colombia",
+      mutate(category = mainCountry,
              order_variable = if_else(factor %in% "Female", 1,
                                       if_else(factor %in% "White", 2,
                                               if_else(factor %in% "Poor", 3,
