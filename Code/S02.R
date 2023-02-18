@@ -152,16 +152,16 @@ figure08.fn <- function(nchart = 8){
         category == "q2e"     ~ "Prosecutors in charge of\ncriminal investigations",
         category == "q2f"     ~ "Public defense attorneys",
         category == "q2d"     ~ "Police officers", 
-        category == "CAR_q6h" ~ "Members of the armed forces",
+        category == "CAR_q6h" ~ "Members of the armed \nforces",
         category == "CAR_q6i" ~ "Tax/Revenue officers",
         category == "CAR_q6j" ~ "Customs officers",
-        category == "CAR_q6k" ~ "Public utility company officers",
+        category == "CAR_q6k" ~ "Public utility company \nofficers",
         category == "CAR_q6l" ~ "Doctors and nurses in\npublic hospitals", 
         category == "CAR_q6m" ~ "Teachers in public schools", 
         category == "CAR_q6n" ~ "Land registry officers", 
-        category == "CAR_q6o" ~ "Car registration agency officers", 
-        category == "CAR_q6p" ~ "News media", 
-        category == "CAR_q6q" ~ "Political parties"
+        category == "CAR_q6o" ~ "Car registration agency \nofficers", 
+        category == "CAR_q6p" ~ "News media            ", 
+        category == "CAR_q6q" ~ "Political parties     "
       ),
       value2plot = round(value2plot*100,1)
     ) %>%
@@ -285,11 +285,11 @@ figure09.fn <- function(nchart = 9){
                  values_to  = "value2plot") %>%
     mutate(
       labels = case_when(
-        category == "CAR_q2b" ~ "A public officer asking for a bribe \nto speed up administrative procedures",
+        category == "CAR_q2b" ~ "A public officer asking for a bribe to \nspeed up administrative procedures",
         category == "CAR_q2f" ~ "A law enforcement officer (police, \ncustoms, immigration, civil guard, \nmilitary police) asking for a bribe",
         category == "CAR_q2g" ~ "A company official asking for a bribe\nfrom a job applicant",
-        category == "CAR_q2c" ~ "A private citizen offering a bribe to a\npublic official to speed up administrative procedures",
-        category == "CAR_q2a" ~ "A public officer being recruited on the\nbasis of family ties and friendship networks",
+        category == "CAR_q2c" ~ "A private citizen offering a bribe to a\npublic official to speed up \nadministrative procedures",
+        category == "CAR_q2a" ~ "A public officer being recruited on the\nbasis of family ties and friendship \nnetworks",
         category == "CAR_q2d" ~ "An elected official taking public funds\nfor private use",
         category == "CAR_q2e" ~ "An elected official using stolen public\nfunds to assist his or her community"
       ),
