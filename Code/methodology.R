@@ -78,7 +78,7 @@ create_methodPage.fn <- function(){
                               pull(`Sample Size`),           
     "sf_company"         = data4quarto.ls[["sf"]] %>% pull(`Polling Company`),         
     "sf_dates"           = data4quarto.ls[["sf"]] %>% pull(`FW Dates`),           
-    "sf_nationality"     = data4quarto.ls[["sf"]] %>% pull(`Sample Size`),     
+    "sf_nationality"     = data4quarto.ls[["sf"]] %>% pull(`Nationality`),     
     "sf_location"        = data4quarto.ls[["sf"]] %>% pull(`Polling Company Location`),
     "sf_projPop"        = data4quarto.ls[["sf"]] %>% pull(`ProjPop`),
     "sf_comparison"      = str_replace(paste(comparison_countries.ls, collapse = ", "), 

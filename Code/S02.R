@@ -153,7 +153,7 @@ figure08.fn <- function(nchart = 8){
         category == "q2f"     ~ "Public defense attorneys",
         category == "q2d"     ~ "Police officers", 
         category == "CAR_q6h" ~ "Members of the armed \nforces",
-        category == "CAR_q6i" ~ "Tax/Revenue officers",
+        category == "CAR_q6i" ~ "Tax/revenue officers",
         category == "CAR_q6j" ~ "Customs officers",
         category == "CAR_q6k" ~ "Public utility company \nofficers",
         category == "CAR_q6l" ~ "Doctors and nurses in\npublic hospitals", 
