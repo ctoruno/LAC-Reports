@@ -18,11 +18,11 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Peru was conducted for the <i>WJP's The Rule of Law in Peru: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Datum Internacional S.A., based in Lima, Peru. Datum Internacional S.A. administered the surveys between July and August 2022, conducting face-to-face interviews using a multi-stage random sampling design. The target population group for this survey included 1029 aged 18 years or older residing across 15 regions throughout the country.
+                                    The GPP in Peru was conducted for the <i>WJP's The Rule of Law in Peru: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Datum Internacional S.A., based in Lima, Peru. Datum Internacional S.A. administered the surveys between July and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included peruvian aged 18 years or older residing across 15 regions throughout the country.
                                 </p>
-                                <p class="mb-0 c-purple"><b>SAMPLE SIZE & SAMPLE FRAME</b></p>
+                                <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Peru represents an achieved total sample size of 1,029 interviews distributed proportionally across five zones. Datum Internacional S.A. based the sampling frame on the Datum Internacional S.A. based the sampling frame on 2017 census figures from the National Institute of Statistics and Information (INEI) and 2020 voter statistics from the National Office of Electoral Processes (ONPE), acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
+                                    The General Population Poll in Peru represents an achieved total sample size of 1,029 interviews distributed proportionally across five zones. Datum Internacional S.A. based the sampling frame on 2017 census figures from the National Institute of Statistics and Information (INEI) and 2020 voter statistics from the National Office of Electoral Processes (ONPE), acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization .
                                     <br><br>
                                     In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Spanish, can be found in the Appendix of this report.
                                 </p>
@@ -33,9 +33,7 @@ Methodology
 Due to a lack of accessibility, the Loreto and San Martín regions of the
 Peruvian Amazon were excluded from the study. Loreto and San Martín were
 replaced by the eastern regions of Ucayali and Madre de Dios, located in
-the Amazon rainforest and Amazon basin, respectively. <br><br>
-Challenges to data collection included security issues and accessibility
-in rural areas although ultimately, no sample units were substituted.
+the Amazon rainforest and Amazon basin, respectively.
 </p>
 
                             </div>
@@ -81,39 +79,39 @@ in rural areas although ultimately, no sample units were substituted.
                                         <p class="c-purple"><b>RESPONSE RATES</b></p>
                                         <div class="table-responsive mb-2">
                                             <table class="table table-sm">
-                        <tr class="bg-purple text-white">
-                            <td>Eligible household, non-interview</td>
-                            <td class="text-right">3,233</td>
-                        </tr>
-                        <tr>
-                            <td>Refusals</td>
-                            <td class="text-right">1,161</td>
-                        </tr>
-                        <tr>
-                            <td>Break-off</td>
-                            <td class="text-right">   47</td>
-                        </tr>
-                        <tr>
-                            <td>Non-contact</td>
-                            <td class="text-right">2,205</td>
-                        </tr>
-                    </table>
+                            <tr class="bg-purple text-white">
+                                <td>Eligible household, non-interview</td>
+                                <td class="text-right">3,233</td>
+                            </tr>
+                            <tr>
+                                <td>Refusals</td>
+                                <td class="text-right">1,161</td>
+                            </tr>
+                            <tr>
+                                <td>Break-off</td>
+                                <td class="text-right">   47</td>
+                            </tr>
+                            <tr>
+                                <td>Non-contact</td>
+                                <td class="text-right">2,205</td>
+                            </tr>
+                        </table>
                                         </div>
                                         <div class="table-responsive mb-4">
                                             <table class="table table-sm">
-                        <tr class="bg-purple text-white">
-                            <td>Ineligible household</td>
-                            <td class="text-right">   NA</td>
-                        </tr>
-                        <tr>
-                            <td>No eligible respondent in the household</td>
-                            <td class="text-right">   NA</td>
-                        </tr>
-                        <tr>
-                            <td>Quota filled</td>
-                            <td class="text-right">   NA</td>
-                        </tr>
-                    </table>
+                            <tr class="bg-purple text-white">
+                                <td>Ineligible household</td>
+                                <td class="text-right">   NA</td>
+                            </tr>
+                            <tr>
+                                <td>No eligible respondent in the household</td>
+                                <td class="text-right">   NA</td>
+                            </tr>
+                            <tr>
+                                <td>Quota filled</td>
+                                <td class="text-right">   NA</td>
+                            </tr>
+                        </table>
                                         </div>
                                         <p class="mb-0 c-purple"><b>INTERVIEWING AND QUALITY CONTROL</b></p>
                                         <p class="mb-4">
@@ -129,7 +127,7 @@ in rural areas although ultimately, no sample units were substituted.
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll* that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2013, 2016, 2018, and 2022. Data for Ecuador was collected in 2012, 2014, 2017, and 2022.
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2013, 2016, 2018, and 2022. Data for Ecuador was collected in 2012, 2014, 2017, and 2022.
                                         </p>
                                     </div>
                                 </div>
@@ -152,216 +150,216 @@ in rural areas although ultimately, no sample units were substituted.
                                 </p>
                                 <div class="table-responsive mb-4">
                                     <table class="table table-sm">
-                                        <tr class="bg-purple text-white">
-                                            <td>Country</td>
-                                            <td>Coverage</td>
-                                            <td>Polling Company</td>
-                                            <td>Methodology</td>
-                                            <td>Sample</td>
-                                        </tr>
-                                        <!-- Andes -->
-                                        <tr>
-                                            <td>Bolivia</td>
-                                            <td>Nationally representative</td>
-                                            <td>Capture Consulting</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colombia</td>
-                                            <td>Nationally representative</td>
-                                            <td>Tempo Group</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ecuador</td>
-                                            <td>Nationally representative</td>
-                                            <td>StatMark Group</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,005</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Peru</td>
-                                            <td>Nationally representative</td>
-                                            <td>Datum International S.A.</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,029</td>
-                                        </tr>
-                                        <!-- Southern Cone -->
-                                        <tr>
-                                            <td>Argentina</td>
-                                            <td>Nationally representative</td>
-                                            <td>StatMark Group</td>
-                                            <td>Face-to-face</td>
-                                            <td>759</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brazil</td>
-                                            <td>Nationally representative</td>
-                                            <td>About Brazil Market Research</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,109</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Paraguay</td>
-                                            <td>Nationally representative</td>
-                                            <td>Datum International</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,000</td>
-                                        </tr>
-                                         <!-- Eastern Caribbean -->
-                                        <tr>
-                                            <td>Antigua and Barbuda</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Barbados</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dominica</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Grenada</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>St. Kitts and Nevis</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>499</td>
-                                        </tr>
-                                        <tr>
-                                            <td>St. Lucia</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>St. Vincent and the Grenadines</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Trinidad and Tobago</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,001</td>
-                                        </tr>
-                                        <!-- Greater Antilles, The Bahamas, Guyana, and Suriname -->
-                                        <tr>
-                                            <td>The Bahamas</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dominican Republic</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,002</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Guyana</td>
-                                            <td>Nationally representative</td>
-                                            <td>StatMark Group</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Haiti</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>507</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jamaica</td>
-                                            <td>Nationally representative</td>
-                                            <td>StatMark Group</td>
-                                            <td>Face-to-face</td>
-                                            <td>531</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Suriname</td>
-                                            <td>Nationally representative</td>
-                                            <td>D3: Designs, Data, Decisions</td>
-                                            <td>Face-to-face</td>
-                                            <td>522</td>
-                                        </tr>
-                                        <!-- Central America -->
-                                        <tr>
-                                            <td>Belize</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Costa Rica</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,002</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td>El Salvador</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>2,010</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Guatemala</td>
-                                            <td>Nationally representative</td>
-                                            <td>Mercaplan</td>
-                                            <td>Face-to-face</td>
-                                            <td>2,002</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Honduras</td>
-                                            <td>Nationally representative</td>
-                                            <td>Mercaplan</td>
-                                            <td>Face-to-face</td>
-                                            <td>2,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nicaragua</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Telephone</td>
-                                            <td>1,014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Panama</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>2,023</td>
-                                        </tr>
-                                    </table>
+        <tr class="bg-purple text-white">
+            <td>Country</td>
+            <td>Coverage</td>
+            <td>Polling Company</td>
+            <td>Methodology</td>
+            <td>Sample</td>
+        </tr>
+        <!-- Andes -->
+        <tr>
+            <td>Bolivia</td>
+            <td>Nationally representative</td>
+            <td>Capture Consulting</td>
+            <td>Face-to-face</td>
+            <td>1,000</td>
+        </tr>
+        <tr>
+            <td>Colombia</td>
+            <td>Nationally representative</td>
+            <td>Tempo Group</td>
+            <td>Face-to-face</td>
+            <td>1,000</td>
+        </tr>
+        <tr>
+            <td>Ecuador</td>
+            <td>Nationally representative</td>
+            <td>StatMark Group</td>
+            <td>Face-to-face</td>
+            <td>1,005</td>
+        </tr>
+        <tr>
+            <td>Peru</td>
+            <td>Nationally representative</td>
+            <td>Datum International S.A.</td>
+            <td>Face-to-face</td>
+            <td>1,029</td>
+        </tr>
+        <!-- Southern Cone -->
+        <tr>
+            <td>Argentina</td>
+            <td>Nationally representative</td>
+            <td>StatMark Group</td>
+            <td>Face-to-face</td>
+            <td>759</td>
+        </tr>
+        <tr>
+            <td>Brazil</td>
+            <td>Nationally representative</td>
+            <td>About Brazil Market Research</td>
+            <td>Face-to-face</td>
+            <td>1,109</td>
+        </tr>
+        <tr>
+            <td>Paraguay</td>
+            <td>Nationally representative</td>
+            <td>Datum International</td>
+            <td>Face-to-face</td>
+            <td>1,000</td>
+        </tr>
+         <!-- Eastern Caribbean -->
+        <tr>
+            <td>Antigua and Barbuda</td>
+            <td>Nationally representative</td>
+            <td>DMR Insights Ltd.</td>
+            <td>Face-to-face</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Barbados</td>
+            <td>Nationally representative</td>
+            <td>DMR Insights Ltd.</td>
+            <td>Face-to-face</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Dominica</td>
+            <td>Nationally representative</td>
+            <td>DMR Insights Ltd.</td>
+            <td>Face-to-face</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Grenada</td>
+            <td>Nationally representative</td>
+            <td>DMR Insights Ltd.</td>
+            <td>Face-to-face</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>St. Kitts and Nevis</td>
+            <td>Nationally representative</td>
+            <td>DMR Insights Ltd.</td>
+            <td>Face-to-face</td>
+            <td>499</td>
+        </tr>
+        <tr>
+            <td>St. Lucia</td>
+            <td>Nationally representative</td>
+            <td>DMR Insights Ltd.</td>
+            <td>Face-to-face</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>St. Vincent and the Grenadines</td>
+            <td>Nationally representative</td>
+            <td>DMR Insights Ltd.</td>
+            <td>Face-to-face</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Trinidad and Tobago</td>
+            <td>Nationally representative</td>
+            <td>CID Gallup</td>
+            <td>Face-to-face</td>
+            <td>1,001</td>
+        </tr>
+        <!-- Greater Antilles, The Bahamas, Guyana, and Suriname -->
+        <tr>
+            <td>The Bahamas</td>
+            <td>Nationally representative</td>
+            <td>DMR Insights Ltd.</td>
+            <td>Face-to-face</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Dominican Republic</td>
+            <td>Nationally representative</td>
+            <td>CID Gallup</td>
+            <td>Face-to-face</td>
+            <td>1,002</td>
+        </tr>
+        <tr>
+            <td>Guyana</td>
+            <td>Nationally representative</td>
+            <td>StatMark Group</td>
+            <td>Face-to-face</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>Haiti</td>
+            <td>Nationally representative</td>
+            <td>CID Gallup</td>
+            <td>Face-to-face</td>
+            <td>507</td>
+        </tr>
+        <tr>
+            <td>Jamaica</td>
+            <td>Nationally representative</td>
+            <td>StatMark Group</td>
+            <td>Face-to-face</td>
+            <td>531</td>
+        </tr>
+        <tr>
+            <td>Suriname</td>
+            <td>Nationally representative</td>
+            <td>D3: Designs, Data, Decisions</td>
+            <td>Face-to-face</td>
+            <td>522</td>
+        </tr>
+        <!-- Central America -->
+        <tr>
+            <td>Belize</td>
+            <td>Nationally representative</td>
+            <td>CID Gallup</td>
+            <td>Face-to-face</td>
+            <td>1,500</td>
+        </tr>
+        <tr>
+            <td>Costa Rica</td>
+            <td>Nationally representative</td>
+            <td>CID Gallup</td>
+            <td>Face-to-face</td>
+            <td>1,002</td>
+        </tr>
+        
+        <tr>
+            <td>El Salvador</td>
+            <td>Nationally representative</td>
+            <td>CID Gallup</td>
+            <td>Face-to-face</td>
+            <td>2,010</td>
+        </tr>
+        <tr>
+            <td>Guatemala</td>
+            <td>Nationally representative</td>
+            <td>Mercaplan</td>
+            <td>Face-to-face</td>
+            <td>2,002</td>
+        </tr>
+        <tr>
+            <td>Honduras</td>
+            <td>Nationally representative</td>
+            <td>Mercaplan</td>
+            <td>Face-to-face</td>
+            <td>2,000</td>
+        </tr>
+        <tr>
+            <td>Nicaragua</td>
+            <td>Nationally representative</td>
+            <td>CID Gallup</td>
+            <td>Telephone</td>
+            <td>1,014</td>
+        </tr>
+        <tr>
+            <td>Panama</td>
+            <td>Nationally representative</td>
+            <td>CID Gallup</td>
+            <td>Face-to-face</td>
+            <td>2,023</td>
+        </tr>
+    </table>
                                 </div>
                             </div>
                         </div>
