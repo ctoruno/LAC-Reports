@@ -145,7 +145,7 @@ figure08.fn <- function(nchart = 8){
                  values_to  = "value2plot") %>%
     mutate(
       labels = case_when(
-        category == "q2a"     ~ "Members of the \nlegislature         ",
+        category == "q2a"     ~ "Members of the \nlegislature                       ?",
         category == "q2c"     ~ "National government\nofficers",
         category == "q2b"     ~ "Local government \nofficers",
         category == "q2g"     ~ "Judges and magistrates",

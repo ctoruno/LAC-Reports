@@ -56,7 +56,7 @@ figure01.fn <- function(nchart = 1){
         category == "CAR_q60_G1" ~ "Censor information that comes \nfrom abroad",
         category == "CAR_q61_G1" ~ "Censor opinions from opposition \ngroups",
         category == "CAR_q60_G2" ~ "Resort to misinformation to shape \npublic opinion in their favor",
-        category == "CAR_q64_G2" ~ "Attack or attempt to discredit the \nmedia and civil society organizations \nthat criticize them",
+        category == "CAR_q64_G2" ~ "Attack or attempt to discredit the \nmedia and civil society organizations\nthat criticize them",
         category == "CAR_q67_G1" ~ "Attack or attempt to discredit \nopposition parties",
         category == "CAR_q67_G2" ~ "Attack or attempt to discredit the \nelectoral system and other \nsupervisory organs", 
         category == "CAR_q64_G1" ~ "Seek to limit the courts' competencies \nand freedom to interpret the law",
