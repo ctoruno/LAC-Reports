@@ -105,8 +105,9 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
   
-  demonym <- method_data.ls[["sf"]] %>%
-    filter(Country %in% mainCountry)
+  denomym <- method_data.ls[["sf"]] %>%
+    mutate(Country = if_else(Country %in% "The Bahamas", "Bahamas", Country)) %>%
+    filter(Country %in% mainCountry) 
   
   victims <- security_universe %>%
     summarise(victim = round(mean(victim, na.rm = T),2)) %>%
@@ -196,7 +197,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     y <- c(1, 900, -500, 600, 30)
     x <- c(0.7, 2, 2.3, 3.3, 3.3)
     
-    label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of ", demonym$Nationality ,"s","<br>were victims <br>of a crime"),
+    label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of ", denomym$Nationality ,"s","<br>were victims <br>of a crime"),
                paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> reported <br> the crime"),
                paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not report <br>the crime"),
                paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> The perpetrator <br> was prosecuted"),
@@ -213,7 +214,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     y <- c(1, 900, -300, 600, 75)
     x <- c(0.7, 2, 2.3, 3.3, 3.3)
     
-    label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of ", demonym$Nationality ,"s","<br>were victims <br>of a crime"),
+    label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of ", denomym$Nationality ,"s","<br>were victims <br>of a crime"),
                paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> reported <br> the crime"),
                paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not report <br>the crime"),
                paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',fill_report$fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> filed an official <br> crime report"),

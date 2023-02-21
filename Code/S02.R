@@ -380,6 +380,7 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
   data2plot <- data_subset.df %>%
     filter(year == latestYear & country %in% countrySet) %>%
     select(country, all_of(unlist(vars4plot, use.names = F))) %>%
+    mutate(country = if_else(country %in% "Bahamas", "The Bahamas", country)) %>%
     mutate(across(!country,
                   ~if_else(.x == 99, NA_real_, as.double(.x)))) %>%
     group_by(country) %>%
@@ -390,7 +391,9 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
                  names_to   = "category",
                  values_to  = "value2plot") %>%
     mutate(value2plot  = value2plot*100,
-           highlighted = if_else(country == mainCountry, "Highlighted", "Regular"),
+           highlighted = if_else(country == mainCountry, "Highlighted", 
+                                 if_else(country == "The Bahamas", "Highlighted",
+                                         "Regular")),
            labels      = to_percentage.fn(value2plot))
   
   # Saving data points
