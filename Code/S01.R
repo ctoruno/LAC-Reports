@@ -62,7 +62,7 @@ figure01.fn <- function(nchart = 1){
         category == "CAR_q64_G1" ~ "Seek to limit the courts' competencies \nand freedom to interpret the law",
         category == "CAR_q66_G1" ~ "Seek to influence the promotion and \nremoval of judges",
         category == "CAR_q65_G2" ~ "Prosecute and convict journalists and \nleaders of civil society organizations      ",
-        category == "CAR_q68_G1" ~ "Prosecute and convict members of\nopposition parties   ",
+        category == "CAR_q68_G1" ~ "Prosecute and convict members of\nopposition parties      ",
         category == "CAR_q65_G1" ~ "Refuse to comply with court rulings \nthat are not in their favor"
       ),
       value2plot = round(value2plot*100,1),
@@ -191,8 +191,8 @@ figure02.fn <- function(nchart = 2){
         category == "CAR_q67_G2" ~ "Attack or attempt to discredit the \nelectoral system and other \nsupervisory organs", 
         category == "CAR_q64_G1" ~ "Seek to limit the courts' competencies \nand freedom to interpret the law",
         category == "CAR_q66_G1" ~ "Seek to influence the promotion and \nremoval of judges",
-        category == "CAR_q65_G2" ~ "Prosecute and convict journalists and \nleaders of civil society organizations",
-        category == "CAR_q68_G1" ~ "Prosecute and convict members of       \nopposition parties      ",
+        category == "CAR_q65_G2" ~ "Prosecute and convict journalists and \nleaders of civil society organizations      ",
+        category == "CAR_q68_G1" ~ "Prosecute and convict members of\nopposition parties      ",
         category == "CAR_q65_G1" ~ "Refuse to comply with court rulings \nthat are not in their favor"
       ),
       value2plot = round(value2plot*100,1),
