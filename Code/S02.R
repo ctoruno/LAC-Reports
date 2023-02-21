@@ -94,7 +94,7 @@ figure07.fn <- function(nchart = 7) {
                                 labels_var     = "label",
                                 colors_var     = "category",
                                 colors         = colors4plot,
-                                repel          = T
+                                repel          = F
          )
          
          # Saving panels
@@ -531,7 +531,7 @@ figure11.fn <- function(nchart = 11) {
                                 labels_var     = "label",
                                 colors_var     = "category",
                                 colors         = colors4plot,
-                                repel          = T
+                                repel          = F
          )
          
          # Saving panels
