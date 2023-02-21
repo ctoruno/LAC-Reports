@@ -481,7 +481,7 @@ figure13_2.fn <- function(nchart = 13) {
     data2plot <- margEff
     if (mainCountry == "Peru") {
       
-      data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \insecure", "victimVictim" = "Previous crime \nvictimization",
+      data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure", "victimVictim" = "Previous crime \nvictimization",
                                "areaUrban" = "Urban", "whiteWhite" = "Light skin \ntone", "youngLess than 35 years" = "Younger than 35",
                                "diplomaNo High Education Level" = "No high school \ndiploma")
     } else {
