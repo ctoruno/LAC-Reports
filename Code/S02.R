@@ -160,8 +160,8 @@ figure08.fn <- function(nchart = 8){
         category == "CAR_q6m" ~ "Teachers in public schools", 
         category == "CAR_q6n" ~ "Land registry officers", 
         category == "CAR_q6o" ~ "Car registration agency \nofficers", 
-        category == "CAR_q6p" ~ "News media            ", 
-        category == "CAR_q6q" ~ "Political parties     "
+        category == "CAR_q6p" ~ "News media                    ", 
+        category == "CAR_q6q" ~ "Political parties             "
       ),
       value2plot = round(value2plot*100,1)
     ) %>%
