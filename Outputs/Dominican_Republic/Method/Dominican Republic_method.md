@@ -18,19 +18,17 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Dominican Republic was conducted for the <i>WJP's The Rule of Law in Dominican Republic: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by CID Gallup, based in San José, Costa Rica. CID Gallup administered the surveys between 2022, conducting face-to-face interviews using a multi-stage random sampling design. The target population group for this survey included 1002 aged 18 years or older residing across 31 cities throughout the country.
+                                    The GPP in Dominican Republic was conducted for the <i>WJP's The Rule of Law in Dominican Republic: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by CID Gallup, based in San José, Costa Rica. CID Gallup administered the surveys between 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Dominicans aged 18 years or older residing across 31 cities throughout the country.
                                 </p>
-                                <p class="mb-0 c-purple"><b>SAMPLE SIZE & SAMPLE FRAME</b></p>
+                                <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Dominican Republic represents an achieved total sample size of 1,002 interviews distributed proportionally across 10 regions. CID Gallup based the sampling frame on the CID Gallup based the sampling frame on 2018 population figures from the National Statistics Office of Dominican Republic (ONE), acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
+                                    The General Population Poll in Dominican Republic represents an achieved total sample size of 1,002 interviews distributed proportionally across 10 regions. CID Gallup based the sampling frame on 2018 population figures from the National Statistics Office of Dominican Republic (ONE), acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization .
                                     <br><br>
                                     In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Spanish, can be found in the Appendix of this report.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
                                     Regions, provinces, and municipalities were selected to achieve a nationally representative sample of the country based on population density and geographic coverage. Districts were then selected as the primary sampling unit using probability proportionate to size sampling. Within cities and towns, enumeration areas were selected at the cantón, or neighborhood, level via systematic random sampling based on the population of each area. Within the sampled segments, survey administrators performed a systematic random route to sample households and used the Last Birthday method to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
-                                    <br><br>
-                                    Challenges to data collection included security issues and accessibility in rural areas although ultimately, no sample units were substituted.
                                 </p>
                             </div>
                         </div>
@@ -75,39 +73,39 @@ Methodology
                                         <p class="c-purple"><b>RESPONSE RATES</b></p>
                                         <div class="table-responsive mb-2">
                                             <table class="table table-sm">
-                        <tr class="bg-purple text-white">
-                            <td>Eligible household, non-interview</td>
-                            <td class="text-right"></td>
-                        </tr>
-                        <tr>
-                            <td>Refusals</td>
-                            <td class="text-right"></td>
-                        </tr>
-                        <tr>
-                            <td>Break-off</td>
-                            <td class="text-right"></td>
-                        </tr>
-                        <tr>
-                            <td>Non-contact</td>
-                            <td class="text-right"></td>
-                        </tr>
-                    </table>
+                            <tr class="bg-purple text-white">
+                                <td>Eligible household, non-interview</td>
+                                <td class="text-right"></td>
+                            </tr>
+                            <tr>
+                                <td>Refusals</td>
+                                <td class="text-right"></td>
+                            </tr>
+                            <tr>
+                                <td>Break-off</td>
+                                <td class="text-right"></td>
+                            </tr>
+                            <tr>
+                                <td>Non-contact</td>
+                                <td class="text-right"></td>
+                            </tr>
+                        </table>
                                         </div>
                                         <div class="table-responsive mb-4">
                                             <table class="table table-sm">
-                        <tr class="bg-purple text-white">
-                            <td>Ineligible household</td>
-                            <td class="text-right"></td>
-                        </tr>
-                        <tr>
-                            <td>No eligible respondent in the household</td>
-                            <td class="text-right"></td>
-                        </tr>
-                        <tr>
-                            <td>Quota filled</td>
-                            <td class="text-right"></td>
-                        </tr>
-                    </table>
+                            <tr class="bg-purple text-white">
+                                <td>Ineligible household</td>
+                                <td class="text-right"></td>
+                            </tr>
+                            <tr>
+                                <td>No eligible respondent in the household</td>
+                                <td class="text-right"></td>
+                            </tr>
+                            <tr>
+                                <td>Quota filled</td>
+                                <td class="text-right"></td>
+                            </tr>
+                        </table>
                                         </div>
                                         <p class="mb-0 c-purple"><b>INTERVIEWING AND QUALITY CONTROL</b></p>
                                         <p class="mb-4">
@@ -118,12 +116,12 @@ Methodology
 
                                         <p class="mb-0 c-purple"><b>DATA REVIEW AND JUSTIFICATION</b></p>
                                         <p class="mb-4">
-                                            As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s <i>AmericasBarometer</i>, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International's <i>Corruption Perceptions Index</i>, the Bertelsmann Stiftung's <i>Transformation Index (BTI)</i>, and Freedom House's <i>Freedom in the World</i>. While certain trends captured by the 2022 General Population Poll in Dominican Republic are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of Dominican Republic's rule of law performance as measured by other sources.
+                                            As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s <i>AmericasBarometer</i>, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International's <i>Corruption Perceptions Index,</i> the Bertelsmann Stiftung's <i>Transformation</i> <i>Index (BTI),</i> and Freedom House's <i>Freedom in the World</i>. While certain trends captured by the 2022 General Population Poll in Dominican Republic are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of Dominican Republic's rule of law performance as measured by other sources.
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll* that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for the Dominican Republic was collected in 2013, 2016, 2018, and 2022. Data for The Bahamas, Guyana, and Suriname was collected in 2016, 2018, and 2022. Data for Haiti was collected in 2021 and 2022. Data for Jamaica was collected in 2011, 2014, 2017, 2019, and 2022.
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for the Dominican Republic was collected in 2013, 2016, 2018, and 2022. Data for The Bahamas, Guyana, and Suriname was collected in 2016, 2018, and 2022. Data for Haiti was collected in 2021 and 2022. Data for Jamaica was collected in 2011, 2014, 2017, 2019, and 2022.
                                         </p>
                                     </div>
                                 </div>
@@ -148,212 +146,177 @@ Methodology
                                     <table class="table table-sm">
                                         <tr class="bg-purple text-white">
                                             <td>Country</td>
-                                            <td>Coverage</td>
                                             <td>Polling Company</td>
                                             <td>Methodology</td>
                                             <td>Sample</td>
                                         </tr>
-                                        <!-- Andes -->
                                         <tr>
-                                            <td>Bolivia</td>
-                                            <td>Nationally representative</td>
-                                            <td>Capture Consulting</td>
+                                            <td>Antigua and Barbuda</td>
+                                            <td>DMR Insights Ltd.</td>
                                             <td>Face-to-face</td>
-                                            <td>1,000</td>
+                                            <td>500</td>
                                         </tr>
-                                        <tr>
-                                            <td>Colombia</td>
-                                            <td>Nationally representative</td>
-                                            <td>Tempo Group</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ecuador</td>
-                                            <td>Nationally representative</td>
-                                            <td>StatMark Group</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,005</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Peru</td>
-                                            <td>Nationally representative</td>
-                                            <td>Datum International S.A.</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,029</td>
-                                        </tr>
-                                        <!-- Southern Cone -->
-                                        <tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>Argentina</td>
-                                            <td>Nationally representative</td>
                                             <td>StatMark Group</td>
                                             <td>Face-to-face</td>
                                             <td>759</td>
                                         </tr>
                                         <tr>
+                                            <td>The Bahamas</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Barbados</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Belize</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,500</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Bolivia</td>
+                                            <td>Captura Consulting</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,000</td>
+                                        </tr>
+                                        <tr>
                                             <td>Brazil</td>
-                                            <td>Nationally representative</td>
                                             <td>About Brazil Market Research</td>
                                             <td>Face-to-face</td>
                                             <td>1,109</td>
                                         </tr>
-                                        <tr>
-                                            <td>Paraguay</td>
-                                            <td>Nationally representative</td>
-                                            <td>Datum International</td>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Colombia</td>
+                                            <td>Tempo Group SA</td>
                                             <td>Face-to-face</td>
                                             <td>1,000</td>
                                         </tr>
-                                         <!-- Eastern Caribbean -->
                                         <tr>
-                                            <td>Antigua and Barbuda</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Barbados</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dominica</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Grenada</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>St. Kitts and Nevis</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>499</td>
-                                        </tr>
-                                        <tr>
-                                            <td>St. Lucia</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>St. Vincent and the Grenadines</td>
-                                            <td>Nationally representative</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Trinidad and Tobago</td>
-                                            <td>Nationally representative</td>
+                                            <td>Costa Rica</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
-                                            <td>1,001</td>
+                                            <td>1,002</td>
                                         </tr>
-                                        <!-- Greater Antilles, The Bahamas, Guyana, and Suriname -->
-                                        <tr>
-                                            <td>The Bahamas</td>
-                                            <td>Nationally representative</td>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Dominica</td>
                                             <td>DMR Insights Ltd.</td>
                                             <td>Face-to-face</td>
                                             <td>500</td>
                                         </tr>
                                         <tr>
                                             <td>Dominican Republic</td>
-                                            <td>Nationally representative</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
                                             <td>1,002</td>
                                         </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Ecuador</td>
+                                            <td>StatMark Group</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,005</td>
+                                        </tr>
                                         <tr>
+                                            <td>El Salvador</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>2,010</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Grenada</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guatemala</td>
+                                            <td>Mercaplan</td>
+                                            <td>Face-to-face</td>
+                                            <td>2,002</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>Guyana</td>
-                                            <td>Nationally representative</td>
                                             <td>StatMark Group</td>
                                             <td>Face-to-face</td>
                                             <td>500</td>
                                         </tr>
                                         <tr>
                                             <td>Haiti</td>
-                                            <td>Nationally representative</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
                                             <td>507</td>
                                         </tr>
-                                        <tr>
-                                            <td>Jamaica</td>
-                                            <td>Nationally representative</td>
-                                            <td>StatMark Group</td>
-                                            <td>Face-to-face</td>
-                                            <td>531</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Suriname</td>
-                                            <td>Nationally representative</td>
-                                            <td>D3: Designs, Data, Decisions</td>
-                                            <td>Face-to-face</td>
-                                            <td>522</td>
-                                        </tr>
-                                        <!-- Central America -->
-                                        <tr>
-                                            <td>Belize</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Costa Rica</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>1,002</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td>El Salvador</td>
-                                            <td>Nationally representative</td>
-                                            <td>CID Gallup</td>
-                                            <td>Face-to-face</td>
-                                            <td>2,010</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Guatemala</td>
-                                            <td>Nationally representative</td>
-                                            <td>Mercaplan</td>
-                                            <td>Face-to-face</td>
-                                            <td>2,002</td>
-                                        </tr>
-                                        <tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>Honduras</td>
-                                            <td>Nationally representative</td>
                                             <td>Mercaplan</td>
                                             <td>Face-to-face</td>
                                             <td>2,000</td>
                                         </tr>
                                         <tr>
+                                            <td>Jamaica</td>
+                                            <td>StatMark Group</td>
+                                            <td>Face-to-face</td>
+                                            <td>531</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>Nicaragua</td>
-                                            <td>Nationally representative</td>
                                             <td>CID Gallup</td>
                                             <td>Telephone</td>
                                             <td>1,014</td>
                                         </tr>
                                         <tr>
                                             <td>Panama</td>
-                                            <td>Nationally representative</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
                                             <td>2,023</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Paraguay</td>
+                                            <td>Datum Internacional S.A./BM Business Partners</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Peru</td>
+                                            <td>Datum Internacional S.A.</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,029</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>St. Kitts and Nevis</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>499</td>
+                                        </tr>
+                                        <tr>
+                                            <td>St. Lucia</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>St. Vincent and the Grenadines</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Suriname</td>
+                                            <td>D3: Designs, Data, Decisions</td>
+                                            <td>Face-to-face</td>
+                                            <td>522</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Trinidad and Tobago</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,001</td>
                                         </tr>
                                     </table>
                                 </div>

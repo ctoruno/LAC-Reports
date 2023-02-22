@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Colombia was conducted for the <i>WJP's The Rule of Law in Colombia: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Tempo Group, based in Bogotá, Colombia. Tempo Group administered the surveys between May and June 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included colombian aged 18 years or older residing across 18 major cities throughout the country.
+                                    The GPP in Colombia was conducted for the <i>WJP's The Rule of Law in Colombia: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Tempo Group SA, based in Bogotá, Colombia. Tempo Group SA administered the surveys between May and June 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Colombians aged 18 years or older residing across 18 major cities throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
@@ -116,7 +116,7 @@ Methodology
 
                                         <p class="mb-0 c-purple"><b>DATA REVIEW AND JUSTIFICATION</b></p>
                                         <p class="mb-4">
-                                            As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s <i>AmericasBarometer</i>, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International's <i>Corruption Perceptions Index</i>, the Bertelsmann Stiftung's <i>Transformation Index (BTI)</i>, and Freedom House's <i>Freedom in the World</i>. While certain trends captured by the 2022 General Population Poll in Colombia are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of Colombia's rule of law performance as measured by other sources.
+                                            As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s <i>AmericasBarometer</i>, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International's <i>Corruption Perceptions Index,</i> the Bertelsmann Stiftung's <i>Transformation</i> <i>Index (BTI),</i> and Freedom House's <i>Freedom in the World</i>. While certain trends captured by the 2022 General Population Poll in Colombia are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of Colombia's rule of law performance as measured by other sources.
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
@@ -144,216 +144,181 @@ Methodology
                                 </p>
                                 <div class="table-responsive mb-4">
                                     <table class="table table-sm">
-        <tr class="bg-purple text-white">
-            <td>Country</td>
-            <td>Coverage</td>
-            <td>Polling Company</td>
-            <td>Methodology</td>
-            <td>Sample</td>
-        </tr>
-        <!-- Andes -->
-        <tr>
-            <td>Bolivia</td>
-            <td>Nationally representative</td>
-            <td>Capture Consulting</td>
-            <td>Face-to-face</td>
-            <td>1,000</td>
-        </tr>
-        <tr>
-            <td>Colombia</td>
-            <td>Nationally representative</td>
-            <td>Tempo Group</td>
-            <td>Face-to-face</td>
-            <td>1,000</td>
-        </tr>
-        <tr>
-            <td>Ecuador</td>
-            <td>Nationally representative</td>
-            <td>StatMark Group</td>
-            <td>Face-to-face</td>
-            <td>1,005</td>
-        </tr>
-        <tr>
-            <td>Peru</td>
-            <td>Nationally representative</td>
-            <td>Datum International S.A.</td>
-            <td>Face-to-face</td>
-            <td>1,029</td>
-        </tr>
-        <!-- Southern Cone -->
-        <tr>
-            <td>Argentina</td>
-            <td>Nationally representative</td>
-            <td>StatMark Group</td>
-            <td>Face-to-face</td>
-            <td>759</td>
-        </tr>
-        <tr>
-            <td>Brazil</td>
-            <td>Nationally representative</td>
-            <td>About Brazil Market Research</td>
-            <td>Face-to-face</td>
-            <td>1,109</td>
-        </tr>
-        <tr>
-            <td>Paraguay</td>
-            <td>Nationally representative</td>
-            <td>Datum International</td>
-            <td>Face-to-face</td>
-            <td>1,000</td>
-        </tr>
-         <!-- Eastern Caribbean -->
-        <tr>
-            <td>Antigua and Barbuda</td>
-            <td>Nationally representative</td>
-            <td>DMR Insights Ltd.</td>
-            <td>Face-to-face</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>Barbados</td>
-            <td>Nationally representative</td>
-            <td>DMR Insights Ltd.</td>
-            <td>Face-to-face</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>Dominica</td>
-            <td>Nationally representative</td>
-            <td>DMR Insights Ltd.</td>
-            <td>Face-to-face</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>Grenada</td>
-            <td>Nationally representative</td>
-            <td>DMR Insights Ltd.</td>
-            <td>Face-to-face</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>St. Kitts and Nevis</td>
-            <td>Nationally representative</td>
-            <td>DMR Insights Ltd.</td>
-            <td>Face-to-face</td>
-            <td>499</td>
-        </tr>
-        <tr>
-            <td>St. Lucia</td>
-            <td>Nationally representative</td>
-            <td>DMR Insights Ltd.</td>
-            <td>Face-to-face</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>St. Vincent and the Grenadines</td>
-            <td>Nationally representative</td>
-            <td>DMR Insights Ltd.</td>
-            <td>Face-to-face</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>Trinidad and Tobago</td>
-            <td>Nationally representative</td>
-            <td>CID Gallup</td>
-            <td>Face-to-face</td>
-            <td>1,001</td>
-        </tr>
-        <!-- Greater Antilles, The Bahamas, Guyana, and Suriname -->
-        <tr>
-            <td>The Bahamas</td>
-            <td>Nationally representative</td>
-            <td>DMR Insights Ltd.</td>
-            <td>Face-to-face</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>Dominican Republic</td>
-            <td>Nationally representative</td>
-            <td>CID Gallup</td>
-            <td>Face-to-face</td>
-            <td>1,002</td>
-        </tr>
-        <tr>
-            <td>Guyana</td>
-            <td>Nationally representative</td>
-            <td>StatMark Group</td>
-            <td>Face-to-face</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>Haiti</td>
-            <td>Nationally representative</td>
-            <td>CID Gallup</td>
-            <td>Face-to-face</td>
-            <td>507</td>
-        </tr>
-        <tr>
-            <td>Jamaica</td>
-            <td>Nationally representative</td>
-            <td>StatMark Group</td>
-            <td>Face-to-face</td>
-            <td>531</td>
-        </tr>
-        <tr>
-            <td>Suriname</td>
-            <td>Nationally representative</td>
-            <td>D3: Designs, Data, Decisions</td>
-            <td>Face-to-face</td>
-            <td>522</td>
-        </tr>
-        <!-- Central America -->
-        <tr>
-            <td>Belize</td>
-            <td>Nationally representative</td>
-            <td>CID Gallup</td>
-            <td>Face-to-face</td>
-            <td>1,500</td>
-        </tr>
-        <tr>
-            <td>Costa Rica</td>
-            <td>Nationally representative</td>
-            <td>CID Gallup</td>
-            <td>Face-to-face</td>
-            <td>1,002</td>
-        </tr>
-        
-        <tr>
-            <td>El Salvador</td>
-            <td>Nationally representative</td>
-            <td>CID Gallup</td>
-            <td>Face-to-face</td>
-            <td>2,010</td>
-        </tr>
-        <tr>
-            <td>Guatemala</td>
-            <td>Nationally representative</td>
-            <td>Mercaplan</td>
-            <td>Face-to-face</td>
-            <td>2,002</td>
-        </tr>
-        <tr>
-            <td>Honduras</td>
-            <td>Nationally representative</td>
-            <td>Mercaplan</td>
-            <td>Face-to-face</td>
-            <td>2,000</td>
-        </tr>
-        <tr>
-            <td>Nicaragua</td>
-            <td>Nationally representative</td>
-            <td>CID Gallup</td>
-            <td>Telephone</td>
-            <td>1,014</td>
-        </tr>
-        <tr>
-            <td>Panama</td>
-            <td>Nationally representative</td>
-            <td>CID Gallup</td>
-            <td>Face-to-face</td>
-            <td>2,023</td>
-        </tr>
-    </table>
+                                        <tr class="bg-purple text-white">
+                                            <td>Country</td>
+                                            <td>Polling Company</td>
+                                            <td>Methodology</td>
+                                            <td>Sample</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Antigua and Barbuda</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Argentina</td>
+                                            <td>StatMark Group</td>
+                                            <td>Face-to-face</td>
+                                            <td>759</td>
+                                        </tr>
+                                        <tr>
+                                            <td>The Bahamas</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Barbados</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Belize</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,500</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Bolivia</td>
+                                            <td>Captura Consulting</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Brazil</td>
+                                            <td>About Brazil Market Research</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,109</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Colombia</td>
+                                            <td>Tempo Group SA</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Costa Rica</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,002</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Dominica</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dominican Republic</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,002</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Ecuador</td>
+                                            <td>StatMark Group</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,005</td>
+                                        </tr>
+                                        <tr>
+                                            <td>El Salvador</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>2,010</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Grenada</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Guatemala</td>
+                                            <td>Mercaplan</td>
+                                            <td>Face-to-face</td>
+                                            <td>2,002</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Guyana</td>
+                                            <td>StatMark Group</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Haiti</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>507</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Honduras</td>
+                                            <td>Mercaplan</td>
+                                            <td>Face-to-face</td>
+                                            <td>2,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jamaica</td>
+                                            <td>StatMark Group</td>
+                                            <td>Face-to-face</td>
+                                            <td>531</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Nicaragua</td>
+                                            <td>CID Gallup</td>
+                                            <td>Telephone</td>
+                                            <td>1,014</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Panama</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>2,023</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Paraguay</td>
+                                            <td>Datum Internacional S.A./BM Business Partners</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Peru</td>
+                                            <td>Datum Internacional S.A.</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,029</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>St. Kitts and Nevis</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>499</td>
+                                        </tr>
+                                        <tr>
+                                            <td>St. Lucia</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>St. Vincent and the Grenadines</td>
+                                            <td>DMR Insights Ltd.</td>
+                                            <td>Face-to-face</td>
+                                            <td>500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Suriname</td>
+                                            <td>D3: Designs, Data, Decisions</td>
+                                            <td>Face-to-face</td>
+                                            <td>522</td>
+                                        </tr>
+                                        <tr style = "background-color: #E8E4F9">
+                                            <td>Trinidad and Tobago</td>
+                                            <td>CID Gallup</td>
+                                            <td>Face-to-face</td>
+                                            <td>1,001</td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
