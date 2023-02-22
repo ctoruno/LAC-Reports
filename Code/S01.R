@@ -78,8 +78,7 @@ figure01.fn <- function(nchart = 1){
         category == "CAR_q65_G2" ~ 1,
         category == "CAR_q68_G1" ~ 1,
         category == "CAR_q65_G1" ~ 3
-        
-    )
+      )
     )
   
   # Defining color palette
@@ -282,6 +281,11 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   if (mainCountry %in% westCaribbean_and_guianas.ls){
     data_subset.df <- data_subset.df %>%
       filter(country != "Suriname")
+  }
+  
+  if (mainCountry %in% southCone.ls){
+    data_subset.df <- data_subset.df %>%
+      filter(country != "Paraguay")
   }
   
   # Defining data frame for plot
@@ -570,7 +574,7 @@ figure05.fn <- function(nchart = 5) {
   colors4plot <- barsPalette
   names(colors4plot) <- c("Highlighted", "Regular")
   
-  if (mainCountry %in% c(eastCaribbean.ls, westCaribbean_and_guianas.ls)){
+  if (mainCountry %in% c(eastCaribbean.ls, westCaribbean_and_guianas.ls, southCone.ls)){
     exp <- TRUE
   } else {
     exp <- FALSE
