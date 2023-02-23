@@ -75,19 +75,19 @@ Methodology
                                             <table class="table table-sm">
                             <tr class="bg-purple text-white">
                                 <td>Eligible household, non-interview</td>
-                                <td class="text-right"></td>
+                                <td class="text-right">793</td>
                             </tr>
                             <tr>
                                 <td>Refusals</td>
-                                <td class="text-right"></td>
+                                <td class="text-right">516</td>
                             </tr>
                             <tr>
                                 <td>Break-off</td>
-                                <td class="text-right"></td>
+                                <td class="text-right"> 91</td>
                             </tr>
                             <tr>
                                 <td>Non-contact</td>
-                                <td class="text-right"></td>
+                                <td class="text-right">186</td>
                             </tr>
                         </table>
                                         </div>
@@ -95,15 +95,15 @@ Methodology
                                             <table class="table table-sm">
                             <tr class="bg-purple text-white">
                                 <td>Ineligible household</td>
-                                <td class="text-right"></td>
+                                <td class="text-right">143</td>
                             </tr>
                             <tr>
                                 <td>No eligible respondent in the household</td>
-                                <td class="text-right"></td>
+                                <td class="text-right"> 52</td>
                             </tr>
                             <tr>
                                 <td>Quota filled</td>
-                                <td class="text-right"></td>
+                                <td class="text-right"> 91</td>
                             </tr>
                         </table>
                                         </div>

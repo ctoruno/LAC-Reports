@@ -383,7 +383,7 @@ figure13_2.fn <- function(nchart = 13) {
   
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
   
-  if (mainCountry == "Peru") {
+  if (mainCountry == "Bahamas" | mainCountry == "Peru") {
     
     perception <- security_universe %>%
       mutate(unsafe_bin    =  if_else(q9 == 1 | q9 == 2, 1, 
@@ -439,7 +439,7 @@ figure13_2.fn <- function(nchart = 13) {
   
   logit_demo <- function(mainData, Yvar) {
     
-    if (mainCountry == "Peru") {
+    if (mainCountry == "Bahamas" | mainCountry == "Peru") {
       
       logit_data <- perception %>%
         select(unsafe_bin, all_of(selectables)) %>%
@@ -480,7 +480,7 @@ figure13_2.fn <- function(nchart = 13) {
     margEff    <- margins_summary(models[[1]], data = models[[1]]$model)
     
     data2plot <- margEff
-    if (mainCountry == "Peru") {
+    if (mainCountry == "Bahamas" | mainCountry == "Peru") {
       
       data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure", "victimVictim" = "Previous crime \nvictimization",
                                "areaUrban" = "Urban", "whiteWhite" = "Light skin \ntone", "youngLess than 35 years" = "Younger than 35",

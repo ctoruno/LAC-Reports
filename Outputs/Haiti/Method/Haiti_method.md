@@ -83,19 +83,19 @@ Haitian Creole, can be found in the Appendix of this report.
                                             <table class="table table-sm">
                             <tr class="bg-purple text-white">
                                 <td>Eligible household, non-interview</td>
-                                <td class="text-right"></td>
+                                <td class="text-right">285</td>
                             </tr>
                             <tr>
                                 <td>Refusals</td>
-                                <td class="text-right"></td>
+                                <td class="text-right">168</td>
                             </tr>
                             <tr>
                                 <td>Break-off</td>
-                                <td class="text-right"></td>
+                                <td class="text-right"> 34</td>
                             </tr>
                             <tr>
                                 <td>Non-contact</td>
-                                <td class="text-right"></td>
+                                <td class="text-right"> 83</td>
                             </tr>
                         </table>
                                         </div>
@@ -103,15 +103,15 @@ Haitian Creole, can be found in the Appendix of this report.
                                             <table class="table table-sm">
                             <tr class="bg-purple text-white">
                                 <td>Ineligible household</td>
-                                <td class="text-right"></td>
+                                <td class="text-right"> 73</td>
                             </tr>
                             <tr>
                                 <td>No eligible respondent in the household</td>
-                                <td class="text-right"></td>
+                                <td class="text-right"> 31</td>
                             </tr>
                             <tr>
                                 <td>Quota filled</td>
-                                <td class="text-right"></td>
+                                <td class="text-right"> 42</td>
                             </tr>
                         </table>
                                         </div>
