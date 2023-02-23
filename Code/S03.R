@@ -542,7 +542,7 @@ figure14.fn <- function(nchart = 14) {
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
     filter(country == mainCountry & year %in% yrs) %>%
-    select(year, q49a, q49b_G2, q49e_G2, q49c_G2, q49e_G1, q49d_G1, EXP_q23d_G1, q49c_G1, q49b_G1) %>%
+    select(year, latestYear, q49a, q49b_G2, q49e_G2, q49c_G2, q49e_G1, q49d_G1, EXP_q23d_G1, q49c_G1, q49b_G1) %>%
     mutate(
       
       # We need to concatenate variables q49d_G1 and EXP_q23d_G1 into a single one
@@ -551,16 +551,59 @@ figure14.fn <- function(nchart = 14) {
       q49d_G1_merge = if_else(is.na(q49d_G1) & is.na(EXP_q23d_G1), NA_real_, q49d_G1_merge),
       
       # Transforming everything into binary variables
-      across(!year,
+      across(!c(year, latestYear),
              ~if_else(.x == 1 | .x == 2, 1,
                       if_else(!is.na(.x) & .x != 99, 0, NA_real_)))
     ) %>%
-    select(year, q49a, q49b_G2, q49e_G2, q49c_G2, q49e_G1, q49d_G1_merge, q49c_G1, q49b_G1) %>%
+    select(year, latestYear, q49a, q49b_G2, q49e_G2, q49c_G2, q49e_G1, q49d_G1_merge, q49c_G1, q49b_G1) %>%
     group_by(year) %>%
-    summarise(across(everything(),
+    summarise(latestYear = first(latestYear),
+              across(everything(),
                      mean,
                      na.rm = T)) %>%
-    rename(group = year)
+    pivot_longer(!c(year, latestYear),
+                 names_to  = "category",
+                 values_to = "value4radar") %>%
+    mutate(
+      order_value = case_when(
+        category     == 'q49a'          ~ 1,
+        category     == 'q49b_G2'       ~ 2,
+        category     == 'q49e_G2'       ~ 3,
+        category     == 'q49c_G2'       ~ 4,
+        category     == 'q49e_G1'       ~ 5,
+        category     == 'q49d_G1_merge' ~ 6,
+        category     == 'q49c_G1'       ~ 7,
+        category     == 'q49b_G1'       ~ 8
+      ),
+      valuelabel = to_percentage.fn(value4radar*100),
+      label = case_when(
+        category == 'q49a'          ~ paste("Is **effective** in bringing<br>people who commit<br>crimes to justice"),
+        category == 'q49b_G2'       ~ paste("Ensures **equal treatment<br>of victims** by allowing all<br>",
+                                            "victims to seek justice<br>regardless of who they are"),
+        category == 'q49e_G2'       ~ paste("Safeguards the<br>**presumption of<br>innocence** by treating<br>those",
+                                            "accused of<br>crimes as innocent<br>until proven guilty"),
+        category == 'q49c_G2'       ~ paste("Ensures **equal treatment of<br>the accused** by giving all a<br>",
+                                            "fair trial regardless of who<br>they are"),
+        category == 'q49e_G1'       ~ paste("Gives **appropriate<br>punishments** that fit<br>the crime"),
+        category == 'q49d_G1_merge' ~ paste("Ensures **uniform quality** by<br>providing equal service<br>",
+                                            "regardless of where<br>they live",
+                                            "</span>"),
+        category == 'q49c_G1'       ~ paste("Ensures everyone<br>has **access** to the<br>justice system"),
+        category == 'q49b_G1'       ~ paste("Ensures **timeliness**<br>by dealing with<br>cases promptly",
+                                            "and<br>efficiently")
+      ),
+      across(label,
+             ~paste0("<span style='color:", "#003b8a", ";font-size:6.326276mm;font-weight:bold'>",  
+                     valuelabel,
+                     "</span>",
+                     "<br>",
+                     "<span style='color:#524F4C;font-size:3.514598mm;font-weight:bold'>",
+                     label,
+                     "</span>")),
+      label = if_else(year != latestYear, 
+                      NA_character_, 
+                      label)
+    )
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
@@ -576,97 +619,12 @@ figure14.fn <- function(nchart = 14) {
   colors4plot <- binPalette
   names(colors4plot) <- yrs
   
-  # Definig labels - Part I: Percentages
-  vals <- data2plot %>% 
-    filter(group == yrs[1]) %>%
-    pivot_longer(!group,
-                 values_to = "values",
-                 names_to  = "vars") %>%
-    mutate(order_value = case_when(vars     == 'q49a'          ~ 1,
-                                   vars     == 'q49b_G2'       ~ 2,
-                                   vars     == 'q49e_G2'       ~ 3,
-                                   vars     == 'q49c_G2'       ~ 4,
-                                   vars     == 'q49e_G1'       ~ 5,
-                                   vars     == 'q49d_G1_merge' ~ 6,
-                                   vars     == 'q49c_G1'       ~ 7,
-                                   vars     == 'q49b_G1'       ~ 8)) %>% # This variable guarantee the order of the chart
-    arrange(order_value) %>%
-    pull(values)
-  
-  vals <- to_percentage.fn(vals*100)
-  names(vals) <- names(data2plot %>% select(!group))
-  
-  # Defining labels - Part II: Percentages + text as HTML
-  applying_labels.fn <- function(text = text, color_code, value_vectors){
-    case_when(
-      text == 'q49a' ~ paste("<span style='color:", color_code, ";font-size:6.326276mm;font-weight:bold'>",  
-                             value_vectors["q49a"],
-                             "</span>",
-                             "<br>",
-                             "<span style='color:#524F4C;font-size:3.514598mm;font-weight:bold'>",
-                             "Is **effective** in bringing<br>people who commit<br>crimes to justice",
-                             "</span>"),
-      text == 'q49b_G2' ~ paste("<span style='color:", color_code, ";font-size:6.326276mm;font-weight:bold'>",  
-                                value_vectors["q49b_G2"],
-                                "</span>",
-                                "<br>",
-                                "<span style='color:#524F4C;font-size:3.514598mm'>",
-                                "Ensures **equal treatment<br>of victims** by allowing all<br>",
-                                "victims to seek justice<br>regardless of who they are",
-                                "</span>"),
-      text == 'q49e_G2' ~ paste("<span style='color:", color_code, ";font-size:6.326276mm;font-weight:bold'>",  
-                                value_vectors["q49e_G2"],
-                                "</span>",
-                                "<br>",
-                                "<span style='color:#524F4C;font-size:3.514598mm'>",
-                                "Safeguards the<br>**presumption of<br>innocence** by treating<br>those",
-                                "accused of<br>crimes as innocent<br>until proven guilty",
-                                "</span>"),
-      text == 'q49c_G2' ~ paste("<span style='color:", color_code, ";font-size:6.326276mm;font-weight:bold'>",  
-                                value_vectors["q49c_G2"],
-                                "</span>",
-                                "<br>",
-                                "<span style='color:#524F4C;font-size:3.514598mm'>",
-                                "Ensures **equal treatment of<br>the accused** by giving all a<br>",
-                                "fair trial regardless of who<br>they are",
-                                "</span>"),
-      text == 'q49e_G1' ~ paste("<span style='color:", color_code, ";font-size:6.326276mm;font-weight:bold'>",  
-                                value_vectors["q49e_G1"],
-                                "</span>",
-                                "<br>",
-                                "<span style='color:#524F4C;font-size:3.514598mm'>",
-                                "Gives **appropriate<br>punishments** that fit<br>the crime",
-                                "</span>"),
-      text == 'q49d_G1_merge' ~ paste("<span style='color:", color_code, ";font-size:6.326276mm;font-weight:bold'>",  
-                                      value_vectors["q49d_G1_merge"],
-                                      "</span>",
-                                      "<br>",
-                                      "<span style='color:#524F4C;font-size:3.514598mm'>",
-                                      "Ensures **uniform quality** by<br>providing equal service<br>",
-                                      "regardless of where<br>they live",
-                                      "</span>"),
-      text == 'q49c_G1' ~ paste("<span style='color:", color_code, ";font-size:6.326276mm;font-weight:bold'>",  
-                                value_vectors["q49c_G1"],
-                                "</span>",
-                                "<br>",
-                                "<span style='color:#524F4C;font-size:3.514598mm'>",
-                                "Ensures everyone<br>has **access** to the<br>justice system",
-                                "</span>"),
-      text == 'q49b_G1' ~ paste("<span style='color:", color_code, ";font-size:6.326276mm;font-weight:bold'>",  
-                                value_vectors["q49b_G1"],
-                                "</span>",
-                                "<br>",
-                                "<span style='color:#524F4C;font-size:3.514598mm'>",
-                                "Ensures **timeliness**<br>by dealing with<br>cases promptly",
-                                "and<br>efficiently",
-                                "</span>")
-    )
-  }
-  
   chart <- LAC_radarChart(data          = data2plot,
-                          labelling_fn  = applying_labels.fn,           
-                          colors        = colors4plot,
-                          percentages   = vals)
+                          axis_var      = "category",         
+                          target_var    = "value4radar",     
+                          label_var     = "label", 
+                          order_var     = "order_value",
+                          colors        = colors4plot)
   
   # Saving panels
   saveIT.fn(chart  = chart,
