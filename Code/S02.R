@@ -373,7 +373,7 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
   if (carib == F) {
     vars4plot <- c("q4a", "q4b", "q4c", "q4d", "q4e")
   } else {
-    vars4plot <- c("CAR_q8a", "CAR_q8b", "CAR_q8d", "CAR_q8e", "CAR_q8f")
+    vars4plot <- c("CAR_q8a", "CAR_q8b", "CAR_q8d", "CAR_q8e", "CAR_q8f", "CAR_q8i")
   }
   
   # Defining data frame for plot
@@ -411,11 +411,17 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
   names(colors4plot) <- c("Highlighted", "Regular")
   
   # Plotting each panel of Figure 5
-  imap(c("A" = vars4plot[1], 
-         "B" = vars4plot[2], 
-         "C" = vars4plot[3], 
-         "D" = vars4plot[4], 
-         "E" = vars4plot[5]),
+  panelVector <- c("A" = vars4plot[1], 
+                   "B" = vars4plot[2], 
+                   "C" = vars4plot[3], 
+                   "D" = vars4plot[4], 
+                   "E" = vars4plot[5])
+  
+  if (carib == T) {
+    panelVector <- c(panelVector, "F" = vars4plot[6])
+  }
+  
+  imap(panelVector,
        function(tvar, panelName) {
          
          # Filtering data2plot to leave the variable for each panel
