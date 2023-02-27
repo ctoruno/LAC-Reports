@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Brazil was conducted for the <i>WJP's The Rule of Law in Brazil: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by About Brazil Market Research, based in Fortaleza, Brazil. About Brazil Market Research administered the surveys between June and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Brazilians aged 18 years or older residing across eight states throughout the country.
+                                    The GPP in Brazil was conducted for the <i>WJP's The Rule of Law in Brazil: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by About Brazil Market Research, based in Fortaleza, Brazil. About Brazil Market Research administered the surveys June and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Brazilians aged 18 years or older residing across eight states throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
@@ -51,7 +51,7 @@ Methodology
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Fifty-four percent (54%) of the interviews took place in the Southeast, followed by 21% in the Northeast, 15% in the South, 7% in the North, and 3% in the Midwest
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Fifty-four percent (54%) of the interviews took place in the Southeast, followed by 21% in the Northeast, 15% in the South, 7% in the North, and 3% in the Midwest.
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GEOGRAPHY:</b> Fourteen percent (14%) of respondents resided in rural areas and municipalities, while 86% of respondents resided in metro areas or cities.

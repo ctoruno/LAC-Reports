@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Bolivia was conducted for the <i>WJP's The Rule of Law in Bolivia: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Captura Consulting, based in Santa Cruz, Bolivia. Captura Consulting administered the surveys between June and July 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Bolivians aged 18 years or older residing across all nine departments throughout the country.
+                                    The GPP in Bolivia was conducted for the <i>WJP's The Rule of Law in Bolivia: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Captura Consulting, based in Santa Cruz, Bolivia. Captura Consulting administered the surveys June and July 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Bolivians aged 18 years or older residing across all nine departments throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
@@ -51,7 +51,7 @@ Methodology
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Twenty-nine percent (29%) of the interviews took place in Santa Cruz, followed by 25% in La Paz, 18% in Cochabamba, and the remaining 28% in other regions
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Twenty-nine percent (29%) of the interviews took place in Santa Cruz, followed by 25% in La Paz, 18% in Cochabamba, and the remaining 28% in other regions.
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GEOGRAPHY:</b> Forty-seven percent (47%) of respondents resided in rural areas and municipalities, while 53% of respondents resided in metro areas or cities.

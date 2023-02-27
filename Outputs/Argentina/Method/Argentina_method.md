@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Argentina was conducted for the <i>WJP's The Rule of Law in Argentina: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by StatMark Group, based in Florida, U.S.A. StatMark Group administered the surveys between June and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Argentinians aged 18 years or older residing across six regions throughout the country.
+                                    The GPP in Argentina was conducted for the <i>WJP's The Rule of Law in Argentina: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by StatMark Group, based in Florida, U.S.A. StatMark Group administered the surveys June and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Argentinians aged 18 years or older residing across six regions throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
@@ -51,7 +51,7 @@ Methodology
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Forty percent (40%) of the interviews took place in the Centro region, followed by 20% in NOA, 11% n Litoral, 11% in Pampeana, 10% in Cuyo, and 9% in Patagonia
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Forty percent (40%) of the interviews took place in the Centro region, followed by 20% in NOA, 11% n Litoral, 11% in Pampeana, 10% in Cuyo, and 9% in Patagonia.
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GEOGRAPHY:</b> Eight percent (8%) of respondents resided in rural areas and municipalities, while 92% of respondents resided in metro areas or cities.

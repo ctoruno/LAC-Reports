@@ -18,25 +18,17 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Haiti was conducted for the <i>WJP's The Rule of Law in Haiti: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by CID Gallup, based in San José, Costa Rica. CID Gallup administered the surveys between 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Haitians aged 18 years or older residing across 10 cities throughout the country.
+                                    The GPP in Haiti was conducted for the <i>WJP's The Rule of Law in Haiti: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by CID Gallup, based in San José, Costa Rica. CID Gallup administered the surveys in June 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Haitians aged 18 years or older residing across 10 cities throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Haiti represents an achieved total sample size of 507 interviews distributed proportionally across four regions. CID Gallup based the sampling frame on the 2022 projected population figures from the United Nations Economic Commission for Latin America and the Caribbean (ECLAC), acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization
-
-. <br><br> In order to address all relevant topics while controlling the
-questionnaire length, the World Justice Project split three of the
-survey modules into two versions (Option A and Option B) and randomly
-assigned one option to each respondent for each module. These modules
-included: Hypothetical Situations, Civic Participation, and
-Institutional Performance. Aside from these modules, the questionnaires
-are identical. A link to the complete survey instrument, in English and
-Haitian Creole, can be found in the Appendix of this report.
-</p>
-
+                                    The General Population Poll in Haiti represents an achieved total sample size of 507 interviews distributed proportionally across four regions. CID Gallup based the sampling frame on the 2022 projected population figures from the Latin American and Caribbean Demographic Center (CELADE) of the United Nations Economic Commission for Latin America and the Caribbean (CEPAL), acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization .
+                                    <br><br>
+                                    In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Haitian Creole, can be found in the Appendix of this report.
+                                </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Regions and communes were selected to achieve a nationally representative sample of the country based on population density and geographic coverage. Within communes, populated areas were selected as the primary sampling unit using probability proportional to size sampling. Enumeration areas were then randomly selected at the neighborhood level. Within the sampled segments, survey administrators performed a systematic random route around a central point of reference to sample households and used the Last Birthday method to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
+                                    Regions, arrondissements, and communes were selected to achieve a nationally representative sample of the country based on population density and geographic coverage. Within communes, populated areas were selected as the primary sampling unit using probability proportional to size sampling. Enumeration areas were then randomly selected at the neighborhood level. Within each enumeration area, survey administrators performed a systematic random route around a central point of reference to sample households and used the Last Birthday method to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
                                 </p>
                             </div>
                         </div>
@@ -59,7 +51,7 @@ Haitian Creole, can be found in the Appendix of this report.
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Thirty-seven percent (37%) of the interviews took place in the Capital region, followed by 22% in the Central region, 22% in the North region, and 20% in the South region
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Thirty-seven percent (37%) of the interviews took place in the Capital region, followed by 22% in the Central region, 22% in the North region, and 20% in the South region.
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GEOGRAPHY:</b> Forty-four percent (44%) of respondents resided in rural areas and municipalities, while 56% of respondents resided in metro areas or cities.

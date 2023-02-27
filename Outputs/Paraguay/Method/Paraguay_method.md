@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Paraguay was conducted for the <i>WJP's The Rule of Law in Paraguay: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Datum Internacional S.A./BM Business Partners, based in Lima, Peru. Datum Internacional S.A./BM Business Partners administered the surveys between April and June 2021, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Paraguayans aged 18 years or older residing across 17 departments and districts throughout the country.
+                                    The GPP in Paraguay was conducted for the <i>WJP's The Rule of Law in Paraguay: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Datum Internacional S.A./BM Business Partners, based in Lima, Peru. Datum Internacional S.A./BM Business Partners administered the surveys April and June 2021, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Paraguayans aged 18 years or older residing across 17 departments and districts throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
@@ -57,7 +57,7 @@ in the Chaco region of Paraguay.
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Thirty percent (30%) of the interviews took place in the Central Department, followed by 12% in Alto Paraná, 9% Itapúa, 8% in Caaguazú, and the remaining 41% in other regions
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Thirty percent (30%) of the interviews took place in the Central Department, followed by 12% in Alto Paraná, 9% Itapúa, 8% in Caaguazú, and the remaining 41% in other regions.
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GEOGRAPHY:</b> Thirty percent (30%) of respondents resided in rural areas and municipalities, while 70% of respondents resided in metro areas or cities.
