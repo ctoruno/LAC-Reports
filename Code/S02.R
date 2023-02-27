@@ -392,7 +392,6 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
   data2plot <- data_subset.df %>%
     filter(year == latestYear & country %in% countrySet) %>%
     select(country, all_of(unlist(vars4plot, use.names = F))) %>%
-    mutate(country = if_else(country %in% "Bahamas", "The Bahamas", country)) %>%
     mutate(across(!country,
                   ~if_else(.x == 99, NA_real_, as.double(.x)))) %>%
     group_by(country) %>%
@@ -403,10 +402,33 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
                  names_to   = "category",
                  values_to  = "value2plot") %>%
     mutate(value2plot  = value2plot*100,
-           highlighted = if_else(country == mainCountry, "Highlighted", 
-                                 if_else(country == "The Bahamas", "Highlighted",
-                                         "Regular")),
-           labels      = to_percentage.fn(value2plot))
+           highlighted = if_else(country == mainCountry, 
+                                 "Highlighted", 
+                                 "Regular"),
+           labels      = to_percentage.fn(value2plot),
+           country     = if_else(country %in% "Bahamas", 
+                                 "The Bahamas", 
+                                 country))
+  
+  # Specifying a custom order for West Caribbean
+  if (mainCountry %in% westCaribbean_and_guianas.ls) {
+    c.order <- T
+  } else {
+    c.order <- F
+  }
+  if (mainCountry %in% westCaribbean_and_guianas.ls) {
+    data2plot <- data2plot %>%
+      mutate(
+        order_var = case_when(
+          country == "The Bahamas"        ~ 1,
+          country == "Dominican Republic" ~ 2,
+          country == "Guyana"             ~ 3,
+          country == "Haiti"              ~ 4,
+          country == "Jamaica"            ~ 5
+        )
+      )
+  }
+    
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% select(!highlighted) %>% ungroup()), 
@@ -447,7 +469,9 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
                                 labels_var     = "labels",
                                 colors_var     = "highlighted",
                                 colors         = colors4plot,
-                                direction      = "horizontal")
+                                direction      = "horizontal",
+                                custom_order   = c.order,
+                                order_var      = "order_var")
          
          # Defining height
          if (length(countrySet) == 3 & mainCountry != "Paraguay") {

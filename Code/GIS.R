@@ -80,7 +80,8 @@ central_america.df <- master_data.df %>%
     intmig_person = mean(EXP_q31a, na.rm = T),
     recent_intmig = mean(EXP22_q26b, na.rm = T),
     desire2emig   = mean(EXP_q31d, na.rm = T),
-    plans2emig    = mean(EXP_q31f, na.rm = T)
+    plans2emig    = mean(EXP_q31f, na.rm = T),
+    nobs          = n()
   )
 
 # Geocoding locations
@@ -97,4 +98,22 @@ central_america.sf <- central_america.df %>%
   st_as_sf(coords  = c("x", "y"),
            remove  = F,
            na.fail = F)
-  
+
+# Subsetting metro areas
+m.areas <- c("Ciudad De Guatemala, Guatemala",
+             "Quetzaltenango, Guatemala",
+             "Huehuetenango, Guatemala",
+             "Belmopan, Belize",
+             "Belize, Belize",
+             "San Ignacio, Belize",
+             "Panamá, Panama",
+             "Colón, Panama",
+             "David, Panama",
+             "San Salvador, El Salvador",
+             "Santa Ana, El Salvador",
+             "San Miguel, El Salvador")
+
+metro_areas <- central_america.sf %>%
+  filter(location %in% m.areas)
+
+

@@ -358,17 +358,46 @@ figure03.fn <- function(nchart = 3, PAR = F) {
                                str_detect(category, "_neg")     ~ "Negative",
                                str_detect(category, "_pos")     ~ "Positive"
                              ),
-                             status  = factor(status, levels = c("Negative", "Positive", "Neutral")),
-                             perc    = if_else(str_detect(category, "_neg"), 
-                                               perc*-1, 
-                                               perc),
-                             label   = paste0(format(abs(perc),
-                                                     nsmall = 0),
-                                              "%"),
-                             label   = if_else(status == "Neutral", NA_character_, label), 
-                             group   = str_replace_all(category, "_pos|_neg|_neither", "")
+                             status     = factor(status, levels = c("Negative", "Positive", "Neutral")),
+                             perc       = if_else(str_detect(category, "_neg"), 
+                                                  perc*-1, 
+                                                  perc),
+                             label      = paste0(format(abs(perc),
+                                                        nsmall = 0),
+                                                 "%"),
+                             label      = if_else(status == "Neutral", NA_character_, label), 
+                             group      = str_replace_all(category, "_pos|_neg|_neither", ""),
+                             lab_status = case_when(
+                               str_detect(category, "_pos") ~ "POS",
+                               str_detect(category, "_neg") ~ "NEG"
+                             )
                            )
-                       })
+                       }) %>%
+    mutate(country = if_else(country == "Bahamas",
+                             "The Bahamas",
+                             country)
+    ) %>%
+    group_by(country, group, lab_status) %>%
+    mutate(lab_pos = sum(perc))
+  
+  # Specifying a custom order for West Caribbean
+  if (mainCountry %in% westCaribbean_and_guianas.ls) {
+    c.order <- T
+  } else {
+    c.order <- F
+  }
+  if (mainCountry %in% westCaribbean_and_guianas.ls) {
+    data2plot <- data2plot %>%
+      mutate(
+        order_var = case_when(
+          country == "The Bahamas"        ~ 1,
+          country == "Dominican Republic" ~ 2,
+          country == "Guyana"             ~ 3,
+          country == "Haiti"              ~ 4,
+          country == "Jamaica"            ~ 5
+        )
+      )
+  }
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% select(country, group, status, perc, label) %>% ungroup()), 
@@ -414,7 +443,6 @@ figure03.fn <- function(nchart = 3, PAR = F) {
                    "C" = "q52")
   }
   
-  
   # Plotting each figure panel
   imap(vars4plot,
        function(var4plot, panelName) {
@@ -430,7 +458,10 @@ figure03.fn <- function(nchart = 3, PAR = F) {
                               diverging_var  = "status",
                               negative_value = "Negative",
                               colors         = colors4plot,
-                              labels_var     = "label")
+                              labels_var     = "label",
+                              lab_pos        = "lab_pos",
+                              custom_order   = c.order,
+                              order_var      = "order_var")
          
          # Saving panels
          saveIT.fn(chart  = chart,

@@ -27,7 +27,27 @@
 
 figure19A.fn(nchart = 19) {
   
-  # CARLOS!!!!
+  # Defining country parameters
+  if (mainCountry == "Belize") {
+    shpACRON  <- "BLZ"
+    targetVar <- "city"
+  }
+  if (mainCountry == "El Salvador") {
+    shpACRON  <- "SLV"
+    targetVar <- "PSU"
+  }
+  if (mainCountry == "Guatemala") {
+    shpACRON  <- "GTM"
+    targetVar <- "PSU" 
+  }
+  if (mainCountry == "Honduras") {
+    shpACRON  <- "HND"
+    targetVar <- "city"
+  }
+  if (mainCountry == "Panama") {
+    shpACRON  <- "PAN"
+    targetVar <- "PSU"
+  }
 
 }
 

@@ -60,7 +60,7 @@ params:
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in `r params$sf_country` was conducted for the <i>WJP's The Rule of Law in `r params$sf_country`: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by `r params$sf_company`, based in `r params$sf_location`. `r params$sf_company` administered the surveys between `r params$sf_dates`, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included `r (params$sf_nationality)`s aged 18 years or older residing across `r params$af_sunit_number` `r params$af_sunit_term` throughout the country.
+                                    The GPP in `r params$sf_country` was conducted for the <i>WJP's The Rule of Law in `r params$sf_country`: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by `r params$sf_company`, based in `r params$sf_location`. `r params$sf_company` administered the surveys `r params$sf_dates`, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included `r (params$sf_nationality)`s aged 18 years or older residing across `r params$af_sunit_number` `r params$af_sunit_term` throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
