@@ -40,7 +40,7 @@ p_load(char = c(
   "haven", "readxl", "writexl", "xlsx",
   
   # GIS
-  "tmap", "rmapshaper", "sf",
+  "tmaptools", "rmapshaper", "sf",
   
   # Utilities
   "margins", "english", "quarto", "kableExtra",
@@ -327,3 +327,7 @@ incumbentPP.ls <- list(
   "Nicaragua"                        = "FSLN",                                  # No Data, re-check
   "Panama"                           = "Partido Revolucionario Democrático PRD" # No Data, re-check
 )
+
+
+
+  

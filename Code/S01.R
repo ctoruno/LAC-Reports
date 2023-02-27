@@ -88,6 +88,10 @@ figure01.fn <- function(nchart = 1){
   opacities4plot <- c(1, rep(0.5, length(countrySet)-1))
   names(opacities4plot) <- countrySet
   
+  # Defining shape vector
+  shapes4plot <- c(16, rep(18, length(countrySet)-1))
+  names(shapes4plot) <- countrySet
+  
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
              file      = file.path("Outputs", 
@@ -116,6 +120,8 @@ figure01.fn <- function(nchart = 1){
                                 colors       = colors4plot,
                                 diffOpac     = T,
                                 opacities    = opacities4plot,
+                                diffShp      = T,
+                                shapes       = shapes4plot, 
                                 order_var    = "order_value")
          
          # Defining height

@@ -43,8 +43,15 @@ source("https://raw.githubusercontent.com/ctoruno/WJP-Data-Viz/main/loading.R")
 loadVIZ(set = "LAC")
 
 # Loading data
-master_data.df <- read_dta("Data/LAC - Merged.dta")
-# master_data.df <- read_dta("Data/LAC - Merged (with CA).dta")
+if (args[1] == "central") {
+  master_data.df <- read_dta("Data/LAC - Merged (with CA).dta")
+  boundaries.sf <- st_read(paste0(path2SP,
+                                  "Data/GeoBoundaries/geoBoundariesCGAZ_ADM1.shp"))
+} else {
+  master_data.df <- read_dta("Data/LAC - Merged.dta")
+}
+
+# Loading Metholodology values
 method_data.ls <- list(
   "sf" = read_excel("Data/method_summaryData.xlsx",
                     sheet = "Sampling_Frame"),
@@ -57,8 +64,6 @@ method_data.ls <- list(
   "tB" = read_excel("Data/method_summaryData.xlsx",
                     sheet = "Table_B")
 )
-# boundaries.sf <- st_read(paste0(path2SP,
-#                                 "Data/GeoBoundaries/geoBoundariesCGAZ_ADM1.shp"))
 
 # Defining group of countries to work with
 if (args[1] == "andean") {

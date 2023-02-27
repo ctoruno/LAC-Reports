@@ -204,6 +204,10 @@ figure08.fn <- function(nchart = 8){
   opacities4plot <- c(1, rep(0.5, length(countrySet)-1))
   names(opacities4plot) <- countrySet
   
+  # Defining shape vector
+  shapes4plot <- c(16, rep(18, length(countrySet)-1))
+  names(shapes4plot) <- countrySet
+  
   # Plotting each panel of Figure 12
   imap(c("A" = "Media", 
          "B" = "Government", 
@@ -223,8 +227,10 @@ figure08.fn <- function(nchart = 8){
                                 labels_var   = "labels",
                                 colors       = colors4plot,
                                 diffOpac     = T,
-                                order_var    = "order_var",
-                                opacities    = opacities4plot)
+                                opacities    = opacities4plot,
+                                diffShp      = T,
+                                shapes       = shapes4plot, 
+                                order_var    = "order_var")
          
          # Defining height
          if (length(vars4plot[[varSet]]) == 2) {
@@ -322,6 +328,10 @@ figure09.fn <- function(nchart = 9){
   opacities4plot <- c(1, rep(0.5, length(countrySet)-1))
   names(opacities4plot) <- countrySet
   
+  # Defining shape vector
+  shapes4plot <- c(16, rep(18, length(countrySet)-1))
+  names(shapes4plot) <- countrySet
+  
   # Plotting each panel of Figure 12
   imap(c("A" = "Offered", 
          "B" = "Requested", 
@@ -340,6 +350,8 @@ figure09.fn <- function(nchart = 9){
                                 colors       = colors4plot,
                                 diffOpac     = T,
                                 opacities    = opacities4plot,
+                                diffShp      = T,
+                                shapes       = shapes4plot,
                                 order_var    = "order_var")
          
          # Defining height
