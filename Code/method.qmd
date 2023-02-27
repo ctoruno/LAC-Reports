@@ -93,7 +93,7 @@ params:
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. `r params$sd_coverage`
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. `r params$sd_coverage`.
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GEOGRAPHY:</b> `r params$sd_rural_valueTXT` percent (`r params$sd_rural_value`) of respondents resided in rural areas and municipalities, while `r params$sd_urban_value` of respondents resided in metro areas or cities.
