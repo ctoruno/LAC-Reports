@@ -306,7 +306,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     # Saving data points
     write.xlsx(as.data.frame(reasons2table %>% ungroup()), 
                file      = file.path("Outputs", 
-                                     str_replace(mainCountry, " ", "_"),
+                                     str_replace_all(mainCountry, " ", "_"),
                                      paste0("imgChart", nchart),
                                      "reasons.xlsx",
                                      fsep = "/"),
