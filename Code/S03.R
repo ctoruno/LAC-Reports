@@ -272,7 +272,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
             h      = 94.54267)
   
   
-  if (country != "Paraguay") {
+  if (! country %in% c("Paraguay", "Antigua and Barbuda")) {
     
     # Reasons table 
     
