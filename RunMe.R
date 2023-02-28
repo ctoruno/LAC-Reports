@@ -452,7 +452,7 @@ for (mainCountry in group) {
   # Moving HTML to corresponding directory
   file.copy(from = "Code/method.md", 
             to   = file.path("Outputs", 
-                             str_replace(mainCountry, " ", "_"),
+                             str_replace_all(mainCountry, " ", "_"),
                              "Method",
                              paste0(mainCountry, "_method.md"),
                              fsep = "/"), 

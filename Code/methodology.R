@@ -178,17 +178,11 @@ create_methodPage.fn <- function(){
     "tA_quotafil"      = data4quarto.ls[["tA"]] %>% 
                               filter(category == "quota_filled") %>% 
                               pull(value)
-    
-    # Table B
-    # "tB"  =  gen.tableB(data4quarto.ls[["tB"]] %>%
-    #                       mutate(Sample = format(Sample, 
-    #                                              big.mark = ",")))
-    
   )
   
   # Creating Directory to store Methodology files
   dir.create(file.path("Outputs", 
-                       str_replace(mainCountry, " ", "_"),
+                       str_replace_all(mainCountry, " ", "_"),
                        "Method",
                        fsep = "/"), 
              showWarnings = FALSE)
@@ -197,7 +191,7 @@ create_methodPage.fn <- function(){
   quarto::quarto_render(
     input        = "Code/method.qmd",
     execute_dir  = file.path("Outputs", 
-                            str_replace(mainCountry, " ", "_"),
+                            str_replace_all(mainCountry, " ", "_"),
                             "Method",
                             fsep = "/"),
     execute_params = method_input.ls
