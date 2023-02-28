@@ -34,7 +34,8 @@ library(pacman)
 
 p_load(char = c(
   # Visualizations
-  "showtext", "ggtext", "ggsankey", "ggrepel", "ggplotify", "gridExtra", "ggradar2", "patchwork","waffle",
+  "showtext", "ggtext", "ggsankey", "ggrepel", "ggplotify", "gridExtra", "ggradar2", "patchwork", 
+  "waffle", "ggh4x",
   
   # Data Loading
   "haven", "readxl", "writexl", "xlsx",
@@ -244,7 +245,7 @@ ordnung.fn <- function(targetCountry){
 saveIT.fn <- function(chart, n, suffix = NULL, w, h) {
   ggsave(plot   = chart,
          file   = file.path("Outputs", 
-                            str_replace(mainCountry, " ", "_"),
+                            str_replace_all(mainCountry, " ", "_"),
                             paste0("imgChart", n),
                             paste0("figure_", n, suffix, ".svg"),
                             fsep = "/"), 

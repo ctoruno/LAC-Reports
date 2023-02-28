@@ -95,7 +95,7 @@ figure01.fn <- function(nchart = 1){
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
              file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
+                                   str_replace_all(mainCountry, " ", "_"),
                                    "dataPoints.xlsx",
                                    fsep = "/"), 
              sheetName = paste0("Chart_", nchart), 
@@ -221,7 +221,7 @@ figure02.fn <- function(nchart = 2){
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
              file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
+                                   str_replace_all(mainCountry, " ", "_"),
                                    "dataPoints.xlsx",
                                    fsep = "/"), 
              sheetName = paste0("Chart_", nchart),
@@ -402,7 +402,7 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% select(country, group, status, perc, label) %>% ungroup()), 
              file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
+                                   str_replace_all(mainCountry, " ", "_"),
                                    "dataPoints.xlsx",
                                    fsep = "/"), 
              sheetName = paste0("Chart_", nchart),
@@ -488,12 +488,11 @@ figure04.fn <- function(nchart = 4) {
            q46d_G2, q46f_G1, q46a_G2,
            q46d_G1, q46e_G1, q46h_G2) %>%
     mutate(
-      across(!year,
+      across(!c(year),
              ~ case_when(
                .x == 1 | .x == 2 ~ 1,
                .x == 3 | .x == 4 ~ 0
-             )),
-      year = paste0("'", str_sub(year, start = -2))
+             ))
     ) %>%
     group_by(year) %>%
     summarise(across(everything(),
@@ -505,12 +504,33 @@ figure04.fn <- function(nchart = 4) {
     mutate(value = value*100,
            label = paste0(format(round(value, 0),
                                  nsmall = 0),
-                          "%"))
+                          "%")) %>%
+    filter(year >= 2014)
+  
+  # Pulling minimum and maximum available year
+  minyear <- min(data2plot %>% pull(year))
+  if (minyear %% 2 != 0) {
+    minyear <- minyear - 1
+  }
+  maxyear <- max(data2plot %>% pull(year))
+  if (maxyear %% 2 != 0) {
+    maxyear <- minyear + 1
+  }
+  
+  # Creating a vector for yearly axis
+  x.axis.values <- seq(minyear, maxyear, by = 2)
+  sec.ticks     <- seq(minyear, maxyear, by = 1)
+  x.axis.labels <- paste0("'", str_sub(x.axis.values, start = -2))
+  
+  if (mainCountry == "Haiti") {
+    x.axis.values <- c(2021, 2022)
+    x.axis.labels <- c("'21", "'22")
+  }
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
              file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
+                                   str_replace_all(mainCountry, " ", "_"),
                                    "dataPoints.xlsx",
                                    fsep = "/"), 
              sheetName = paste0("Chart_", nchart),
@@ -540,6 +560,10 @@ figure04.fn <- function(nchart = 4) {
                                 colors_var     = "category",
                                 colors         = colors4plot,
                                 repel          = T,
+                                custom.axis    = T,
+                                x.breaks       = x.axis.values,
+                                x.labels       = x.axis.labels,
+                                sec.ticks      = sec.ticks
                                 )
          
          # Saving panels
@@ -600,7 +624,7 @@ figure05.fn <- function(nchart = 5) {
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% select(!highlighted) %>% ungroup()), 
              file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
+                                   str_replace_all(mainCountry, " ", "_"),
                                    "dataPoints.xlsx",
                                    fsep = "/"), 
              sheetName = paste0("Chart_", nchart),
@@ -663,8 +687,7 @@ figure06.fn <- function(nchart = 6) {
     mutate(
       q43_G2 = if_else(q43_G2 == 3, 1, 
                        if_else(!is.na(q43_G2) & q43_G2 != 99, 0, 
-                               NA_real_)),
-      year = paste0("'", str_sub(year, start = -2))
+                               NA_real_))
     ) %>%     
     group_by(year, country) %>%
     summarise(value2plot = mean(q43_G2, na.rm = T)) %>%
@@ -672,12 +695,28 @@ figure06.fn <- function(nchart = 6) {
            label = paste0(format(round(value2plot, 0),
                                  nsmall = 0),
                           "%"),
-           label = if_else(country == mainCountry, label, NA_character_))
+           label = if_else(country == mainCountry, label, NA_character_)) %>%
+    filter(year >= 2014)
+  
+  # Pulling minimum and maximum available year
+  minyear <- min(data2plot %>% pull(year))
+  if (minyear %% 2 != 0) {
+    minyear <- minyear - 1
+  }
+  maxyear <- max(data2plot %>% pull(year))
+  if (maxyear %% 2 != 0) {
+    maxyear <- minyear + 1
+  }
+  
+  # Creating a vector for yearly axis
+  x.axis.values <- seq(minyear, maxyear, by = 2)
+  sec.ticks     <- seq(minyear, maxyear, by = 1)
+  x.axis.labels <- paste0("'", str_sub(x.axis.values, start = -2))
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
              file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
+                                   str_replace_all(mainCountry, " ", "_"),
                                    "dataPoints.xlsx",
                                    fsep = "/"), 
              sheetName = paste0("Chart_", nchart),
@@ -701,7 +740,11 @@ figure06.fn <- function(nchart = 6) {
                          colors         = colors4plot,
                          repel          = T,
                          transparency   = T,
-                         transparencies = alphas4plot
+                         transparencies = alphas4plot,
+                         custom.axis    = T,
+                         x.breaks       = x.axis.values,
+                         x.labels       = x.axis.labels,
+                         sec.ticks      = sec.ticks
   )
   
   # Saving panels
@@ -759,7 +802,7 @@ figure04_PRY.fn <- function(nchart = 4){
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
              file      = file.path("Outputs", 
-                                   str_replace(mainCountry, " ", "_"),
+                                   str_replace_all(mainCountry, " ", "_"),
                                    "dataPoints.xlsx",
                                    fsep = "/"), 
              sheetName = paste0("Chart_", nchart),
