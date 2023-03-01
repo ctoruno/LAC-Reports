@@ -366,7 +366,7 @@ figure20B.fn(nchart = 20) {
 
 figure21.fn(nchart = 21) {
   
-  data4map <- 
+  data4map <- NULL
   
 }
 
