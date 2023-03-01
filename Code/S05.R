@@ -36,7 +36,7 @@ figure16B_CA.fn(nchart = 16) {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure19A.fn(nchart = 19) {
+figure19A.fn <- function(nchart = 19) {
   
   # Defining country parameters
   if (mainCountry == "Belize") {
@@ -248,13 +248,91 @@ figure19B.fn(nchart = 19) {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure20A.fn(nchart = 20) {
+figure20A.fn <- function(nchart = 20) {
   
-  # CARLOS!!!!
+  # Defining data for plot
+  data2plot <- data_subset.df %>%
+    select(country, year, EXP_q31d, EXP_q31f) %>%
+    filter(year > 2020) %>%
+    filter(country %in% c("Belize", "Guatemala", "Honduras", "El Salvador", "Panama")) %>%
+    mutate(
+      EXP_q31d = case_when(
+        EXP_q31d == 1  ~ 1,
+        EXP_q31d == 2  ~ 0
+      ),
+      EXP_q31f = case_when(
+        EXP_q31f == 1  ~ 1,
+        EXP_q31f == 0  ~ 0
+      )
+    ) %>%
+    group_by(country, year) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(!c(country, year),
+                 names_to  = "category",
+                 values_to = "value2plot") %>%
+    mutate(
+      label = to_percentage.fn(value2plot*100),
+      high  = if_else(country == mainCountry, "Primary", "Secondary"),
+      label = if_else(country == mainCountry & year == 2021,
+                      label,
+                      NA_character_)
+    )
+  
+  # Producing ggplot
+  chart <- ggplot() +
+    geom_bar(data  = data2plot %>% filter(year == 2022),
+             aes(x     = country,
+                 y     = value2plot*100,
+                 fill  = category,
+                 alpha = high),
+             stat     = "identity",
+             position = "dodge",
+             show.legend = F) +
+    geom_point(data = data2plot %>% filter(year == 2021),
+               aes(x     = country,
+                   y     = value2plot*100,
+                   fill  = category),
+               position  = position_dodge(width = 0.9),
+               color     = "black",
+               show.legend = F) +
+    geom_text(data = data2plot %>% filter(year == 2021),
+              aes(x     = country,
+                  y     = value2plot*100,
+                  label = label,
+                  alpha = high),
+              nudge_x   = ifelse(data2plot$category == "EXP_q31d", -0.25, 0.25),
+              nudge_y   = 8,
+              family    = "Lato Full",
+              fontface  = "bold",
+              size      = 3.514598,
+              show.legend = F) +
+    scale_y_continuous(limits = c(0,100),
+                       breaks = seq(0,100, 20),
+                       labels = paste0(seq(0,100, 20),
+                                       "%")) +
+    scale_fill_manual(values = c("EXP_q31d" = "#2a2a94",
+                                 "EXP_q31f" = "#a90099")) +
+    scale_alpha_manual(values = c("Primary"   = 1,
+                                  "Secondary" = 0.7)) +
+    WJP_theme() +
+    theme(axis.title.x       = element_blank(),
+          axis.title.y       = element_blank(),
+          panel.grid.major.x = element_blank(),
+          panel.grid.major.y = element_line(color    = "#D0D1D3",
+                                            linetype = "dashed"))
+  
+  # Saving panels
+  saveIT.fn(chart  = chart,
+            n      = nchart,
+            suffix = "A",
+            w      = 189.7883,
+            h      = 52.71897)
   
 }
 
-figure20B.fn(nchart = 20) {
+figure20B.fn <- function(nchart = 20) {
   
   # Defining country parameters
   if (mainCountry == "Belize") {
