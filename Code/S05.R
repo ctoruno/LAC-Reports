@@ -373,8 +373,83 @@ figure21A.fn(nchart = 21) {
 
 figure21B.fn(nchart = 21) {
   
-  # CARLOS !!!
+  # Preparing data for map
+  data4map <- data_subset.df %>%
+    filter(country == mainCountry & year == latestYear) %>%
+    select(EXP22_q27n) %>%
+    mutate(
+      EXP22_q27n = as.double(EXP22_q27n),
+      EXP22_q27n = case_when(
+        EXP22_q27n == 1 ~ "San Diego",
+        EXP22_q27n == 2 ~ "El Centro",
+        EXP22_q27n == 3 ~ "Yuma",
+        EXP22_q27n == 4 ~ "Tucson",
+        EXP22_q27n == 5 ~ "El Paso",
+        EXP22_q27n == 6 ~ "Big Bend",
+        EXP22_q27n == 7 ~ "Del Rio",
+        EXP22_q27n == 8 ~ "Laredo",
+        EXP22_q27n == 9 ~ "Rio Grande",
+        EXP22_q27n == 10 ~ "Other",
+        EXP22_q27n == 99 ~ NA_character_,
+      )
+    ) %>%
+    group_by(EXP22_q27n) %>%
+    summarise(n = n()) %>%
+    filter(!is.na(EXP22_q27n)) %>%
+    ungroup() %>%
+    mutate(total = sum(n),
+           value = n/total,
+           label = to_percentage.fn(value*100)) %>%
+    slice_max(value,
+              n = 3,
+              with_ties = F) %>%
+    mutate(pos = row_number()) %>%
+    rename(location = EXP22_q27n) %>%
+    left_join(map_data.ls[["BorderPoints"]] %>%
+                st_drop_geometry() %>%
+                mutate(location = case_when(
+                  str_detect(location, "San Diego")  ~ "San Diego",
+                  str_detect(location, "El Centro")  ~ "El Centro",
+                  str_detect(location, "Yuma")       ~ "Yuma",
+                  str_detect(location, "Tucson")     ~ "Tucson",
+                  str_detect(location, "El Paso")    ~ "El Paso",
+                  str_detect(location, "Big Bend")   ~ "Big Bend",
+                  str_detect(location, "Del Rio")    ~ "Del Rio",
+                  str_detect(location, "Laredo")     ~ "Laredo",
+                  str_detect(location, "Rio Grande") ~ "Rio Grande",
+                )) %>%
+                select(location, x, y)) %>%
+    st_as_sf(coords  = c("x", "y"),
+             crs     = 4326,
+             remove  = F,
+             na.fail = F)
   
+  # Drawing map
+  map <- ggplot(data  = data4map %>% filter(!is.na(x))) + 
+    geom_sf(data  = map_data.ls[["USA_map"]],
+            color = "#ebebf5",
+            fill  = "#ebebf5") +
+    geom_sf(color = "#a90099",
+            size  = 5) +
+    geom_text(aes(x     = as.double(x),
+                  y     = as.double(y),
+                  label = pos),
+              family   = "Lato Full",
+              fontface = "bold",
+              color    = "white",
+              size     = 3.5) +
+    theme_void() +
+    theme(panel.background   = element_blank(),
+          plot.background    = element_blank())
+  
+  # Saving panels
+  saveIT.fn(chart  = map,
+            n      = nchart,
+            suffix = "B",
+            w      = 145.8558,
+            h      = 72.40072)
+    
+   
 }
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
