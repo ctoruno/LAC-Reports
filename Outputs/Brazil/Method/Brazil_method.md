@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Brazil was conducted for the <i>WJP's The Rule of Law in Brazil: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by About Brazil Market Research, based in Fortaleza, Brazil. About Brazil Market Research administered the surveys June and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Brazilians aged 18 years or older residing across eight states throughout the country.
+                                    The GPP in Brazil was conducted for the <i>WJP's The Rule of Law in Brazil: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by About Brazil Market Research, based in Fortaleza, Brazil. About Brazil Market Research administered the surveys between June and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Brazilians aged 18 years or older residing across eight states throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
@@ -63,7 +63,7 @@ Methodology
                                                         <b class="c-purple">GENDER:</b> Fifty-three percent (53%) of respondents were female and 47% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (76%) reported that they had received at least a high school diploma or vocational degree, and the remaining 24% of respondents received a middle school diploma or less.
+                                                        <b class="c-purple">EDUCATION:</b> Most respondents (76%) reported that they had received at least a high school diploma or vocational degree, and the remaining 24% of respondents received up to a middle school diploma.
                                                     </p>
                                                 </div>
                                             </div>
@@ -130,7 +130,7 @@ full and disqualified if not properly conducted. After quality control,
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Argentina was collected in 2013, 2016, 2018, and 2022. Data for Brazil was collected in 2011, 2014, 2017, and 2022. Data for Paraguay was collected in 2021..
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Argentina was collected in 2016, 2018, and 2022. Data for Brazil was collected in 2014, 2017, and 2022. Data for Paraguay was collected in 2021.
                                         </p>
                                     </div>
                                 </div>

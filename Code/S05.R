@@ -30,24 +30,102 @@ figure19A.fn(nchart = 19) {
   # Defining country parameters
   if (mainCountry == "Belize") {
     shpACRON  <- "BLZ"
-    targetVar <- "city"
   }
   if (mainCountry == "El Salvador") {
     shpACRON  <- "SLV"
-    targetVar <- "PSU"
   }
   if (mainCountry == "Guatemala") {
     shpACRON  <- "GTM"
-    targetVar <- "PSU" 
   }
   if (mainCountry == "Honduras") {
     shpACRON  <- "HND"
-    targetVar <- "city"
   }
   if (mainCountry == "Panama") {
     shpACRON  <- "PAN"
-    targetVar <- "PSU"
   }
+  
+  # Drawing base map
+  base_map.sf <- boundaries.sf %>%
+    filter(shapeGroup == shpACRON)
+  
+  # Sub-setting data for map
+  data4map <- map_data.ls[["CAmapdata"]] %>%
+    filter(country == mainCountry) %>%
+    mutate(
+      across(c(intmig_person, recent_intmig, desire2emig, plans2emig, x, y),
+             as.double),
+      across(c(intmig_person, recent_intmig, desire2emig, plans2emig),
+             ~to_percentage.fn(.x*100)),
+      location = str_extract(location, ".+(?=,)"),
+      location = case_when(
+        location == "Ciudad De Guatemala" ~ "Guatemala City",
+        location == "Belize"              ~ "Belize City",
+        location == "Panamá"              ~ "Panama City",
+        TRUE ~ location
+        ),
+      label    = paste0('<span style="color:#222221;font-size:3.514598mm;">', location, "</span><br>",
+                        '<span style="color:#2a2a94;font-size:5.5mm;">&#9642; </span>', 
+                        '<span style="color:#2a2a94;font-size:3.514598mm;">', intmig_person, "   </span>",
+                        '<span style="color:#a90099;font-size:5.5mm;">&#9642; </span>', 
+                        '<span style="color:#a90099;font-size:3.514598mm;">', recent_intmig, "</span>"),
+      x = case_when(
+        location == "Guatemala City" ~ x*0.9985,
+        location == "Quetzaltenango" ~ x*1.0015,
+        location == "Huehuetenango"  ~ x*1.0015,
+        location == "Belmopan"       ~ x*1.0010,
+        location == "Belize City"    ~ x*1.0010,
+        location == "Santa Ana"      ~ x*0.9995,
+        location == "San Salvador"   ~ x*1.0095,
+        location == "San Miguel"     ~ x*1.0095,
+        location == "David"          ~ x*1.0025,
+        location == "Panama City"    ~ x*1.0025,
+        location == "Colón"          ~ x*0.9995,
+        TRUE ~ x
+      ),
+      y = case_when(
+        location == "Guatemala City" ~ y*0.9875,
+        location == "Quetzaltenango" ~ y*1.0195,
+        location == "Huehuetenango"  ~ y*1.0195,
+        location == "Belmopan"       ~ y*1.0115,
+        location == "San Ignacio"    ~ y*0.9925,
+        location == "Belize City"    ~ y*0.9865,
+        location == "Santa Ana"      ~ y*1.0015,
+        location == "San Salvador"   ~ y*0.9880,
+        location == "San Miguel"     ~ y*0.9920,
+        location == "David"          ~ y*1.0625,
+        location == "Panama City"    ~ y*0.9400,
+        location == "Colón"          ~ y*0.9995,
+        TRUE ~ y
+      )
+    )
+  
+  # Drawing map
+  map <- ggplot(data = base_map.sf) +
+    geom_sf(color = "white",
+            fill  = "#ebebf5") +
+    geom_sf(data  = data4map,
+            color = "black",
+            size  = 1.5) +
+    geom_richtext(data      = data4map,
+                  aes(x     = x, 
+                      y     = y, 
+                      label = label),
+                  family   = "Lato Full",
+                  fontface = "bold", 
+                  size  = 3,
+                  fill  = NA, 
+                  hjust = 0,
+                  label.color = NA) +
+    theme_void() +
+    theme(panel.background   = element_blank(),
+          plot.background    = element_blank())
+
+  # Saving panels
+  saveIT.fn(chart  = map,
+            n      = nchart,
+            suffix = "A",
+            w      = 69.23758,
+            h      = 73.10364)
 
 }
 
@@ -167,7 +245,105 @@ figure20A.fn(nchart = 20) {
 
 figure20B.fn(nchart = 20) {
   
-  # CARLOS!!!!
+  # Defining country parameters
+  if (mainCountry == "Belize") {
+    shpACRON  <- "BLZ"
+  }
+  if (mainCountry == "El Salvador") {
+    shpACRON  <- "SLV"
+  }
+  if (mainCountry == "Guatemala") {
+    shpACRON  <- "GTM"
+  }
+  if (mainCountry == "Honduras") {
+    shpACRON  <- "HND"
+  }
+  if (mainCountry == "Panama") {
+    shpACRON  <- "PAN"
+  }
+  
+  # Drawing base map
+  base_map.sf <- boundaries.sf %>%
+    filter(shapeGroup == shpACRON)
+  
+  # Sub-setting data for map
+  data4map <- map_data.ls[["CAmapdata"]] %>%
+    filter(country == mainCountry) %>%
+    mutate(
+      across(c(intmig_person, recent_intmig, desire2emig, plans2emig, x, y),
+             as.double),
+      across(c(intmig_person, recent_intmig, desire2emig, plans2emig),
+             ~to_percentage.fn(.x*100)),
+      location = str_extract(location, ".+(?=,)"),
+      location = case_when(
+        location == "Ciudad De Guatemala" ~ "Guatemala City",
+        location == "Belize"              ~ "Belize City",
+        location == "Panamá"              ~ "Panama City",
+        TRUE ~ location
+      ),
+      label    = paste0('<span style="color:#222221;font-size:3.514598mm;">', location, "</span><br>",
+                        '<span style="color:#2a2a94;font-size:5.5mm;">&#9642; </span>', 
+                        '<span style="color:#2a2a94;font-size:3.514598mm;">', desire2emig, "   </span>",
+                        '<span style="color:#a90099;font-size:5.5mm;">&#9642; </span>', 
+                        '<span style="color:#a90099;font-size:3.514598mm;">', plans2emig, "</span>"),
+      x = case_when(
+        location == "Guatemala City" ~ x*0.9985,
+        location == "Quetzaltenango" ~ x*1.0015,
+        location == "Huehuetenango"  ~ x*1.0015,
+        location == "Belmopan"       ~ x*1.0010,
+        location == "Belize City"    ~ x*1.0010,
+        location == "Santa Ana"      ~ x*0.9995,
+        location == "San Salvador"   ~ x*1.0095,
+        location == "San Miguel"     ~ x*1.0095,
+        location == "David"          ~ x*1.0025,
+        location == "Panama City"    ~ x*1.0025,
+        location == "Colón"          ~ x*0.9995,
+        TRUE ~ x
+      ),
+      y = case_when(
+        location == "Guatemala City" ~ y*0.9875,
+        location == "Quetzaltenango" ~ y*1.0195,
+        location == "Huehuetenango"  ~ y*1.0195,
+        location == "Belmopan"       ~ y*1.0115,
+        location == "San Ignacio"    ~ y*0.9925,
+        location == "Belize City"    ~ y*0.9865,
+        location == "Santa Ana"      ~ y*1.0015,
+        location == "San Salvador"   ~ y*0.9880,
+        location == "San Miguel"     ~ y*0.9920,
+        location == "David"          ~ y*1.0625,
+        location == "Panama City"    ~ y*0.9400,
+        location == "Colón"          ~ y*0.9995,
+        TRUE ~ y
+      )
+    )
+  
+  # Drawing map
+  map <- ggplot(data = base_map.sf) +
+    geom_sf(color = "white",
+            fill  = "#ebebf5") +
+    geom_sf(data  = data4map,
+            color = "black",
+            size  = 1.5) +
+    geom_richtext(data      = data4map,
+                  aes(x     = x, 
+                      y     = y, 
+                      label = label),
+                  family   = "Lato Full",
+                  fontface = "bold", 
+                  size  = 3,
+                  fill  = NA, 
+                  hjust = 0,
+                  label.color = NA) +
+    theme_void() +
+    theme(panel.background   = element_blank(),
+          plot.background    = element_blank())
+  
+  # Saving panels
+  saveIT.fn(chart  = map,
+            n      = nchart,
+            suffix = "B",
+            w      = 69.23758,
+            h      = 73.10364)
   
 }
 

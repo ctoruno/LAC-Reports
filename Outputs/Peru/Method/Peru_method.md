@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Peru was conducted for the <i>WJP's The Rule of Law in Peru: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Datum Internacional S.A., based in Lima, Peru. Datum Internacional S.A. administered the surveys July and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Peruvians aged 18 years or older residing across 15 regions throughout the country.
+                                    The GPP in Peru was conducted for the <i>WJP's The Rule of Law in Peru: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Datum Internacional S.A., based in Lima, Peru. Datum Internacional S.A. administered the surveys between July and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Peruvians aged 18 years or older residing across 15 regions throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
@@ -69,7 +69,7 @@ the Amazon rainforest and Amazon basin, respectively.
                                                         <b class="c-purple">GENDER:</b> Fifty-one percent (51%) of respondents were female and 49% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (60%) reported that they had received a middle school diploma or less, and the remaining 40% of respondents received at least a high school diploma or vocational degree.
+                                                        <b class="c-purple">EDUCATION:</b> Most respondents (60%) reported that they had received up to a middle school diploma, and the remaining 40% of respondents received at least a high school diploma or vocational degree.
                                                     </p>
                                                 </div>
                                             </div>
@@ -127,7 +127,7 @@ the Amazon rainforest and Amazon basin, respectively.
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2013, 2016, 2018, and 2022. Data for Ecuador was collected in 2012, 2014, 2017, and 2022.
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2016, 2018, and 2022. Data for Ecuador was collected in 2014, 2017, and 2022.
                                         </p>
                                     </div>
                                 </div>

@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Paraguay was conducted for the <i>WJP's The Rule of Law in Paraguay: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Datum Internacional S.A./BM Business Partners, based in Lima, Peru. Datum Internacional S.A./BM Business Partners administered the surveys April and June 2021, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Paraguayans aged 18 years or older residing across 17 departments and districts throughout the country.
+                                    The GPP in Paraguay was conducted for the <i>WJP's The Rule of Law in Paraguay: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Datum Internacional S.A. and BM Business Partners, based in Lima, Peru and Montevideo, Uruguay, respectively. Datum Internacional S.A. and BM Business Partners administered the surveys between April and June 2021, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Paraguayans aged 18 years or older residing across 17 departments and districts throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
@@ -69,7 +69,7 @@ in the Chaco region of Paraguay.
                                                         <b class="c-purple">GENDER:</b> Forty-nine percent (49%) of respondents were female and 51% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (55%) reported that they had received at least a high school diploma or vocational degree, and the remaining 45% of respondents received a middle school diploma or less.
+                                                        <b class="c-purple">EDUCATION:</b> More than half (55%) of all respondents reported that they had received at least a high school diploma or vocational degree, and the remaining 45% of respondents received a middle school diploma or less.
                                                     </p>
                                                 </div>
                                             </div>
@@ -127,7 +127,7 @@ in the Chaco region of Paraguay.
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Argentina was collected in 2013, 2016, 2018, and 2022. Data for Brazil was collected in 2011, 2014, 2017, and 2022.
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Argentina was collected in 2016, 2018, and 2022. Data for Brazil was collected in 2014, 2017, and 2022. Data for Paraguay was collected in 2021.
                                         </p>
                                     </div>
                                 </div>

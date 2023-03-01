@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Colombia was conducted for the <i>WJP's The Rule of Law in Colombia: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Tempo Group SA, based in Bogotá, Colombia. Tempo Group SA administered the surveys May and June 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Colombians aged 18 years or older residing across 18 major cities throughout the country.
+                                    The GPP in Colombia was conducted for the <i>WJP's The Rule of Law in Colombia: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Tempo Group SA, based in Bogotá, Colombia. Tempo Group SA administered the surveys between May and June 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Colombians aged 18 years or older residing across 18 major cities throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
@@ -28,7 +28,7 @@ Methodology
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Regions and cities were selected to achieve a nationally representative sample of the country. In city districts, neighborhoods served as the primary sampling unit and were randomly selected based on relative population sizes and the socioeconomic level distribution within each city. Within each neighborhood, blocks were selected as enumeration areas using simple random sampling. In rural areas, <i> veredas </i>, or municipalities, served as the primary sampling unit and were randomly selected based on relative population sizes and the socioeconomic level distribution within each area. Within each vereda, zones were selected as enumeration areas using simple random sampling. Within each enumeration area, survey administrators performed a systematic random route to sample households and used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
+                                    Regions and cities were selected to achieve a nationally representative sample of the country. In city districts, neighborhoods served as the primary sampling unit and were randomly selected based on relative population sizes and the socioeconomic level distribution within each city. Within each neighborhood, blocks were selected as enumeration areas using simple random sampling. In rural areas, veredas, or municipalities, served as the primary sampling unit and were randomly selected based on relative population sizes and the socioeconomic level distribution within each area. Within each vereda, zones were selected as enumeration areas using simple random sampling. Within each enumeration area, survey administrators performed a systematic random route to sample households and used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
                                 </p>
                             </div>
                         </div>
@@ -63,7 +63,7 @@ Methodology
                                                         <b class="c-purple">GENDER:</b> Fifty-one percent (51%) of respondents were female and 49% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (79%) reported that they had received at least a high school diploma or vocational degree, and the remaining 21% of respondents received a middle school diploma or less.
+                                                        <b class="c-purple">EDUCATION:</b> Most respondents (79%) reported that they had received at least a high school diploma or vocational degree, and the remaining 21% of respondents received up to a middle school diploma.
                                                     </p>
                                                 </div>
                                             </div>
@@ -121,7 +121,7 @@ Methodology
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2013, 2016, 2018, and 2022. Data for Ecuador was collected in 2012, 2014, 2017, and 2022.
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2016, 2018, and 2022. Data for Ecuador was collected in 2014, 2017, and 2022.
                                         </p>
                                     </div>
                                 </div>

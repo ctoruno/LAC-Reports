@@ -22,13 +22,13 @@ Methodology
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Bolivia represents an achieved total sample size of 1,000 interviews distributed proportionally across nine departments. Capture Consulting based the sampling frame on the 2020 projected population figures from the National Statistics Institute, acquiring a proportionally stratified sample by department, age, gender, socioeconomic status, and level of urbanization .
+                                    The General Population Poll in Bolivia represents an achieved total sample size of 1,000 interviews distributed proportionally across nine departments. Captura Consulting based the sampling frame on the 2020 projected population figures from the National Statistics Institute, acquiring a proportionally stratified sample by department, age, gender, socioeconomic status, and level of urbanization .
                                     <br><br>
                                     In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Spanish, can be found in the Appendix of this report.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Departments and cities were selected to achieve a nationally representative sample of the country. Within cities and towns, neighborhoods were selected as the primary sampling unit using probability proportional to size sampling. In urban neighborhoods, enumeration areas were randomly selected. In rural neighborhoods, surveyors constructed the first enumeration area around a central point and selected additional sampling units from the surrounding area, moving in a clockwise direction. The number of interviews per enumeration area was determined by the population distribution in each primary sampling unit. Within each enumeration area, survey administrators performed a systematic random route to sample households and used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
+                                    Departments and cities were selected to achieve a nationally representative sample of the country. Within cities and towns, neighborhoods were selected as the primary sampling unit using probability proportional to size sampling. Within each neighborhood, enumeration areas were constructed around randomly selected sampling points and the number of interviews per enumeration area was determined by the population distribution in each primary sampling unit. Within each enumeration area, survey administrators performed a systematic random route to sample households and used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
                                 </p>
                             </div>
                         </div>
@@ -57,13 +57,13 @@ Methodology
                                                         <b class="c-purple">GEOGRAPHY:</b> Forty-seven percent (47%) of respondents resided in rural areas and municipalities, while 53% of respondents resided in metro areas or cities.
                                                     </p>
                                                     <p class="mb-4">
-                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Almost half of all respondents (49%) identified themselves as Mestizo, followed by Aymara (22%) and Quechua (21%).
+                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Almost half (49%) of all respondents identified themselves as Mestizo, followed by Aymara (22%) and Quechua (21%).
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GENDER:</b> Fifty percent (50%) of respondents were female and 50% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (82%) reported that they had received at least a high school diploma or vocational degree, and the remaining 18% of respondents received a middle school diploma or less.
+                                                        <b class="c-purple">EDUCATION:</b> Most respondents (82%) reported that they had received at least a high school diploma or vocational degree, and the remaining 18% of respondents received up to a middle school diploma.
                                                     </p>
                                                 </div>
                                             </div>
@@ -121,7 +121,7 @@ Methodology
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2013, 2016, 2018, and 2022. Data for Ecuador was collected in 2012, 2014, 2017, and 2022.
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2016, 2018, and 2022. Data for Ecuador was collected in 2014, 2017, and 2022..
                                         </p>
                                     </div>
                                 </div>

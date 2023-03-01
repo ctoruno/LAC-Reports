@@ -34,8 +34,8 @@ source("Code/settings.R")
 # Loading functions for sections
 source("Code/S01.R")
 source("Code/S02.R")
-
 source("Code/S03.R")
+source("Code/S05.R")
 source("Code/methodology.R")
 
 # Loading plotting functions from GitHub
@@ -45,8 +45,15 @@ loadVIZ(set = "LAC")
 # Loading data
 if (args[1] == "central") {
   master_data.df <- read_dta("Data/LAC - Merged (with CA).dta")
-  boundaries.sf <- st_read(paste0(path2SP,
-                                  "Data/GeoBoundaries/geoBoundariesCGAZ_ADM1.shp"))
+  boundaries.sf  <- st_read(paste0(path2SP,
+                                   "Data/GeoBoundaries/geoBoundariesCGAZ_ADM1.shp"))
+  map_data.ls  <- list("USA_map"      = st_read("Data/USA_boundaries.csv",
+                                                crs = 4326),
+                       "BorderPoints" = st_read("Data/USA_borderPoints.csv",
+                                                crs = 4326),
+                       "CAmapdata"    = st_read("Data/CA_data4maps.csv",
+                                                crs = 4326))
+    
 } else {
   master_data.df <- read_dta("Data/LAC - Merged.dta")
 }
