@@ -364,9 +364,16 @@ figure20B.fn(nchart = 20) {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure21.fn(nchart = 21) {
+figure21A.fn(nchart = 21) {
   
-  data4map <- NULL
+  # SANTIAGO!!!
+  
+}
+
+
+figure21B.fn(nchart = 21) {
+  
+  # CARLOS !!!
   
 }
 
