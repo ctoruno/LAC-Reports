@@ -26,7 +26,18 @@
 
 figure16B_CA.fn(nchart = 16) {
   
-  # Santiago!!!!
+  voluntary_contacts   <- c("q10a", "q10b", "q10c", "q10d", "q10e",
+                            "q11f", "q11b", "q11c", "q11g", "q11d")
+  involuntary_contacts <- c("q12a", "q12b", "q12c",
+                            "q13a", "q14a")
+  interactions_universe <- data_subset.df %>%
+    select()
+  
+## +++++++++++++++++++
+## Interactions
+## ++++++++++++++++++
+
+  
   
 }
 
@@ -142,7 +153,7 @@ figure19A.fn <- function(nchart = 19) {
 
 figure19B.fn(nchart = 19) {
   
-  migrated <- LAC_Merged_draft %>%
+  migrated <- data_subset.df %>%
     filter(country %in% "Guatemala") %>%
     filter(year == 2022) %>%
     mutate(migrated     = if_else(EXP_q31a == 0, 1, 
@@ -444,8 +455,67 @@ figure20B.fn <- function(nchart = 20) {
 
 figure21A.fn(nchart = 21) {
   
-  # SANTIAGO!!!
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear & country == mainCountry & EXP_q31j == 1) %>%
+    select(starts_with("EXP22_q27d")) %>%
+    mutate(counter = 1,
+           universe = sum(counter)) %>%
+    select(!counter) %>%
+    mutate(across(
+      !universe,
+      ~ case_when(
+        .x == 1 ~ 1,
+        .x == 0 ~ 0,
+        .x == 99 ~ NA_real_,
+      )
+    )) %>%
+    pivot_longer(cols = !universe, names_to = "category", values_to = "value") %>%
+    mutate(category = 
+             case_when(
+               category == "EXP22_q27d_1" ~ "Legal counsel/inmigration services",
+               category == "EXP22_q27d_2" ~ "Medical services",
+               category == "EXP22_q27d_3" ~ "Other NGOs",
+               category == "EXP22_q27d_4" ~ "Local authorities",
+               category == "EXP22_q27d_5" ~ "Local community members",
+               category == "EXP22_q27d_6" ~ "Religious organizations",
+               category == "EXP22_q27d_7" ~ "Family members/friends",
+               category == "EXP22_q27d_8" ~ "Other",
+               category == "EXP22_q27d_9" ~ "None of the above",
+               category == "EXP22_q27d_99"~ "Don't know/No Answer" 
+             )) %>%
+    group_by(category) %>%
+    summarise(values = sum(value, na.rm = T),
+              universe = mean(universe)) %>%
+    ungroup() %>%
+    mutate(value = values/universe) %>%
+    arrange(-values) %>%
+    top_n(values, n = 3) %>%
+    select(category, value) %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!category,
+                 names_to = "group",
+                 values_to = "value") %>%
+    mutate(
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(value*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+      x_pos = as.numeric(as.factor(label))
+    ) %>%
+    group_by(category) %>%
+    mutate(x_pos = mean(x_pos, na.rm = T)) %>%
+    ungroup()
   
+  a <- horizontal_edgebars(data2plot    = data2plot,
+                           y_value      = value,
+                           x_var        = category,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos + 0.15,
+                           y_lab_pos    = 0,
+                           bar_color    = "#a90099",
+                           margin_top   = 0);a
+  return(a)
 }
 
 
