@@ -63,7 +63,7 @@ Methodology
                                                         <b class="c-purple">GENDER:</b> Fifty-one percent (51%) of respondents were female and 49% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (70%) reported that they had received at least a high school diploma or vocational degree, and the remaining 29% of respondents received up to a middle school diploma.
+                                                        <b class="c-purple">EDUCATION:</b> Most respondents (70%) reported that they had received at least a high school diploma or vocational degree, and the remaining 30% of respondents received up to a middle school diploma.
                                                     </p>
                                                 </div>
                                             </div>
@@ -109,7 +109,7 @@ Methodology
                                         </div>
                                         <p class="mb-0 c-purple"><b>INTERVIEWING AND QUALITY CONTROL</b></p>
                                         <p class="mb-4">
-                                            In total, 28 interviewers worked on this project, including 18 female interviewers. Enumerators worked in six groups of four to five interviewers with at one supervisor per group. Interviews were conducted in Spanish.
+                                            In total, 28 interviewers worked on this project, including 18 female interviewers. Enumerators worked in six groups of four to five interviewers with one supervisor per group. Interviews were conducted in Spanish.
                                             <br><br>
                                             The supervisory team directly oversaw 40% of all interviews in the field. During data processing, 50% of the interviews conducted in each city were verified by the central office. Any interview with abnormal audio, answer patterns, or duration was backchecked via telephone. After quality control, 59 interviews were rejected from the final sample. Interviews averaged 40 minutes in length and ranged from 19 to 93 minutes.
                                         </p>
