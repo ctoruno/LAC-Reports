@@ -24,20 +24,347 @@
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure16B_CA.fn(nchart = 16) {
+figure16B_CA.fn <- function(nchart = 16) {
   
-  voluntary_contacts   <- c("q10a", "q10b", "q10c", "q10d", "q10e",
-                            "q11f", "q11b", "q11c", "q11g", "q11d")
+  w <- 82.59305 # This is the width of the function
+  
+  voluntary_contacts   <- c("q10a", "q10b", "q10c", "q10d", "q10e", "q10f",
+                            "q11f", "q11b", "q11c", "EXP_q10q", "q11g") # Variables of voluntary contacts
   involuntary_contacts <- c("q12a", "q12b", "q12c",
-                            "q13a", "q14a")
-  interactions_universe <- data_subset.df %>%
-    select()
+                            "q13a", "q14a") # Variables of involuntary contacts
   
-## +++++++++++++++++++
-## Interactions
-## ++++++++++++++++++
+  interactions.df <- data_subset.df %>%
+    filter(country == mainCountry) %>%
+    filter(year == 2021) %>%
+    select(country, year, starts_with(voluntary_contacts), starts_with(involuntary_contacts)) %>%
+    mutate(
+      voluntary_contacts = 
+        case_when(
+          q10a == 1 ~ 1,
+          q10b == 1 ~ 1,
+          q10c == 1 ~ 1,
+          q10d == 1 ~ 1,
+          q10e == 1 ~ 1,
+          q10a == 0 ~ 0,
+          q10b == 0 ~ 0,
+          q10c == 0 ~ 0,
+          q10d == 0 ~ 0,
+          q10e == 0 ~ 0,
+          q10a == 99 ~ NA_real_,
+          q10b == 99 ~ NA_real_,
+          q10c == 99 ~ NA_real_,
+          q10d == 99 ~ NA_real_,
+          q10e == 99 ~ NA_real_
+          ),
+      involuntary_contacts =
+        case_when(
+          q12a == 1 ~ 1,
+          q12b == 1 ~ 1,
+          q12c == 1 ~ 1,
+          q12a == 0 ~ 0,
+          q12b == 0 ~ 0,
+          q12c == 0 ~ 0,
+          q12a == 99 ~ NA_real_,
+          q12b == 99 ~ NA_real_,
+          q12c == 99 ~ NA_real_
+        )
+      ) %>%
+    select(!ends_with("norm"))
+  
+  ## +++++++++++++++++++
+  ## Interactions     -
+  ## +++++++++++++++++++
 
+  data2plot <- interactions.df %>%
+    summarise(
+      voluntary_contacts   = mean(voluntary_contacts, na.rm = T),
+      involuntary_contacts = mean(involuntary_contacts, na.rm = T)
+      ) %>%
+    pivot_longer(cols = everything(), names_to = "category", values_to = "value") %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!category,
+                 names_to = "group",
+                 values_to = "values") %>%
+    mutate(
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(values*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+      x_pos = 1.15)
   
+  # Voluntary
+  
+  voluntary.df <- data2plot %>%
+    filter(category %in% "voluntary_contacts") %>%
+    mutate(category = if_else(category %in% "voluntary_contacts", " ", category))
+  
+  voluntary <- horizontal_edgebars(data2plot    = voluntary.df,
+                           y_value      = values,
+                           x_var        = category,
+                           group_var    = group,
+                           label_var    = label,
+                           x_lab_pos    = x_pos,
+                           y_lab_pos    = 0,
+                           bar_color    = "#2a2a94",
+                           margin_top   = 0);voluntary
+  # Saving panels
+  saveIT.fn(chart  = voluntary,
+            n      = nchart,
+            suffix = "A",
+            w      = w,
+            h      = 5.974817)
+  
+  # Involuntary
+  
+  involuntary.df <- data2plot %>%
+    filter(category %in% "involuntary_contacts") %>%
+    mutate(category = if_else(category %in% "involuntary_contacts", " ", category))
+  
+  involuntary <- horizontal_edgebars(data2plot    = involuntary.df,
+                                     y_value      = values,
+                                     x_var        = category,
+                                     group_var    = group,
+                                     label_var    = label,
+                                     x_lab_pos    = x_pos,
+                                     y_lab_pos    = 0,
+                                     bar_color    = "#EA394F",
+                                     margin_top   = 0);involuntary
+  # Saving panels
+  saveIT.fn(chart  = involuntary,
+            n      = nchart,
+            suffix = "B",
+            w      = w,
+            h      = 5.974817)
+  
+  ## +++++++++++++++++++
+  ## Reasons     -
+  ## +++++++++++++++++++
+  
+  # Voluntary
+  
+  reasonsVoluntary <- interactions.df %>%
+    filter(voluntary_contacts == 1) %>%
+    select(q10a, q10b, q10c, q10d, q10e, q10f) %>%
+    mutate(across(
+      !q10f,
+      ~ case_when(
+        .x == 1  ~ 1,
+        .x == 0  ~ 0,
+        .x == 99 ~ NA_real_
+      ) 
+    )) %>%
+    mutate(voluntary = q10a+q10b+q10c+q10d+q10e,
+           `Report a crime` = if_else(q10a == 1 & voluntary == 1, 1,
+                                      if_else(q10f == 1 & voluntary > 1, 1, 0)),
+           `Report a case of domestic violence` = if_else(q10b == 1 & voluntary == 1, 1,
+                                                          if_else(q10f == 2 & voluntary > 1, 1, 0)),
+           `Report an incident or medical emergency` = if_else(q10c == 1 & voluntary == 1, 1,
+                                                               if_else(q10f == 3 & voluntary > 1, 1, 0)),
+           `Request help or information` = if_else(q10d == 1 & voluntary == 1, 1,
+                                                   if_else(q10f == 4 & voluntary > 1, 1,
+                                                           if_else(q10e == 1 & voluntary == 1, 1,
+                                                                   if_else(q10f == 5 & voluntary > 1, 1,0))))) %>%
+    select(!c(q10a, q10b, q10c, q10d, q10e, q10f, voluntary)) %>%
+    pivot_longer(cols = everything(), names_to = "reasons_voluntary", values_to = "values") %>%
+    group_by(reasons_voluntary) %>%
+    summarise(value = mean(values, na.rm = T)) %>%
+    mutate(value = value/sum(value),
+           empty_value = 1 - value) %>%
+    pivot_longer(!reasons_voluntary,
+                 names_to = "group",
+                 values_to = "values") %>%
+    mutate(
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(values*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+      x_pos = if_else(reasons_voluntary %in% "Report a crime", 4.15,
+                        if_else(reasons_voluntary %in% "Report a case of domestic violence", 3.15,
+                                if_else(reasons_voluntary %in% "Report an incident or medical emergency", 2.15, 1.15))))
+    
+  voluntaryReasons  <- horizontal_edgebars(data2plot    = reasonsVoluntary,
+                                           y_value      = values,
+                                           x_var        = reasons_voluntary,
+                                           group_var    = group,
+                                           label_var    = label,
+                                           x_lab_pos    = x_pos,
+                                           y_lab_pos    = 0,
+                                           bar_color    = "#2a2a94",
+                                           margin_top   = 0);voluntaryReasons
+  # Saving panels
+  saveIT.fn(chart  = voluntaryReasons,
+            n      = nchart,
+            suffix = "C",
+            w      = w,
+            h      = 47.44707)
+  
+  # Involuntary
+  
+  reasonsInvoluntary <- interactions.df %>%
+    filter(involuntary_contacts == 1) %>%
+    select(q13a, q14a) %>%
+    mutate(
+      q14a = case_when(
+        q14a == 10 ~ "Routine check/provide assistance",
+        q14a == 11 ~ "Routine check/provide assistance",
+        q14a == 6  ~ "Ask for cooperation",
+        q14a == 8  ~ "Ask for cooperation",
+        q14a == 9  ~ "Ask for cooperation",
+        q14a == 7  ~ "Pressure for money or harrasment",
+        q14a == 1  ~ "Suspected ilegal activity",
+        q14a == 2  ~ "Suspected ilegal activity",
+        q14a == 3  ~ "Suspected ilegal activity",
+        q14a == 4  ~ "Suspected ilegal activity",
+        q14a == 5  ~ "Suspected ilegal activity",
+        q14a == 12 ~ "Other"),
+      q13a = case_when(
+        q13a == 2  ~ "Routine check/provide assistance",
+        q13a == 3  ~ "Routine check/provide assistance",
+        q13a == 6  ~ "Routine check/provide assistance",
+        q13a == 7  ~ "Ask for cooperation",
+        q13a == 8  ~ "Pressure for money or harrasment",
+        q13a == 1  ~ "Suspected ilegal activity",
+        q13a == 4  ~ "Suspected ilegal activity",
+        q13a == 5  ~ "Suspected ilegal activity",
+        q13a == 9 ~  "Other"
+      ),
+      universe = n()) %>%
+    pivot_longer(cols = !universe, names_to = "variable", values_to = "category") %>%
+    mutate(counter = 1) %>%
+    select(universe, counter, category) %>%
+    group_by(category) %>%
+    summarise(total = sum(counter, na.rm = T), universe = mean(universe)) %>%
+    drop_na() %>%
+    mutate(value = total/universe) %>%
+    mutate(empty_value = 1 - value) %>%
+    select(!c(universe, total, universe)) %>%
+    pivot_longer(!category,
+                 names_to = "group",
+                 values_to = "values") %>%
+    mutate(
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(values*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+      x_pos = if_else(category %in% "Routine check/provide assistance", 5.15,
+                      if_else(category %in% "Ask for cooperation", 4.15,
+                              if_else(category %in% "Pressure for money or harrasment", 3.15, 
+                                      if_else(category %in% "Suspected ilegal activity", 2.15, 1.15)))))
+  
+  involuntaryReasons  <- horizontal_edgebars(data2plot  = reasonsInvoluntary,
+                                           y_value      = values,
+                                           x_var        = category,
+                                           group_var    = group,
+                                           label_var    = label,
+                                           x_lab_pos    = x_pos,
+                                           y_lab_pos    = 0,
+                                           bar_color    = "#EA394F",
+                                           margin_top   = 0);involuntaryReasons
+  # Saving panels
+  
+  saveIT.fn(chart  = involuntaryReasons,
+            n      = nchart,
+            suffix = "D",
+            w      = w,
+            h      = 59.74817)
+  
+  ## +++++++++++++++++++
+  ## Experience     -
+  ## +++++++++++++++++++
+  
+  # Serve the public
+  
+  data2plot <- interactions.df %>%
+    select(q11f, q11b, q11c) %>%
+    mutate(q11c_bin = if_else(q11b == 1 & q11c == 1 | q11c == 2, 1, 
+                              if_else(q11b == 1 & q11c == 3 | q11c == 4 | q11c == 5, 0, NA_real_)),
+           q11f     = case_when(
+             q11f   == 1  ~ 1,
+             q11f   == 0  ~ 0,
+             q11f   == 99 ~ NA_real_
+           )) %>%
+    select(q11f, q11c_bin) %>%
+    summarise(q11f     = mean(q11f, na.rm = T),
+              q11c_bin = mean(q11c_bin, na.rm = T)) %>%
+    pivot_longer(cols = everything(), names_to = "category", values_to = "value") %>%
+    mutate(category = case_when(
+      category == "q11f" ~ "Controlled the situation",
+      category == "q11c_bin" ~ "Arrived promptly"
+    )) %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!category,
+                 names_to = "group",
+                 values_to = "values") %>%
+    mutate(
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(values*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+      x_pos = if_else(category %in% "Controlled the situation", 2.15,1.15))
+  
+  servePublic  <- horizontal_edgebars(data2plot  = data2plot,
+                                      y_value      = values,
+                                      x_var        = category,
+                                      group_var    = group,
+                                      label_var    = label,
+                                      x_lab_pos    = x_pos,
+                                      y_lab_pos    = 0,
+                                      bar_color    = "#2a2a94",
+                                      margin_top   = 0);servePublic
+  
+  # Saving panels
+
+  saveIT.fn(chart  = servePublic,
+            n      = nchart,
+            suffix = "E",
+            w      = w,
+            h      = 23.54781)
+  
+  # Due process
+  
+  data2plot <- interactions.df %>%
+    select(EXP_q10q, q11g) %>%
+    mutate(across(everything(),
+                  ~ case_when(
+                    .x == 1  ~ 1,
+                    .x == 0  ~ 0,
+                    .x == 99 ~ NA_real_
+                  ))) %>%
+    summarise(EXP_q10q     = mean(EXP_q10q, na.rm = T),
+              q11g         = mean(q11g, na.rm = T)) %>%
+    pivot_longer(cols = everything(), names_to = "category", values_to = "value") %>%
+    mutate(category = case_when(
+      category == "EXP_q10q" ~ "Listened to them",
+      category == "q11g"     ~ "Treated them with respect"
+    )) %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!category,
+                 names_to = "group",
+                 values_to = "values") %>%
+    mutate(
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(values*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+      x_pos = if_else(category %in% "Listened to them", 2.15,1.15))
+  
+  dueProcess   <- horizontal_edgebars(data2plot  = data2plot,
+                                      y_value      = values,
+                                      x_var        = category,
+                                      group_var    = group,
+                                      label_var    = label,
+                                      x_lab_pos    = x_pos,
+                                      y_lab_pos    = 0,
+                                      bar_color    = "#2a2a94",
+                                      margin_top   = 0);dueProcess
+  
+  # Saving panels
+  
+  saveIT.fn(chart  = servePublic,
+            n      = nchart,
+            suffix = "F",
+            w      = w,
+            h      = 23.54781)
   
 }
 
@@ -151,10 +478,10 @@ figure19A.fn <- function(nchart = 19) {
 
 }
 
-figure19B.fn(nchart = 19) {
+figure19B.fn <- function(nchart = 19) {
   
   migrated <- data_subset.df %>%
-    filter(country %in% "Guatemala") %>%
+    filter(country %in% mainCountry) %>%
     filter(year == 2022) %>%
     mutate(migrated     = if_else(EXP_q31a == 0, 1, 
                                   if_else(EXP_q31a == 1, 0, NA_real_)),
@@ -243,13 +570,33 @@ figure19B.fn(nchart = 19) {
   # Panel 1
   
   data2plot_P1 <- logit_demo(mainData = migrated, Yvar = migrated)
-  logit_plot <- logit_demo_panel(mainData = data2plot_P1, line_size = 1.5)
+  logit_plot <- logit_demo_panel(mainData = data2plot_P1, 
+                                 line_size = 1.5, 
+                                 point_color = "#a90099", 
+                                 line_color  = "#a90099")
   
+  # Saving panels
+  
+  saveIT.fn(chart  = logit_plot,
+            n      = nchart,
+            suffix = "B",
+            w      = 80.83575,
+            h      = 52.71897)
   # Panel 2
   
   data2plot_P2 <- logit_demo(mainData = migrated, Yvar = migrated3yrs)
-  logit_plot <- logit_demo_panel(mainData = data2plot_P2, line_size = 1.5)
+  logit_plot <- logit_demo_panel(mainData = data2plot_P2, 
+                                 line_size = 1.5, 
+                                 point_color = "#a90099", 
+                                 line_color  = "#a90099")
   
+  # Saving panels
+  
+  saveIT.fn(chart  = logit_plot,
+            n      = nchart,
+            suffix = "C",
+            w      = 80.83575,
+            h      = 52.71897)
   }
 
 
@@ -447,13 +794,60 @@ figure20B.fn <- function(nchart = 20) {
   
 }
 
+figure20C.fn <- function(nchart = 20) { 
+  
+  ####### IMPACT OF FAMILY AND FRIENDS
+  
+  barsPalette <- c("#2a2a94", "#a90099")
+
+  # function Graph
+  
+  donut_plot <- function(data2plot, barsPalette) {
+    ggplot(data2plot, aes(x = 2, y = value2plot, fill = fct_rev(fct_infreq(labels)))) +
+      geom_bar(stat = "identity", color = "white") +
+      coord_polar(theta = "y") +
+      scale_fill_manual(values = barsPalette) +
+      theme_void() +
+      labs(fill = "") +
+      xlim(0.5, 2.5)
+  }
+  
+  
+  # Data2Plot, "Has COVID-19 negatively impacted your plans to move internationally?"
+  
+  data2plot_D1 <- data_subset.df %>% 
+    filter(country == mainCountry) %>% 
+    mutate(EXP22_q26l_ajust =
+             case_when(EXP22_q26l == 0  ~ 0,
+                       EXP22_q26l == 1  ~ 1,
+                       EXP22_q26l == 99  ~ NA_real_)) %>% 
+    select(country, EXP22_q26l_ajust) %>% 
+    group_by(country, EXP22_q26l_ajust) %>%  
+    filter(!is.na(EXP22_q26l_ajust)) %>% 
+    summarise(n = n()) %>% 
+    mutate(value2plot = round(100 * (n/sum(n)), 0),
+           labels = case_when(EXP22_q26l_ajust == 1 ~ paste0(value2plot,"% Yes"),
+                              EXP22_q26l_ajust == 0 ~ paste0(value2plot,"% No")))
+  
+  ### Graph
+
+  donutPlot <- donut_plot(data2plot_D1, barsPalette)
+  
+  saveIT.fn(chart  = donutPlot,
+            n      = nchart,
+            suffix = "D",
+            w      = 42.17518,
+            h      = 16.87007)
+  
+  }
+  
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ##    Figure 21                                                                                             ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure21A.fn(nchart = 21) {
+figure21A.fn <- function(nchart = 21) {
   
   data2plot <- data_subset.df %>%
     filter(year == latestYear & country == mainCountry & EXP_q31j == 1) %>%
@@ -515,11 +909,15 @@ figure21A.fn(nchart = 21) {
                            y_lab_pos    = 0,
                            bar_color    = "#a90099",
                            margin_top   = 0);a
-  return(a)
-}
+  saveIT.fn(chart  = a,
+            n      = nchart,
+            suffix = "A",
+            w      = 36.55182,
+            h      = 31.63138)
+  }
 
 
-figure21B.fn(nchart = 21) {
+figure21B.fn <- function(nchart = 21) {
   
   # Preparing data for map
   data4map <- data_subset.df %>%
@@ -606,13 +1004,102 @@ figure21B.fn(nchart = 21) {
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure22A.fn(nchart = 22) {
+figure22A.fn <- function(nchart = 22) {
   
-  # JEISON!!!!
+  # Function plot
+  
+  plot_bar <- function(data2plot, colors4plot) {
+    ggplot(data2plot, 
+           aes(x     = country,
+               y     = value2plot,
+               label = labels,
+               fill = category)) +
+      geom_bar(stat = "identity",
+               color = "white",
+               show.legend = F,
+               position = "dodge",
+               aes(alpha = highlighted)) +
+      geom_text(aes(label = labels), 
+                position = position_dodge(width = 0.9), vjust = -0.25,
+                color    = "#4a4a49",
+                family   = "Lato Full",
+                fontface = "bold") +
+      labs(y = "% of respondents", x = "") +
+      scale_fill_manual(values = colors4plot) +
+      scale_y_continuous(limits = c(0, 100), 
+                         labels = c("0%","20%", "40%", "60%", "80%", "100%"), 
+                         breaks = c(0, 20, 40, 60, 80, 100)) + 
+      WJP_theme()  +
+      theme(axis.title.x       = element_blank(),
+            axis.title.y       = element_blank(),
+            panel.grid.major.x = element_blank(),
+            panel.grid.major.y = element_line(color    = "#D0D1D3",
+                                              linetype = "dashed"))
+    
+  }
+  
+  ####### INTERNATIONAL MIGRATION VIOLENCE / BRIBERY BY COUNTRY 
+  
+  # Format
+  barsPalette    <- c("#2a2a94", "#a90099")
+  
+  # First Group
+  
+  data2plot_1 <-  data_subset.df %>% 
+    filter(! country %in% c("Nicaragua", "Costa Rica")) %>% 
+    mutate(EXP22_q27f_ajust =
+             case_when(EXP22_q27f == 0  ~ 0,
+                       EXP22_q27f == 1  ~ 1,
+                       EXP22_q27f == 99  ~ NA_real_)) %>% 
+    group_by(country) %>%
+    summarise(violence = round(mean(as.numeric(EXP22_q27f_ajust), na.rm = T),2)) %>%
+    pivot_longer(!country,
+                 names_to   = "category",
+                 values_to  = "value2plot") %>%
+    mutate(value2plot  = case_when(is.na(value2plot) ~ 0,
+                                   !is.na(value2plot) ~ value2plot*100),
+           highlighted = if_else(country == mainCountry, 1, 0.9),
+           labels       = case_when(value2plot == 0 ~ "",
+                                    value2plot != 0 ~ paste0(value2plot, "%")))
+  # Second Group
+  
+  data2plot_2 <-  data_subset.df %>% 
+    filter(! country %in% c("Nicaragua", "Costa Rica")) %>% 
+    mutate(EXP22_q27i_ajust =
+             case_when(EXP22_q27i == 0  ~ 0,
+                       EXP22_q27i == 1  ~ 1,
+                       EXP22_q27i == 99  ~ NA_real_)) %>% 
+    group_by(country) %>%
+    summarise(bribery = round(mean(as.numeric(EXP22_q27i_ajust), na.rm = T),2)) %>%
+    pivot_longer(!country,
+                 names_to   = "category",
+                 values_to  = "value2plot") %>%
+    mutate(value2plot  = case_when(is.na(value2plot) ~ 0,
+                                   !is.na(value2plot) ~ value2plot*100),
+           highlighted = if_else(country == mainCountry, 1, 0.9),
+           labels       = case_when(value2plot == 0 ~ "",
+                                    value2plot != 0 ~ paste0(value2plot, "%")))
+  
+  data2plot <- rbind(data2plot_1, data2plot_2)
+  
+  # Colores del grafico
+  
+  colors4plot <- barsPalette
+  
+  # Generate Plot
+  
+  barPlot <- plot_bar(data2plot, colors4plot)
+  
+  # Saving panels
+  saveIT.fn(chart  = barPlot,
+            n      = nchart,
+            suffix = NULL,
+            w      = 189.7883,
+            h      = 52.7189)
   
 }
 
-figure22B.fn(nchart = 22) {
+figure22B.fn <- function(nchart = 22) {
 
   data2plot <- data_subset.df %>%
     filter(country %in% mainCountry) %>%
@@ -651,12 +1138,104 @@ figure22B.fn(nchart = 22) {
                           categories    = category, 
                           order_value   = order_value, 
                           values        = value2plot)
+  # Saving panels
+  saveIT.fn(chart  = plot,
+            n      = nchart,
+            suffix = "B",
+            w      = 189.7883,
+            h      = 52.7189)
 
 
 }
 
-figure22C.fn(nchart = 22) {
+figure22C.fn <- function(nchart = 22) {
   
-  # JEISON!!!!
+  # Plot function
+  
+  plot_bar_2 <- function(data, colors4plot) {
+    ggplot(data, 
+           aes(x = grp,
+               y = perc,
+               label = labels,
+               fill = category)) +
+      geom_bar(stat = "identity",
+               color = "white",
+               show.legend = F,
+               position = "dodge") + #aes(alpha = highlighted)) +
+      geom_text(aes(label = labels), 
+                position = position_dodge(width = 0.9), vjust = -0.25,
+                color = "#4a4a49",
+                family = "Lato Full",
+                fontface = "bold") +
+      labs(y = "% of respondents", x = "") +
+      scale_fill_manual(values = colors4plot) +
+      scale_y_continuous(limits = c(0, 100), 
+                         labels = c("0%","20%", "40%", "60%", "80%", "100%"), 
+                         breaks = c(0, 20, 40, 60, 80, 100)) + 
+      WJP_theme() +
+      theme(axis.title.x       = element_blank(),
+            axis.title.y       = element_blank(),
+            panel.grid.major.x = element_blank(),
+            panel.grid.major.y = element_line(color    = "#D0D1D3",
+                                              linetype = "dashed"))
+  }
+  
+  
+  barsPalette    <- c("#2a2a94", "#a90099")
+  
+  # Data2Plot
+  
+  vars4plot <- list("In your home country"                  = c("EXP22_q27h_1", "EXP22_q27j_1"),
+                    "In another country in Central America" = c("EXP22_q27h_2", "EXP22_q27j_2"),
+                    "In Mexico"                             = c("EXP22_q27h_3", "EXP22_q27j_3"),
+                    "In the United States"                  = c("EXP22_q27h_4", "EXP22_q27j_4"))
+  
+  data2plot_c2  <-  data_subset.df %>% 
+    filter(country == mainCountry) %>% 
+    select(country, all_of(unlist(vars4plot,
+                                  use.names = F))) %>%
+    mutate(
+      across(starts_with("EXP22_q27"),
+             ~case_when(
+               .x == 0  ~ 0,
+               .x == 1  ~ 1,
+               .x == 99  ~ NA_real_
+             ))
+    ) %>%
+    group_by(country) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(!country,
+                 names_to  = "category",
+                 values_to = "perc") %>%
+    mutate(
+      perc   = round(perc*100, 0),
+      grp    = case_when(
+        str_detect(category, "_1") ~ "In your home country",
+        str_detect(category, "_2") ~ "In another country in Central America",
+        str_detect(category, "_3") ~ "In Mexico",
+        str_detect(category, "_4") ~ "In the United States"
+      )) %>% 
+    mutate(#highlighted = if_else(grp == "In another country in Central America", 1, 1),
+      labels = paste0(perc, "%"))
+  
+  data2plot_c2$grp <- factor(data2plot_c2$grp, levels = names(vars4plot))
+  
+  colors4plot <- c("#2a2a94", "#2a2a94", "#2a2a94", "#2a2a94",
+                   "#a90099", "#a90099", "#a90099", "#a90099")
+                            
+  
+  # Generate Plot
+  
+  barPlot2 <- plot_bar_2(data2plot_c2, colors4plot)
+  
+  # Saving panels
+  saveIT.fn(chart  = barPlot2,
+            n      = nchart,
+            suffix = "C",
+            w      = 189.7883,
+            h      = 52.7189)
   
 }
+

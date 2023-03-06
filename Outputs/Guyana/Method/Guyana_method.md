@@ -22,7 +22,7 @@ Methodology
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Guyana represents an achieved total sample size of 500 interviews distributed proportionally across three regions. StatMark Group based the sampling frame on 2012 population figures from the Bureau of Statistics of Guyana, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization .
+                                    The General Population Poll in Guyana represents an achieved total sample size of 500 interviews distributed proportionally across three regions. StatMark Group based the sampling frame on 2012 population figures from the Bureau of Statistics of Guyana, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
                                     <br><br>
                                     In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English, can be found in the Appendix of this report.
                                 </p>
@@ -140,7 +140,7 @@ Methodology
 
                                 <p class="mb-0 c-purple"><b>ADDITIONAL COUNTRIES</b></p>
                                 <p class="mb-4">
-                                    <i>The Rule of Law in Guyana: Key Findings from the General Population Poll 2022</i> includes comparisons to the following greater antilles, the bahamas, and the guianas countries surveyed by the World Justice Project during the same period: Bahamas, Dominican Republic, Haiti, Jamaica and Suriname. This report is additionally part of a series that presents findings from the following five sub-regions within Latin America and the Caribbean: Andes (Bolivia, Colombia, Ecuador, Peru); Southern Cone (Argentina, Brazil, Paraguay); Eastern Caribbean (Antigua and Barbuda, Barbados, Dominica, Grenada, St. Kitts and Nevis, St. Lucia, St. Vincent and the Grenadines, Trinidad and Tobago); Greater Antilles, The Bahamas, and the Guianas (The Bahamas, Dominican Republic, Guyana, Haiti, Jamaica, Suriname); and Central America (Belize, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama). Together, these 28 countries are a portion of the 140 countries and jurisdictions included in the <i>WJP Rule of Law Index 2022</i> report. Detailed information regarding the methodology of the <i>Rule of Law Index</i> is available at: <a href="www.worldjusticeproject.org." target="_blank" class="c-purple"><i>www.worldjusticeproject.org.</i></a>
+                                    <i>The Rule of Law in Guyana: Key Findings from the General Population Poll 2022</i> includes comparisons to the following countries in greater antilles, the bahamas, and the guianas surveyed by the World Justice Project during the same period: Bahamas, Dominican Republic, Haiti, Jamaica and Suriname. This report is additionally part of a series that presents findings from the following five sub-regions within Latin America and the Caribbean: Andes (Bolivia, Colombia, Ecuador, Peru); Southern Cone (Argentina, Brazil, Paraguay); Eastern Caribbean (Barbados, Dominica, Grenada, St. Lucia, St. Vincent and the Grenadines, Trinidad and Tobago); Greater Antilles, The Bahamas, and the Guianas (The Bahamas, the Dominican Republic, Guyana, Haiti, Jamaica, Suriname); and Central America (Belize, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama). Together, these 26 countries are a portion of the 140 countries and jurisdictions included in the <i>WJP Rule of Law Index 2022</i> report. Detailed information regarding the methodology of the <i>Rule of Law Index</i> is available at: <a href="www.worldjusticeproject.org." target="_blank" class="c-purple"><i>www.worldjusticeproject.org.</i></a>
                                 </p>
                                 <div class="table-responsive mb-4">
                                     <table class="table table-sm">
@@ -149,12 +149,6 @@ Methodology
                                             <td>Polling Company</td>
                                             <td>Methodology</td>
                                             <td>Sample</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Antigua and Barbuda</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>500</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Argentina</td>
@@ -287,12 +281,6 @@ Methodology
                                             <td>Datum Internacional S.A.</td>
                                             <td>Face-to-face</td>
                                             <td>1,029</td>
-                                        </tr>
-                                        <tr style = "background-color: #E8E4F9">
-                                            <td>St. Kitts and Nevis</td>
-                                            <td>DMR Insights Ltd.</td>
-                                            <td>Face-to-face</td>
-                                            <td>499</td>
                                         </tr>
                                         <tr>
                                             <td>St. Lucia</td>
