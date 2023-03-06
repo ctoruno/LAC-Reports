@@ -233,7 +233,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
              append    = T,
              row.names = T)
   
-  pl <- ggplot(data = data2plot, aes(x = x, 
+  pl <- ggplot(data = prueba, aes(x = x, 
                                      next_x = next_x,
                                      node = node,
                                      next_node = next_node,
@@ -2087,6 +2087,127 @@ figure11_PRY.fn <- function (nchart = 11) {
       
 }
 
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 12.1 - Central America                                                                         ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure12_2_CA.fn <- function(nchart = 12, country = mainCountry) {
+  
+  security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
+  
+  denomym <- method_data.ls[["sf"]] %>%
+    filter(Country %in% mainCountry) 
+  
+  victims <- security_universe %>%
+    summarise(victim = round(mean(victim, na.rm = T),2)) %>%
+    mutate(non_victim = 1 - victim)
+  
+  report <- security_universe %>%
+    mutate(EXP_q8d = case_when(
+      EXP_q8d == 1 ~ 1,
+      EXP_q8d == 0 ~ 0,
+      EXP_q8d == 99 ~ NA_real_
+    )) %>%
+    mutate(EXP_q8d = if_else(EXP_q8d == 1, 1, 0)) %>%
+    filter(victim == 1) %>%
+    summarise(report = round(mean(EXP_q8d, na.rm = T),2)) %>%
+    mutate(non_report = 1 - report)
+  
+  t1 <- sample(x = c("Victim", "Non-Victim"), size = 1000, replace = TRUE, prob = c(1,0))
+  t2 <- sample(x = c("Non-Report", "Report"), size = 1000, replace = TRUE, prob = c(report$non_report, report$report))
+  
+  d <- data.frame(cbind(t1, t2))
+  names(d) <- c("Victim", "Report")
+  
+  data2plot <- d %>%
+    make_long(Victim, Report)
+  
+  
+  
+  label <- c(paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',victims$victim*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> of ", denomym$Nationality ,"s","<br>were victims <br>of a crime in <br> the last 12 <br> months"),
+             paste0("<span style='color:#003b8a;font-size:4.217518mm'>", '**',report$report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> reported <br> the crime"),
+             paste0("<span style='color:#fa4d57;font-size:4.217518mm'>", '**',report$non_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not report <br>the crime"))
+  
+  label.df <- data.frame(label)
+  y <- c(1, 900, -300)
+  x <- c(0.7, 2, 2.3)
+  
+  pl <- ggplot(data = data2plot, aes(x = x, 
+                                  next_x = next_x,
+                                  node = node,
+                                  next_node = next_node,
+                                  fill = factor(node))) +
+    geom_sankey(flow.alpha = 0.5,
+                node.color = "white",
+                show.legend = FALSE) +
+    geom_richtext(data = label.df, aes(x = x, label = label, y = y, 
+                                 next_x = NULL, node = NULL, 
+                                 next_node = NULL, fill = NULL, family = "Lato Medium"), 
+                  fill = NA, label.color = NA, hjust = 0.5, vjust = 0.5) +
+    scale_y_continuous(expand = expansion(mult = c(0,0.2))) +
+    scale_x_discrete(position = "top") +
+    scale_fill_manual(values = c("Victim" = "#003b8a",
+                                 'Non-Victim' = "#003b8a",
+                                 "Report" = "#003b8a",
+                                 "Non-Report" = "white",
+                                 "Official" = "#003b8a",
+                                 "Non-Official" = "#fa4d57",
+                                 ' ' = "white")) +
+    theme_sankey(base_size = 10, base_rect_size = 10) +
+    theme(legend.position = "none",
+          panel.background   = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.x = element_text(family ="Lato Full", 
+                                     size = 3.514598*.pt,
+                                     color = "Black"),
+          axis.text.y = element_blank(),
+          axis.ticks.x = element_blank());pl
+  
+  saveIT.fn(chart  = pl,
+            n      = nchart,
+            suffix = "B",
+            w      = 175.027,
+            h      = 94.54267)
+  
+  # Reasons table 
+  
+  reasons <- security_universe %>%
+    filter(victim == 1) %>%
+    filter(EXP_q8d == 0) %>%
+    filter(EXP_q8h != 99) %>%
+    mutate(counter = 1,
+           total_people = n(),
+           category   = case_when(
+             EXP_q8h  == 3  ~ "Respondent was afraid or embarrased",
+             EXP_q8h  == 4  ~ "Respondent was afraid or embarrased",
+             EXP_q8h  == 9  ~ "Respondent was afraid or embarrased",
+             EXP_q8h  == 11 ~ "Respondent was afraid or embarrased",
+             EXP_q8h  == 2  ~ "Respondent did not think reporting would help",
+             EXP_q8h  == 5  ~ "Respondent did not think reporting would help",
+             EXP_q8h  == 6  ~ "Respondent did not think reporting would help",
+             EXP_q8h  == 7  ~ "Respondent did not think reporting would help",
+             EXP_q8h  == 10 ~ "Respondent did not trust the police",
+             EXP_q8h  == 1  ~ "Respondent had administrative issues",
+             EXP_q8h  == 8  ~ "Respondent had administrative issues",
+             EXP_q8h  == 12 ~ "Other",
+           )) %>%
+    group_by(category) %>%
+    summarise(reasons = sum(counter, na.rm = T), universe = mean(total_people, na.rm = T))
+  
+  reasons2table <- reasons %>%
+    arrange(-reasons) %>%
+    mutate(proportion = paste0(round(reasons/universe,2)*100, "%"))
+  
+  # Saving data points
+  write.xlsx(as.data.frame(reasons2table %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace_all(mainCountry, " ", "_"),
+                                   paste0("imgChart", nchart),
+                                   "reasons.xlsx",
+                                   fsep = "/"),
+             row.names = T)
 
-
+}

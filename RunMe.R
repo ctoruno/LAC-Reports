@@ -35,7 +35,7 @@ source("Code/settings.R")
 source("Code/S01.R")
 source("Code/S02.R")
 source("Code/S03.R")
-# source("Code/S05.R")
+source("Code/S05.R")
 source("Code/methodology.R")
 
 # Loading plotting functions from GitHub
@@ -280,12 +280,17 @@ for (mainCountry in group) {
   # for more information.
   
   # Figure 12:
-  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2") {
+  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2" & args[1] != "central") {
     print("Designing Figure 12")
     figure12_1.fn()
     figure12_2.fn()
     
   } 
+  if(args[1] == "central") {
+    print("Designing Figure 12")
+    figure12_1.fn(nchart = 12)
+    figure12_2_CA.fn(nchart = 12)
+  }
   if (args[1] == "carib2") {
     print("Designing Figure 11")
     figure12_1.fn(nchart = 11)
@@ -427,7 +432,7 @@ for (mainCountry in group) {
     figure19B.fn()            # SANTIAGO!!!!
     
     # Figure 20
-    print("Designing Figure 19")
+    print("Designing Figure 20")
     figure20A.fn()            # CARLOS!!!!
     figure20B.fn()            # CARLOS!!!!
     
@@ -436,7 +441,7 @@ for (mainCountry in group) {
     # Entirely done by Mariana
     
     # Figure 22
-    print("Designing Figure 19")
+    print("Designing Figure 21")
     figure22A.fn()            # JEISON!!!!
     figure22B.fn()            # SANTIAGO!!!!
     figure22C.fn()            # JEISON!!!!
