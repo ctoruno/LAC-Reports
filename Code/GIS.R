@@ -85,6 +85,9 @@ central_america.df <- master_data.df %>%
     location = if_else(location == "San Cristóbal, Guatemala", 
                        "Cd. San Cristóbal, Guatemala",
                        location),
+    location = if_else(location == "Panamá, Panama", 
+                       "Ciudad de Panamá, Panama",
+                       location),
     
     # Taking into account metro area localities
     location = case_when(
@@ -92,17 +95,16 @@ central_america.df <- master_data.df %>%
       location == "Santa Elena, Belize"              ~ "San Ignacio, Belize",
       location == "Delgado, El Salvador"             ~ "San Salvador, El Salvador",
       location == "Mejicanos, El Salvador"           ~ "San Salvador, El Salvador",
-      location == "Mejicanos, El Salvador"           ~ "San Salvador, El Salvador",
       location == "Nueva San Salvador, El Salvador"  ~ "San Salvador, El Salvador",
       location == "Soyapango, El Salvador"           ~ "San Salvador, El Salvador",
       location == "Cuscatancingo, El Salvador"       ~ "San Salvador, El Salvador",
       location == "Ayutuxtepeque, El Salvador"       ~ "San Salvador, El Salvador",
       location == "San Marcos, El Salvador"          ~ "San Salvador, El Salvador",
       location == "Antiguo Cuscatlán, El Salvador"   ~ "San Salvador, El Salvador",
-      location == "Ciudad De Guatemala, Guatemala"   ~ "Ciudad De Guatemala, Guatemala",
       location == "Ilopango, El Salvador"            ~ "San Salvador, El Salvador",
       location == "Mixco, Guatemala"                 ~ "Ciudad De Guatemala, Guatemala",
       location == "Villa Nueva, Guatemala"           ~ "Ciudad De Guatemala, Guatemala",
+      location == "San Miguelito, Panama"            ~ "Ciudad de Panamá, Panama"
       TRUE ~ location
     ),
     
@@ -158,7 +160,7 @@ m.areas <- c("Ciudad De Guatemala, Guatemala",
              "Belmopan, Belize",
              "Belize, Belize",
              "San Ignacio, Belize",
-             "Panamá, Panama",
+             "Ciudad de Panamá, Panama",
              "Colón, Panama",
              "David, Panama",
              "San Salvador, El Salvador",
@@ -179,6 +181,8 @@ st_write(data4maps.sf,
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+library(units)
+
 # We need a mollweide projection to get distances in kilometers
 # Get the simple feature from the previous section
 central_america.sf <- central_america.sf %>%
@@ -195,7 +199,7 @@ potential_metro.sf <- st_sf(central_america.sf,
                             geometry = potential_metro.sf) %>%
   mutate(dist2metro = set_units(st_length(.),
                                 "km")) %>%
-  filter(dist2metro < set_units(15, "km") & dist2metro > set_units(0, "km")) %>%
+  filter(dist2metro < set_units(20, "km") & dist2metro > set_units(0, "km")) %>%
   st_drop_geometry()
 
 # Now you will have to manually check localities: Viele Spaß!!
