@@ -157,11 +157,11 @@ rosePalette    <- c("#20204a", "#12006b", "#2e2e95", "#4e43dd", "#756ef9", "#9c9
 
 # Defining country groups
 eastCaribbean.ls <- c(
-  "Antigua and Barbuda", 
+  #"Antigua and Barbuda", 
   "Barbados",
   "Dominica",
   "Grenada",
-  "St. Kitts and Nevis",
+  #"St. Kitts and Nevis",
   "St. Lucia",
   "St. Vincent and the Grenadines",
   "Trinidad and Tobago"
