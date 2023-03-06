@@ -233,7 +233,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
              append    = T,
              row.names = T)
   
-  pl <- ggplot(data = prueba, aes(x = x, 
+  pl <- ggplot(data = data2plot, aes(x = x, 
                                      next_x = next_x,
                                      node = node,
                                      next_node = next_node,

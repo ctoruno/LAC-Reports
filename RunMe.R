@@ -366,9 +366,14 @@ for (mainCountry in group) {
   }
   
   # Figure 16:
-  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2") {
+  if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2" & args[1] != "central") {
     print("Designing Figure 16")
     figure16.fn()
+  }
+  if (args[1] == "central"){
+    print("Designing Figure 16")
+    figure16.fn()
+    figure16B_CA.fn()
   }
   if (args[1] == "carib2") {
     print("Designing Figure 15")
@@ -424,7 +429,7 @@ for (mainCountry in group) {
   # All the figure functions from this section are contained in the "Code/S05.R" file. Please refer to it
   # for more information.  
   
-  if (args[1] == "central") {
+  if (args[1] == "central" & mainCountry != "Costa Rica" & mainCountry != "Nicaragua") {
     
     # Figure 19
     print("Designing Figure 19")
@@ -435,13 +440,16 @@ for (mainCountry in group) {
     print("Designing Figure 20")
     figure20A.fn()            # CARLOS!!!!
     figure20B.fn()            # CARLOS!!!!
+    figure20C.fn()            # SANTIAGO!!!!
     
     # Figure 21
     
-    # Entirely done by Mariana
+    print("Designing Figure 21")
+    figure21A.fn()            # CARLOS!!!!
+    figure21B.fn()            # CARLOS!!!!
     
     # Figure 22
-    print("Designing Figure 21")
+    print("Designing Figure 22")
     figure22A.fn()            # JEISON!!!!
     figure22B.fn()            # SANTIAGO!!!!
     figure22C.fn()            # JEISON!!!!

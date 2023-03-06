@@ -195,7 +195,7 @@ centralAmerica.ls <- c(
   "El Salvador",
   "Guatemala",
   "Honduras",
-  "Nicaragua",
+  #"Nicaragua",
   "Panama"
 )
 

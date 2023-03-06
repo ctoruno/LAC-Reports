@@ -110,9 +110,9 @@ figure16B_CA.fn <- function(nchart = 16) {
   # Saving panels
   saveIT.fn(chart  = voluntary,
             n      = nchart,
-            suffix = "A",
+            suffix = "H",
             w      = w,
-            h      = 5.974817)
+            h      = 7.029196)
   
   # Involuntary
   
@@ -132,9 +132,9 @@ figure16B_CA.fn <- function(nchart = 16) {
   # Saving panels
   saveIT.fn(chart  = involuntary,
             n      = nchart,
-            suffix = "B",
+            suffix = "I",
             w      = w,
-            h      = 5.974817)
+            h      = 7.029196)
   
   ## +++++++++++++++++++
   ## Reasons     -
@@ -194,7 +194,7 @@ figure16B_CA.fn <- function(nchart = 16) {
   # Saving panels
   saveIT.fn(chart  = voluntaryReasons,
             n      = nchart,
-            suffix = "C",
+            suffix = "J",
             w      = w,
             h      = 47.44707)
   
@@ -264,7 +264,7 @@ figure16B_CA.fn <- function(nchart = 16) {
   
   saveIT.fn(chart  = involuntaryReasons,
             n      = nchart,
-            suffix = "D",
+            suffix = "K",
             w      = w,
             h      = 59.74817)
   
@@ -316,7 +316,7 @@ figure16B_CA.fn <- function(nchart = 16) {
 
   saveIT.fn(chart  = servePublic,
             n      = nchart,
-            suffix = "E",
+            suffix = "L",
             w      = w,
             h      = 23.54781)
   
@@ -360,9 +360,9 @@ figure16B_CA.fn <- function(nchart = 16) {
   
   # Saving panels
   
-  saveIT.fn(chart  = servePublic,
+  saveIT.fn(chart  = dueProcess,
             n      = nchart,
-            suffix = "F",
+            suffix = "M",
             w      = w,
             h      = 23.54781)
   
