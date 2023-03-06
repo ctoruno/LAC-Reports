@@ -221,7 +221,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
                paste0("<span style='color:#fa4d57;font-size:4.217518mm'> ", '**',fill_report$non_fill_report*100, "%",'**',"</span> <br> <span style='color:#222221;font-size:3.514598mm'> did not file an <br>official crime report"))
   }
   
-  df <- data.frame(label)
+  label.df <- data.frame(label)
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
@@ -241,7 +241,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     geom_sankey(flow.alpha = 0.5,
                 node.color = "white",
                 show.legend = FALSE) +
-    geom_richtext(data = df, aes(x = x, label = label, y = y, 
+    geom_richtext(data = label.df, aes(x = x, label = label, y = y, 
                                  next_x = NULL, node = NULL, 
                                  next_node = NULL, fill = NULL, family = "Lato Medium"), 
                   fill = NA, label.color = NA, hjust = 0.5, vjust = 0.5) +

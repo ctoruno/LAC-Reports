@@ -580,8 +580,8 @@ figure19B.fn <- function(nchart = 19) {
   saveIT.fn(chart  = logit_plot,
             n      = nchart,
             suffix = "B",
-            w      = 80.83575,
-            h      = 52.71897)
+            w      = 87.16203,
+            h      = 56.23357)
   # Panel 2
   
   data2plot_P2 <- logit_demo(mainData = migrated, Yvar = migrated3yrs)
@@ -595,8 +595,8 @@ figure19B.fn <- function(nchart = 19) {
   saveIT.fn(chart  = logit_plot,
             n      = nchart,
             suffix = "C",
-            w      = 80.83575,
-            h      = 52.71897)
+            w      = 87.16203,
+            h      = 56.23357)
   }
 
 
