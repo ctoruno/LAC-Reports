@@ -866,15 +866,15 @@ figure21A.fn <- function(nchart = 21) {
     pivot_longer(cols = !universe, names_to = "category", values_to = "value") %>%
     mutate(category = 
              case_when(
-               category == "EXP22_q27d_1" ~ "Legal counsel/inmigration services",
+               category == "EXP22_q27d_1" ~ "Legal counsel/n/inmigration services",
                category == "EXP22_q27d_2" ~ "Medical services",
                category == "EXP22_q27d_3" ~ "Other NGOs",
                category == "EXP22_q27d_4" ~ "Local authorities",
-               category == "EXP22_q27d_5" ~ "Local community members",
-               category == "EXP22_q27d_6" ~ "Religious organizations",
-               category == "EXP22_q27d_7" ~ "Family members/friends",
+               category == "EXP22_q27d_5" ~ "Local community /nmembers",
+               category == "EXP22_q27d_6" ~ "Religious /norganizations",
+               category == "EXP22_q27d_7" ~ "Family members/n/friends",
                category == "EXP22_q27d_8" ~ "Other",
-               category == "EXP22_q27d_9" ~ "None of the above",
+               category == "EXP22_q27d_9" ~ "None of the /nabove",
                category == "EXP22_q27d_99"~ "Don't know/No Answer" 
              )) %>%
     group_by(category) %>%
@@ -1185,8 +1185,8 @@ figure22C.fn <- function(nchart = 22) {
   
   # Data2Plot
   
-  vars4plot <- list("In your home country"                  = c("EXP22_q27h_1", "EXP22_q27j_1"),
-                    "In another country in Central America" = c("EXP22_q27h_2", "EXP22_q27j_2"),
+  vars4plot <- list("In your home \ncountry"                  = c("EXP22_q27h_1", "EXP22_q27j_1"),
+                    "In another country \nin Central America" = c("EXP22_q27h_2", "EXP22_q27j_2"),
                     "In Mexico"                             = c("EXP22_q27h_3", "EXP22_q27j_3"),
                     "In the United States"                  = c("EXP22_q27h_4", "EXP22_q27j_4"))
   
@@ -1212,8 +1212,8 @@ figure22C.fn <- function(nchart = 22) {
     mutate(
       perc   = round(perc*100, 0),
       grp    = case_when(
-        str_detect(category, "_1") ~ "In your home country",
-        str_detect(category, "_2") ~ "In another country in Central America",
+        str_detect(category, "_1") ~ "In your home \ncountry",
+        str_detect(category, "_2") ~ "In another country \nin Central America",
         str_detect(category, "_3") ~ "In Mexico",
         str_detect(category, "_4") ~ "In the United States"
       )) %>% 
