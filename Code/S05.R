@@ -560,7 +560,7 @@ figure19B.fn <- function(nchart = 19) {
     data2plot <- margEff
     
     data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \nInsecure", "victimVictim" = "Previous Crime \nVictimization",
-                               "areaUrban" = "Urban", "whiteWhite" = "Light Skin \nTone", "youngLess than 30 years" = "Younger than 30",
+                               "areaUrban" = "Urban", "whiteWhite" = "Light Skin Tone", "youngLess than 30 years" = "Younger than 30",
                                "diplomaNo High Education Level" = "No High School \nDiploma")
     
     data2plot <- data2plot %>%
@@ -577,14 +577,14 @@ figure19B.fn <- function(nchart = 19) {
   
   data2plot_P1 <- logit_demo(mainData = migrated, Yvar = migrated)
   logit_plot <- logit_demo_panel(mainData = data2plot_P1, 
-                                 line_size = 1.5, 
+                                 line_size = 1.25, 
                                  point_color = "#a90099", 
                                  line_color  = "#a90099") +
-    scale_y_continuous(limits = c(-0.25, 0.25),
-                       breaks = seq(-0.25, 0.25, by = 0.125),
-                       expand = expansion(mult = 0.025), position = "right",
-                       labels = c("-25", "-12.5", "0", "+12.5","+25"))
-  
+    scale_y_continuous(limits = c(-0.30, 0.30),
+                       breaks = seq(-0.30, 0.30, by = 0.15),
+                       expand = expansion(mult = 0.075), position = "right",
+                       labels = c("-30", "-15", "0", "+15","+30")) +
+    labs(y = "Less likely                      More likely")
   # Saving panels
   
   saveIT.fn(chart  = logit_plot,
@@ -596,13 +596,14 @@ figure19B.fn <- function(nchart = 19) {
   
   data2plot_P2 <- logit_demo(mainData = migrated, Yvar = migrated3yrs)
   logit_plot <- logit_demo_panel(mainData = data2plot_P2, 
-                                 line_size = 1.5, 
+                                 line_size = 1.25, 
                                  point_color = "#a90099", 
                                  line_color  = "#a90099") +
-    scale_y_continuous(limits = c(-0.25, 0.25),
-                       breaks = seq(-0.25, 0.25, by = 0.125),
-                       expand = expansion(mult = 0.025), position = "right",
-                       labels = c("-25", "-12.5", "0", "+12.5","+25"))
+    scale_y_continuous(limits = c(-0.30, 0.30),
+                       breaks = seq(-0.30, 0.30, by = 0.15),
+                       expand = expansion(mult = 0.075), position = "right",
+                       labels = c("-30", "-15", "0", "+15","+30")) +
+    labs(y = "Less likely                      More likely")
   
   # Saving panels
   
@@ -887,17 +888,18 @@ figure21A.fn <- function(nchart = 21) {
     pivot_longer(cols = !universe, names_to = "category", values_to = "value") %>%
     mutate(category = 
              case_when(
-               category == "EXP22_q27d_1" ~ "Legal counsel/n/inmigration services",
+               category == "EXP22_q27d_1" ~ "Legal counsel\n/inmigration services",
                category == "EXP22_q27d_2" ~ "Medical services",
                category == "EXP22_q27d_3" ~ "Other NGOs",
                category == "EXP22_q27d_4" ~ "Local authorities",
-               category == "EXP22_q27d_5" ~ "Local community /nmembers",
-               category == "EXP22_q27d_6" ~ "Religious /norganizations",
-               category == "EXP22_q27d_7" ~ "Family members/n/friends",
+               category == "EXP22_q27d_5" ~ "Local community \nmembers",
+               category == "EXP22_q27d_6" ~ "Religious \norganizations",
+               category == "EXP22_q27d_7" ~ "Family members\n/friends",
                category == "EXP22_q27d_8" ~ "Other",
-               category == "EXP22_q27d_9" ~ "None of the /nabove",
-               category == "EXP22_q27d_99"~ "Don't know/No Answer" 
+               category == "EXP22_q27d_9" ~ NA_character_,
+               category == "EXP22_q27d_99"~ NA_character_ 
              )) %>%
+    drop_na() %>%
     group_by(category) %>%
     summarise(values = sum(value, na.rm = T),
               universe = mean(universe)) %>%

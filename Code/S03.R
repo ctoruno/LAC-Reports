@@ -968,6 +968,7 @@ figure16.fn <- function(nchart = 16) {
   # Panel D: Discrimination
   
   panelD <- data_subset.df %>%
+    mutate(latestYear = if_else(country %in% centralAmerica.ls, 2021, latestYear)) %>%
     filter(year == latestYear & country == mainCountry) %>%
     select(q18b, EXP_q17g, EXP_q17h, EXP_q17i, EXP_q17j) %>%
     mutate(
@@ -1367,22 +1368,35 @@ figure18.fn <- function(nchart = 18) {
       "q42d",
       # Sociodemographics
       "area", "income_bin", "skin_color","skin_color_bin", "gender", "income_aux")
-    
-    a <- data_subset %>%
-      mutate(a2j_consumer = ifelse(q19_A1 == 1 | q19_A2 == 1 | q19_A3 == 1, 1, 0),
-             a2j_land = ifelse(q19_B1 == 1 | q19_B2 == 1 | q19_B3 == 1| q19_B4 == 1, 1, 0),
-             a2j_housing = ifelse(q19_C1 == 1 | q19_C2 == 1 | q19_C3 == 1 | q19_C4 == 1, 1, 0),
-             a2j_family = ifelse(q19_D1 == 1 | q19_D2 == 1 | q19_D3 == 1 | q19_D4 == 1 | q19_D5 == 1 |q19_D6 == 1, 1, 0),
-             a2j_education = ifelse(q19_E1 == 1 | q19_E2 == 1, 1, 0),
-             a2j_accidental = ifelse(q19_F1 == 1 | q19_F2 == 1 , 1, 0),
-             a2j_employment = ifelse(q19_G1 == 1| q19_G2 == 1 | q19_G3 == 1, 1, 0),
-             a2j_public = ifelse(q19_H1 == 1 | q19_H2 == 1 | q19_J4 == 1, 1, 0),
+    if(mainCountry %in% centralAmerica.ls) {
+      
+      a <- data_subset %>%
+      mutate(a2j_land = ifelse(q19_B1 == 1 | q19_B2 == 1 | q19_B3 == 1| q19_B4 == 1, 1, 0),
+             a2j_housing = ifelse(q19_C3 == 1, 1, 0),
              a2j_law = ifelse(q19_I1 == 1, 1, 0),
-             a2j_id = ifelse(q19_J1 == 1 | q19_J2 == 1 | q19_J3 == 1, 1, 0),
              a2j_money =  ifelse(q19_K1 == 1 | q19_K2 == 1 | q19_K3 == 1 | q19_L1 == 1 | q19_L2 == 1, 1, 0),
-             a2j_community = ifelse(q19_H3 == 1 | q19_E3 == 1, 1, 0)) %>%
-      mutate(legal = ifelse(a2j_consumer == 1 | a2j_land == 1 | a2j_housing == 1 | a2j_family == 1 | a2j_education == 1 | a2j_accidental == 1 |
-                              a2j_employment == 1 | a2j_public == 1 | a2j_law == 1 | a2j_id == 1 | a2j_money == 1 | a2j_community == 1 | q19_99 == 1, 1, 0)) %>%
+             a2j_community = ifelse(q19_E3 == 1, 1, 0)) %>%
+      mutate(legal = ifelse(a2j_land == 1 | a2j_housing == 1 | a2j_law == 1 | a2j_money == 1 | a2j_community == 1 | q19_99 == 1, 1, 0))
+    } else {
+      
+      a <- data_subset %>%
+        mutate(a2j_consumer = ifelse(q19_A1 == 1 | q19_A2 == 1 | q19_A3 == 1, 1, 0),
+               a2j_land = ifelse(q19_B1 == 1 | q19_B2 == 1 | q19_B3 == 1| q19_B4 == 1, 1, 0),
+               a2j_housing = ifelse(q19_C1 == 1 | q19_C2 == 1 | q19_C3 == 1 | q19_C4 == 1, 1, 0),
+               a2j_family = ifelse(q19_D1 == 1 | q19_D2 == 1 | q19_D3 == 1 | q19_D4 == 1 | q19_D5 == 1 |q19_D6 == 1, 1, 0),
+               a2j_education = ifelse(q19_E1 == 1 | q19_E2 == 1, 1, 0),
+               a2j_accidental = ifelse(q19_F1 == 1 | q19_F2 == 1 , 1, 0),
+               a2j_employment = ifelse(q19_G1 == 1| q19_G2 == 1 | q19_G3 == 1, 1, 0),
+               a2j_public = ifelse(q19_H1 == 1 | q19_H2 == 1 | q19_J4 == 1, 1, 0),
+               a2j_law = ifelse(q19_I1 == 1, 1, 0),
+               a2j_id = ifelse(q19_J1 == 1 | q19_J2 == 1 | q19_J3 == 1, 1, 0),
+               a2j_money =  ifelse(q19_K1 == 1 | q19_K2 == 1 | q19_K3 == 1 | q19_L1 == 1 | q19_L2 == 1, 1, 0),
+               a2j_community = ifelse(q19_H3 == 1 | q19_E3 == 1, 1, 0)) %>%
+        mutate(legal = ifelse(a2j_consumer == 1 | a2j_land == 1 | a2j_housing == 1 | a2j_family == 1 | a2j_education == 1 | a2j_accidental == 1 |
+                                a2j_employment == 1 | a2j_public == 1 | a2j_law == 1 | a2j_id == 1 | a2j_money == 1 | a2j_community == 1 | q19_99 == 1, 1, 0))
+    }
+    
+    subset <- a %>%
       group_by(country) %>%
       filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
       ungroup() %>%
@@ -1410,83 +1424,124 @@ figure18.fn <- function(nchart = 18) {
   
   a2j <- legal_assigment(data_subset = data_subset.df)
   
-  a2j_a <- a2j %>%
-    select(starts_with("a2j_")) %>%  
-    rename("Accidental Illness & <br> Injury" = "a2j_accidental",
-      "Citizenship & ID" = "a2j_id",
-      "Community & Natural <br> Resources" = "a2j_community",
-      "Consumer" = "a2j_consumer",
-      "Employment" = "a2j_employment",
-      "Education"  = "a2j_education",
-      "Family" =  "a2j_family",
-      "Housing" = "a2j_housing",
-      "Land" = "a2j_land",
-      "Law Enforcement" = "a2j_law",
-      "Money & Debt" = "a2j_money",
-      "Public Services" = "a2j_public"
+  if(mainCountry %in% centralAmerica.ls) {
+    a2j_a <- a2j %>%
+      select(starts_with("a2j_")) %>%  
+      rename("Community" = "a2j_community",
+             "Housing" = "a2j_housing",
+             "Land" = "a2j_land",
+             "Law Enforcement" = "a2j_law",
+             "Money & Debt" = "a2j_money"
       ) %>%
-    summarise(across(everything(),mean, na.rm = T)) %>%
-    pivot_longer(cols = everything(),names_to = "problem", values_to = "value") %>%
-    arrange(value)
+      summarise(across(everything(),mean, na.rm = T)) %>%
+      pivot_longer(cols = everything(),names_to = "problem", values_to = "value") %>%
+      arrange(value)
+  } else {
+    a2j_a <- a2j %>%
+      select(starts_with("a2j_")) %>%  
+      rename("Accidental Illness & <br> Injury" = "a2j_accidental",
+             "Citizenship & ID" = "a2j_id",
+             "Community & Natural <br> Resources" = "a2j_community",
+             "Consumer" = "a2j_consumer",
+             "Employment" = "a2j_employment",
+             "Education"  = "a2j_education",
+             "Family" =  "a2j_family",
+             "Housing" = "a2j_housing",
+             "Land" = "a2j_land",
+             "Law Enforcement" = "a2j_law",
+             "Money & Debt" = "a2j_money",
+             "Public Services" = "a2j_public"
+      ) %>%
+      summarise(across(everything(),mean, na.rm = T)) %>%
+      pivot_longer(cols = everything(),names_to = "problem", values_to = "value") %>%
+      arrange(value)
+  }
   
-  first_panel <- a2j_a %>%
-    top_n(n = 4) %>%
-    aes_function(.) %>%
-    arrange(-value)
-  
-  a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
-                           y_value      = value,
-                           x_var        = problem,
-                           group_var    = group,
-                           label_var    = label,
-                           x_lab_pos    = x_pos,
-                           y_lab_pos    = 0,
-                           bar_color    = "#2a2a94",
-                           margin_top   = 20)
-  
-  second_panel <- a2j_a[5:8,] %>%
-    aes_function(.)
-  
-  a2j_p2 <- horizontal_edgebars(data2plot    = second_panel,
-                                y_value      = value,
-                                x_var        = problem,
-                                group_var    = group,
-                                label_var    = label,
-                                x_lab_pos    = x_pos,
-                                y_lab_pos    = 0,
-                                bar_color    = "#2a2a94",
-                                margin_top   = 20)
-  
-  third_panel <- a2j_a[1:4,] %>%
-    aes_function(.)
-  
-  a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
-                                y_value      = value,
-                                x_var        = problem,
-                                group_var    = group,
-                                label_var    = label,
-                                x_lab_pos    = x_pos,
-                                y_lab_pos    = 0,
-                                bar_color    = "#2a2a94",
-                                margin_top   = 20)
-  
-  figures_problems<- list()
-  figures_problems[["Panel A"]] <- a2j_p1
-  figures_problems[["Panel B"]] <- a2j_p2
-  figures_problems[["Panel C"]] <- a2j_p3
-  
-  figure18a <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
-    plot_layout(ncol = 3,
-                nrow = 1,
-                widths = unit(38, "mm"),
-                heights = unit(63, "mm"))
+  if(mainCountry %in% centralAmerica.ls) {
     
-  # Saving Patchwork
-  saveIT.fn(chart  = figure18a,
-            n      = nchart,
-            suffix = "a",
-            w      = 131.7974,
-            h      = 65.02006)
+    first_panel <- a2j_a %>%
+      top_n(n = 4) %>%
+      aes_function(.) %>%
+      arrange(-value)
+    
+    a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
+                                  y_value      = value,
+                                  x_var        = problem,
+                                  group_var    = group,
+                                  label_var    = label,
+                                  x_lab_pos    = x_pos,
+                                  y_lab_pos    = 0,
+                                  bar_color    = "#2a2a94",
+                                  margin_top   = 20)
+    # Saving Patchwork
+    saveIT.fn(chart  = a2j_p1,
+              n      = nchart,
+              suffix = "a",
+              w      = 131.7974,
+              h      = 65.02006)
+    
+  }else{
+    
+    first_panel <- a2j_a %>%
+      top_n(n = 4) %>%
+      aes_function(.) %>%
+      arrange(-value)
+    
+    a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
+                                  y_value      = value,
+                                  x_var        = problem,
+                                  group_var    = group,
+                                  label_var    = label,
+                                  x_lab_pos    = x_pos,
+                                  y_lab_pos    = 0,
+                                  bar_color    = "#2a2a94",
+                                  margin_top   = 20)
+    
+    second_panel <- a2j_a[5:8,] %>%
+      aes_function(.)
+    
+    a2j_p2 <- horizontal_edgebars(data2plot    = second_panel,
+                                  y_value      = value,
+                                  x_var        = problem,
+                                  group_var    = group,
+                                  label_var    = label,
+                                  x_lab_pos    = x_pos,
+                                  y_lab_pos    = 0,
+                                  bar_color    = "#2a2a94",
+                                  margin_top   = 20)
+    
+    third_panel <- a2j_a[1:4,] %>%
+      aes_function(.)
+    
+    a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
+                                  y_value      = value,
+                                  x_var        = problem,
+                                  group_var    = group,
+                                  label_var    = label,
+                                  x_lab_pos    = x_pos,
+                                  y_lab_pos    = 0,
+                                  bar_color    = "#2a2a94",
+                                  margin_top   = 20)
+    
+    figures_problems<- list()
+    figures_problems[["Panel A"]] <- a2j_p1
+    figures_problems[["Panel B"]] <- a2j_p2
+    figures_problems[["Panel C"]] <- a2j_p3
+    
+    figure18a <- figures_problems[["Panel A"]] + figures_problems[["Panel B"]] + figures_problems[["Panel C"]] +
+      plot_layout(ncol = 3,
+                  nrow = 1,
+                  widths = unit(38, "mm"),
+                  heights = unit(63, "mm"))
+    
+    # Saving Patchwork
+    saveIT.fn(chart  = figure18a,
+              n      = nchart,
+              suffix = "a",
+              w      = 131.7974,
+              h      = 65.02006)
+    
+  }
   
   # Figure 18b
   aes_function_v2 <- function(mainData) {
