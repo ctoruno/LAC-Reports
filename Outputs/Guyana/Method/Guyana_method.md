@@ -18,17 +18,17 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Guyana was conducted for the <i>WJP's The Rule of Law in Guyana: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by StatMark Group, based in Florida, U.S.A. StatMark Group administered the surveys between July and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Guyanese respondents aged 18 years or older residing across 26 cities throughout the country.
+                                    The GPP in Guyana was conducted for the <i>WJP's The Rule of Law in Guyana: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by StatMark Group, based in Florida, USA. StatMark Group administered the surveys between July and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Guyanese respondents aged 18 years or older residing across three major metropolitan areas throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Guyana represents an achieved total sample size of 500 interviews distributed proportionally across three regions. StatMark Group based the sampling frame on 2012 population figures from the Bureau of Statistics of Guyana, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization
+                                    The General Population Poll in Guyana represents an achieved total sample size of 500 interviews distributed proportionally across three regions. StatMark Group based the sampling frame on 2012 population figures from the Bureau of Statistics of Guyana, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
                                     <br><br>
                                     In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English, can be found in the Appendix of this report.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Regions and metropolitan areas were selected to achieve a nationally representative sample of the country based on population density and geographic coverage. Within metropolitan areas, towns and neighborhoods were selected as primary sampling units using probability proportional to size sampling. Street blocks within the primary sampling units were selected at random, and each house within the selected enumeration area was approached. Within each enumeration area, survey administrators performed a systematic random route to sample households and used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
+                                    Regions and metropolitan areas were selected to achieve a nationally representative sample of the country based on population density and geographic coverage. Within metropolitan areas, towns and neighborhoods were selected as primary sampling units using probability proportional to size sampling. Street blocks within the primary sampling units were selected at random, and each house within the selected enumeration area was approached. Survey administrators used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
                                 </p>
                             </div>
                         </div>
@@ -51,13 +51,13 @@ Methodology
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Seventy-three percent (73%) of the interviews took place in Georgetown, followed by 14% in New Amsterdam and 13% in Linden
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. The majority of interviews (73%) took place in Georgetown, followed by 14% in New Amsterdam and 13% in Linden.
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GEOGRAPHY:</b> Twenty-seven percent (27%) of respondents resided in rural areas and municipalities, while 73% of respondents resided in metro areas or cities.
                                                     </p>
                                                     <p class="mb-4">
-                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Thirty percent (39%) of respondents identified themselves as Afro-Guyanese, followed by Mixed Race (26%) and Indo-Guyanese (23%).
+                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Thirty-nine percent (39%) of respondents identified themselves as Afro-Guyanese, followed by Mixed Race (26%) and Indo-Guyanese (23%).
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GENDER:</b> Fifty percent (50%) of respondents were female and 50% were male.
@@ -121,7 +121,7 @@ Methodology
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for the Dominican Republic was collected in 2016, 2018, and 2022. Data for The Bahamas, Guyana, and Suriname was collected in 2016, 2018, and 2022. Data for Haiti was collected in 2021 and 2022. Data for Jamaica was collected in 2014, 2017, 2019, and 2022
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for The Bahamas, the Dominican Republic, Guyana, and Suriname was collected in 2016, 2018, and 2022. Data for Haiti was collected in 2021 and 2022. Data for Jamaica was collected in 2014, 2017, 2019, and 2022.
                                         </p>
                                     </div>
                                 </div>
@@ -196,7 +196,7 @@ Methodology
                                             <td>Costa Rica</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
-                                            <td>1,002</td>
+                                            <td>1,005</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Dominica</td>
@@ -256,7 +256,7 @@ Methodology
                                             <td>Jamaica</td>
                                             <td>StatMark Group</td>
                                             <td>Face-to-face</td>
-                                            <td>531</td>
+                                            <td>1,001</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Nicaragua</td>
@@ -298,7 +298,7 @@ Methodology
                                             <td>Suriname</td>
                                             <td>D3: Designs, Data, Decisions</td>
                                             <td>Face-to-face</td>
-                                            <td>522</td>
+                                            <td>502</td>
                                         </tr>
                                         <tr>
                                             <td>Trinidad and Tobago</td>

@@ -18,11 +18,11 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Bahamas was conducted for the <i>WJP's The Rule of Law in Bahamas: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by , based in .  administered the surveys , conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included s aged 18 years or older residing across three regions throughout the country.
+                                    The GPP in Bahamas was conducted for the <i>WJP's The Rule of Law in Bahamas: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by , based in .  administered the surveys , conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included s aged 18 years or older residing across   throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Bahamas represents an achieved total sample size of  interviews distributed proportionally across three regions. 
+                                    The General Population Poll in Bahamas represents an achieved total sample size of  interviews distributed proportionally across  . 
                                     <br><br>
                                     In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in , can be found in the Appendix of this report.
                                 </p>
@@ -51,7 +51,7 @@ Methodology
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Seventy-eight percent (78%) of the interviews took place in Nassau, followed by 16% in Grand Bahama Island and 6% in Abaco
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. The majority of interviews (78%) took place in Nassau, followed by 17% in Grand Bahama Island and 5% in Abaco.
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GEOGRAPHY:</b> Eighteen percent (18%) of respondents resided in rural areas and municipalities, while 82% of respondents resided in metro areas or cities.
@@ -196,7 +196,7 @@ Methodology
                                             <td>Costa Rica</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
-                                            <td>1,002</td>
+                                            <td>1,005</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Dominica</td>
@@ -256,7 +256,7 @@ Methodology
                                             <td>Jamaica</td>
                                             <td>StatMark Group</td>
                                             <td>Face-to-face</td>
-                                            <td>531</td>
+                                            <td>1,001</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Nicaragua</td>
@@ -298,7 +298,7 @@ Methodology
                                             <td>Suriname</td>
                                             <td>D3: Designs, Data, Decisions</td>
                                             <td>Face-to-face</td>
-                                            <td>522</td>
+                                            <td>502</td>
                                         </tr>
                                         <tr>
                                             <td>Trinidad and Tobago</td>

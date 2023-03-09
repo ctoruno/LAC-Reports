@@ -18,11 +18,11 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Suriname was conducted for the <i>WJP's The Rule of Law in Suriname: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by D3: Designs, Data, Decisions, based in Virginia, U.S.A. D3: Designs, Data, Decisions administered the surveys between May and June 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Surinamese respondents aged 18 years or older residing across 28 cities throughout the country.
+                                    The GPP in Suriname was conducted for the <i>WJP's The Rule of Law in Suriname: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by D3: Designs, Data, Decisions, based in Virginia, USA. D3: Designs, Data, Decisions administered the surveys between May and June 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Surinamese respondents aged 18 years or older residing across 28 cities and towns throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Suriname represents an achieved total sample size of 502 interviews distributed proportionally across nine regions. D3: Designs, Data, Decisions based the sampling frame on 2012 population figures from the General Statistics Bureau of Suriname, acquiring a proportionally stratified sample by district, age, gender, socioeconomic status, and level of urbanization
+                                    The General Population Poll in Suriname represents an achieved total sample size of 502 interviews distributed proportionally across nine districts. D3: Designs, Data, Decisions based the sampling frame on 2012 population figures from the General Statistics Bureau of Suriname, acquiring a proportionally stratified sample by district, age, gender, socioeconomic status, and level of urbanization.
                                     <br><br>
                                     In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Dutch, can be found in the Appendix of this report.
                                 </p>
@@ -57,7 +57,7 @@ Marchallkreek due to flooding that made the original areas inaccessible.
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Thirty-eight percent (38%) of the interviews took place in Paramaribo, followed by 33% in Wanica, 7% in Nickerie, and the remaining 22% in other regions
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. The majority of interviews took place in Paramaribo (42%), Wanica (22%), and Nickerie (8%).
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GEOGRAPHY:</b> Thirty-four percent (34%) of respondents resided in rural areas and municipalities, while 66% of respondents resided in metro areas or cities.
@@ -127,7 +127,7 @@ Marchallkreek due to flooding that made the original areas inaccessible.
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for the Dominican Republic was collected in 2016, 2018, and 2022. Data for The Bahamas, Guyana, and Suriname was collected in 2016, 2018, and 2022. Data for Haiti was collected in 2021 and 2022. Data for Jamaica was collected in 2014, 2017, 2019, and 2022
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for The Bahamas, the Dominican Republic, Guyana, and Suriname was collected in 2016, 2018, and 2022. Data for Haiti was collected in 2021 and 2022. Data for Jamaica was collected in 2014, 2017, 2019, and 2022.
                                         </p>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@ Marchallkreek due to flooding that made the original areas inaccessible.
                                             <td>Costa Rica</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
-                                            <td>1,002</td>
+                                            <td>1,005</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Dominica</td>
@@ -262,7 +262,7 @@ Marchallkreek due to flooding that made the original areas inaccessible.
                                             <td>Jamaica</td>
                                             <td>StatMark Group</td>
                                             <td>Face-to-face</td>
-                                            <td>531</td>
+                                            <td>1,001</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Nicaragua</td>
@@ -304,7 +304,7 @@ Marchallkreek due to flooding that made the original areas inaccessible.
                                             <td>Suriname</td>
                                             <td>D3: Designs, Data, Decisions</td>
                                             <td>Face-to-face</td>
-                                            <td>522</td>
+                                            <td>502</td>
                                         </tr>
                                         <tr>
                                             <td>Trinidad and Tobago</td>

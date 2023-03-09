@@ -802,6 +802,25 @@ figure04_PRY.fn <- function(nchart = 4){
       )
     ) 
   
+  # Specifying a custom order for West Caribbean
+  if (mainCountry %in% westCaribbean_and_guianas.ls) {
+    c.order <- T
+  } else {
+    c.order <- F
+  }
+  if (mainCountry %in% westCaribbean_and_guianas.ls) {
+    data2plot <- data2plot %>%
+      mutate(
+        order_var = case_when(
+          country == "The Bahamas"        ~ 1,
+          country == "Dominican Republic" ~ 2,
+          country == "Guyana"             ~ 3,
+          country == "Haiti"              ~ 4,
+          country == "Jamaica"            ~ 5
+        )
+      )
+  }
+  
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
              file      = file.path("Outputs", 
@@ -844,7 +863,9 @@ figure04_PRY.fn <- function(nchart = 4){
                                 colors         = colors4plot,
                                 direction      = "horizontal",
                                 stacked        = T,
-                                lab_pos        = "stack_y"
+                                lab_pos        = "stack_y",
+                                custom_order   = c.order,
+                                order_var      = "order_var"
          )
          
          # Defining height
