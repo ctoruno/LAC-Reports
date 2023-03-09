@@ -288,10 +288,13 @@ figure03.fn <- function(nchart = 3, PAR = F) {
     data_subset.df <- data_subset.df %>%
       filter(country != "Suriname")
   }
-  
   if (mainCountry %in% southCone.ls){
     data_subset.df <- data_subset.df %>%
       filter(country != "Paraguay")
+  }
+  if (mainCountry %in% centralAmerica.ls){
+    data_subset.df <- data_subset.df %>%
+      filter(country != "Nicaragua")
   }
   
   # Defining data frame for plot
