@@ -573,7 +573,11 @@ figure19B.fn <- function(nchart = 19) {
   logit_plot <- logit_demo_panel(mainData = data2plot_P1, 
                                  line_size = 1.5, 
                                  point_color = "#a90099", 
-                                 line_color  = "#a90099")
+                                 line_color  = "#a90099") +
+    scale_y_continuous(limits = c(-0.25, 0.25),
+                       breaks = seq(-0.25, 0.25, by = 0.125),
+                       expand = expansion(mult = 0.025), position = "right",
+                       labels = c("-25", "-12.5", "0", "+12.5","+25"))
   
   # Saving panels
   
@@ -588,7 +592,11 @@ figure19B.fn <- function(nchart = 19) {
   logit_plot <- logit_demo_panel(mainData = data2plot_P2, 
                                  line_size = 1.5, 
                                  point_color = "#a90099", 
-                                 line_color  = "#a90099")
+                                 line_color  = "#a90099") +
+    scale_y_continuous(limits = c(-0.25, 0.25),
+                       breaks = seq(-0.25, 0.25, by = 0.125),
+                       expand = expansion(mult = 0.025), position = "right",
+                       labels = c("-25", "-12.5", "0", "+12.5","+25"))
   
   # Saving panels
   
@@ -645,6 +653,7 @@ figure20A.fn <- function(nchart = 20) {
                  y     = value2plot*100,
                  fill  = category,
                  alpha = high),
+             color    = "white",
              stat     = "identity",
              position = "dodge",
              show.legend = F) +
