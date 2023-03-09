@@ -90,7 +90,7 @@ create_methodPage.fn <- function(){
     "sf_qcontrol"        = data4quarto.ls[["sf"]] %>% pull(`Quality Control`),
     "sf_education"       = data4quarto.ls[["sf"]] %>% pull(`Education`),
     "sf_historical"      = data4quarto.ls[["sf"]] %>% pull(`Historical Data`),
-    "sf_region"          = tolower(data4quarto.ls[["sf"]] %>% pull(`Region`)),
+    "sf_region"          = data4quarto.ls[["sf"]] %>% pull(`Region`),
     "sf_interviewing"    = data4quarto.ls[["sf"]] %>% pull(`Interviewing`),
     
     # Administrative Divisions
