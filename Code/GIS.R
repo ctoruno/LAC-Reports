@@ -78,7 +78,7 @@ central_america.df <- master_data.df %>%
       country == "El Salvador" ~ paste0(str_squish(str_extract(PSU, "(?<=Seg\\s\\d{1,3}\\s-.{1,50}-).+?(?=-)")), 
                                         ", ", country),
       country == "Guatemala"   ~ paste0(PSU, ", ", country),
-      # country == "Honduras"    ~ paste0(city, ", ", country),
+      country == "Honduras"    ~ paste0(city, ", ", country),
       country == "Panama"      ~ paste0(str_squish(str_to_title(str_extract(PSU, "(?<=Seg\\s\\d{1,3}\\s-.{1,50}-).+?(?=-)"))), 
                                         ", ", country)
     ),
@@ -104,7 +104,9 @@ central_america.df <- master_data.df %>%
       location == "Ilopango, El Salvador"            ~ "San Salvador, El Salvador",
       location == "Mixco, Guatemala"                 ~ "Ciudad De Guatemala, Guatemala",
       location == "Villa Nueva, Guatemala"           ~ "Ciudad De Guatemala, Guatemala",
-      location == "San Miguelito, Panama"            ~ "Ciudad de Panamá, Panama"
+      location == "San Miguelito, Panama"            ~ "Ciudad de Panamá, Panama",
+      location == "Choloma, Honduras"                ~ "San Pedro Sula, Honduras",
+      location == "La Lima, Honduras"                ~ "San Pedro Sula, Honduras",
       TRUE ~ location
     ),
     
@@ -165,7 +167,10 @@ m.areas <- c("Ciudad De Guatemala, Guatemala",
              "David, Panama",
              "San Salvador, El Salvador",
              "Santa Ana, El Salvador",
-             "San Miguel, El Salvador")
+             "San Miguel, El Salvador",
+             "Tegucigalpa, Honduras",
+             "San Pedro Sula, Honduras",
+             "La Ceiba, Honduras")
 
 data4maps.sf <- central_america.sf %>%
   filter(location %in% m.areas)
@@ -188,7 +193,7 @@ library(units)
 central_america.sf <- central_america.sf %>%
   st_transform("+proj=moll")
 
-# Subsetting metro areas
+# Sub-setting metro areas
 metro_areas.sf <- central_america.sf %>%
   filter(location %in% m.areas)
 

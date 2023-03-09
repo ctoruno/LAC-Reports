@@ -771,10 +771,13 @@ figure04_PRY.fn <- function(nchart = 4){
     filter(year == latestYear) %>%
     select(country, all_of(unlist(vars4plot, 
                                   use.names = F))) %>%
-    mutate(across(!country,
-                  ~if_else(.x == 99, 
-                           NA_real_, 
-                           as.double(.x)))) 
+    mutate(
+      country = if_else(country == "Bahamas", "The Bahamas", country),
+      across(!country,
+             ~if_else(.x == 99, 
+                      NA_real_, 
+                      as.double(.x)))
+    ) 
   
   data2plot <- lapply(vars4plot, 
                       function(target) {
