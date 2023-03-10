@@ -429,9 +429,6 @@ figure19A.fn <- function(nchart = 19) {
         location == "David"          ~ x*1.0025,
         location == "Panama City"    ~ x*1.0025,
         location == "Colón"          ~ x*0.9995,
-        location == "La Ceiba"       ~ x*0.9990,
-        location == "San Pedro Sula" ~ x*1.0095,
-        location == "Tegucigalpa"    ~ x*0.9990,
         TRUE ~ x
       ),
       y = case_when(
@@ -447,9 +444,6 @@ figure19A.fn <- function(nchart = 19) {
         location == "David"          ~ y*1.0625,
         location == "Panama City"    ~ y*0.9400,
         location == "Colón"          ~ y*0.9995,
-        # location == "La Ceiba"       ~ y*0.9995,
-        location == "San Pedro Sula" ~ y*0.9600,
-        location == "Tegucigalpa"    ~ y*0.9795,
         TRUE ~ y
       )
     )
@@ -761,9 +755,6 @@ figure20B.fn <- function(nchart = 20) {
         location == "David"          ~ x*1.0025,
         location == "Panama City"    ~ x*1.0025,
         location == "Colón"          ~ x*0.9995,
-        location == "La Ceiba"       ~ x*0.9990,
-        location == "San Pedro Sula" ~ x*1.0095,
-        location == "Tegucigalpa"    ~ x*0.9990,
         TRUE ~ x
       ),
       y = case_when(
@@ -779,9 +770,6 @@ figure20B.fn <- function(nchart = 20) {
         location == "David"          ~ y*1.0625,
         location == "Panama City"    ~ y*0.9400,
         location == "Colón"          ~ y*0.9995,
-        # location == "La Ceiba"       ~ y*0.9995,
-        location == "San Pedro Sula" ~ y*0.9600,
-        location == "Tegucigalpa"    ~ y*0.9795,
         TRUE ~ y
       )
     )
@@ -925,8 +913,7 @@ figure21A.fn <- function(nchart = 21) {
     ungroup() %>%
     mutate(value = values/universe) %>%
     arrange(-values) %>%
-    top_n(values, n = 3) %>%
-    mutate(category = if_else(mainCountry == "Belize", ))
+    slice_max(values, n = 3, with_ties = F) %>%
     select(category, value) %>%
     mutate(empty_value = 1 - value) %>%
     pivot_longer(!category,

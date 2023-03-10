@@ -1460,8 +1460,17 @@ figure18.fn <- function(nchart = 18) {
   if(mainCountry %in% centralAmerica.ls) {
     
     first_panel <- a2j_a %>%
-      top_n(n = 4) %>%
-      aes_function(.) %>%
+      slice_max(n = 2, value) %>%
+      mutate(empty_value = 1 - value) %>%
+      pivot_longer(!problem,
+                   names_to = "group",
+                   values_to = "value") %>%
+      mutate(x_pos = c(2.2, 2.2, 1.2, 1.2),
+             order_value = c(2,2,1,1),
+             empty_value = 1 - value,
+             label = paste0(round(value*100,0), "%"),
+             multiplier = if_else(group == "empty_value", 0, 1),
+             label = if_else(multiplier == 0, NA_character_, label)) %>%
       arrange(-value)
     
     a2j_p1 <- horizontal_edgebars(data2plot    = first_panel,
@@ -1473,8 +1482,69 @@ figure18.fn <- function(nchart = 18) {
                                   y_lab_pos    = 0,
                                   bar_color    = "#2a2a94",
                                   margin_top   = 20)
+    
+    second_panel <- a2j_a[2:3,] %>%
+      mutate(empty_value = 1 - value) %>%
+      pivot_longer(!problem,
+                   names_to = "group",
+                   values_to = "value") %>%
+      mutate(x_pos = c(1.2, 1.2, 2.2, 2.2),
+             order_value = c(1,1,2,2),
+             empty_value = 1 - value,
+             label = paste0(round(value*100,0), "%"),
+             multiplier = if_else(group == "empty_value", 0, 1),
+             label = if_else(multiplier == 0, NA_character_, label)) %>%
+      arrange(-value)
+    
+    a2j_p2 <- horizontal_edgebars(data2plot    = second_panel,
+                                  y_value      = value,
+                                  x_var        = problem,
+                                  group_var    = group,
+                                  label_var    = label,
+                                  x_lab_pos    = x_pos,
+                                  y_lab_pos    = 0,
+                                  bar_color    = "#2a2a94",
+                                  margin_top   = 20)
+    
+    third_panel <- a2j_a %>%
+      slice_min(n = 1, value) %>%
+      mutate(empty_value = 1 - value) %>%
+      pivot_longer(!problem,
+                   names_to = "group",
+                   values_to = "value") %>%
+      mutate(x_pos = c(1.2, 1.2),
+             order_value = c(1,1),
+             empty_value = 1 - value,
+             label = paste0(round(value*100,0), "%"),
+             multiplier = if_else(group == "empty_value", 0, 1),
+             label = if_else(multiplier == 0, NA_character_, label)) %>%
+      arrange(-value)
+    
+    a2j_p3 <- horizontal_edgebars(data2plot    = third_panel,
+                                  y_value      = value,
+                                  x_var        = problem,
+                                  group_var    = group,
+                                  label_var    = label,
+                                  x_lab_pos    = x_pos,
+                                  y_lab_pos    = 0,
+                                  bar_color    = "#2a2a94",
+                                  margin_top   = 20)
+    
+    figures_problems <- list()
+    figures_problems[["Panel A"]] <- a2j_p1
+    figures_problems[["Panel B"]] <- a2j_p2
+    figures_problems[["Panel C"]] <- a2j_p3
+    
+    figure18a_1 <- ((figures_problems[["Panel A"]] | figures_problems[["Panel B"]]) + 
+                    plot_layout(widths = unit(38,"mm"),
+                                heights = unit(65.02006, "mm"))) |
+                      ((figures_problems[["Panel C"]] / plot_spacer()) +
+                         theme(plot.margin = margin(0,0,0,0)) +
+                         plot_layout(widths = unit(38, "mm"),
+                                     heights = unit(c(32.51003,29), "mm")));figure18a_1
+    
     # Saving Patchwork
-    saveIT.fn(chart  = a2j_p1,
+    saveIT.fn(chart  = figure18a_1,
               n      = nchart,
               suffix = "a",
               w      = 131.7974,
