@@ -60,11 +60,20 @@ create_methodPage.fn <- function(){
     "tB" = method_data.ls[["tB"]]
   )
   
+  comparison_countries <- str_replace(paste(comparison_countries.ls, collapse = ", "),
+                                      "Dominican Republic",
+                                      "the Dominican Republic")
+  comparison_countries <- str_replace(paste(comparison_countries.ls, collapse = ", "),
+                                      "Bahamas",
+                                      "The Bahamas")
+  
   # Defining Parameters
   method_input.ls <- list(
     
     # Sampling Frame
-    "sf_country"         = mainCountry, 
+    "sf_country"         = case_when(mainCountry == "Bahamas"            ~ "The Bahamas",
+                                     mainCountry == "Dominican Republic" ~ "the Dominican Republic",
+                                     TRUE ~ mainCountry), 
     "sf_year"            = data_subset.df %>% 
                               group_by(country) %>% 
                               summarise(latestYear = first(latestYear)) %>%
@@ -80,8 +89,8 @@ create_methodPage.fn <- function(){
     "sf_dates"           = data4quarto.ls[["sf"]] %>% pull(`FW Dates`),           
     "sf_nationality"     = data4quarto.ls[["sf"]] %>% pull(`Nationality`),     
     "sf_location"        = data4quarto.ls[["sf"]] %>% pull(`Polling Company Location`),
-    "sf_projPop"        = data4quarto.ls[["sf"]] %>% pull(`ProjPop`),
-    "sf_comparison"      = str_replace(paste(comparison_countries.ls, collapse = ", "), 
+    "sf_projPop"         = data4quarto.ls[["sf"]] %>% pull(`ProjPop`),
+    "sf_comparison"      = str_replace(paste(comparison_countries, collapse = ", "), 
                                        "(,)(?!.*\\1)", 
                                        " and"),  
     "sf_surveyLang"      = data4quarto.ls[["sf"]] %>% pull(`SurveyLang`),
