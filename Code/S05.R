@@ -907,13 +907,13 @@ figure21A.fn <- function(nchart = 21) {
     pivot_longer(cols = !universe, names_to = "category", values_to = "value") %>%
     mutate(category = 
              case_when(
-               category == "EXP22_q27d_1" ~ "Legal counsel\n/inmigration services",
+               category == "EXP22_q27d_1" ~ "Legal counsel /<br>inmigration services",
                category == "EXP22_q27d_2" ~ "Medical services",
                category == "EXP22_q27d_3" ~ "Other NGOs",
                category == "EXP22_q27d_4" ~ "Local authorities",
-               category == "EXP22_q27d_5" ~ "Local community \nmembers",
-               category == "EXP22_q27d_6" ~ "Religious \norganizations",
-               category == "EXP22_q27d_7" ~ "Family members\n/friends",
+               category == "EXP22_q27d_5" ~ "Local community <br>members",
+               category == "EXP22_q27d_6" ~ "Religious <br> organizations",
+               category == "EXP22_q27d_7" ~ "Family members/ <br> friends",
                category == "EXP22_q27d_8" ~ "Other",
                category == "EXP22_q27d_9" ~ NA_character_,
                category == "EXP22_q27d_99"~ NA_character_ 
@@ -926,6 +926,7 @@ figure21A.fn <- function(nchart = 21) {
     mutate(value = values/universe) %>%
     arrange(-values) %>%
     top_n(values, n = 3) %>%
+    mutate(category = if_else(mainCountry == "Belize", ))
     select(category, value) %>%
     mutate(empty_value = 1 - value) %>%
     pivot_longer(!category,
@@ -954,8 +955,8 @@ figure21A.fn <- function(nchart = 21) {
   saveIT.fn(chart  = a,
             n      = nchart,
             suffix = "A",
-            w      = 36.55182,
-            h      = 31.63138)
+            w      = 40.76934,
+            h      = 36.90328)
   }
 
 
