@@ -202,7 +202,7 @@ in the Chaco region of Paraguay.
                                             <td>Costa Rica</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
-                                            <td>1,002</td>
+                                            <td>1,005</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Dominica</td>
@@ -262,7 +262,7 @@ in the Chaco region of Paraguay.
                                             <td>Jamaica</td>
                                             <td>StatMark Group</td>
                                             <td>Face-to-face</td>
-                                            <td>531</td>
+                                            <td>1,001</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Nicaragua</td>
@@ -288,25 +288,25 @@ in the Chaco region of Paraguay.
                                             <td>Face-to-face</td>
                                             <td>1,029</td>
                                         </tr>
-                                        <tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>St. Lucia</td>
                                             <td>DMR Insights Ltd.</td>
                                             <td>Face-to-face</td>
                                             <td>500</td>
                                         </tr>
-                                        <tr style = "background-color: #E8E4F9">
+                                        <tr>
                                             <td>St. Vincent and the Grenadines</td>
                                             <td>DMR Insights Ltd.</td>
                                             <td>Face-to-face</td>
                                             <td>500</td>
                                         </tr>
-                                        <tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>Suriname</td>
                                             <td>D3: Designs, Data, Decisions</td>
                                             <td>Face-to-face</td>
-                                            <td>522</td>
+                                            <td>502</td>
                                         </tr>
-                                        <tr style = "background-color: #E8E4F9">
+                                        <tr>
                                             <td>Trinidad and Tobago</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>

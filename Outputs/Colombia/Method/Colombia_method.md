@@ -111,7 +111,7 @@ Methodology
                                         <p class="mb-4">
                                             In total, 42 interviewers worked on this project, including 28 female interviewers. Enumerators worked in ten groups of four to five interviewers with one supervisor per group. Interviews were conducted in Spanish.
                                             <br><br>
-                                            The supervisory team directly oversaw 20% of all interviews in the field. During data processing, 200 interviews (approximately 20% of the sample) were selected for audio review by the central office and 300 interviews (30% of the sample) were backchecked via telephone. After quality control, 2 interviews were rejected from the final sample. Additional quality control measures included GPS validation of all sampling segment interviews, checks for abnormal answer patterns, and photo verification. Interviews averaged 44 minutes in length and ranged from 26 to 81 minutes.
+                                            The supervisory team directly oversaw 20% of all interviews in the field. During data processing, 200 interviews (approximately 20% of the sample) were selected for audio review by the central office and 300 interviews (30% of the sample) were backchecked via telephone.  Additional quality control measures included GPS validation of all sampling segment interviews, checks for abnormal answer patterns, and photo verification. After quality control, two interviews were rejected from the final sample. Interviews averaged 44 minutes in length and ranged from 26 to 81 minutes.
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>DATA REVIEW AND JUSTIFICATION</b></p>
@@ -196,7 +196,7 @@ Methodology
                                             <td>Costa Rica</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
-                                            <td>1,002</td>
+                                            <td>1,005</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Dominica</td>
@@ -256,7 +256,7 @@ Methodology
                                             <td>Jamaica</td>
                                             <td>StatMark Group</td>
                                             <td>Face-to-face</td>
-                                            <td>531</td>
+                                            <td>1,001</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Nicaragua</td>
@@ -282,25 +282,25 @@ Methodology
                                             <td>Face-to-face</td>
                                             <td>1,029</td>
                                         </tr>
-                                        <tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>St. Lucia</td>
                                             <td>DMR Insights Ltd.</td>
                                             <td>Face-to-face</td>
                                             <td>500</td>
                                         </tr>
-                                        <tr style = "background-color: #E8E4F9">
+                                        <tr>
                                             <td>St. Vincent and the Grenadines</td>
                                             <td>DMR Insights Ltd.</td>
                                             <td>Face-to-face</td>
                                             <td>500</td>
                                         </tr>
-                                        <tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>Suriname</td>
                                             <td>D3: Designs, Data, Decisions</td>
                                             <td>Face-to-face</td>
-                                            <td>522</td>
+                                            <td>502</td>
                                         </tr>
-                                        <tr style = "background-color: #E8E4F9">
+                                        <tr>
                                             <td>Trinidad and Tobago</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>

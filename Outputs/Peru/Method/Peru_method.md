@@ -28,7 +28,7 @@ Methodology
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Regions and provinces were selected to achieve a nationally representative sample of the country. Districts were selected as the primary sampling unit according to quotas for age, gender, geographic distribution, and socioeconomic level. Within urban and rural districts, “census areas” and “populated centers,” respectively, were randomly selected as enumeration areas using probability proportionate to size sampling . The number of enumeration areas assigned to each district was determined by the relative population of each district. Within each enumeration area, survey administrators performed a systematic random route to sample households and randomly selected respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.  
+                                    Regions and provinces were selected to achieve a nationally representative sample of the country. Districts were selected as the primary sampling unit according to quotas for age, gender, geographic distribution, and socioeconomic level. Within urban and rural districts, census areas and populated centers, respectively, were randomly selected as enumeration areas using probability proportionate to size sampling . The number of enumeration areas assigned to each district was determined by the relative population of each district. Within each enumeration area, survey administrators performed a systematic random route to sample households and randomly selected respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.  
 
 Due to a lack of accessibility, the Loreto and San Martín regions of the
 Peruvian Amazon were excluded from the study. Loreto and San Martín were
@@ -202,7 +202,7 @@ the Amazon rainforest and Amazon basin, respectively.
                                             <td>Costa Rica</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
-                                            <td>1,002</td>
+                                            <td>1,005</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Dominica</td>
@@ -262,7 +262,7 @@ the Amazon rainforest and Amazon basin, respectively.
                                             <td>Jamaica</td>
                                             <td>StatMark Group</td>
                                             <td>Face-to-face</td>
-                                            <td>531</td>
+                                            <td>1,001</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Nicaragua</td>
@@ -288,25 +288,25 @@ the Amazon rainforest and Amazon basin, respectively.
                                             <td>Face-to-face</td>
                                             <td>1,029</td>
                                         </tr>
-                                        <tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>St. Lucia</td>
                                             <td>DMR Insights Ltd.</td>
                                             <td>Face-to-face</td>
                                             <td>500</td>
                                         </tr>
-                                        <tr style = "background-color: #E8E4F9">
+                                        <tr>
                                             <td>St. Vincent and the Grenadines</td>
                                             <td>DMR Insights Ltd.</td>
                                             <td>Face-to-face</td>
                                             <td>500</td>
                                         </tr>
-                                        <tr>
+                                        <tr style = "background-color: #E8E4F9">
                                             <td>Suriname</td>
                                             <td>D3: Designs, Data, Decisions</td>
                                             <td>Face-to-face</td>
-                                            <td>522</td>
+                                            <td>502</td>
                                         </tr>
-                                        <tr style = "background-color: #E8E4F9">
+                                        <tr>
                                             <td>Trinidad and Tobago</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>

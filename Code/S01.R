@@ -386,8 +386,10 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   # Specifying a custom order for West Caribbean
   if (mainCountry %in% westCaribbean_and_guianas.ls) {
     c.order <- T
+    ext     <- T
   } else {
     c.order <- F
+    ext     <- F
   }
   if (mainCountry %in% westCaribbean_and_guianas.ls) {
     data2plot <- data2plot %>%
@@ -400,6 +402,9 @@ figure03.fn <- function(nchart = 3, PAR = F) {
           country == "Jamaica"            ~ 5
         )
       )
+  }
+  if (mainCountry %in% eastCaribbean.ls) {
+    ext <- T
   }
   
   # Saving data points
@@ -464,7 +469,8 @@ figure03.fn <- function(nchart = 3, PAR = F) {
                               labels_var     = "label",
                               lab_pos        = "lab_pos",
                               custom_order   = c.order,
-                              order_var      = "order_var")
+                              order_var      = "order_var",
+                              extreme        = ext)
          
          # Saving panels
          saveIT.fn(chart  = chart,
