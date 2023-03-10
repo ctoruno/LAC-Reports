@@ -14,21 +14,21 @@ Methodology
                                 <p class="mb-4">
                                     To present an image that accurately portrays the rule of law as experienced by ordinary people, data in this report is drawn from the General Population Poll (GPP), an original data source designed and collected by the World Justice Project (WJP). The GPP captures the experiences and perceptions of ordinary citizens concerning the performance of the state and its agents and the actual operation of the legal framework in their country.
                                     <br><br>
-                                    The General Population Poll used to collect data in Dominica in 2022 features several new questions that highlight perceptions on issues salient to the region, including corruption, authoritarian behaviors, police performance, criminal justice, and security. In total, the General Population Poll questionnaire includes 172 perception-based questions and 122 experience-based questions, along with sociodemographic information on all respondents. Additionally, the GPP in Dominica was administered to a sample of 500 respondents.
+                                    The General Population Poll used to collect data in Dominica in 2022 features several new questions that highlight perceptions on issues salient to the region, including corruption, authoritarian behaviors, police performance, criminal justice, and security. In total, the General Population Poll questionnaire includes  perception-based questions and  experience-based questions, along with sociodemographic information on all respondents. Additionally, the GPP in Dominica was administered to a sample of  respondents.
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Dominica was conducted for the <i>WJP's The Rule of Law in Dominica: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by DMR Insights Ltd., based in St. Lucia. DMR Insights Ltd. administered the surveys between July and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Dominicanss aged 18 years or older residing across   throughout the country.
+                                    The GPP in Dominica was conducted for the <i>WJP's The Rule of Law in Dominica: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by , based in .  administered the surveys , conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included s aged 18 years or older residing across   throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Dominica represents an achieved total sample size of 500 interviews distributed proportionally across  . DMR Insights Ltd. based the sampling frame on 2011 census figures, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization
+                                    The General Population Poll in Dominica represents an achieved total sample size of  interviews distributed proportionally across  . 
                                     <br><br>
-                                    In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English, can be found in the Appendix of this report.
+                                    In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in , can be found in the Appendix of this report.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Given Dominica’s population size, regions served as the primary sampling unit. Interviewers were assigned a starting point within each primary sampling unit and performed a systemic random route, while paying close attention to target quotas for gender, age, and income. Interviewers used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
+                                    
                                 </p>
                             </div>
                         </div>
@@ -57,13 +57,13 @@ Methodology
                                                         <b class="c-purple">GEOGRAPHY:</b>  percent (%) of respondents resided in rural areas and municipalities, while % of respondents resided in metro areas or cities.
                                                     </p>
                                                     <p class="mb-4">
-                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Most respondents (77%) identified themselves as Afro-Dominican, followed by Mixed Race (14%).
+                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> 
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GENDER:</b>  percent (%) of respondents were female and % were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (89%) reported that they had received at least a high school diploma or  vocational degree and the remaining 11% of respondents received up to a middle school diploma.
+                                                        <b class="c-purple">EDUCATION:</b> 
                                                     </p>
                                                 </div>
                                             </div>
@@ -109,9 +109,9 @@ Methodology
                                         </div>
                                         <p class="mb-0 c-purple"><b>INTERVIEWING AND QUALITY CONTROL</b></p>
                                         <p class="mb-4">
-                                            In total, 19 interviewers worked on this project, including 11 female interviewers. Enumerators worked in five groups of three to four interviewers. Interviews were conducted in English.
+                                            
                                             <br><br>
-                                            The supervisory team directly oversaw 10% of all interviews in the field. During data processing, 150 interviews (30% of the sample) were backchecked via telephone by the central office. After quality control, 19 interviews were rejected from the final sample due to abnormal interview length. Interviews averaged 48 minutes in length and ranged from 47 to 87 minutes.
+                                            
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>DATA REVIEW AND JUSTIFICATION</b></p>
@@ -121,7 +121,7 @@ Methodology
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Barbados, Dominica, Grenada, St. Lucia, St. Vincent and the Grenadines, and Trinidad and Tobago was collected in 2016, 2018, and 2024
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: 
                                         </p>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@ Methodology
 
                                 <p class="mb-0 c-purple"><b>ADDITIONAL COUNTRIES</b></p>
                                 <p class="mb-4">
-                                    <i>The Rule of Law in Dominica: Key Findings from the General Population Poll 2022</i> includes comparisons to the following Eastern Caribbean countries surveyed by the World Justice Project during the same period: Barbados, Grenada, St. Lucia, St. Vincent and the Grenadines and Trinidad and Tobago. This report is additionally part of a series that presents findings from the following five sub-regions within Latin America and the Caribbean: Andes (Bolivia, Colombia, Ecuador, Peru); Southern Cone (Argentina, Brazil, Paraguay); Eastern Caribbean (Barbados, Dominica, Grenada, St. Lucia, St. Vincent and the Grenadines, Trinidad and Tobago); Greater Antilles, The Bahamas, and the Guianas (The Bahamas, the Dominican Republic, Guyana, Haiti, Jamaica, Suriname); and Central America (Belize, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama). Together, these 26 countries are a portion of the 140 countries and jurisdictions included in the <i>WJP Rule of Law Index 2022</i> report. Detailed information regarding the methodology of the <i>Rule of Law Index</i> is available at: <a href="www.worldjusticeproject.org." target="_blank" class="c-purple"><i>www.worldjusticeproject.org.</i></a>
+                                    <i>The Rule of Law in Dominica: Key Findings from the General Population Poll 2022</i> includes comparisons to the following  countries surveyed by the World Justice Project during the same period: Barbados, Grenada, St. Lucia, St. Vincent and the Grenadines and Trinidad and Tobago. This report is additionally part of a series that presents findings from the following five sub-regions within Latin America and the Caribbean: Andes (Bolivia, Colombia, Ecuador, Peru); Southern Cone (Argentina, Brazil, Paraguay); Eastern Caribbean (Barbados, Dominica, Grenada, St. Lucia, St. Vincent and the Grenadines, Trinidad and Tobago); Greater Antilles, The Bahamas, and the Guianas (The Bahamas, the Dominican Republic, Guyana, Haiti, Jamaica, Suriname); and Central America (Belize, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama). Together, these 26 countries are a portion of the 140 countries and jurisdictions included in the <i>WJP Rule of Law Index 2022</i> report. Detailed information regarding the methodology of the <i>Rule of Law Index</i> is available at: <a href="www.worldjusticeproject.org." target="_blank" class="c-purple"><i>www.worldjusticeproject.org.</i></a>
                                 </p>
                                 <div class="table-responsive mb-4">
                                     <table class="table table-sm">
@@ -196,7 +196,7 @@ Methodology
                                             <td>Costa Rica</td>
                                             <td>CID Gallup</td>
                                             <td>Face-to-face</td>
-                                            <td>1,002</td>
+                                            <td>1,005</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Dominica</td>
@@ -256,7 +256,7 @@ Methodology
                                             <td>Jamaica</td>
                                             <td>StatMark Group</td>
                                             <td>Face-to-face</td>
-                                            <td>531</td>
+                                            <td>1,001</td>
                                         </tr>
                                         <tr style = "background-color: #E8E4F9">
                                             <td>Nicaragua</td>
@@ -298,7 +298,7 @@ Methodology
                                             <td>Suriname</td>
                                             <td>D3: Designs, Data, Decisions</td>
                                             <td>Face-to-face</td>
-                                            <td>522</td>
+                                            <td>502</td>
                                         </tr>
                                         <tr>
                                             <td>Trinidad and Tobago</td>

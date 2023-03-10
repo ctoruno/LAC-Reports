@@ -816,48 +816,67 @@ figure20B.fn <- function(nchart = 20) {
   
 }
 
-figure20C.fn <- function(nchart = 20) { 
+figure20C.fn <- function(nchart = 20) {
   
-  ####### IMPACT OF FAMILY AND FRIENDS
-  
-  barsPalette <- c("#2a2a94", "#a90099")
-
-  # function Graph
-  
-  donut_plot <- function(data2plot, barsPalette) {
-    ggplot(data2plot, aes(x = 2, y = value2plot, fill = fct_rev(fct_infreq(labels)))) +
-      geom_bar(stat = "identity", color = "white") +
-      coord_polar(theta = "y") +
-      scale_fill_manual(values = barsPalette) +
-      theme_void() +
-      labs(fill = "") +
-      xlim(0.5, 2.5)
-  }
-  
-  
-  # Data2Plot, "Has COVID-19 negatively impacted your plans to move internationally?"
-  
-  data2plot_D1 <- data_subset.df %>% 
-    filter(country == mainCountry) %>% 
-    mutate(EXP22_q26l_ajust =
-             case_when(EXP22_q26l == 0  ~ 0,
-                       EXP22_q26l == 1  ~ 1,
-                       EXP22_q26l == 99  ~ NA_real_)) %>% 
+  # Defining data to plot
+  data2plot <- data_subset.df %>% 
+    filter(country == mainCountry & year == latestYear) %>% 
+    mutate(EXP22_q26l_ajust = case_when(
+      EXP22_q26l == 0  ~ 0,
+      EXP22_q26l == 1  ~ 1,
+      EXP22_q26l == 99 ~ NA_real_)
+    ) %>% 
     select(country, EXP22_q26l_ajust) %>% 
     group_by(country, EXP22_q26l_ajust) %>%  
     filter(!is.na(EXP22_q26l_ajust)) %>% 
     summarise(n = n()) %>% 
-    mutate(value2plot = round(100 * (n/sum(n)), 0),
-           labels = case_when(EXP22_q26l_ajust == 1 ~ paste0(value2plot,"% Yes"),
-                              EXP22_q26l_ajust == 0 ~ paste0(value2plot,"% No")))
+    mutate(
+      value2plot = round(100 * (n/sum(n)), 0),
+      ymax = cumsum(value2plot),
+      ymin = c(0, head(value2plot, n = -1)),
+      labels     = case_when(
+        EXP22_q26l_ajust == 1 ~ paste0("<span style='color:#2a2a94;font-size:3.514598mm;font-weight:bold;'>",
+                                       to_percentage.fn(value2plot), " Yes",
+                                       "</span>"),
+        EXP22_q26l_ajust == 0 ~ paste0("<span style='color:#a90099;font-size:3.514598mm;font-weight:bold;'>",
+                                       to_percentage.fn(value2plot), " No",
+                                       "</span>")
+      ),
+    )
   
-  ### Graph
-
-  donutPlot <- donut_plot(data2plot_D1, barsPalette)
   
-  saveIT.fn(chart  = donutPlot,
+  
+  # Plotting data
+  chart <- ggplot(data = data2plot, 
+                  aes(x     = 2,
+                      xmin  = 3,
+                      xmax  = 4,
+                      y     = value2plot,
+                      ymin  = ymin,
+                      ymax  = ymax,
+                      fill  = labels)) +
+    geom_rect(color = "white",
+              show.legend = F) +
+    geom_point(color = NA) +
+    coord_polar(theta = "y") +
+    scale_fill_manual(values = c("#2a2a94","#a90099"),) +
+    WJP_theme() +
+    theme(panel.grid.major   = element_blank(),
+          axis.title.x       = element_blank(),
+          axis.title.y       = element_blank(),
+          axis.text.y        = element_blank(),
+          axis.text.x        = element_blank(),
+          legend.text        = element_markdown(),
+          legend.title       = element_blank(),
+          legend.key         = element_rect(fill = NA),
+          legend.margin      = margin(-5,0,0,-15),
+          plot.margin        = margin(-5,0,-5,-15)) +
+    guides(fill = guide_legend(override.aes = list(shape  = 21,
+                                                   size   = 3)))
+  
+  saveIT.fn(chart  = chart,
             n      = nchart,
-            suffix = "D",
+            suffix = "C",
             w      = 42.17518,
             h      = 16.87007)
   
