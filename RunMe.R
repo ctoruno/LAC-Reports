@@ -158,7 +158,7 @@ for (mainCountry in group) {
   }
 
   # Figure 4:
-  if (! mainCountry %in% c("Paraguay", "Suriname")) {
+  if (! mainCountry %in% c("Paraguay", "Suriname", "Nicaragua")) {
     print("Designing Figure 4")
     figure04.fn()
   }
@@ -232,7 +232,7 @@ for (mainCountry in group) {
   }
   if (mainCountry == "Nicaragua") {
     print("Designing Figure 5")
-    figure07.fn(nchart = 5)
+    figure08.fn(nchart = 5)
   }
   
   # Figure 9:
@@ -246,7 +246,7 @@ for (mainCountry in group) {
   }
   if (mainCountry == "Nicaragua") {
     print("Designing Figure 6")
-    figure07.fn(nchart = 6)
+    figure09.fn(nchart = 6)
   }
   
   # Figure 10:
@@ -269,7 +269,7 @@ for (mainCountry in group) {
   }
   if (mainCountry == "Nicaragua") {
     print("Designing Figure 7")
-    figure07.fn(nchart = 7)
+    figure10.fn(nchart = 7)
   }
   
   # Figure 11:
@@ -323,8 +323,8 @@ for (mainCountry in group) {
   }
   if (mainCountry == "Nicaragua") {
     print("Designing Figure 8")
-    # figure12_1.fn(nchart = 8) 
-    # figure12_2.fn(nchart = 8)               
+    figure12_1.fn(nchart = 8) 
+    figure12_2_CA.fn(nchart = 8)               
   }
   
   # Figure 13:
@@ -350,8 +350,8 @@ for (mainCountry in group) {
   }
   if (mainCountry == "Nicaragua") {
     print("Designing Figure 9")
-    # figure13_1.fn(nchart = 9)
-    # figure13_2.fn(nchart = 9)
+    figure13_1.fn(nchart = 9)
+    figure13_2.fn(nchart = 9)
   }
   
   # Figure 14:

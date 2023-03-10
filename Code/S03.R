@@ -29,7 +29,8 @@
     security.universe <- master_data %>%
       filter(country %in% mainCountry) %>%
       filter(year == latestYear) %>%
-      select(# All variables related with security
+      select(country,
+        # All variables related with security
         starts_with("EXP_q8"), starts_with("q8"), CAR_q47a_12, CAR_q47b_5,
         # Security perception
         q9, 
@@ -406,7 +407,10 @@ figure13_2.fn <- function(nchart = 13) {
   
   security_universe <- security.universe(master_data = data_subset.df) # This function assign the victim condition and select the main variables to security secction
   
-  if (mainCountry == "Bahamas" | mainCountry == "Peru") {
+  if (mainCountry == "Bahamas"  | mainCountry == "Peru"    | 
+      mainCountry == "Barbados" | mainCountry == "Dominica"|
+      mainCountry == "St. Lucia"| mainCountry == "St. Vincent and the Grenadines"|
+      mainCountry == "Grenada") {
     
     perception <- security_universe %>%
       mutate(unsafe_bin    =  if_else(q9 == 1 | q9 == 2, 1, 
@@ -462,7 +466,10 @@ figure13_2.fn <- function(nchart = 13) {
   
   logit_demo <- function(mainData, Yvar) {
     
-    if (mainCountry == "Bahamas" | mainCountry == "Peru") {
+    if (mainCountry == "Bahamas"  | mainCountry == "Peru"    | 
+        mainCountry == "Barbados" | mainCountry == "Dominica"|
+        mainCountry == "St. Lucia"| mainCountry == "St. Vincent and the Grenadines"|
+        mainCountry == "Grenada") {
       
       logit_data <- perception %>%
         select(unsafe_bin, all_of(selectables)) %>%
@@ -503,7 +510,10 @@ figure13_2.fn <- function(nchart = 13) {
     margEff    <- margins_summary(models[[1]], data = models[[1]]$model)
     
     data2plot <- margEff
-    if (mainCountry == "Bahamas" | mainCountry == "Peru") {
+    if (mainCountry == "Bahamas"  | mainCountry == "Peru"    | 
+        mainCountry == "Barbados" | mainCountry == "Dominica"|
+        mainCountry == "St. Lucia"| mainCountry == "St. Vincent and the Grenadines"|
+        mainCountry == "Grenada") {
       
       data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure", "victimVictim" = "Previous crime \nvictimization",
                                "areaUrban" = "Urban", "whiteWhite" = "Light skin \ntone", "youngLess than 35 years" = "Younger than 35",

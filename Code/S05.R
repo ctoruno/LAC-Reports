@@ -935,10 +935,10 @@ figure21A.fn <- function(nchart = 21) {
                            x_var        = category,
                            group_var    = group,
                            label_var    = label,
-                           x_lab_pos    = x_pos + 0.15,
+                           x_lab_pos    = x_pos + 0.05,
                            y_lab_pos    = 0,
                            bar_color    = "#a90099",
-                           margin_top   = 0);a
+                           margin_top   = 5);a
   saveIT.fn(chart  = a,
             n      = nchart,
             suffix = "A",
@@ -1088,7 +1088,7 @@ figure22A.fn <- function(nchart = 22) {
                  values_to  = "value2plot") %>%
     mutate(value2plot  = case_when(is.na(value2plot) ~ 0,
                                    !is.na(value2plot) ~ value2plot*100),
-           highlighted = if_else(country == mainCountry, 1, 0.9),
+           highlighted = if_else(country == mainCountry, 1, 0.7),
            labels       = case_when(value2plot == 0 ~ "",
                                     value2plot != 0 ~ paste0(value2plot, "%")))
   # Second Group

@@ -644,7 +644,10 @@ figure05.fn <- function(nchart = 5) {
   colors4plot <- barsPalette
   names(colors4plot) <- c("Highlighted", "Regular")
   
-  if (mainCountry %in% c(eastCaribbean.ls, westCaribbean_and_guianas.ls, southCone.ls)){
+  if (mainCountry %in% c(eastCaribbean.ls, 
+                         westCaribbean_and_guianas.ls, 
+                         southCone.ls, 
+                         centralAmerica.ls)){
     exp <- TRUE
   } else {
     exp <- FALSE
