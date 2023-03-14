@@ -239,10 +239,33 @@ figure08.fn <- function(nchart = 8){
          "D" = "Judiciary"),
        function(varSet, panelName) {
          
-         # Filtering data2plot to leave the variable for each panel
-         data2plot <- data2plot %>%
-           filter(category %in% vars4plot[[varSet]]) %>%
-           arrange(order_var)
+         if (varSet == "Judiciary") {
+           
+           # Filtering data2plot to leave the variable for each panel
+           data2plot <- data2plot %>%
+             filter(category %in% vars4plot[[varSet]]) %>%
+             arrange(order_var) %>% 
+             filter(if_else(country == "Bahamas", labels != "Police officers", T, F))
+           
+         } 
+         
+         if(varSet == "Government") {
+           
+           # Filtering data2plot to leave the variable for each panel
+           data2plot <- data2plot %>%
+             filter(category %in% vars4plot[[varSet]]) %>%
+             arrange(order_var) %>% 
+             filter(if_else(country == "Bahamas", labels != "Members of the \nlegislature                        ", T, F))
+           
+         
+         } else {
+           
+           # Filtering data2plot to leave the variable for each panel
+           data2plot <- data2plot %>%
+             filter(category %in% vars4plot[[varSet]]) %>%
+             arrange(order_var)
+
+         }
          
          # Applying plotting function
          chart <- LAC_dotsChart(data         = data2plot,
