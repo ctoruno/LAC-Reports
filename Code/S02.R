@@ -719,7 +719,7 @@ figure05_A_PRY.fn <- function(nchart = 5){
     theme_enhance_waffle() +
     #guides(fill = guide_legend(override.aes = list(shape  = 21,
     #                                               size   = 1))) +
-    theme(panel.spacing = unit(1, "cm"),
+    theme(panel.spacing = unit(0.25, "cm"),
           strip.background = element_blank(),
           strip.text = element_text(size = 11.5, 
                                     hjust = 0,
@@ -731,11 +731,13 @@ figure05_A_PRY.fn <- function(nchart = 5){
           panel.grid.major.y = element_blank(), 
           panel.border = element_blank(), 
           legend.text = element_text(hjust = 0,
-                                     family = "Lato Full"),
-          legend.key.width = unit(0.5,"cm"), 
-          legend.key.height = unit(0.5,"cm"), 
+                                     family = "Lato Full",
+                                     size = 7),
+          legend.key.width = unit(0.35,"cm"), 
+          legend.key.height = unit(0.35,"cm"), 
           legend.background = element_blank(), 
-          legend.box.background = element_blank()) 
+          legend.box.background = element_blank(), 
+          plot.margin = margin(-25,0,0,0), legend.box.just = "center")
   
   # Saving panels
   saveIT.fn(chart  = figure6_a,
