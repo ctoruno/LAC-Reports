@@ -40,50 +40,30 @@ figure16B_CA.fn <- function(nchart = 16) {
     filter(year == 2021) %>%
     select(country, year, starts_with(voluntary_contacts), starts_with(involuntary_contacts)) %>%
     mutate(
-      voluntary_contacts = 
-        case_when(
-          q10a == 1 ~ 1,
-          q10b == 1 ~ 1,
-          q10c == 1 ~ 1,
-          q10d == 1 ~ 1,
-          q10e == 1 ~ 1,
-          q10a == 0 ~ 0,
-          q10b == 0 ~ 0,
-          q10c == 0 ~ 0,
-          q10d == 0 ~ 0,
-          q10e == 0 ~ 0,
-          q10a == 99 ~ NA_real_,
-          q10b == 99 ~ NA_real_,
-          q10c == 99 ~ NA_real_,
-          q10d == 99 ~ NA_real_,
-          q10e == 99 ~ NA_real_
-          ),
-      involuntary_contacts =
-        case_when(
-          q12a == 1 ~ 1,
-          q12b == 1 ~ 1,
-          q12c == 1 ~ 1,
-          q12a == 0 ~ 0,
-          q12b == 0 ~ 0,
-          q12c == 0 ~ 0,
-          q12a == 99 ~ NA_real_,
-          q12b == 99 ~ NA_real_,
-          q12c == 99 ~ NA_real_
-        )
+      across(c(q10a,q10b,q10c,q10d,q10e),
+             ~if_else(.x == 99, NA_real_, .x)),
+      across(c(q12a,q12b,q12c),
+             ~if_else(.x == 99, NA_real_, .x))
       ) %>%
-    mutate(voluntarySum = q10a + q10b + q10c + q10d + q10e,
-           involuntarySum = q12a + q12b + q12c) %>%
-    select(!ends_with("norm"))
+    rowwise() %>%
+    mutate(voluntarySum = sum(q10a,q10b,q10c,q10d,q10e, na.rm = T),
+           involuntarySum = sum(q12a,q12b,q12c, na.rm = T)) %>%
+    select(!ends_with("norm")) %>%
+    ungroup() %>%
+    mutate(across(c(voluntarySum, involuntarySum),
+                  ~case_when(
+                    .x > 0 ~ 1,
+                    T ~ .x
+                  )))
   
   ## +++++++++++++++++++
   ## Interactions     -
   ## +++++++++++++++++++
 
   data2plot <- interactions.df %>%
-    filter(voluntarySum > 1) %>%
     summarise(
-      voluntary_contacts   = mean(voluntary_contacts, na.rm = T),
-      involuntary_contacts = mean(involuntary_contacts, na.rm = T)
+      voluntary_contacts   = mean(voluntarySum, na.rm = T),
+      involuntary_contacts = mean(involuntarySum, na.rm = T)
       ) %>%
     pivot_longer(cols = everything(), names_to = "category", values_to = "value") %>%
     mutate(empty_value = 1 - value) %>%
@@ -148,7 +128,7 @@ figure16B_CA.fn <- function(nchart = 16) {
   # Voluntary
   
   reasonsVoluntary <- interactions.df %>%
-    filter(voluntary_contacts == 1) %>%
+    filter(voluntarySum == 1) %>%
     select(q10a, q10b, q10c, q10d, q10e, q10f) %>%
     mutate(across(
       !q10f,
@@ -206,7 +186,7 @@ figure16B_CA.fn <- function(nchart = 16) {
   # Involuntary
   
   reasonsInvoluntary <- interactions.df %>%
-    filter(involuntary_contacts == 1) %>%
+    filter(involuntarySum == 1) %>%
     select(q13a, q14a) %>%
     mutate(
       q14a = case_when(
@@ -426,8 +406,8 @@ figure16B_CA.fn <- function(nchart = 16) {
                   ))) %>%
     summarise(EXP_q15a     = mean(EXP_q15a, na.rm = T),
               EXP_q15c     = mean(EXP_q15c, na.rm = T),
-              EXP_q15f     = mean(EXP_q15f, na.rm = T),
-              EXP_q15g     = mean(EXP_q15g, na.rm = T),
+              EXP_q15f     = 1 - mean(EXP_q15f, na.rm = T),
+              EXP_q15g     = 1 - mean(EXP_q15g, na.rm = T),
               EXP_q15m     = mean(EXP_q15m, na.rm = T),
               EXP_q15n     = mean(EXP_q15n, na.rm = T)) %>%
     pivot_longer(cols = everything(), names_to = "category", values_to = "value") %>%
