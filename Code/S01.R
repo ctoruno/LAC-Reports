@@ -289,8 +289,15 @@ figure03.fn <- function(nchart = 3, PAR = F) {
       filter(country != "Suriname")
   }
   if (mainCountry %in% southCone.ls){
-    data_subset.df <- data_subset.df %>%
+    if(mainCountry == "Paraguay"){
+      
+      data_subset.df <- data_subset.df
+      
+    }else{
+      
+      data_subset.df <- data_subset.df %>%
       filter(country != "Paraguay")
+    }
   }
   if (mainCountry %in% centralAmerica.ls){
     data_subset.df <- data_subset.df %>%
@@ -422,7 +429,7 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   names(colors4plot) <- c("Positive", "Negative", "Neutral")
   
   # The height of the plot depends on the number of countries
-  if (length(countrySet) == 3 & mainCountry != "Paraguay") {
+  if (length(countrySet) == 3) {
     h = 15.464229
   }
   if (length(countrySet) == 4) {
@@ -433,9 +440,6 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   }
   if (length(countrySet) > 6) {
     h = 41.823711
-  }
-  if (mainCountry == "Paraguay") {
-    h = 40.41788
   }
   
   # Defining Panel order

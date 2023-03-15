@@ -10,7 +10,7 @@
 ##
 ## Creation date:     February 6th, 2022
 ##
-## This version:      February 6th, 2022
+## This version:      March 14th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -31,7 +31,9 @@ figure16B_CA.fn <- function(nchart = 16) {
   voluntary_contacts   <- c("q10a", "q10b", "q10c", "q10d", "q10e", "q10f",
                             "q11f", "q11b", "q11c", "EXP_q10q", "q11g") # Variables of voluntary contacts
   involuntary_contacts <- c("q12a", "q12b", "q12c",
-                            "q13a", "q14a") # Variables of involuntary contacts
+                            "q13a", "q14a", 
+                            "EXP_q14",
+                            "EXP_q15a", "EXP_q15c", "EXP_q15f", "EXP_q15g", "EXP_q15m", "EXP_q15n") # Variables of involuntary contacts
   
   interactions.df <- data_subset.df %>%
     filter(country == mainCountry) %>%
@@ -69,6 +71,8 @@ figure16B_CA.fn <- function(nchart = 16) {
           q12c == 99 ~ NA_real_
         )
       ) %>%
+    mutate(voluntarySum = q10a + q10b + q10c + q10d + q10e,
+           involuntarySum = q12a + q12b + q12c) %>%
     select(!ends_with("norm"))
   
   ## +++++++++++++++++++
@@ -76,6 +80,7 @@ figure16B_CA.fn <- function(nchart = 16) {
   ## +++++++++++++++++++
 
   data2plot <- interactions.df %>%
+    filter(voluntarySum > 1) %>%
     summarise(
       voluntary_contacts   = mean(voluntary_contacts, na.rm = T),
       involuntary_contacts = mean(involuntary_contacts, na.rm = T)
@@ -271,6 +276,7 @@ figure16B_CA.fn <- function(nchart = 16) {
   ## +++++++++++++++++++
   ## Experience     -
   ## +++++++++++++++++++
+  # Voluntary
   
   # Serve the public
   
@@ -311,16 +317,58 @@ figure16B_CA.fn <- function(nchart = 16) {
                                       y_lab_pos    = 0,
                                       bar_color    = "#2a2a94",
                                       margin_top   = 0);servePublic
-  
-  # Saving panels
-
   saveIT.fn(chart  = servePublic,
             n      = nchart,
             suffix = "L",
             w      = w,
             h      = 23.54781)
+  # Involuntary
+  
+  data2plot <- interactions.df %>%
+    select(EXP_q14) %>%
+    mutate(EXP_q14     = 
+             case_when(
+               EXP_q14   == 1  ~ 1,
+               EXP_q14   == 0  ~ 0,
+               EXP_q14   == 99 ~ NA_real_
+           )) %>%
+    summarise(EXP_q14     = mean(EXP_q14, na.rm = T)) %>%
+    pivot_longer(cols = everything(), names_to = "category", values_to = "value") %>%
+    mutate(category = case_when(
+      category == "EXP_q14" ~ "Controlled the situation",
+    )) %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!category,
+                 names_to = "group",
+                 values_to = "values") %>%
+    mutate(
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(values*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+      x_pos = if_else(category %in% "Controlled the situation", 1.15, 0))
+  
+  servePublic  <- horizontal_edgebars(data2plot  = data2plot,
+                                      y_value      = values,
+                                      x_var        = category,
+                                      group_var    = group,
+                                      label_var    = label,
+                                      x_lab_pos    = x_pos,
+                                      y_lab_pos    = 0,
+                                      bar_color    = "#EA394F",
+                                      margin_top   = 0);servePublic
+  
+  # Saving panels
+
+  saveIT.fn(chart  = servePublic,
+            n      = nchart,
+            suffix = "M",
+            w      = w,
+            h      = 7.029196)
   
   # Due process
+  
+  # Voluntary
   
   data2plot <- interactions.df %>%
     select(EXP_q10q, q11g) %>%
@@ -362,9 +410,67 @@ figure16B_CA.fn <- function(nchart = 16) {
   
   saveIT.fn(chart  = dueProcess,
             n      = nchart,
-            suffix = "M",
+            suffix = "N",
             w      = w,
             h      = 23.54781)
+  
+  # Involuntary
+  
+  data2plot <- interactions.df %>%
+    select(EXP_q15a, EXP_q15c, EXP_q15f, EXP_q15g, EXP_q15m, EXP_q15n) %>%
+    mutate(across(everything(),
+                  ~ case_when(
+                    .x == 1  ~ 1,
+                    .x == 0  ~ 0,
+                    .x == 99 ~ NA_real_
+                  ))) %>%
+    summarise(EXP_q15a     = mean(EXP_q15a, na.rm = T),
+              EXP_q15c     = mean(EXP_q15c, na.rm = T),
+              EXP_q15f     = mean(EXP_q15f, na.rm = T),
+              EXP_q15g     = mean(EXP_q15g, na.rm = T),
+              EXP_q15m     = mean(EXP_q15m, na.rm = T),
+              EXP_q15n     = mean(EXP_q15n, na.rm = T)) %>%
+    pivot_longer(cols = everything(), names_to = "category", values_to = "value") %>%
+    mutate(category = case_when(
+      category == "EXP_q15a" ~ "Had a legitimate reason to stop them",
+      category == "EXP_q15c" ~ "Explained the reasons for their actions",
+      category == "EXP_q15f" ~ "Did not threaten them",
+      category == "EXP_q15g" ~ "Did not use physical force against them",
+      category == "EXP_q15m" ~ "Listened to them",
+      category == "EXP_q15n" ~ "Treated them with respect"
+    )) %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!category,
+                 names_to = "group",
+                 values_to = "values") %>%
+    mutate(
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(values*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+      x_pos = if_else(category %in% "Had a legitimate reason to stop them", 6.15,
+                      if_else(category %in% "Explained the reasons for their actions", 5.15,
+                              if_else(category %in% "Did not threaten them", 4.15, 
+                                      if_else(category %in% "Did not use physical force against them", 3.15, 
+                                              if_else(category %in% "Listened to them", 2.15, 1.15))))))
+  
+  dueProcess   <- horizontal_edgebars(data2plot  = data2plot,
+                                      y_value      = values,
+                                      x_var        = category,
+                                      group_var    = group,
+                                      label_var    = label,
+                                      x_lab_pos    = x_pos,
+                                      y_lab_pos    = 0,
+                                      bar_color    = "#EA394F",
+                                      margin_top   = 0);dueProcess
+  
+  # Saving panels
+  
+  saveIT.fn(chart  = dueProcess,
+            n      = nchart,
+            suffix = "O",
+            w      = w,
+            h      = 72.04926)
   
 }
 
@@ -858,7 +964,10 @@ figure20C.fn <- function(nchart = 20) {
           legend.title       = element_blank(),
           legend.key         = element_rect(fill = NA),
           legend.margin      = margin(-5,0,0,-15),
-          plot.margin        = margin(-5,0,-5,-15)) +
+          plot.margin        = margin(-5,0,-5,-15), 
+          legend.background = element_blank(), 
+          legend.box.background = element_blank(),
+          plot.background = element_blank()) +
     guides(fill = guide_legend(override.aes = list(shape  = 21,
                                                    size   = 3)))
   

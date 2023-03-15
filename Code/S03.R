@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 22nd, 2022
 ##
-## This version:      February 3rd, 2022
+## This version:      March 14th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -1734,6 +1734,7 @@ figure08_A_PRY.fn <- function(nchart = 8) {
                      mean,
                      na.rm = T)) %>%
     select(`Percentage of respondents...`) %>%
+    rename(" " = "Percentage of respondents...") %>%
     pivot_longer(everything(),
                  names_to  = "category",
                  values_to = "value") %>%
@@ -2181,12 +2182,12 @@ figure11_PRY.fn <- function (nchart = 11) {
                                               if_else(variable %in% "q18e", 2.15, 
                                                       if_else(variable %in% "q18f", 1.15, NA_real_)))))),
       variable = case_when(
-        variable == "q18a" ~ "A poor person",
-        variable == "q18b" ~ "A female",
-        variable == "q18c" ~ "A person from an ethnic group or tribe other \nthan of the police officer involved",
-        variable == "q18d" ~ "A person from a religion other than that of \nthe police officer involved",
-        variable == "q18e" ~ "A foreigner (inmigrant)",
-        variable == "q18f" ~ "A homosexual"
+        variable == "q18a" ~ "Socioeconomic status",
+        variable == "q18b" ~ "Gender",
+        variable == "q18c" ~ "Ethnicity",
+        variable == "q18d" ~ "Religion",
+        variable == "q18e" ~ "Citizenship status",
+        variable == "q18f" ~ "Sexual orientation"
       ),
       multiplier = if_else(group == "empty_value", 0, 1),
       label      = paste0(format(round(value*100, 0), nsmall = 0),

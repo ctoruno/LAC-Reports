@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 21st, 2022
 ##
-## This version:      February 3rd, 2022
+## This version:      March 14th, 2022
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -692,7 +692,11 @@ figure05_A_PRY.fn <- function(nchart = 5){
            No = 100 - Yes) %>%
     pivot_longer(cols = !c(category, label), names_to = "group", values_to = "value") %>%
     mutate(label = if_else(group %in% "empty_value", NA_character_, label),
-           x_pos = 1.15)
+           x_pos = 1.15) %>%
+    mutate(group = case_when(
+      group == "Yes" ~ "42% Yes",
+      group == "No"  ~ "58% No"
+    ))
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
@@ -705,21 +709,33 @@ figure05_A_PRY.fn <- function(nchart = 5){
              row.names = T)
   
   figure6_a <- ggplot(data2plot, aes(fill = group, values = value)) +
-    geom_waffle(color = "white", size = 1.125, n_rows = 5) + 
+    geom_waffle(color = "white", size = 1, n_rows = 5) + 
     scale_x_discrete(expand=c(0,0)) +
     scale_y_discrete(expand=c(0,0)) +
     scale_fill_manual("", 
-                      values = c("Yes" = "#003b8a",
-                                 "No"  = "#fa4d57")) +
+                      values = c("42% Yes" = "#003b8a",
+                                 "58% No"  = "#fa4d57")) +
     coord_equal() +
     theme_enhance_waffle() +
+    #guides(fill = guide_legend(override.aes = list(shape  = 21,
+    #                                               size   = 1))) +
     theme(panel.spacing = unit(1, "cm"),
           strip.background = element_blank(),
           strip.text = element_text(size = 11.5, 
                                     hjust = 0,
                                     family = "Lato Full",
                                     face = "italic"),
-          legend.position = "none")
+          legend.position = "left",
+          plot.background = element_blank(),
+          panel.grid.major.x = element_blank(),
+          panel.grid.major.y = element_blank(), 
+          panel.border = element_blank(), 
+          legend.text = element_text(hjust = 0,
+                                     family = "Lato Full"),
+          legend.key.width = unit(0.5,"cm"), 
+          legend.key.height = unit(0.5,"cm"), 
+          legend.background = element_blank(), 
+          legend.box.background = element_blank()) 
   
   # Saving panels
   saveIT.fn(chart  = figure6_a,
@@ -808,10 +824,14 @@ figure05_B_PRY.fn <- function(nchart = 5){
   
   # Defining color palette
   colors4plot <- countryPalette
-
+  
   # Defining opacity vector
   opacities4plot <- c(1, rep(0.5, length(countrySet)-1))
   names(opacities4plot) <- countrySet
+  
+  # Defining shape vector
+  shapes4plot <- c(16, rep(18, length(countrySet)-1))
+  names(shapes4plot) <- countrySet
   
   # Plotting each panel
   imap(c("B1" = "Trust", 
@@ -839,7 +859,8 @@ figure05_B_PRY.fn <- function(nchart = 5){
                                 colors       = colors4plot,
                                 order_var    = "order_var",
                                 diffOpac     = T,
-                                opacities    = opacities4plot)
+                                opacities    = opacities4plot,
+                                shapes       = shapes4plot, diffShp = T)
          
          # Saving panels
          saveIT.fn(chart  = chart,

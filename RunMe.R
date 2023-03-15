@@ -154,7 +154,7 @@ for (mainCountry in group) {
   } 
   if (mainCountry == "Paraguay") {
     print("Designing Figure 1")
-    figure03.fn(nchart = 1)
+    figure03.fn(nchart = 1, PAR = T)
   }
 
   # Figure 4:
@@ -398,7 +398,6 @@ for (mainCountry in group) {
   if (args[1] == "central"){
     print("Designing Figure 16")
     figure16.fn()
-    figure16B_CA.fn()
   }
   if (args[1] == "carib2") {
     print("Designing Figure 15")
@@ -425,7 +424,7 @@ for (mainCountry in group) {
     print("Designing Figure 15")
     figure17.fn(nchart = 15)
   }
-  
+  if (mainCountry == "")
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ##   Section 4                                                                                              ----
