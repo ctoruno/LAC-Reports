@@ -915,7 +915,7 @@ figure20C.fn <- function(nchart = 20) {
         EXP22_q26l_ajust == 0 ~ paste0("<span style='color:#a90099;font-size:3.514598mm;font-weight:bold;'>",
                                        to_percentage.fn(value2plot), " No",
                                        "</span>")
-      ),
+      )
     )
   
   
@@ -1126,7 +1126,6 @@ figure21B.fn <- function(nchart = 21) {
 figure22A.fn <- function(nchart = 22) {
   
   # Function plot
-  
   plot_bar <- function(data2plot, colors4plot) {
     ggplot(data2plot, 
            aes(x     = country,
@@ -1163,7 +1162,6 @@ figure22A.fn <- function(nchart = 22) {
   barsPalette    <- c("#2a2a94", "#a90099")
   
   # First Group
-  
   data2plot_1 <-  data_subset.df %>% 
     filter(! country %in% c("Nicaragua", "Costa Rica")) %>% 
     mutate(EXP22_q27f_ajust =
@@ -1181,7 +1179,6 @@ figure22A.fn <- function(nchart = 22) {
            labels       = case_when(value2plot == 0 ~ "",
                                     value2plot != 0 ~ paste0(value2plot, "%")))
   # Second Group
-  
   data2plot_2 <-  data_subset.df %>% 
     filter(! country %in% c("Nicaragua", "Costa Rica")) %>% 
     mutate(EXP22_q27i_ajust =
@@ -1202,19 +1199,20 @@ figure22A.fn <- function(nchart = 22) {
   data2plot <- rbind(data2plot_1, data2plot_2)
   
   # Colores del grafico
-  
   colors4plot <- barsPalette
   
   # Generate Plot
-  
   barPlot <- plot_bar(data2plot, colors4plot)
   
   # Saving panels
   saveIT.fn(chart  = barPlot,
             n      = nchart,
-            suffix = NULL,
-            w      = 189.7883,
-            h      = 52.7189)
+            suffix = "A",
+            # w      = 189.7883,
+            w      = 169.7883,
+            # h      = 52.7189,
+            h      = 48.7189
+            )
   
 }
 
@@ -1261,16 +1259,16 @@ figure22B.fn <- function(nchart = 22) {
   saveIT.fn(chart  = plot,
             n      = nchart,
             suffix = "B",
-            w      = 189.7883,
-            h      = 52.7189)
-
-
+            # w      = 189.7883,
+            w      = 169.7883,
+            # h      = 52.7189,
+            h      = 48.7189
+  )
 }
 
 figure22C.fn <- function(nchart = 22) {
   
   # Plot function
-  
   plot_bar_2 <- function(data, colors4plot) {
     ggplot(data, 
            aes(x = grp,
@@ -1303,7 +1301,6 @@ figure22C.fn <- function(nchart = 22) {
   barsPalette    <- c("#2a2a94", "#a90099")
   
   # Data2Plot
-  
   vars4plot <- list("In your home \ncountry"                  = c("EXP22_q27h_1", "EXP22_q27j_1"),
                     "In another country \nin Central America" = c("EXP22_q27h_2", "EXP22_q27j_2"),
                     "In Mexico"                             = c("EXP22_q27h_3", "EXP22_q27j_3"),
@@ -1346,15 +1343,16 @@ figure22C.fn <- function(nchart = 22) {
                             
   
   # Generate Plot
-  
   barPlot2 <- plot_bar_2(data2plot_c2, colors4plot)
   
   # Saving panels
   saveIT.fn(chart  = barPlot2,
             n      = nchart,
             suffix = "C",
-            w      = 189.7883,
-            h      = 52.7189)
-  
+            # w      = 189.7883,
+            w      = 169.7883,
+            # h      = 52.7189,
+            h      = 48.7189
+  )
 }
 
