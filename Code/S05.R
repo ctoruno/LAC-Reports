@@ -24,7 +24,7 @@
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure16B_CA.fn <- function(nchart = 16) {
+figure16B_CA.fn <- function(nchart = 23) {
   
   w <- 82.59305 # This is the width of the function
   

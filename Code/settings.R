@@ -227,7 +227,7 @@ ordnung.fn <- function(targetCountry){
              showWarnings = FALSE)
   
   # Creating folders for each chart output within the country directory
-  for (plot in 1:22) {
+  for (plot in 1:23) {
     dir.create(file.path("Outputs", 
                          str_replace_all(mainCountry, " ", "_"),
                          paste0("imgChart", plot),

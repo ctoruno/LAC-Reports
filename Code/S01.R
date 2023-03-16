@@ -644,6 +644,45 @@ figure05.fn <- function(nchart = 5) {
              append    = T,
              row.names = T)
   
+  # Specifying a custom order for West Caribbean
+  if (mainCountry %in% c(centralAmerica.ls, eastCaribbean.ls)) {
+    c.order <- T
+  } else {
+    c.order <- F
+  }
+  if (mainCountry %in% eastCaribbean.ls) {
+    data2plot <- data2plot %>%
+      mutate(
+        order_var = case_when(
+          country == "BRB" ~ 1,
+          country == "DMA" ~ 2,
+          country == "GRD" ~ 3,
+          country == "LCA" ~ 4,
+          country == "VCT" ~ 5,
+          country == "TTO" ~ 6
+        )
+      )
+  }
+  if (mainCountry %in% centralAmerica.ls) {
+    data2plot <- data2plot %>%
+      mutate(
+        order_var = case_when(
+          country == "BLZ" ~ 1,
+          country == "CRI" ~ 2,
+          country == "SLV" ~ 3,
+          country == "GUA" ~ 4,
+          country == "HND" ~ 5,
+          country == "NIC" ~ 6,
+          country == "PAN" ~ 7
+        )
+      )
+  }
+  
+  if (! mainCountry %in% c(centralAmerica.ls, eastCaribbean.ls)) {
+    data2plot <- data2plot %>%
+      mutate(order_var = NULL)
+  }
+  
   # Defining colors
   colors4plot <- barsPalette
   names(colors4plot) <- c("Highlighted", "Regular")
@@ -676,7 +715,9 @@ figure05.fn <- function(nchart = 5) {
                                 colors_var     = "highlighted",
                                 colors         = colors4plot,
                                 direction      = "vertical",
-                                expand         = exp 
+                                expand         = exp,
+                                custom_order   = c.order,
+                                order_var      = "order_var"
          )
          
          # Saving panels
@@ -712,7 +753,7 @@ figure06.fn <- function(nchart = 6) {
                                  nsmall = 0),
                           "%"),
            label = if_else(country == mainCountry, label, NA_character_)) %>%
-    filter(year >= 2014)
+    filter(year >= 2014 & country != "Nicaragua") 
   
   # Pulling minimum and maximum available year
   minyear <- min(data2plot %>% pull(year))

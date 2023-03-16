@@ -142,7 +142,7 @@ for (mainCountry in group) {
   }
   
   # Figure 2:
-  if (! mainCountry %in% c("Paraguay", "Suriname", "Nicaragua")) {
+  if (! mainCountry %in% c("Paraguay", "Suriname", centralAmerica.ls)) {
     print("Designing Figure 2")
     figure02.fn()
   }
@@ -177,12 +177,14 @@ for (mainCountry in group) {
   }
   
   # Figure 6:
-  if (! mainCountry %in% c("Paraguay", "Suriname", "Nicaragua")) {
-    print("Designing Figure 6")
-    figure06.fn()
-  } else {
-    print("Designing Figure 3")
-    figure06.fn(nchart = 3)
+  if (mainCountry != "Nicaragua"){
+    if (! mainCountry %in% c("Paraguay", "Suriname")) {
+      print("Designing Figure 6")
+      figure06.fn()
+    } else {
+      print("Designing Figure 3")
+      figure06.fn(nchart = 3)
+    } 
   }
   
   # Figure 4 for Paraguay and Suriname
@@ -412,6 +414,12 @@ for (mainCountry in group) {
     figure16.fn(nchart = 14)
   }
   
+  # Figure 16 - Police Dash for Central America
+  if (args[1] == "central" & mainCountry != "Nicaragua"){
+    print("Designing Second Part of Figure 16")
+    figure16B_CA.fn()
+  }
+  
   # Figure 17:
   print("Designing Figure 17")
   if (mainCountry != "Paraguay" & mainCountry != "Suriname" & args[1] != "carib2" & mainCountry != "Nicaragua") {
@@ -425,6 +433,8 @@ for (mainCountry in group) {
     figure17.fn(nchart = 15)
   }
   if (mainCountry == "")
+    
+    
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ##   Section 4                                                                                              ----
@@ -467,7 +477,6 @@ for (mainCountry in group) {
     figure20C.fn()
     
     # Figure 21
-    
     print("Designing Figure 21")
     figure21A.fn()
     figure21B.fn()
