@@ -30,7 +30,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   
   voluntary_contacts   <- c("q10a", "q10b", "q10c", "q10d", "q10e", "q10f",
                             "q11f", "q11b", "q11c", "EXP_q10q", "q11g") # Variables of voluntary contacts
-  involuntary_contacts <- c("q12a", "q12b", "q12c",
+  involuntary_contacts <- c("q12a", "q12b", "q12c", "q12d", "q13a", "q14a",
                             "q13a", "q14a", 
                             "EXP_q14",
                             "EXP_q15a", "EXP_q15c", "EXP_q15f", "EXP_q15g", "EXP_q15m", "EXP_q15n") # Variables of involuntary contacts
@@ -57,18 +57,20 @@ figure16B_CA.fn <- function(nchart = 23) {
                     T ~ .x
                   ))) 
   
-  interactions.df <- interactions.df %>% 
-    filter(!(q10f == 99 & voluntarySum == 1))
+
            
   
   ## +++++++++++++++++++
   ## Interactions     -
   ## +++++++++++++++++++
+  
+  interactionsVol.df <- interactions.df %>% 
+    mutate(filtro = if_else(q10f == 99 & voluntarySum == 1, 0, 1, 1)) %>%
+    filter(filtro == 1)
 
-  data2plot <- interactions.df %>%
+  data2plot <- interactionsVol.df %>%
     summarise(
       voluntary_contacts   = mean(voluntarySum, na.rm = T),
-      involuntary_contacts = mean(involuntarySum, na.rm = T)
       ) %>%
     pivot_longer(cols = everything(), names_to = "category", values_to = "value") %>%
     mutate(empty_value = 1 - value) %>%
@@ -106,6 +108,31 @@ figure16B_CA.fn <- function(nchart = 23) {
   
   # Involuntary
   
+  interactionsIn.df <- interactions.df %>% 
+    mutate(filtro = case_when(
+      q12d == 99 ~ 0,
+      q13a == 99 ~ 0,
+      q14a == 99 ~ 0,
+      T ~ 1
+    )) %>%
+    filter(filtro == 1)
+  
+  data2plot <- interactionsIn.df %>%
+    summarise(
+      involuntary_contacts   = mean(involuntarySum, na.rm = T),
+    ) %>%
+    pivot_longer(cols = everything(), names_to = "category", values_to = "value") %>%
+    mutate(empty_value = 1 - value) %>%
+    pivot_longer(!category,
+                 names_to = "group",
+                 values_to = "values") %>%
+    mutate(
+      multiplier = if_else(group == "empty_value", 0, 1),
+      label      = paste0(format(round(values*100, 0), nsmall = 0),
+                          "%"),
+      label = if_else(multiplier == 0, NA_character_, label),
+      x_pos = 1.15)
+  
   involuntary.df <- data2plot %>%
     filter(category %in% "involuntary_contacts") %>%
     mutate(category = if_else(category %in% "involuntary_contacts", " ", category))
@@ -132,7 +159,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   
   # Voluntary
   
-  reasonsVoluntary <- interactions.df %>%
+  reasonsVoluntary <- interactionsVol.df %>%
     filter(voluntarySum == 1) %>%
     select(q10a, q10b, q10c, q10d, q10e, q10f) %>%
     mutate(across(
@@ -143,8 +170,10 @@ figure16B_CA.fn <- function(nchart = 23) {
         .x == 99 ~ NA_real_
       ) 
     )) %>%
-    mutate(voluntary = q10a+q10b+q10c+q10d+q10e,
-           `Report a crime` = if_else(q10a == 1 & voluntary == 1, 1,
+    rowwise() %>%
+    mutate(voluntary = sum(q10a,q10b,q10c,q10d,q10e, na.rm = T)) %>%
+    ungroup() %>%
+    mutate(`Report a crime` = if_else(q10a == 1 & voluntary == 1, 1,
                                       if_else(q10f == 1 & voluntary > 1, 1, 0)),
            `Report a case of domestic violence` = if_else(q10b == 1 & voluntary == 1, 1,
                                                           if_else(q10f == 2 & voluntary > 1, 1, 0)),
@@ -190,7 +219,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   
   # Involuntary
   
-  reasonsInvoluntary <- interactions.df %>%
+  reasonsInvoluntary <- interactionsIn.df %>%
     filter(involuntarySum == 1) %>%
     select(q13a, q14a) %>%
     mutate(
@@ -201,11 +230,11 @@ figure16B_CA.fn <- function(nchart = 23) {
         q14a == 8  ~ "Ask for cooperation",
         q14a == 9  ~ "Ask for cooperation",
         q14a == 7  ~ "Pressure for money or harrasment",
-        q14a == 1  ~ "Suspected ilegal activity",
-        q14a == 2  ~ "Suspected ilegal activity",
-        q14a == 3  ~ "Suspected ilegal activity",
-        q14a == 4  ~ "Suspected ilegal activity",
-        q14a == 5  ~ "Suspected ilegal activity",
+        q14a == 1  ~ "Suspected illegal activity",
+        q14a == 2  ~ "Suspected illegal activity",
+        q14a == 3  ~ "Suspected illegal activity",
+        q14a == 4  ~ "Suspected illegal activity",
+        q14a == 5  ~ "Suspected illegal activity",
         q14a == 12 ~ "Other"),
       q13a = case_when(
         q13a == 2  ~ "Routine check/provide assistance",
@@ -265,7 +294,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   
   # Serve the public
   
-  data2plot <- interactions.df %>%
+  data2plot <- interactionsVol.df %>%
     select(q11f, q11b, q11c) %>%
     mutate(q11c_bin = if_else(q11b == 1 & q11c == 1 | q11c == 2, 1, 
                               if_else(q11b == 1 & q11c == 3 | q11c == 4 | q11c == 5, 0, NA_real_)),
@@ -309,7 +338,7 @@ figure16B_CA.fn <- function(nchart = 23) {
             h      = 23.54781)
   # Involuntary
   
-  data2plot <- interactions.df %>%
+  data2plot <- interactionsIn.df %>%
     select(EXP_q14) %>%
     mutate(EXP_q14     = 
              case_when(
@@ -355,7 +384,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   
   # Voluntary
   
-  data2plot <- interactions.df %>%
+  data2plot <- interactionsVol.df %>%
     select(EXP_q10q, q11g) %>%
     mutate(across(everything(),
                   ~ case_when(
@@ -402,6 +431,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   # Involuntary
   
   data2plot <- interactions.df %>%
+    filter(involuntarySum == 1) %>%
     select(EXP_q15a, EXP_q15c, EXP_q15f, EXP_q15g, EXP_q15m, EXP_q15n) %>%
     mutate(across(everything(),
                   ~ case_when(
@@ -900,24 +930,24 @@ figure20C.fn <- function(nchart = 20) {
   # Defining data to plot
   data2plot <- data_subset.df %>% 
     filter(country == mainCountry & year == latestYear) %>% 
-    mutate(EXP22_q26l_ajust = case_when(
-      EXP22_q26l == 0  ~ 0,
-      EXP22_q26l == 1  ~ 1,
-      EXP22_q26l == 99 ~ NA_real_)
+    mutate(EXP_q31h_ajust = case_when(
+      EXP_q31h == 0  ~ 0,
+      EXP_q31h == 1  ~ 1,
+      EXP_q31h == 99 ~ NA_real_)
     ) %>% 
-    select(country, EXP22_q26l_ajust) %>% 
-    group_by(country, EXP22_q26l_ajust) %>%  
-    filter(!is.na(EXP22_q26l_ajust)) %>% 
+    select(country, EXP_q31h_ajust) %>% 
+    group_by(country, EXP_q31h_ajust) %>%  
+    filter(!is.na(EXP_q31h_ajust)) %>% 
     summarise(n = n()) %>% 
     mutate(
       value2plot = round(100 * (n/sum(n)), 0),
       ymax = cumsum(value2plot),
       ymin = c(0, head(value2plot, n = -1)),
       labels     = case_when(
-        EXP22_q26l_ajust == 1 ~ paste0("<span style='color:#2a2a94;font-size:3.514598mm;font-weight:bold;'>",
+        EXP_q31h_ajust == 1 ~ paste0("<span style='color:#2a2a94;font-size:3.514598mm;font-weight:bold;'>",
                                        to_percentage.fn(value2plot), " Yes",
                                        "</span>"),
-        EXP22_q26l_ajust == 0 ~ paste0("<span style='color:#a90099;font-size:3.514598mm;font-weight:bold;'>",
+        EXP_q31h_ajust == 0 ~ paste0("<span style='color:#a90099;font-size:3.514598mm;font-weight:bold;'>",
                                        to_percentage.fn(value2plot), " No",
                                        "</span>")
       )
@@ -934,7 +964,7 @@ figure20C.fn <- function(nchart = 20) {
                       ymin  = ymin,
                       ymax  = ymax,
                       fill  = labels)) +
-    geom_rect(color = "white",
+    geom_rect(color = NA,
               show.legend = F) +
     geom_point(color = NA) +
     coord_polar(theta = "y") +
@@ -945,14 +975,16 @@ figure20C.fn <- function(nchart = 20) {
           axis.title.y       = element_blank(),
           axis.text.y        = element_blank(),
           axis.text.x        = element_blank(),
-          legend.text        = element_markdown(),
+          legend.text        = element_markdown(hjust = 0,
+                                                family = "Lato Full",
+                                                size = 2.460219*.pt),
           legend.title       = element_blank(),
           legend.key         = element_rect(fill = NA),
           legend.margin      = margin(-5,0,0,-15),
           plot.margin        = margin(-5,0,-5,-15), 
+          plot.background = element_blank(),
           legend.background = element_blank(), 
-          legend.box.background = element_blank(),
-          plot.background = element_blank()) +
+          legend.box.background = element_blank()) +
     guides(fill = guide_legend(override.aes = list(shape  = 21,
                                                    size   = 3)))
   

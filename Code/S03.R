@@ -978,7 +978,7 @@ figure16.fn <- function(nchart = 16) {
   # Panel D: Discrimination
   
   panelD <- data_subset.df %>%
-    mutate(latestYear = if_else(country %in% centralAmerica.ls, 2021, latestYear)) %>%
+    mutate(latestYear = if_else(country %in% centralAmerica.ls & country != "Costa Rica", 2021, latestYear)) %>%
     filter(year == latestYear & country == mainCountry) %>%
     select(q18b, EXP_q17g, EXP_q17h, EXP_q17i, EXP_q17j) %>%
     mutate(
