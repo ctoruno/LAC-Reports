@@ -38,8 +38,10 @@ figure16B_CA.fn <- function(nchart = 23) {
   interactions.df <- data_subset.df %>%
     filter(country == mainCountry) %>%
     filter(year == 2021) %>%
-    select(country, year, starts_with(voluntary_contacts), starts_with(involuntary_contacts)) %>%
+    select(country, year, all_of(voluntary_contacts), all_of(involuntary_contacts)) %>%
     mutate(
+      across(c(q10a,q10b,q10c,q10d,q10e, q10f),
+             as.double),
       across(c(q10a,q10b,q10c,q10d,q10e),
              ~if_else(.x == 99, NA_real_, .x)),
       across(c(q12a,q12b,q12c),
@@ -48,13 +50,16 @@ figure16B_CA.fn <- function(nchart = 23) {
     rowwise() %>%
     mutate(voluntarySum = sum(q10a,q10b,q10c,q10d,q10e, na.rm = T),
            involuntarySum = sum(q12a,q12b,q12c, na.rm = T)) %>%
-    select(!ends_with("norm")) %>%
     ungroup() %>%
     mutate(across(c(voluntarySum, involuntarySum),
                   ~case_when(
                     .x > 0 ~ 1,
                     T ~ .x
-                  )))
+                  ))) 
+  
+  interactions.df <- interactions.df %>% 
+    filter(!(q10f == 99 & voluntarySum == 1))
+           
   
   ## +++++++++++++++++++
   ## Interactions     -
@@ -95,7 +100,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   # Saving panels
   saveIT.fn(chart  = voluntary,
             n      = nchart,
-            suffix = "H",
+            suffix = "A",
             w      = w,
             h      = 7.029196)
   
@@ -117,7 +122,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   # Saving panels
   saveIT.fn(chart  = involuntary,
             n      = nchart,
-            suffix = "I",
+            suffix = "B",
             w      = w,
             h      = 7.029196)
   
@@ -179,7 +184,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   # Saving panels
   saveIT.fn(chart  = voluntaryReasons,
             n      = nchart,
-            suffix = "J",
+            suffix = "C",
             w      = w,
             h      = 47.44707)
   
@@ -249,7 +254,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   
   saveIT.fn(chart  = involuntaryReasons,
             n      = nchart,
-            suffix = "K",
+            suffix = "D",
             w      = w,
             h      = 59.74817)
   
@@ -299,7 +304,7 @@ figure16B_CA.fn <- function(nchart = 23) {
                                       margin_top   = 0);servePublic
   saveIT.fn(chart  = servePublic,
             n      = nchart,
-            suffix = "L",
+            suffix = "E",
             w      = w,
             h      = 23.54781)
   # Involuntary
@@ -342,7 +347,7 @@ figure16B_CA.fn <- function(nchart = 23) {
 
   saveIT.fn(chart  = servePublic,
             n      = nchart,
-            suffix = "M",
+            suffix = "F",
             w      = w,
             h      = 7.029196)
   
@@ -390,7 +395,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   
   saveIT.fn(chart  = dueProcess,
             n      = nchart,
-            suffix = "N",
+            suffix = "G",
             w      = w,
             h      = 23.54781)
   
@@ -448,7 +453,7 @@ figure16B_CA.fn <- function(nchart = 23) {
   
   saveIT.fn(chart  = dueProcess,
             n      = nchart,
-            suffix = "O",
+            suffix = "H",
             w      = w,
             h      = 72.04926)
   
