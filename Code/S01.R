@@ -436,7 +436,7 @@ figure03.fn <- function(nchart = 3, PAR = F) {
     h = 20.736125
   }
   if (length(countrySet) == 6) {
-    h = 31.279918
+    h = 29.87408
   }
   if (length(countrySet) > 6) {
     h = 41.823711

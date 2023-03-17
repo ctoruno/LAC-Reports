@@ -507,6 +507,18 @@ figure13_2.fn <- function(nchart = 13) {
                        logit  <- glm(formula,  
                                      data   = logit_data, 
                                      family = "binomial")})
+    
+    summaryreg <- bind_rows(as.data.frame(coef(summary(models[[1]]))))
+    
+    write.xlsx(as.data.frame(summaryreg %>% ungroup()), 
+               file      = file.path("Outputs", 
+                                     str_replace_all(mainCountry, " ", "_"),
+                                     "dataPoints.xlsx",
+                                     fsep = "/"), 
+               sheetName = paste0("Chart_", nchart, "B", "reg"),
+               append    = T,
+               row.names = T)
+
     margEff    <- margins_summary(models[[1]], data = models[[1]]$model)
     
     data2plot <- margEff
@@ -1547,18 +1559,18 @@ figure18.fn <- function(nchart = 18) {
     
     figure18a_1 <- ((figures_problems[["Panel A"]] | figures_problems[["Panel B"]]) + 
                     plot_layout(widths = unit(38,"mm"),
-                                heights = unit(65.02006, "mm"))) |
+                                heights = unit(35.14598, "mm"))) |
                       ((figures_problems[["Panel C"]] / plot_spacer()) +
                          theme(plot.margin = margin(0,0,0,0)) +
                          plot_layout(widths = unit(38, "mm"),
-                                     heights = unit(c(32.51003,29), "mm")));figure18a_1
+                                     heights = unit(c(17.57299,14), "mm")));figure18a_1
     
     # Saving Patchwork
     saveIT.fn(chart  = figure18a_1,
               n      = nchart,
               suffix = "a",
               w      = 131.7974,
-              h      = 65.02006)
+              h      = 52.71897)
     
   }else{
     

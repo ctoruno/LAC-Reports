@@ -104,7 +104,7 @@ figure16B_CA.fn <- function(nchart = 23) {
             n      = nchart,
             suffix = "A",
             w      = w,
-            h      = 7.029196)
+            h      = 8.786495)
   
   # Involuntary
   
@@ -151,7 +151,7 @@ figure16B_CA.fn <- function(nchart = 23) {
             n      = nchart,
             suffix = "B",
             w      = w,
-            h      = 7.029196)
+            h      = 8.786495)
   
   ## +++++++++++++++++++
   ## Reasons     -
@@ -379,7 +379,7 @@ figure16B_CA.fn <- function(nchart = 23) {
             n      = nchart,
             suffix = "F",
             w      = w,
-            h      = 7.029196)
+            h      = 8.786495)
   
   # Due process
   
