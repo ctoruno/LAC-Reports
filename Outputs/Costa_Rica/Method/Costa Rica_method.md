@@ -75,19 +75,19 @@ Methodology
                                             <table class="table table-sm">
                                 <tr class="bg-purple text-white">
                                     <td>Eligible household, non-interview</td>
-                                    <td class="text-right"></td>
+                                    <td class="text-right">792</td>
                                 </tr>
                                 <tr>
                                     <td>Refusals</td>
-                                    <td class="text-right"></td>
+                                    <td class="text-right">493</td>
                                 </tr>
                                 <tr>
                                     <td>Break-off</td>
-                                    <td class="text-right"></td>
+                                    <td class="text-right"> 84</td>
                                 </tr>
                                 <tr>
                                     <td>Non-contact</td>
-                                    <td class="text-right"></td>
+                                    <td class="text-right">205</td>
                                 </tr>
                             </table>
                                         </div>
@@ -95,15 +95,15 @@ Methodology
                                             <table class="table table-sm">
                                 <tr class="bg-purple text-white">
                                     <td>Ineligible household</td>
-                                    <td class="text-right"></td>
+                                    <td class="text-right">226</td>
                                 </tr>
                                 <tr>
                                     <td>No eligible respondent in the household</td>
-                                    <td class="text-right"></td>
+                                    <td class="text-right"> 71</td>
                                 </tr>
                                 <tr>
                                     <td>Quota filled</td>
-                                    <td class="text-right"></td>
+                                    <td class="text-right">103</td>
                                 </tr>
                             </table>
                                         </div>

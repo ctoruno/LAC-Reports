@@ -303,7 +303,7 @@ for (mainCountry in group) {
     figure12_1.fn()
     figure12_2.fn()
   } 
-  if(args[1] == "central" & mainCountry != "Nicaragua") {
+  if(args[1] == "central" & mainCountry != "Nicaragua" & mainCountry != "Costa Rica") {
     print("Designing Figure 12")
     figure12_1.fn(nchart = 12)
     figure12_2_CA.fn(nchart = 12)
@@ -326,7 +326,12 @@ for (mainCountry in group) {
   if (mainCountry == "Nicaragua") {
     print("Designing Figure 8")
     figure12_1.fn(nchart = 8) 
-    figure12_2_CA.fn(nchart = 8)               
+    figure12_2_CA.fn(nchart = 8)    
+  }
+  if (mainCountry == "Costa Rica") {
+    print("Designing Figure 12")
+    figure12_1.fn()
+    figure12_2.fn()
   }
   
   # Figure 13:
