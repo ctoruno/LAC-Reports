@@ -804,13 +804,13 @@ figure20A.fn <- function(nchart = 20) {
     scale_fill_manual(values = c("EXP_q31d" = "#2a2a94",
                                  "EXP_q31f" = "#a90099")) +
     scale_alpha_manual(values = c("Primary"   = 1,
-                                  "Secondary" = 0.7)) +
+                                  "Secondary" = 0.5)) +
     WJP_theme() +
     theme(axis.title.x       = element_blank(),
           axis.title.y       = element_blank(),
           panel.grid.major.x = element_blank(),
           panel.grid.major.y = element_line(color    = "#D0D1D3",
-                                            linetype = "dashed"))
+                                            linetype = "dashed"));chart
   
   # Saving panels
   saveIT.fn(chart  = chart,
@@ -1168,19 +1168,21 @@ figure22A.fn <- function(nchart = 22) {
            aes(x     = country,
                y     = value2plot,
                label = labels,
-               fill = category)) +
+               fill  = category,
+               alpha   = highlighted)) +
       geom_bar(stat = "identity",
                color = "white",
                show.legend = F,
-               position = "dodge",
-               aes(alpha = highlighted)) +
-      geom_text(aes(label = labels), 
+               position = "dodge") +
+      geom_text(aes(label = labels, alpha = highlighted), 
                 position = position_dodge(width = 0.9), vjust = -0.25,
                 color    = "#4a4a49",
                 family   = "Lato Full",
-                fontface = "bold") +
+                fontface = "bold", show.legend = F) +
       labs(y = "% of respondents", x = "") +
       scale_fill_manual(values = colors4plot) +
+      scale_alpha_manual(values = c("Primary"   = 1,
+                                    "Secondary" = 0.5)) +
       scale_y_continuous(limits = c(0, 100), 
                          labels = c("0%","20%", "40%", "60%", "80%", "100%"), 
                          breaks = c(0, 20, 40, 60, 80, 100)) + 
@@ -1212,7 +1214,7 @@ figure22A.fn <- function(nchart = 22) {
                  values_to  = "value2plot") %>%
     mutate(value2plot  = case_when(is.na(value2plot) ~ 0,
                                    !is.na(value2plot) ~ value2plot*100),
-           highlighted = if_else(country == mainCountry, 1, 0.7),
+           highlighted = if_else(country == mainCountry, "Primary", "Secondary"),
            labels       = case_when(value2plot == 0 ~ "",
                                     value2plot != 0 ~ paste0(value2plot, "%")))
   # Second Group
@@ -1229,7 +1231,7 @@ figure22A.fn <- function(nchart = 22) {
                  values_to  = "value2plot") %>%
     mutate(value2plot  = case_when(is.na(value2plot) ~ 0,
                                    !is.na(value2plot) ~ value2plot*100),
-           highlighted = if_else(country == mainCountry, 1, 0.9),
+           highlighted = if_else(country == mainCountry, "Primary", "Secondary"),
            labels       = case_when(value2plot == 0 ~ "",
                                     value2plot != 0 ~ paste0(value2plot, "%")))
   
