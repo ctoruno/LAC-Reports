@@ -242,9 +242,9 @@ figure16B_CA.fn <- function(nchart = 23) {
         q13a == 6  ~ "Routine check/provide assistance",
         q13a == 7  ~ "Ask for cooperation",
         q13a == 8  ~ "Pressure for money or harrasment",
-        q13a == 1  ~ "Suspected ilegal activity",
-        q13a == 4  ~ "Suspected ilegal activity",
-        q13a == 5  ~ "Suspected ilegal activity",
+        q13a == 1  ~ "Suspected illegal activity",
+        q13a == 4  ~ "Suspected illegal activity",
+        q13a == 5  ~ "Suspected illegal activity",
         q13a == 9 ~  "Other"
       ),
       universe = n()) %>%
@@ -268,7 +268,8 @@ figure16B_CA.fn <- function(nchart = 23) {
       x_pos = if_else(category %in% "Routine check/provide assistance", 5.15,
                       if_else(category %in% "Ask for cooperation", 4.15,
                               if_else(category %in% "Pressure for money or harrasment", 3.15, 
-                                      if_else(category %in% "Suspected ilegal activity", 2.15, 1.15)))))
+                                      if_else(category %in% "Suspected illegal activity", 2.15, 
+                                              if_else(category %in% "Other", 1.15, 0))))))
   
   involuntaryReasons  <- horizontal_edgebars(data2plot  = reasonsInvoluntary,
                                            y_value      = values,
