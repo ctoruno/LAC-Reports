@@ -1249,8 +1249,7 @@ figure22A.fn <- function(nchart = 22) {
             n      = nchart,
             suffix = "A",
             w      = 189.7883,
-            # h      = 52.7189,
-            h      = 38.06642            
+            h      = 39.56642            
   )
   
 }
@@ -1299,8 +1298,8 @@ figure22B.fn <- function(nchart = 22) {
             n      = nchart,
             suffix = "B",
             w      = 189.7883,
-            # h      = 52.7189,
-            h      = 38.06642  )
+            h      = 39.56642
+  )
 }
 
 figure22C.fn <- function(nchart = 22) {
@@ -1386,10 +1385,8 @@ figure22C.fn <- function(nchart = 22) {
   saveIT.fn(chart  = barPlot2,
             n      = nchart,
             suffix = "C",
-            # w      = 189.7883,
-            w      = 179.7883,
-            # h      = 52.7189,
-            h      = 38.06642
+            w      = 189.7883,
+            h      = 39.56642
   )
 }
 
