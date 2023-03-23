@@ -644,6 +644,7 @@ figure19B.fn <- function(nchart = 19) {
   logit_demo <- function(mainData, 
                          Yvar) {
     
+    
     data_logit <- mainData %>%
       mutate(Yvar = all_of({{Yvar}}))
     
@@ -671,28 +672,32 @@ figure19B.fn <- function(nchart = 19) {
                        logit  <- glm(formula,  
                                      data   = logit_data, 
                                      family = "binomial")})
+    
+    summaryreg <- bind_rows(as.data.frame(coef(summary(models[[1]]))))
+    
     margEff    <- margins_summary(models[[1]], data = models[[1]]$model)
     
     data2plot <- margEff
     
-    data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \nInsecure", "victimVictim" = "Previous Crime \nVictimization",
-                               "areaUrban" = "Urban", "whiteWhite" = "Light Skin Tone", "youngLess than 30 years" = "Younger than 30",
-                               "diplomaNo High Education Level" = "No High School \nDiploma")
+    data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure", "victimVictim" = "Previous crime \nvictimization",
+                               "areaUrban" = "Urban", "whiteWhite" = "Light skin tone", "youngLess than 30 years" = "Younger than 30",
+                               "diplomaNo High Education Level" = "No high school \ndiploma")
     
     data2plot <- data2plot %>%
-      mutate(category = "Colombia",
+      mutate(category = mainCountry,
              order_variable = if_else(factor %in% "Female", 1,
                                       if_else(factor %in% "White", 2,
                                               if_else(factor %in% "Poor", 3,
                                                       if_else(factor %in% "Victim", 4,
                                                               if_else(factor %in% "Urban", 5, 
                                                                       if_else(factor %in% "Young", 6, 7)))))))
+    return(list(data2plot, summaryreg))
   }
   
   # Panel 1
   
   data2plot_P1 <- logit_demo(mainData = migrated, Yvar = migrated)
-  logit_plot <- logit_demo_panel(mainData = data2plot_P1, 
+  logit_plot <- logit_demo_panel(mainData = data2plot_P1[[1]], 
                                  line_size = 1.25, 
                                  point_color = "#a90099", 
                                  line_color  = "#a90099") +
@@ -708,10 +713,27 @@ figure19B.fn <- function(nchart = 19) {
             suffix = "B",
             w      = 87.16203,
             h      = 56.23357)
+  
+  write.xlsx(as.data.frame(data2plot_P1[[1]] %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace_all(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "P1"),
+             append    = T,
+             row.names = T)
+  write.xlsx(as.data.frame(data2plot_P1[[2]] %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace_all(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "P1", "reg"),
+             append    = T,
+             row.names = T)
   # Panel 2
   
   data2plot_P2 <- logit_demo(mainData = migrated, Yvar = migrated3yrs)
-  logit_plot <- logit_demo_panel(mainData = data2plot_P2, 
+  logit_plot <- logit_demo_panel(mainData = data2plot_P2[[1]], 
                                  line_size = 1.25, 
                                  point_color = "#a90099", 
                                  line_color  = "#a90099") +
@@ -728,6 +750,23 @@ figure19B.fn <- function(nchart = 19) {
             suffix = "C",
             w      = 87.16203,
             h      = 56.23357)
+  
+  write.xlsx(as.data.frame(data2plot_P2[[1]] %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace_all(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "P2"),
+             append    = T,
+             row.names = T)
+  write.xlsx(as.data.frame(data2plot_P2[[2]] %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace_all(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "P2", "reg"),
+             append    = T,
+             row.names = T)
   }
 
 
@@ -1259,12 +1298,12 @@ figure22B.fn <- function(nchart = 22) {
   data2plot <- data_subset.df %>%
     filter(country %in% mainCountry) %>%
     filter(year == 2022) %>%
-    select(country,EXP22_q27g_1, EXP22_q27g_2, EXP22_q27g_3, EXP22_q27g_4, EXP22_q27g_5, EXP22_q27g_other) %>%
-    group_by(country) %>%
+    filter(EXP22_q27g_99 != 1) %>%
+    select(EXP22_q27g_1, EXP22_q27g_2, EXP22_q27g_3, EXP22_q27g_4, EXP22_q27g_5, EXP22_q27g_other) %>%
     summarise(across(everything(),
                      mean,
                      na.rm = T)) %>%
-    pivot_longer(cols = !country,
+    pivot_longer(cols = everything(),
                  names_to   = "category", 
                  values_to  = "value2plot") %>%
     mutate(value2plot  = round(value2plot,2),
@@ -1337,7 +1376,7 @@ figure22C.fn <- function(nchart = 22) {
   barsPalette    <- c("#2a2a94", "#a90099")
   
   # Data2Plot
-  vars4plot <- list("In your home \ncountry"                  = c("EXP22_q27h_1", "EXP22_q27j_1"),
+  vars4plot <- list("In home \ncountry"                  = c("EXP22_q27h_1", "EXP22_q27j_1"),
                     "In another country \nin Central America" = c("EXP22_q27h_2", "EXP22_q27j_2"),
                     "In Mexico"                             = c("EXP22_q27h_3", "EXP22_q27j_3"),
                     "In the United States"                  = c("EXP22_q27h_4", "EXP22_q27j_4"))
@@ -1364,7 +1403,7 @@ figure22C.fn <- function(nchart = 22) {
     mutate(
       perc   = round(perc*100, 0),
       grp    = case_when(
-        str_detect(category, "_1") ~ "In your home \ncountry",
+        str_detect(category, "_1") ~ "In home \ncountry",
         str_detect(category, "_2") ~ "In another country \nin Central America",
         str_detect(category, "_3") ~ "In Mexico",
         str_detect(category, "_4") ~ "In the United States"

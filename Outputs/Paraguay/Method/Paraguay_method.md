@@ -69,7 +69,7 @@ in the Chaco region of Paraguay.
                                                         <b class="c-purple">GENDER:</b> Forty-nine percent (49%) of respondents were female and 51% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> More than half (55%) of all respondents reported that they had received at least a high school diploma or vocational degree, and the remaining 45% of respondents received a middle school diploma or less.
+                                                        <b class="c-purple">EDUCATION:</b> More than half (55%) of all respondents reported that they had received at least a high school diploma or vocational degree, and the remaining 45% of respondents received up to a middle school diploma.
                                                     </p>
                                                 </div>
                                             </div>
@@ -127,7 +127,7 @@ in the Chaco region of Paraguay.
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Argentina was collected in 2016, 2018, and 2022. Data for Brazil was collected in 2014, 2017, and 2022. Data for Paraguay was collected in 2021.
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Argentina was collected in 2016, 2018, and 2022. Data for Brazil was collected in 2014, 2017, and 2022.
                                         </p>
                                     </div>
                                 </div>

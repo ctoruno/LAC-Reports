@@ -94,7 +94,8 @@ data_subset.df <- master_data.df %>%
   filter(country %in% group) %>%
   
   # Latest year is different for Paraguay
-  mutate(latestYear = if_else(country == "Paraguay", 2021, 2022))
+  mutate(latestYear = if_else(country == "Paraguay", 2021, 2022)) %>%
+  mutate(year = if_else(country == "Nicaragua" & year == 2021, NA_real_, year))
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##

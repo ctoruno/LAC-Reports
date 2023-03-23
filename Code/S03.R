@@ -114,7 +114,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     summarise(victim = round(mean(victim, na.rm = T),2)) %>%
     mutate(non_victim = 1 - victim)
 
-  if (country == "Paraguay") {
+  if (mainCountry == "Paraguay") {
     
     report <- security_universe %>%
       mutate(q8d = case_when(
@@ -139,7 +139,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
       mutate(non_report = 1 - report)
   }
   
-  if (country == "Paraguay") {
+  if (mainCountry == "Paraguay") {
     
     fill_report <- security_universe %>%
       filter(victim == 1) %>%
@@ -186,7 +186,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   d <- data.frame(cbind(t1, t2))
   names(d) <- c("Victim", "Report")
   
-  if (country == "Paraguay") {
+  if (mainCountry == "Paraguay") {
     
     df <- d %>%
       mutate(`Crime Prosecution` = if_else(Report %in% "Report", t3, " ")) 
@@ -327,7 +327,8 @@ figure13_1.fn <- function(nchart = 13) {
   
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
-    filter(country == mainCountry) %>%
+    filter(country == mainCountry) %>% 
+    mutate(q9 = if_else(country == "Nicaragua" & year == 2021, NA_real_, q9)) %>%
     select(year, q9) %>%
     mutate(
       q9   = case_when(
@@ -2026,7 +2027,7 @@ figure11_PRY.fn <- function (nchart = 11) {
   # Panel A: Trust and Safety
   panelA <- data_subset.df %>%
     filter(year == latestYear & country == mainCountry) %>%
-    select(q1d, q48a_G2, q48b_G1, q48c_G2, q9) %>%
+    select(q1d, q48a_G2, q48b_G1, q48c_G2, q48b_G2) %>%
     mutate(across(everything(),
                   ~ case_when(
                     .x == 1  ~ 1,
@@ -2052,13 +2053,13 @@ figure11_PRY.fn <- function (nchart = 11) {
                       if_else(variable %in% "q48a_G2", 4.15,
                               if_else(variable %in% "q48b_G1", 3.15,
                                       if_else(variable %in% "q48c_G2", 2.15,
-                                              if_else(variable %in% "q9", 1.15, NA_real_))))),
+                                              if_else(variable %in% "q48b_G2", 1.15, NA_real_))))),
       variable = case_when(
-        variable == "q1d" ~ "Trust the police",
+        variable == "q1d" ~ "Are trustworthy",
         variable == "q48a_G2" ~ "Resolve security problems in  the community",
         variable == "q48b_G1" ~ "Perform effective and lawful investigations",
         variable == "q48c_G2" ~ "Are available to help when needed",
-        variable == "q9" ~"Feel safe in their neighborhoods"
+        variable == "q48b_G2" ~"Help them feel safe"
       ),
       multiplier = if_else(group == "empty_value", 0, 1),
       label      = paste0(format(round(value*100, 0), nsmall = 0),
@@ -2170,8 +2171,8 @@ figure11_PRY.fn <- function (nchart = 11) {
     select(q18a, q18b, q18c, q18d, q18e, q18f) %>%
     mutate(across(everything(),
                   ~ case_when(
-                    .x == 0  ~ 0,
-                    .x == 1  ~ 1,
+                    .x == 0  ~ 1,
+                    .x == 1  ~ 0,
                     .x == 99 ~ NA_real_,
                     is.na(.x) ~ NA_real_
                   ))) %>%

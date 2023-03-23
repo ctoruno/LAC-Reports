@@ -41,7 +41,7 @@ p_load(char = c(
   "haven", "readxl", "writexl", "xlsx",
   
   # GIS
-  "tmaptools", "rmapshaper", "sf",
+  "tmaptools", "rmapshaper", "sf", "units", "rgeos",
   
   # Utilities
   "margins", "english", "quarto", "kableExtra",
