@@ -12,7 +12,7 @@ args = commandArgs(trailingOnly=TRUE)
 ##
 ## Creation date:     November 17th, 2022
 ##
-## This version:      December 1st, 2022
+## This version:      March 23rd, 2023
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -44,6 +44,7 @@ loadVIZ(set = "LAC")
 
 # Loading data
 if (args[1] == "central") {
+  
   master_data.df <- read_dta("Data/LAC - Merged (with CA).dta")
   boundaries.sf  <- st_read(paste0(path2SP,
                                    "Data/GeoBoundaries/geoBoundariesCGAZ_ADM1.shp"))

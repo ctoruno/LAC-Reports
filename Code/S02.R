@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 21st, 2022
 ##
-## This version:      March 14th, 2022
+## This version:      March 23rd, 2023
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -675,7 +675,7 @@ figure05_A_PRY.fn <- function(nchart = 5){
     filter(country == mainCountry) %>%
     filter(year == latestYear) %>%
     select(year, q1a) %>%
-    mutate("Trust in Community" = if_else(q1a == 3 | q1a == 4, 1, 
+    mutate("Trust in Community" = if_else(q1a == 1 | q1a == 2, 1, 
                                           if_else(!is.na(q1a) & q1a != 99, 0,
                                                   NA_real_))) %>%
     summarise(across(everything(),
@@ -692,10 +692,10 @@ figure05_A_PRY.fn <- function(nchart = 5){
            No = 100 - Yes) %>%
     pivot_longer(cols = !c(category, label), names_to = "group", values_to = "value") %>%
     mutate(label = if_else(group %in% "empty_value", NA_character_, label),
-           x_pos = 1.15) %>%
+           x_pos = if_else(group == "Yes", 1, 0)) %>%
     mutate(group = case_when(
-      group == "Yes" ~ "42% Yes",
-      group == "No"  ~ "58% No"
+      group == "Yes" ~ "58% Yes",
+      group == "No"  ~ "42% No"
     ))
   
   # Saving data points
@@ -708,13 +708,13 @@ figure05_A_PRY.fn <- function(nchart = 5){
              append    = T,
              row.names = T)
   
-  figure6_a <- ggplot(data2plot, aes(fill = group, values = value)) +
+  figure6_a <- ggplot(data2plot, aes(fill = reorder(group, -x_pos), values = value)) +
     geom_waffle(color = "white", size = 1, n_rows = 5) + 
     scale_x_discrete(expand=c(0,0)) +
     scale_y_discrete(expand=c(0,0)) +
     scale_fill_manual("", 
-                      values = c("42% Yes" = "#003b8a",
-                                 "58% No"  = "#fa4d57")) +
+                      values = c("58% Yes" = "#003b8a",
+                                 "42% No"  = "#fa4d57")) +
     coord_equal() +
     theme_enhance_waffle() +
     #guides(fill = guide_legend(override.aes = list(shape  = 21,
@@ -737,7 +737,7 @@ figure05_A_PRY.fn <- function(nchart = 5){
           legend.key.height = unit(0.35,"cm"), 
           legend.background = element_blank(), 
           legend.box.background = element_blank(), 
-          plot.margin = margin(-25,0,0,0), legend.box.just = "center")
+          plot.margin = margin(-25,0,0,0), legend.box.just = "center");figure6_a
   
   # Saving panels
   saveIT.fn(chart  = figure6_a,
@@ -801,16 +801,16 @@ figure05_B_PRY.fn <- function(nchart = 5){
         str_detect(category, "j") ~ 9
       ),
       labels = case_when(
-        str_detect(category, "a") ~ "Members of the Legislative",
-        str_detect(category, "b") ~ "Local Government Officers",
-        str_detect(category, "c") ~ "National Government Officers",
-        str_detect(category, "d") ~ "Police Officers",
-        str_detect(category, "e") ~ "Criminal Prosecutors",
-        str_detect(category, "f") ~ "Public Defense Attorneys",
-        str_detect(category, "g") ~ "Judges and Magistrates",
-        str_detect(category, "h") ~ "Civil Servants",
-        str_detect(category, "i") ~ "News Media",
-        str_detect(category, "j") ~ "Political Parties"
+        str_detect(category, "a") ~ "Members of the legislative",
+        str_detect(category, "b") ~ "Local government officers",
+        str_detect(category, "c") ~ "National government officers",
+        str_detect(category, "d") ~ "Police officers",
+        str_detect(category, "e") ~ "Criminal prosecutors",
+        str_detect(category, "f") ~ "Public defense attorneys",
+        str_detect(category, "g") ~ "Judges and magistrates",
+        str_detect(category, "h") ~ "Civil servants",
+        str_detect(category, "i") ~ "News media",
+        str_detect(category, "j") ~ "Political parties"
       )
     )
   

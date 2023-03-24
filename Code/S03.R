@@ -9,7 +9,7 @@
 ##
 ## Creation date:     November 22nd, 2022
 ##
-## This version:      March 14th, 2022
+## This version:       March 23rd, 2023
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -1358,7 +1358,7 @@ figure18.fn <- function(nchart = 18) {
     
     target_variables <- c(
       # Advice
-      "q25_1", "q25_2", "q25_3", "q25_4", "q25_5", "q25_6", "q25_7", "q25_8", "q25_9",
+      "q25_1", "q25_2", "q25_3", "q25_4", "q25_5", "q25_6", "q25_7", "q25_8", "q25_9", "q25_99",
       # Representation
       "q24", 
       # Claim to court (A2J)
@@ -1654,6 +1654,12 @@ figure18.fn <- function(nchart = 18) {
   
   a2j_b <- a2j %>%
     filter(legal == 1) %>%
+    rowwise() %>%
+    mutate(helpSum = sum(q25_1,q25_2,q25_3,q25_4,q25_6,q25_7,q25_8,q25_9,q25_99, na.rm = T)) %>%
+    ungroup() %>%
+    mutate(filtro_dk = if_else(q25_99 == 1 & helpSum == 1, 1, 0, 0)) %>%
+    #filter(q25_99 != 1) %>%
+    filter(filtro_dk != 1) %>%
     summarise("Friend or Family" = mean(q25_1, na.rm = T),
               "Lawyer or Professional <br> Advice Service" = mean(q25_2, na.rm = T),
               "Government <br> Legal Aid Office" = mean(q25_3, na.rm = T),
@@ -1828,8 +1834,8 @@ figure09_PRY.fn <- function(nchart = 9) {
         category == 'q49c_G2'       ~ paste("Ensures **equal treatment of<br>the accused** by giving all a<br>",
                                             "fair trial regardless of who<br>they are"),
         category == 'q49e_G1'       ~ paste("Gives **appropriate<br>punishments** that fit<br>the crime"),
-        category == 'q49d_G1' ~ paste("Ensures **uniform quality** by<br>providing equal service<br>",
-                                            "regardless of where<br>they live"),
+        category == 'q49d_G1' ~ paste("Ensures **uniform quality**<br>by providing equal <br>service",
+                                            "regardless of <br>where they live"),
         category == 'q49c_G1'       ~ paste("Ensures everyone<br>has **access** to the<br>justice system"),
         category == 'q49b_G1'       ~ paste("Ensures **timeliness**<br>by dealing with<br>cases promptly",
                                             "and<br>efficiently")
@@ -1840,7 +1846,7 @@ figure09_PRY.fn <- function(nchart = 9) {
           category == "q49e_G2"       ~ 3,
           category == "q49c_G2"       ~ 4,
           category == "q49e_G1"       ~ 5,
-          category == "q49d_G1_merge" ~ 6,
+          category == "q49d_G1"       ~ 6,
           category == "q49c_G1"       ~ 7,
           category == "q49b_G1"       ~ 8
         ),
@@ -1900,13 +1906,13 @@ figure10_PRY.fn <- function (nchart = 10) {
   
   # Defining variables to use in rose chart
   vars4plot <- c("q1e", "q1f", "q1g",
-                 "q2e", "q2f", "q2g",
-                 "q48f_G2", "q48g_G2", "q48e_G2")
+                 "q48h_G1", "q48g_G2", "q48f_G2") #q48e_G1 for my is more accurate instead of q48h_G1
+  vars4plotInverse <- c("q2e", "q2f", "q2g")
   
   data2table <- data_subset.df %>%
     filter(country == mainCountry) %>%
     filter(year == 2021) %>%
-    select(starts_with(vars4plot)) %>%
+    select(starts_with(vars4plot), starts_with(vars4plotInverse)) %>%
     select(!ends_with("norm")) %>%
     mutate(
       across(starts_with(vars4plot),
@@ -1917,6 +1923,14 @@ figure10_PRY.fn <- function (nchart = 10) {
                           .x == 4  ~ 0,
                           .x == 99 ~ NA_real_
                         )),
+      across(starts_with(vars4plotInverse),
+             ~case_when(
+               .x == 1  ~ 0,
+               .x == 2  ~ 0,
+               .x == 3  ~ 1,
+               .x == 4  ~ 1,
+               .x == 99 ~ NA_real_
+             ))
     ) %>%
     summarise(across(everything(),
                      mean,
@@ -1932,8 +1946,8 @@ figure10_PRY.fn <- function (nchart = 10) {
                       if_else(str_detect(category, "q2"), "Corruption", "Effectiveness"))) %>%
     pivot_longer(cols = !c(category, label, batch), names_to = "group", values_to = "value") %>%
     mutate(category = case_when(
-      str_detect(category, "e")   ~ "Prosecutors",
-      str_detect(category, "f") ~ "Public Defense Attorneys",
+      str_detect(category, "e|f_G2")   ~ "Prosecutors",
+      str_detect(category, "f|h_G1") ~ "Public Defense Attorneys",
       str_detect(category, "g")   ~ "Judges and Magistrates")) %>%
     mutate(    
       x_pos = if_else(category %in% "Prosecutors", 1.15,
@@ -1988,7 +2002,7 @@ figure10_PRY.fn <- function (nchart = 10) {
                                     bar_color    = "#9c0098",
                                     margin_top   = 0);figure13_b
   # Saving panels
-  saveIT.fn(chart  = figure13_a,
+  saveIT.fn(chart  = figure13_b,
             n      = nchart,
             suffix = "A",
             w      = 85.05327,
