@@ -455,7 +455,9 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
            labels      = to_percentage.fn(value2plot),
            country     = if_else(country %in% "Bahamas", 
                                  "The Bahamas", 
-                                 country))
+                                 country)) %>%
+    mutate(labels = if_else(country == "Haiti" & category == "CAR_q8e", "13%", labels)) # We need to keep consistency with the corruption report, the value is 12.5000000.
+  
   
   # Specifying a custom order for West Caribbean
   if (mainCountry %in% westCaribbean_and_guianas.ls) {
@@ -801,11 +803,11 @@ figure05_B_PRY.fn <- function(nchart = 5){
         str_detect(category, "j") ~ 9
       ),
       labels = case_when(
-        str_detect(category, "a") ~ "Members of the legislative",
+        str_detect(category, "a") ~ "Members of the legislature",
         str_detect(category, "b") ~ "Local government officers",
         str_detect(category, "c") ~ "National government officers",
         str_detect(category, "d") ~ "Police officers",
-        str_detect(category, "e") ~ "Criminal prosecutors",
+        str_detect(category, "e") ~ "Prosecutors",
         str_detect(category, "f") ~ "Public defense attorneys",
         str_detect(category, "g") ~ "Judges and magistrates",
         str_detect(category, "h") ~ "Civil servants",
