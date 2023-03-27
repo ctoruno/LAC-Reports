@@ -44,7 +44,9 @@ loadVIZ(set = "LAC")
 
 # Loading data
 
-master_data.df <- read_dta("Data/LAC - Merged.dta")
+if (args[1] == "central") {
+  
+master_data.df <- read_dta("Data/LAC - Merged (with CA).dta")
 boundaries.sf  <- st_read(paste0(path2SP,
                                    "Data/GeoBoundaries/geoBoundariesCGAZ_ADM1.shp"))
 map_data.ls  <- list("USA_map"      = st_read("Data/USA_boundaries.csv",
@@ -53,6 +55,9 @@ map_data.ls  <- list("USA_map"      = st_read("Data/USA_boundaries.csv",
                                                 crs = 4326),
                      "CAmapdata"    = st_read("Data/CA_data4maps.csv",
                                                 crs = 4326))
+} else {
+  master_data.df <- read_dta("Data/LAC - Merged.dta")
+}
     
 # Loading Metholodology values
 method_data.ls <- list(

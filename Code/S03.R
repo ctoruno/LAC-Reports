@@ -425,7 +425,7 @@ figure13_2.fn <- function(nchart = 13) {
                                       if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
              area          =  if_else(Urban == 1, "Urban", "Rural"),
              gender        =  if_else(gend == 1, "Male", "Female"),
-             diploma       =  if_else(edu == 4 | edu == 5 | edu == 6, "High Education Level", 
+             diploma       =  if_else(edu == 4 | edu == 5 | edu == 6| edu == 7, "High Education Level", 
                                       if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
   } else {
     
@@ -441,7 +441,7 @@ figure13_2.fn <- function(nchart = 13) {
                                       if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
              area          =  if_else(Urban == 1, "Urban", "Rural"),
              gender        =  if_else(gend == 1, "Male", "Female"),
-             diploma       =  if_else(edu == 4 | edu == 5 | edu == 6, "High Education Level", 
+             diploma       =  if_else(edu == 4 | edu == 5 | edu == 6| edu == 7, "High Education Level", 
                                       if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
     
   } 
