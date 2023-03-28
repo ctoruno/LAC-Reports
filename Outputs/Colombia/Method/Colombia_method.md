@@ -14,21 +14,21 @@ Methodology
                                 <p class="mb-4">
                                     To present an image that accurately portrays the rule of law as experienced by ordinary people, data in this report is drawn from the General Population Poll (GPP), an original data source designed and collected by the World Justice Project (WJP). The GPP captures the experiences and perceptions of ordinary citizens concerning the performance of the state and its agents and the actual operation of the legal framework in their country.
                                     <br><br>
-                                    The General Population Poll used to collect data in Haiti in 2022 features several new questions that highlight perceptions on issues salient to the region, including corruption, authoritarian behaviors, police performance, criminal justice, and security. In total, the General Population Poll questionnaire includes 172 perception-based questions and 122 experience-based questions, along with sociodemographic information on all respondents. Additionally, the GPP in Haiti was administered to a sample of 507 respondents.
+                                    The General Population Poll used to collect data in Colombia in 2022 features several new questions that highlight perceptions on issues salient to the region, including corruption, authoritarian behaviors, police performance, criminal justice, and security. In total, the General Population Poll questionnaire includes 115 perception-based questions and 77 experience-based questions, along with sociodemographic information on all respondents. Additionally, the GPP in Colombia was administered to a sample of 1,000 respondents.
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Haiti was conducted for the <i>WJP's The Rule of Law in Haiti: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by CID Gallup, based in San José, Costa Rica. CID Gallup administered the surveys in June 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Haitians aged 18 years or older residing across four regions throughout the country.
+                                    The GPP in Colombia was conducted for the <i>WJP's The Rule of Law in Colombia: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Tempo Group SA, based in Bogotá, Colombia. Tempo Group SA administered the surveys between May and June 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Colombians aged 18 years or older residing across 18 major cities throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Haiti represents an achieved total sample size of 507 interviews distributed proportionally across four regions. CID Gallup based the sampling frame on the 2022 projected population figures from the Latin American and Caribbean Demographic Center (CELADE) of the United Nations Economic Commission for Latin America and the Caribbean (CEPAL), acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
+                                    The General Population Poll in Colombia represents an achieved total sample size of 1,000 interviews distributed proportionally across three regions. Tempo Group SA based the sampling frame on the 2022 projected population figures from the National Administrative Department of Statistics (DANE), acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
                                     <br><br>
-                                    In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Haitian Creole, can be found in the Appendix of this report.
+                                    In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Spanish, can be found in the Appendix of this report.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Regions, arrondissements, and communes were selected to achieve a nationally representative sample of the country based on population density and geographic coverage. Within communes, populated areas were selected as the primary sampling unit using probability proportional to size sampling. Enumeration areas were then randomly selected at the neighborhood level. Within each enumeration area, survey administrators performed a systematic random route around a central point of reference to sample households and used the Last Birthday method to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
+                                    Regions and cities were selected to achieve a nationally representative sample of the country. In city districts, neighborhoods served as the primary sampling unit and were randomly selected based on relative population sizes and the socioeconomic level distribution within each city. Within each neighborhood, blocks were selected as enumeration areas using simple random sampling. In rural areas, veredas, or municipalities, served as the primary sampling unit and were randomly selected based on relative population sizes and the socioeconomic level distribution within each area. Within each vereda, zones were selected as enumeration areas using simple random sampling. Within each enumeration area, survey administrators performed a systematic random route to sample households and used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
                                 </p>
                             </div>
                         </div>
@@ -51,19 +51,19 @@ Methodology
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Thirty-seven percent (37%) of the interviews took place in the Capital region, followed by 22% in the North region, 22% in the South region, and 20% in the Central region.
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Forty-one percent (41%) of the interviews took place in the Central region, followed by 35% in the Western region and 24% in the Caribbean region.
                                                     </p>
                                                     <p class="mb-4">
-                                                        <b class="c-purple">GEOGRAPHY:</b> Forty-four percent (44%) of respondents resided in rural areas and municipalities, while 56% of respondents resided in metro areas or cities.
+                                                        <b class="c-purple">GEOGRAPHY:</b> Twenty-four percent (24%) of respondents resided in rural areas and municipalities, while 76% of respondents resided in metro areas or cities.
                                                     </p>
                                                     <p class="mb-4">
-                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Most respondents (99%) identified themselves as Nwa, or Haitian Creole.
+                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Most respondents (79%) did not identify with any ethnicity; 11% identified themselves as Afro-Colombian and 4% identified themselves as Indigenous.
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GENDER:</b> Fifty-one percent (51%) of respondents were female and 49% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (73%) reported that they had received up to a middle school diploma, and the remaining 26% of respondents received at least a high school diploma or vocational degree.
+                                                        <b class="c-purple">EDUCATION:</b> Most respondents (79%) reported that they had received at least a high school diploma or vocational degree, and the remaining 21% of respondents received up to a middle school diploma.
                                                     </p>
                                                 </div>
                                             </div>
@@ -75,19 +75,19 @@ Methodology
                                             <table class="table table-sm">
                                 <tr class="bg-purple text-white">
                                     <td>Eligible household, non-interview</td>
-                                    <td class="text-right">285</td>
+                                    <td class="text-right">1,553</td>
                                 </tr>
                                 <tr>
                                     <td>Refusals</td>
-                                    <td class="text-right">168</td>
+                                    <td class="text-right">  896</td>
                                 </tr>
                                 <tr>
                                     <td>Break-off</td>
-                                    <td class="text-right"> 34</td>
+                                    <td class="text-right">  451</td>
                                 </tr>
                                 <tr>
                                     <td>Non-contact</td>
-                                    <td class="text-right"> 83</td>
+                                    <td class="text-right">  206</td>
                                 </tr>
                             </table>
                                         </div>
@@ -95,33 +95,33 @@ Methodology
                                             <table class="table table-sm">
                                 <tr class="bg-purple text-white">
                                     <td>Ineligible household</td>
-                                    <td class="text-right"> 73</td>
+                                    <td class="text-right">1,028</td>
                                 </tr>
                                 <tr>
                                     <td>No eligible respondent in the household</td>
-                                    <td class="text-right"> 31</td>
+                                    <td class="text-right">  355</td>
                                 </tr>
                                 <tr>
                                     <td>Quota filled</td>
-                                    <td class="text-right"> 42</td>
+                                    <td class="text-right">  673</td>
                                 </tr>
                             </table>
                                         </div>
                                         <p class="mb-0 c-purple"><b>INTERVIEWING AND QUALITY CONTROL</b></p>
                                         <p class="mb-4">
-                                            In total, 32 interviewers worked on this project, including 15 female interviewers. Enumerators worked in eight groups of four interviewers with one supervisor each. Interviews were conducted in Haitian Creole.
+                                            In total, 42 interviewers worked on this project, including 28 female interviewers. Enumerators worked in ten groups of four to five interviewers with one supervisor per group. Interviews were conducted in Spanish.
                                             <br><br>
-                                            The supervisory team directly oversaw 31% of all interviews in the field. During data processing, 253 interviews (approximately 50% of the sample) were selected for audio review by the central office. Additional quality control measures included GPS validation, audio quality checks, and checks for abnormal answer patterns. Interviews averaged 42 minutes in length and ranged from 33 to 76 minutes.
+                                            The supervisory team directly oversaw 20% of all interviews in the field. During data processing, 200 interviews (approximately 20% of the sample) were selected for audio review by the central office and 300 interviews (30% of the sample) were backchecked via telephone.  Additional quality control measures included GPS validation of all sampling segment interviews, checks for abnormal answer patterns, and photo verification. After quality control, two interviews were rejected from the final sample. Interviews averaged 44 minutes in length and ranged from 26 to 81 minutes.
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>DATA REVIEW AND JUSTIFICATION</b></p>
                                         <p class="mb-4">
-                                            As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s <i>AmericasBarometer</i>, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International's <i>Corruption</i> <i>Perceptions</i> <i>Index</i>, the Bertelsmann Stiftung's <i>Transformation</i> <i>Index (BTI),</i> and Freedom House's <i>Freedom in</i> <i>the World</i>. While certain trends captured by the 2022 General Population Poll in Haiti are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of Haiti's rule of law performance as measured by other sources.
+                                            As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s <i>AmericasBarometer</i>, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International's <i>Corruption</i> <i>Perceptions</i> <i>Index</i>, the Bertelsmann Stiftung's <i>Transformation</i> <i>Index (BTI),</i> and Freedom House's <i>Freedom in</i> <i>the World</i>. While certain trends captured by the 2022 General Population Poll in Colombia are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of Colombia's rule of law performance as measured by other sources.
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for The Bahamas, the Dominican Republic, Guyana, and Suriname was collected in 2016, 2018, and 2022. Data for Haiti was collected in 2021 and 2022. Data for Jamaica was collected in 2014, 2017, 2019, and 2022.
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2016, 2018, and 2022. Data for Ecuador was collected in 2014, 2017, and 2022.
                                         </p>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@ Methodology
 
                                 <p class="mb-0 c-purple"><b>ADDITIONAL COUNTRIES</b></p>
                                 <p class="mb-4">
-                                    <i>The Rule of Law in Haiti: Key Findings from the General Population Poll 2022</i> includes comparisons to the following Greater Antilles, The Bahamas, and the Guianas countries surveyed by the World Justice Project during the same period: The Bahamas, Dominican Republic, Guyana, Jamaica and Suriname. This report is additionally part of a series that presents findings from the following five sub-regions within Latin America and the Caribbean: Andes (Bolivia, Colombia, Ecuador, Peru); Southern Cone (Argentina, Brazil, Paraguay); Eastern Caribbean (Barbados, Dominica, Grenada, St. Lucia, St. Vincent and the Grenadines, Trinidad and Tobago); Greater Antilles, The Bahamas, and the Guianas (The Bahamas, the Dominican Republic, Guyana, Haiti, Jamaica, Suriname); and Central America (Belize, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama). Together, these 26 countries are a portion of the 140 countries and jurisdictions included in the <i>WJP Rule of Law Index 2022</i> report. Detailed information regarding the methodology of the <i>Rule of Law Index</i> is available at: <a href="www.worldjusticeproject.org." target="_blank" class="c-purple"><i>www.worldjusticeproject.org.</i></a>
+                                    <i>The Rule of Law in Colombia: Key Findings from the General Population Poll 2022</i> includes comparisons to the following Andean countries surveyed by the World Justice Project during the same period: Bolivia, Ecuador and Peru. This report is additionally part of a series that presents findings from the following five sub-regions within Latin America and the Caribbean: Andes (Bolivia, Colombia, Ecuador, Peru); Southern Cone (Argentina, Brazil, Paraguay); Eastern Caribbean (Barbados, Dominica, Grenada, St. Lucia, St. Vincent and the Grenadines, Trinidad and Tobago); Greater Antilles, The Bahamas, and the Guianas (The Bahamas, the Dominican Republic, Guyana, Haiti, Jamaica, Suriname); and Central America (Belize, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama). Together, these 26 countries are a portion of the 140 countries and jurisdictions included in the <i>WJP Rule of Law Index 2022</i> report. Detailed information regarding the methodology of the <i>Rule of Law Index</i> is available at: <a href="www.worldjusticeproject.org." target="_blank" class="c-purple"><i>www.worldjusticeproject.org.</i></a>
                                 </p>
                                 <div class="table-responsive mb-4">
                                     <table class="table table-sm">
