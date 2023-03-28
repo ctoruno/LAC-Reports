@@ -418,30 +418,30 @@ figure13_2.fn <- function(nchart = 13) {
              victim        =  if_else(victim == 1, "Victim", "Non Victim"),
              white         =  if_else(COLOR == 1 | COLOR == 2 | COLOR == 3 | COLOR == 4, "White" , 
                                       if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10, "No White", NA_character_)),
-             young         =  if_else(age < 4, "Less than 35 years", 
-                                      if_else(age > 3, "More than 35 years", NA_character_)),
+             young         =  if_else(age < 3, "Less than 35 years", 
+                                      if_else(age > 2, "More than 35 years", NA_character_)),
              poor          =  if_else(fin == 1 | fin == 2, "Poor",
                                       if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
              area          =  if_else(Urban == 1, "Urban", "Rural"),
              gender        =  if_else(gend == 1, "Male", "Female"),
              diploma       =  if_else(edu == 4 | edu == 5 | edu == 6| edu == 7, "High Education Level", 
-                                      if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
+                                      if_else(edu < 4, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
   } else {
     
     perception <- security_universe %>%
       mutate(unsafe_bin    =  if_else(q9 == 1 | q9 == 2, 1, 
                                       if_else(q9 == 3 | q9 ==4, 0, NA_real_)),
-             victim        =  if_else(victim == 1, "Victim", "Non Victim"),
+             victim        =  if_else(victim == 1, "Victim", "Non Victim", NA_character_),
              white         =  if_else(COLOR == 1 | COLOR == 2 | COLOR == 3 | COLOR == 4, "White" , 
-                                      if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10, "No White", NA_character_)),
+                                      if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10 | COLOR == 11, "No White", NA_character_)),
              young         =  if_else(age < 30, "Less than 30 years", 
                                       if_else(age > 29, "More than 30 years", NA_character_)),
              poor          =  if_else(fin == 1 | fin == 2, "Poor",
                                       if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
-             area          =  if_else(Urban == 1, "Urban", "Rural"),
-             gender        =  if_else(gend == 1, "Male", "Female"),
+             area          =  if_else(Urban == 1, "Urban", "Rural", NA_character_),
+             gender        =  if_else(gend == 1, "Male", "Female", NA_character_),
              diploma       =  if_else(edu == 4 | edu == 5 | edu == 6| edu == 7, "High Education Level", 
-                                      if_else(edu < 5, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
+                                      if_else(edu < 4, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
     
   } 
   condition <- perception %>%
