@@ -612,15 +612,15 @@ figure19B.fn <- function(nchart = 19) {
            migrated3yrs = if_else(EXP22_q26b == 1, 1,
                                   if_else(EXP22_q26b == 0, 0, NA_real_)),
            white         =  if_else(COLOR == 1 | COLOR == 2 | COLOR == 3 | COLOR == 4, "White" , 
-                                    if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10, "No White", NA_character_)),
-           young         =  if_else(age < 31, "Less than 30 years", 
-                                    if_else(age > 30, "More than 30 years", NA_character_)),
+                                    if_else(COLOR == 5 | COLOR == 6 | COLOR == 7 | COLOR == 8 | COLOR == 9 | COLOR == 10 | COLOR == 11, "No White", NA_character_)),
+           young         =  if_else(age < 30, "Less than 30 years", 
+                                    if_else(age > 29, "More than 30 years", NA_character_)),
            poor          =  if_else(fin == 1 | fin == 2, "Poor",
                                     if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
            area          =  if_else(Urban == 1, "Urban", "Rural"),
            gender        =  if_else(gend == 1, "Male", "Female"),
-           diploma       =  if_else(edu == 4 | edu == 5 | edu == 6, "High Education Level", 
-                                    if_else(edu < 5, "No High Education Level", NA_character_))
+           diploma       =  if_else(edu == 4 | edu == 5 | edu == 6| edu == 7, "High Education Level", 
+                                    if_else(edu < 4, "No High Education Level", NA_character_))
            )
   
   condition <- migrated  %>%

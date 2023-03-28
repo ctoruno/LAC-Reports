@@ -14,28 +14,22 @@ Methodology
                                 <p class="mb-4">
                                     To present an image that accurately portrays the rule of law as experienced by ordinary people, data in this report is drawn from the General Population Poll (GPP), an original data source designed and collected by the World Justice Project (WJP). The GPP captures the experiences and perceptions of ordinary citizens concerning the performance of the state and its agents and the actual operation of the legal framework in their country.
                                     <br><br>
-                                    The General Population Poll used to collect data in Peru in 2022 features several new questions that highlight perceptions on issues salient to the region, including corruption, authoritarian behaviors, police performance, criminal justice, and security. In total, the General Population Poll questionnaire includes 115 perception-based questions and 77 experience-based questions, along with sociodemographic information on all respondents. Additionally, the GPP in Peru was administered to a sample of 1,029 respondents.
+                                    The General Population Poll used to collect data in Dominica in 2022 features several new questions that highlight perceptions on issues salient to the region, including corruption, authoritarian behaviors, police performance, criminal justice, and security. In total, the General Population Poll questionnaire includes 172 perception-based questions and 122 experience-based questions, along with sociodemographic information on all respondents. Additionally, the GPP in Dominica was administered to a sample of 500 respondents.
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Peru was conducted for the <i>WJP's The Rule of Law in Peru: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Datum Internacional S.A., based in Lima, Peru. Datum Internacional S.A. administered the surveys between July and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Peruvians aged 18 years or older residing across 17 regions throughout the country.
+                                    The GPP in Dominica was conducted for the <i>WJP's The Rule of Law in Dominica: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by DMR Insights Ltd., based in St. Lucia. DMR Insights Ltd. administered the surveys between July and August 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Dominicanss aged 18 years or older residing across all 10 parishes throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Peru represents an achieved total sample size of 1,029 interviews distributed proportionally across five zones. Datum Internacional S.A. based the sampling frame on 2017 census figures from the National Institute of Statistics and Information (INEI) and 2020 voter statistics from the National Office of Electoral Processes (ONPE), acquiring a proportionally stratified sample by zone, age, gender, socioeconomic status, and level of urbanization.
+                                    The General Population Poll in Dominica represents an achieved total sample size of 500 interviews distributed proportionally across 10 regions. DMR Insights Ltd. based the sampling frame on 2011 census figures, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
                                     <br><br>
-                                    In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Spanish, can be found in the Appendix of this report.
+                                    In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English, can be found in the Appendix of this report.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Regions and provinces were selected to achieve a nationally representative sample of the country. Districts were selected as the primary sampling unit according to quotas for age, gender, geographic distribution, and socioeconomic level. Within urban and rural districts, census areas and populated centers, respectively, were randomly selected as enumeration areas using probability proportionate to size sampling . The number of enumeration areas assigned to each district was determined by the relative population of each district. Within each enumeration area, survey administrators performed a systematic random route to sample households and randomly selected respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.  
-
-Due to a lack of accessibility, the Loreto and San Martín regions of the
-Peruvian Amazon were excluded from the study. Loreto and San Martín were
-replaced by the eastern regions of Ucayali and Madre de Dios, located in
-the Amazon rainforest and Amazon basin, respectively.
-</p>
-
+                                    Given Dominica’s population size, regions served as the primary sampling unit. Interviewers were assigned a starting point within each primary sampling unit and performed a systemic random route, while paying close attention to target quotas for gender, age, and income. Interviewers used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -57,19 +51,19 @@ the Amazon rainforest and Amazon basin, respectively.
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-4">
-                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Thirty-nine percent (39%) of the interviews took place in Lima, followed by 24% in the Northern zone, 17% in the Southern zone, 11% in the Central zone, and the remaining 8% in the Eastern zone.
+                                                        <b class="c-purple">COVERAGE:</b> Interviews were distributed across regions to create a nationally representative sample. Thirty percent (30%) of the interviews took place in Saint George, followed by 14% in Saint Paul, 13% in Saint Andrew, 11% in Saint Patrick, and the remaining 32% in other regions.
                                                     </p>
                                                     <p class="mb-4">
-                                                        <b class="c-purple">GEOGRAPHY:</b> Twenty-three percent (23%) of respondents resided in rural areas and municipalities, while 77% of respondents resided in metro areas or cities.
+                                                        <b class="c-purple">GEOGRAPHY:</b> Thirty-nine percent (39%) of respondents resided in rural areas and municipalities, while 61% of respondents resided in metro areas or cities.
                                                     </p>
                                                     <p class="mb-4">
-                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Most respondents (78%) identified themselves as Mestizo, followed by White (13%) and Indigenous (5%).
+                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Most respondents (77%) identified themselves as Afro-Dominican, followed by Mixed Race (14%).
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GENDER:</b> Fifty-one percent (51%) of respondents were female and 49% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (60%) reported that they had received up to a middle school diploma, and the remaining 40% of respondents received at least a high school diploma or vocational degree.
+                                                        <b class="c-purple">EDUCATION:</b> Most respondents (89%) reported that they had received at least a high school diploma or  vocational degree and the remaining 11% of respondents received up to a middle school diploma.
                                                     </p>
                                                 </div>
                                             </div>
@@ -81,19 +75,19 @@ the Amazon rainforest and Amazon basin, respectively.
                                             <table class="table table-sm">
                                 <tr class="bg-purple text-white">
                                     <td>Eligible household, non-interview</td>
-                                    <td class="text-right">3,233</td>
+                                    <td class="text-right">393</td>
                                 </tr>
                                 <tr>
                                     <td>Refusals</td>
-                                    <td class="text-right">1,161</td>
+                                    <td class="text-right">266</td>
                                 </tr>
                                 <tr>
                                     <td>Break-off</td>
-                                    <td class="text-right">   47</td>
+                                    <td class="text-right"> 64</td>
                                 </tr>
                                 <tr>
                                     <td>Non-contact</td>
-                                    <td class="text-right">2,205</td>
+                                    <td class="text-right"> 63</td>
                                 </tr>
                             </table>
                                         </div>
@@ -101,33 +95,33 @@ the Amazon rainforest and Amazon basin, respectively.
                                             <table class="table table-sm">
                                 <tr class="bg-purple text-white">
                                     <td>Ineligible household</td>
-                                    <td class="text-right">   NA</td>
+                                    <td class="text-right"> NA</td>
                                 </tr>
                                 <tr>
                                     <td>No eligible respondent in the household</td>
-                                    <td class="text-right">   NA</td>
+                                    <td class="text-right"> NA</td>
                                 </tr>
                                 <tr>
                                     <td>Quota filled</td>
-                                    <td class="text-right">   NA</td>
+                                    <td class="text-right"> NA</td>
                                 </tr>
                             </table>
                                         </div>
                                         <p class="mb-0 c-purple"><b>INTERVIEWING AND QUALITY CONTROL</b></p>
                                         <p class="mb-4">
-                                            In total, 94 interviewers worked on this project, including 77 female interviewers. Enumerators worked in 33 regional teams; 19 interviewers were assigned to the Lima and Callao regions and 32 groups of two to three enumerators worked throughout the remaining regions. Interviews were conducted in Spanish.
+                                            In total, 19 interviewers worked on this project, including 11 female interviewers. Enumerators worked in five groups of three to four interviewers. Interviews were conducted in English.
                                             <br><br>
-                                            The supervisory team directly oversaw approximately 9% of all interviews in the field. During data processing, 356 interviews (approximately 35% of the sample) were selected for audio review by the central office and 86 interviews (approximately 8% of the sample) were backchecked via telephone. Interviews averaged 38 minutes in length.
+                                            The supervisory team directly oversaw 10% of all interviews in the field. During data processing, 150 interviews (30% of the sample) were backchecked via telephone by the central office. After quality control, 19 interviews were rejected from the final sample due to abnormal interview length. Interviews averaged 48 minutes in length and ranged from 47 to 87 minutes.
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>DATA REVIEW AND JUSTIFICATION</b></p>
                                         <p class="mb-4">
-                                            As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s <i>AmericasBarometer</i>, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International's <i>Corruption</i> <i>Perceptions</i> <i>Index</i>, the Bertelsmann Stiftung's <i>Transformation</i> <i>Index (BTI),</i> and Freedom House's <i>Freedom in</i> <i>the World</i>. While certain trends captured by the 2022 General Population Poll in Peru are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of Peru's rule of law performance as measured by other sources.
+                                            As part of the data analysis process, the team consulted several third-party sources in order to contextualize and validate perception-based data captured by the General Population Poll and compare it with the objective rule of law situation in-country. Peer data sources consulted include select indicators measured by the Latin American Public Opinion Project (LAPOP)'s <i>AmericasBarometer</i>, Latinobarómetro, Varieties of Democracy (V-Dem), Transparency International's <i>Corruption</i> <i>Perceptions</i> <i>Index</i>, the Bertelsmann Stiftung's <i>Transformation</i> <i>Index (BTI),</i> and Freedom House's <i>Freedom in</i> <i>the World</i>. While certain trends captured by the 2022 General Population Poll in Dominica are comparable to trends in perceptions data measured by other indices, the experiences, and perceptions presented in this report may not always coincide with the reality of Dominica's rule of law performance as measured by other sources.
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>HISTORICAL DATA</b></p>
                                         <p class="mb-4">
-                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Bolivia, Colombia, and Peru was collected in 2016, 2018, and 2022. Data for Ecuador was collected in 2014, 2017, and 2022.
+                                            Historical data in this report derives from the <i>WJP Rule of Law Index®</i>'s General Population Poll that is typically administered every two to three years using a nationally representative probability sample ranging from 500 to 1,000 respondents. These household surveys were administered in the three largest cities of most countries until 2018, when the World Justice Project transitioned to nationally representative coverage as the preferred methodology for polling. The historical polling data used in this year's reports was collected in the following intervals: Data for Barbados, Dominica, Grenada, St. Lucia, St. Vincent and the Grenadines, and Trinidad and Tobago was collected in 2016, 2018, and 2022.
                                         </p>
                                     </div>
                                 </div>
@@ -146,7 +140,7 @@ the Amazon rainforest and Amazon basin, respectively.
 
                                 <p class="mb-0 c-purple"><b>ADDITIONAL COUNTRIES</b></p>
                                 <p class="mb-4">
-                                    <i>The Rule of Law in Peru: Key Findings from the General Population Poll 2022</i> includes comparisons to the following Andean countries surveyed by the World Justice Project during the same period: Bolivia, Colombia and Ecuador. This report is additionally part of a series that presents findings from the following five sub-regions within Latin America and the Caribbean: Andes (Bolivia, Colombia, Ecuador, Peru); Southern Cone (Argentina, Brazil, Paraguay); Eastern Caribbean (Barbados, Dominica, Grenada, St. Lucia, St. Vincent and the Grenadines, Trinidad and Tobago); Greater Antilles, The Bahamas, and the Guianas (The Bahamas, the Dominican Republic, Guyana, Haiti, Jamaica, Suriname); and Central America (Belize, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama). Together, these 26 countries are a portion of the 140 countries and jurisdictions included in the <i>WJP Rule of Law Index 2022</i> report. Detailed information regarding the methodology of the <i>Rule of Law Index</i> is available at: <a href="www.worldjusticeproject.org." target="_blank" class="c-purple"><i>www.worldjusticeproject.org.</i></a>
+                                    <i>The Rule of Law in Dominica: Key Findings from the General Population Poll 2022</i> includes comparisons to the following Eastern Caribbean countries surveyed by the World Justice Project during the same period: Barbados, Grenada, St. Lucia, St. Vincent and the Grenadines and Trinidad and Tobago. This report is additionally part of a series that presents findings from the following five sub-regions within Latin America and the Caribbean: Andes (Bolivia, Colombia, Ecuador, Peru); Southern Cone (Argentina, Brazil, Paraguay); Eastern Caribbean (Barbados, Dominica, Grenada, St. Lucia, St. Vincent and the Grenadines, Trinidad and Tobago); Greater Antilles, The Bahamas, and the Guianas (The Bahamas, the Dominican Republic, Guyana, Haiti, Jamaica, Suriname); and Central America (Belize, Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama). Together, these 26 countries are a portion of the 140 countries and jurisdictions included in the <i>WJP Rule of Law Index 2022</i> report. Detailed information regarding the methodology of the <i>Rule of Law Index</i> is available at: <a href="www.worldjusticeproject.org." target="_blank" class="c-purple"><i>www.worldjusticeproject.org.</i></a>
                                 </p>
                                 <div class="table-responsive mb-4">
                                     <table class="table table-sm">
