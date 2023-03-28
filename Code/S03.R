@@ -328,7 +328,6 @@ figure13_1.fn <- function(nchart = 13) {
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
     filter(country == mainCountry) %>% 
-    mutate(q9 = if_else(country == "Nicaragua" & year == 2021, NA_real_, q9)) %>%
     select(year, q9) %>%
     mutate(
       q9   = case_when(

@@ -45,8 +45,10 @@ figure16B_CA.fn <- function(nchart = 23) {
       across(c(q10a,q10b,q10c,q10d,q10e),
              ~if_else(.x == 99, NA_real_, .x)),
       across(c(q12a,q12b,q12c),
-             ~if_else(.x == 99, NA_real_, .x))
-      ) %>%
+             ~if_else(.x == 99, 
+                      NA_real_, 
+                      as.double(.x)))
+    ) %>%
     rowwise() %>%
     mutate(voluntarySum = sum(q10a,q10b,q10c,q10d,q10e, na.rm = T),
            involuntarySum = sum(q12a,q12b,q12c, na.rm = T)) %>%
@@ -1165,6 +1167,16 @@ figure21B.fn <- function(nchart = 21) {
              crs     = 4326,
              remove  = F,
              na.fail = F)
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data4map %>% ungroup() %>% st_drop_geometry()), 
+             file      = file.path("Outputs", 
+                                   str_replace_all(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart,"B"),
+             append    = T,
+             row.names = T)
   
   # Drawing map
   map <- ggplot(data  = data4map %>% filter(!is.na(x))) + 
