@@ -22,14 +22,21 @@ Methodology
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">
-                                    The General Population Poll in Honduras represents an achieved total sample size of 2,000 interviews distributed proportionally across four regions. Mercaplan based the sampling frame on the 2013 census and Population Projections 2013-2050 from the National Institute of Statistics (INE) in Honduras, acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
+                                    The General Population Poll in Honduras represents an achieved total sample size of 2,000 interviews distributed proportionally across four regions. Mercaplan based the sampling frame on 2013 and 2017 population figures from the National Statistics Institute of Honduras (INE), acquiring a proportionally stratified sample by region, age, gender, socioeconomic status, and level of urbanization.
                                     <br><br>
                                     In order to address all relevant topics while controlling the questionnaire length, the World Justice Project split three of the survey modules into two versions (Option A and Option B) and randomly assigned one option to each respondent for each module. These modules included: Hypothetical Situations, Civic Participation, and Institutional Performance. Aside from these modules, the questionnaires are identical. A link to the complete survey instrument, in English and Spanish, can be found in the Appendix of this report.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Regions and departments were selected to achieve a nationally representative sample in Honduras. Districts and municipalities were selected in urban areas and villages in rural areas. Neighborhoods were randomly selected within the districts and municipalities or villages based on relative population sizes and socioeconomic distribution. A random selection of neighborhoods was made, followed by a random selection of blocks and homes. The enumerator’s starting point was determined using random route household selection within each sampling unit. The enumerator then used the right-hand rule to determine the direction of the route from the randomly selected starting point and used the Last Birthday method to select respondents.
-                                </p>
+                                    Regions and departments were selected to achieve a nationally representative sample of the country based on population density and geographic coverage. In urban areas, municipalities were selected as the primary sampling unit using probability proportionate to size sampling. In rural areas, towns and villages were selected as the primary sampling unit using the same method. Individual enumeration areas consisted of neighborhood and were selected via simple random sampling. The number of interviews assigned to each enumeration area was determined based on relative population size. Within each enumeration area, survey administrators performed a systematic random route to sample households and used the Last Birthday method to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household. 
+
+Due to a lack of accessibility, the Ocotepeque and Islas de la Bahía
+departments were excluded from the study. Due to security challenges,
+one enumeration area was split between two neighborhoods in the city of
+Catacamas. Both neighborhoods share the same socioeconomic
+characteristics.
+</p>
+
                             </div>
                         </div>
                     </div>
@@ -57,13 +64,13 @@ Methodology
                                                         <b class="c-purple">GEOGRAPHY:</b> Forty-six percent (46%) of respondents resided in rural areas and municipalities, while 54% of respondents resided in metro areas or cities.
                                                     </p>
                                                     <p class="mb-4">
-                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> More than half (56%) of respondents identified themselves as Mestizo, followed by White (17%), 12% of respondents who identified as "Other", and Afro-descendant (8%).
+                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Most (56%) respondents identified themselves as Mestizo, followed by White (17%), Afro-Honduran (8%), and Indigenous (6%).
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GENDER:</b> Forty-nine percent (49%) of respondents were female and 51% were male.
                                                     </p>
                                                     <p>
-                                                        <b class="c-purple">EDUCATION:</b> Most respondents (51%) reported that they had received at least a high school diploma or vocational degree, and the remaining 41% of respondents received up to a middle school diploma.
+                                                        <b class="c-purple">EDUCATION:</b> Most respondents (51%) reported that they had received at least a high school diploma or vocational degree, and the remaining 49% of respondents received up to a middle school diploma.
                                                     </p>
                                                 </div>
                                             </div>
@@ -111,7 +118,7 @@ Methodology
                                         <p class="mb-4">
                                             In total, 29 interviewers worked on this project. Enumerators worked in groups with 11 supervisors overseeing the project. Interviews were conducted in Spanish.
                                             <br><br>
-                                            The supervisory team directly oversaw 410 interviews (20% of the sample) in the field. During data validation, 410 interviews were conducted by telephone back-check and 450 interviews were selected for audio review by the central office. Additional quality control measures included geo-fencing and checks for abnormal interview length. Interviews averaged 37 minutes in length and ranged from 29 to 45 minutes.
+                                            The supervisory team directly oversaw all interviews in the field and validated 23% of all interviews in-person. During data processing, 450 interviews (approximately 23% of the sample) were selected for audio review by the central office and 410 interviews (approximately 21% of the sample) were backchecked via telephone. Additional quality control measures included geo-fencing, audio quality checks, and checks for abnormal interview length. After quality control, 90 interviews were rejected from the final sample. Interviews averaged 37 minutes in length and ranged from 30 to 45 minutes.
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>DATA REVIEW AND JUSTIFICATION</b></p>

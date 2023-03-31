@@ -28,7 +28,7 @@ Methodology
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLING</b></p>
                                 <p class="mb-4">
-                                    Regions, provinces, and <i>comarcas</i>were selected to achieve a nationally representative sample in Panama. Interviewers were assigned a segment starting point that was selected systematically to coincide with the region. Interviewers performed a systemic random route, while paying close attention to target quotas for gender, age, and income. Interviewers used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
+                                    Regions, provinces and <i>comarcas</i>, and districts were selected to achieve a nationally representative sample of the country based on population density and geographic coverage. Within districts, <i>corregimientos</i>, or jurisdictions, were then selected as the primary sampling unit using probability proportionate to size sampling. Individual enumeration areas consisted of neighborhood blocks and were selected via simple random sampling. The number of enumeration areas assigned to each district was determined based on relative population size. Within each enumeration area, survey administrators performed a systematic random route to sample households and used a Kish grid to select respondents. If the selected respondent declined to be interviewed or otherwise did not meet the characteristics of the target quota, the interviewer moved on to the next household.
                                 </p>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ Methodology
                                                         <b class="c-purple">GEOGRAPHY:</b> Thirty-two percent (32%) of respondents resided in rural areas and municipalities, while 68% of respondents resided in metro areas or cities.
                                                     </p>
                                                     <p class="mb-4">
-                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Nearly one-third (30%) of respondents idnentified themselves as Afro-descendant, followed by Hispanic (29%), Indigenous (16%), Mestizo (3%), and five percent of respondents reported that they did not know.
+                                                        <b class="c-purple">RACIAL AND ETHNIC BACKGROUND:</b> Thirty-five percent (35%) of respondents identified themselves as Mestizo, followed by Afro-Panamanian (19%) and Indigenous (17%).
                                                     </p>
                                                     <p class="mb-4">
                                                         <b class="c-purple">GENDER:</b> Fifty-two percent (52%) of respondents were female and 48% were male.
@@ -109,9 +109,9 @@ Methodology
                                         </div>
                                         <p class="mb-0 c-purple"><b>INTERVIEWING AND QUALITY CONTROL</b></p>
                                         <p class="mb-4">
-                                            In total, 68 interviewers worked on this project, including 59 female interviewers. Enumerators worked in 17 groups of four with a total of 17 supvisors overseeing the project. Interviews were conducted in Spanish.
+                                            In total, 68 interviewers worked on this project, including 59 female interviewers. Enumerators worked in 17 groups of four interviewers with one supervisor each. Interviews were conducted in Spanish.
                                             <br><br>
-                                            The supervisory team directly oversaw 36% of all interviews in the field. During data processing, 41% of all interviews were selected for audio review by the central office. Additional quality control measures included geo-fencing, telephone back-checks, and checks for abnormal interview length. Interviews averaged 46 minutes in length and ranged from 35 to 99 minutes.
+                                            The supervisory team directly oversaw 36% of all interviews in the field. During data processing, 829 interviews (approximately 41% of the sample) were selected for audio review by the central office. Additional quality control measures included geo-fencing, audio quality checks, and checks for abnormal interview length. Interviews averaged 46 minutes in length and ranged from 35 to 61 minutes.
                                         </p>
 
                                         <p class="mb-0 c-purple"><b>DATA REVIEW AND JUSTIFICATION</b></p>
