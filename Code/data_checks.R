@@ -213,11 +213,11 @@ trendChanges.df <- data_subset.df %>%
   group_by(country, category) %>%
   mutate(
     cualitative = case_when(
-      pchange >= 5                ~ "Very Positive",
-      pchange > 0 & pchange < 5   ~ "Positive",
-      pchange == 0                ~ "No change",
-      pchange < 0 & pchange > -5  ~ "Negative",
-      pchange < 0 & pchange <= -5 ~ "Very Negative"
+      pchange >= 10                ~ "Very Positive",
+      pchange > 0 & pchange < 10   ~ "Positive",
+      pchange == 0                 ~ "No change",
+      pchange < 0 & pchange > -10  ~ "Negative",
+      pchange < 0 & pchange <= -10 ~ "Very Negative"
     ),
     Pos = if_else(str_detect(cualitative, "Positive"),
                   TRUE,
@@ -232,7 +232,7 @@ trendChanges.df <- data_subset.df %>%
                   FALSE),
     Ext = sum(Ext, na.rm = T),
     status = case_when(
-      Pos == 1 & Neg == 1 & Ext > 0  ~ "Extreme Trend Change",
+      Pos == 1 & Neg == 1 & Ext > 0  ~ "Significant Trend Change",
       Pos == 1 & Neg == 1 & Ext == 0 ~ "Small Trend Change",
       Pos == 2 | Neg == 2            ~ "No Trend Change",
       TRUE ~ "No comparison"
