@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Guatemala was conducted for the <i>WJP's The Rule of Law in Guatemala: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Mercaplan, based in Guatemala City, Guatemala. Mercaplan administered the surveys between November 2022 and January 2023, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Guatemalans aged 18 years or older residing across 21 departments throughout the country.
+                                    The GPP in Guatemala was conducted for the WJP's <i>The Rule of Law in Guatemala: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by Mercaplan, based in Guatemala City, Guatemala. Mercaplan administered the surveys between November 2022 and January 2023, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Guatemalans aged 18 years or older residing across 21 departments throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">

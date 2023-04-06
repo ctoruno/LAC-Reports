@@ -18,7 +18,7 @@ Methodology
                                 </p>
                                 <p class="fs-20 mb-0"><b>Data Collection</b></p>
                                 <p class="mb-4">
-                                    The GPP in Costa Rica was conducted for the <i>WJP's The Rule of Law in Costa Rica: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by CID Gallup, based in San José, Costa Rica. CID Gallup administered the surveys between June and July 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Costa Ricans aged 18 years or older residing across all seven provinces throughout the country.
+                                    The GPP in Costa Rica was conducted for the WJP's <i>The Rule of Law in Costa Rica: Key Findings from the General Population Poll 2022</i> with sampling, fieldwork, and data processing by CID Gallup, based in San José, Costa Rica. CID Gallup administered the surveys between June and July 2022, conducting face-to-face interviews using a multi-stage stratified random sampling design. The target population group for this survey included Costa Ricans aged 18 years or older residing across all seven provinces throughout the country.
                                 </p>
                                 <p class="mb-0 c-purple"><b>SAMPLE SIZE AND SAMPLE FRAME</b></p>
                                 <p class="mb-4">

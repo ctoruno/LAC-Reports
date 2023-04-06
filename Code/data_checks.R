@@ -264,7 +264,7 @@ write.xlsx(as.data.frame(trendChanges.df),
 # Cleaning data
 outliers.df <- data_subset.df %>%
   filter(year == 2022 | country == "Paraguay") %>%
-  filter(! country %in% c("Nicaragua")) %>%
+  filter(! country %in% c("Nicaragua", "Antigua and Barbuda", "St. Kitts and Nevis")) %>%
   select(-year) %>%
   group_by(country, country_code) %>%
   summarise(across(everything(),
