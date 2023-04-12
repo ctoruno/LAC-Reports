@@ -1361,7 +1361,7 @@ figure22C.fn <- function(nchart = 22) {
            aes(x = grp,
                y = perc,
                label = labels,
-               fill = category)) +
+               fill = column)) +
       geom_bar(stat = "identity",
                color = "white",
                show.legend = F,
@@ -1391,7 +1391,8 @@ figure22C.fn <- function(nchart = 22) {
   vars4plot <- list("In home \ncountry"                  = c("EXP22_q27h_1", "EXP22_q27j_1"),
                     "In another country \nin Central America" = c("EXP22_q27h_2", "EXP22_q27j_2"),
                     "In Mexico"                             = c("EXP22_q27h_3", "EXP22_q27j_3"),
-                    "In the United States"                  = c("EXP22_q27h_4", "EXP22_q27j_4"))
+                    "In the United States"                  = c("EXP22_q27h_4", "EXP22_q27j_4"),
+                    "Dont know"                             = c("EXP22_q27h_99", "EXP22_q27j_99"))
   
   data2plot_c2  <-  data_subset.df %>% 
     filter(country == mainCountry) %>% 
@@ -1403,7 +1404,11 @@ figure22C.fn <- function(nchart = 22) {
                .x == 0  ~ 0,
                .x == 1  ~ 1,
                .x == 99  ~ NA_real_
-             ))
+             )),
+      across(starts_with("EXP22_q27h"),
+             ~if_else(EXP22_q27h_99 == 1, NA_real_, .x)),
+      across(starts_with("EXP22_q27j"),
+             ~if_else(EXP22_q27j_99 == 1, NA_real_, .x))
     ) %>%
     group_by(country) %>%
     summarise(across(everything(),
@@ -1421,12 +1426,14 @@ figure22C.fn <- function(nchart = 22) {
         str_detect(category, "_4") ~ "In the United States"
       )) %>% 
     mutate(#highlighted = if_else(grp == "In another country in Central America", 1, 1),
-      labels = paste0(perc, "%"))
+      labels = paste0(perc, "%")) %>%
+    drop_na() %>%
+    mutate(column = if_else(str_detect(category, "q27h"), "Violence", "Bribery"))
   
   data2plot_c2$grp <- factor(data2plot_c2$grp, levels = names(vars4plot))
   
-  colors4plot <- c("#2a2a94", "#2a2a94", "#2a2a94", "#2a2a94",
-                   "#a90099", "#a90099", "#a90099", "#a90099")
+  colors4plot <- c("Violence" = "#a90099",
+                   "Bribery"  = "#2a2a94")
                             
   
   # Generate Plot

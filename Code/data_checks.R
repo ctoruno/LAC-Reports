@@ -173,7 +173,6 @@ lapply(VIP_vars,
                                         df <- tribble(~country,  ~mean2022, ~meanPrevYear, ~tstat,   ~pvalue, 
                                                       cntry,     NA_real_,  NA_real_,      NA_real_, NA_real_)
                                       }
-                                      
                                       return(df)
                                       
                                     })
@@ -199,7 +198,7 @@ lapply(VIP_vars,
 # Identifying trend changes
 trendChanges.df <- data_subset.df %>%
   filter(! country %in% c("Chile", "Paraguay", "Mexico", "Uruguay",  "Venezuela")) %>%
-  group_by(country, country_code, year) %>%
+  group_by(country, year) %>%
   summarise(across(everything(),
                    mean,
                    na.rm = T)) %>%
@@ -207,7 +206,7 @@ trendChanges.df <- data_subset.df %>%
                 ~ (.x - dplyr::lag(.x))*100)) %>%
   group_by(country) %>%
   slice_max(year, n = 2) %>%
-  pivot_longer(!c(country, country_code, year),
+  pivot_longer(!c(country, year),
                names_to  = "category",
                values_to = "pchange") %>%
   group_by(country, category) %>%
@@ -264,7 +263,7 @@ write.xlsx(as.data.frame(trendChanges.df),
 # Cleaning data
 outliers.df <- data_subset.df %>%
   filter(year == 2022 | country == "Paraguay") %>%
-  filter(! country %in% c("Nicaragua", "Antigua and Barbuda", "St. Kitts and Nevis")) %>%
+  filter(! country %in% c("Nicaragua")) %>%
   select(-year) %>%
   group_by(country, country_code) %>%
   summarise(across(everything(),
