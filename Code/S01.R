@@ -933,6 +933,9 @@ figure04_PRY.fn <- function(nchart = 4){
          if (length(table(data2plot$country)) == 6) {
            h = 54.12481
          }
+         if (length(table(data2plot$country)) > 6) {
+           h = 56.12481
+         }
          
          # Saving panels
          saveIT.fn(chart  = chart,

@@ -199,6 +199,16 @@ centralAmerica.ls <- c(
   "Panama"
 )
 
+g7.ls <- c(
+  "Canada",
+  "France",
+  "Germany",
+  "Italy",
+  "Japan",
+  "United Kingdom",
+  "United States"
+)
+
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ## 7.  Creating a function that will reset the Outputs directory                                            ----
