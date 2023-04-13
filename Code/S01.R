@@ -679,6 +679,20 @@ figure05.fn <- function(nchart = 5) {
         )
       )
   }
+  if (mainCountry %in% g7.ls) {
+    data2plot <- data2plot %>%
+      mutate(
+        order_var = case_when(
+          country == "CAN" ~ 1,
+          country == "FRA" ~ 2,
+          country == "DEU" ~ 3,
+          country == "ITA" ~ 4,
+          country == "JPN" ~ 5,
+          country == "GBR" ~ 6,
+          country == "USA" ~ 7
+        )
+      )
+  }
   
   if (! mainCountry %in% c(centralAmerica.ls, eastCaribbean.ls)) {
     data2plot <- data2plot %>%
@@ -692,7 +706,8 @@ figure05.fn <- function(nchart = 5) {
   if (mainCountry %in% c(eastCaribbean.ls, 
                          westCaribbean_and_guianas.ls, 
                          southCone.ls, 
-                         centralAmerica.ls)){
+                         centralAmerica.ls,
+                         g7.ls)){
     exp <- TRUE
   } else {
     exp <- FALSE
