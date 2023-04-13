@@ -352,7 +352,7 @@ figure13_1.fn <- function(nchart = 13) {
   }
   maxyear <- max(data2plot %>% pull(year))
   if (maxyear %% 2 != 0) {
-    maxyear <- minyear + 1
+    maxyear <- maxyear + 1
   }
   
   if (mainCountry == "Haiti") {
@@ -727,7 +727,7 @@ figure15.fn <- function(nchart = 15) {
   }
   maxyear <- max(data2plot %>% pull(year))
   if (maxyear %% 2 != 0) {
-    maxyear <- minyear + 1
+    maxyear <- maxyear + 1
   }
   
   if (mainCountry == "Haiti") {

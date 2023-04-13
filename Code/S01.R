@@ -290,11 +290,9 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   }
   if (mainCountry %in% southCone.ls){
     if(mainCountry == "Paraguay"){
-      
       data_subset.df <- data_subset.df
       
     }else{
-      
       data_subset.df <- data_subset.df %>%
       filter(country != "Paraguay")
     }
@@ -302,6 +300,10 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   if (mainCountry %in% centralAmerica.ls){
     data_subset.df <- data_subset.df %>%
       filter(country != "Nicaragua")
+  }
+  if (mainCountry == "United States"){
+    data_subset.df <- data_subset.df %>%
+      filter(country != "Italy")
   }
   
   # Defining data frame for plot
@@ -527,7 +529,7 @@ figure04.fn <- function(nchart = 4) {
   }
   maxyear <- max(data2plot %>% pull(year))
   if (maxyear %% 2 != 0) {
-    maxyear <- minyear + 1
+    maxyear <- maxyear + 1
   }
   
   # Creating a vector for yearly axis
@@ -762,7 +764,7 @@ figure06.fn <- function(nchart = 6) {
   }
   maxyear <- max(data2plot %>% pull(year))
   if (maxyear %% 2 != 0) {
-    maxyear <- minyear + 1
+    maxyear <- maxyear + 1
   }
   
   # Creating a vector for yearly axis

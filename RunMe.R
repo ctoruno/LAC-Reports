@@ -521,10 +521,6 @@ for (mainCountry in group) {
     print("Designing Figure 12")
     figure18.fn(nchart = 12)
   }
-  if (mainCountry == "United States") {
-    print("Designing Figure 15")
-    # figure18.fn(nchart = 15)
-  }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##

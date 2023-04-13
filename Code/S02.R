@@ -62,7 +62,7 @@ figure07.fn <- function(nchart = 7) {
   }
   maxyear <- max(data2plot %>% pull(year))
   if (maxyear %% 2 != 0) {
-    maxyear <- minyear + 1
+    maxyear <- maxyear + 1
   }
   
   if (mainCountry == "Haiti") {
@@ -210,6 +210,11 @@ figure08.fn <- function(nchart = 8){
         category == "CAR_q6q" ~ 1
       )
     )
+  
+  if (mainCountry == "United States"){
+    data2plot <- data2plot %>%
+      filter(labels != "Members of the armed \nforces")
+  }
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
@@ -593,7 +598,7 @@ figure11.fn <- function(nchart = 11) {
   }
   maxyear <- max(data2plot %>% pull(year))
   if (maxyear %% 2 != 0) {
-    maxyear <- minyear + 1
+    maxyear <- maxyear + 1
   }
   
   if (mainCountry == "Haiti") {
