@@ -235,7 +235,7 @@ for (mainCountry in group) {
   # ALT Figure for the USA: Government Accountability and Rule of Law, by Political Affiliation
   if (mainCountry %in% c("United States")) {
     print("Designing Figure 6")
-    # figure06_USA.fn()
+    figure06_US.fn(nchart = 6)
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

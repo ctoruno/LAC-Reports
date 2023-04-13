@@ -303,7 +303,8 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   }
   if (mainCountry == "United States"){
     data_subset.df <- data_subset.df %>%
-      filter(country != c("Italy", "Canada"))
+      filter(country != "Italy") %>% 
+      filter(country != "Canada")
   }
   
   # Defining data frame for plot
@@ -965,4 +966,103 @@ figure04_PRY.fn <- function(nchart = 4){
   
 }
 
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 1 - US                                                                                        ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure06_US.fn <- function(nchart = 6){
+  
+  vars4plot <- list("A" = c("q50", "q51", "q52"),
+                    "B" = c("q45a_G1", "q45b_G1", "q45c_G1"))
+
+
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear) %>%
+    filter(country == mainCountry) %>%
+    mutate(party = case_when(
+      paff3 == "The Democratic Party" ~ "Democratic Party",
+      paff3 == "The Republican Party" ~ "Republican Party"
+    )) %>%
+    select(party, all_of(unlist(vars4plot, use.names = F))) %>%
+    mutate(      
+      across(starts_with("q5"),
+             ~if_else(.x == 3 | .x == 4, 1,
+                      if_else(.x == 1 | .x == 2, 0, 
+                              NA_real_))),
+      across(starts_with("q45"),
+             ~if_else(.x == 1 | .x == 2, 1,
+                      if_else(.x == 3 | .x == 4, 0, 
+                              NA_real_)))
+      ) %>%
+    group_by(party) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    drop_na() %>%
+    pivot_longer(!party,
+                 names_to   = "category",
+                 values_to  = "value2plot") %>%
+    mutate(
+      labels = case_when(
+        category == "q50" ~ "It is important that citizens have a say in government matters, \neven at the expense of efficiency",
+        category == "q51" ~ "The president must always obey the law and the courts",
+        category == "q52" ~ "It is important to obey the government in power, \nno matter who you voted for",
+        category == "q45a_G1" ~ "Congress",
+        category == "q45b_G1" ~ "The Courts",
+        category == "q45c_G1" ~ "Citizens"
+      ),
+      value2plot = round(value2plot*100,2),
+      order_value = case_when(
+        category == "q50" ~ 1,
+        category == "q51" ~ 2,
+        category == "q52" ~ 3,
+        category == "q45a_G1" ~ 1,
+        category == "q45b_G1" ~ 2,
+        category == "q45c_G1" ~ 3
+      )
+    )
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace_all(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
+  # Defining color palette
+  colors4plot <- binPalette
+  names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
+
+  imap(vars4plot,
+       function(tvar, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(category %in% tvar)
+         
+         # Applying plotting function
+         chart <- LAC_dotsChart(data         = data2plot,
+                                target_var   = "value2plot",
+                                grouping_var = "party",
+                                labels_var   = "labels",
+                                colors       = colors4plot,
+                                order_var    = "order_value")
+         
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 189.7883,
+                   h      = 47.44707)
+       }
+       )
+}                              
+                              
+                      
+
+  
