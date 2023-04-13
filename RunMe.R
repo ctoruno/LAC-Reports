@@ -140,6 +140,8 @@ for (mainCountry in group) {
     names(countryPalette) <- c("Colombia", "Bolivia", "Ecuador", "Peru")
   } else if (args[1] == "south") {
     names(countryPalette) <- c("Paraguay", "Argentina", "Brazil")
+  } else if (args[1] == "usa") {
+    names(countryPalette) <- c("United States", "France", "Germany", "Italy", "Japan", "United Kingdom", "Canada")
   } else {
     names(countryPalette) <- group
   }

@@ -952,7 +952,7 @@ figure04_PRY.fn <- function(nchart = 4){
            h = 54.12481
          }
          if (length(table(data2plot$country)) > 6) {
-           h = 56.12481
+           h = 50.12481
          }
          
          # Saving panels
@@ -968,16 +968,179 @@ figure04_PRY.fn <- function(nchart = 4){
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 1 - US                                                                                        ----
+##    Figure 6 - US                                                                                        ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure06_US.fn <- function(nchart = 6){
+figure06A_US.fn <- function(nchart = 6){
   
-  vars4plot <- list("A" = c("q50", "q51", "q52"),
-                    "B" = c("q45a_G1", "q45b_G1", "q45c_G1"))
+  # Defining variables to use
+  vars4plot <- c("q50", "q51", "q52")
+  
+  # Defining data for plot
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear & country == mainCountry) %>%
+    mutate(party = case_when(
+      paff3 == "The Democratic Party" ~ "Democratic Party",
+      paff3 == "The Republican Party" ~ "Republican Party"
+    )) %>%
+    select(party, all_of(vars4plot)) %>%
+    mutate(
+      q52 = case_when(
+        q52 == 1 ~ 4,
+        q52 == 2 ~ 3,
+        q52 == 3 ~ 2,
+        q52 == 4 ~ 1,
+        q52 == 5 ~ 5,
+        q52 == 99 ~ 99
+      ),
+      across(starts_with("q5"),
+             ~if_else(.x == 3 | .x == 4, 1,
+                      if_else(.x == 1 | .x == 2, 0, 
+                              NA_real_)))
+    ) %>%
+    group_by(party) %>%
+    summarise(
+      across(c("q50", "q51", "q52"),
+             mean,
+             na.rm = T,
+             .names = "{col}_mean"),
+      across(c("q50", "q51", "q52"),
+             sd,
+             na.rm = T,
+             .names = "{col}_sd")
+    ) %>%
+    drop_na() %>%
+    pivot_longer(!party,
+                 names_to      = c("category", "stat"),
+                 names_pattern = "(.*)_(.*)",
+                 values_to     = "value") %>%
+    pivot_wider(c(party, category),
+                names_from  = stat,
+                values_from = value) %>%
+    mutate(
+      labels = case_when(
+        category == "q50" ~ paste("It is important that citizens have\n",
+                                  "a say in government matters, even\n",
+                                  "at the expense of efficiency"),
+        category == "q51" ~ paste("The president must always obey\n",
+                                  "the law and the courts"),
+        category == "q52" ~ paste("It is important to obey the\n",
+                                  "government in power, no\n",
+                                  "matter who you voted for")
+      ), 
+      across(c("mean", "sd"),
+             ~.x*100)
+    )
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace_all(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart, "A"),
+             append    = T,
+             row.names = T)
+  
+  # Defining color palette
+  colors4plot <- binPalette
+  names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
+  
+  # Creating a strip pattern
+  strips <- data2plot %>%
+    group_by(labels) %>%
+    summarise() %>%
+    mutate(ymin = 25,
+           ymax = 125,
+           xposition = rev(1:nrow(.)),
+           xmin = xposition - 0.5,
+           xmax = xposition + 0.5,
+           fill = rep(c("grey", "white"), 
+                      length.out = nrow(.))) %>%
+    pivot_longer(c(xmin, xmax),
+                 names_to  = "cat",
+                 values_to = "x") %>%
+    select(-cat) %>%
+    filter(fill != "white")
+  
+  # Plotting Figure
+  chart <- ggplot() +
+    geom_blank(data       = data2plot,
+               aes(x      = labels,
+                   y      = mean,
+                   group  = party,
+                   color  = party)) +
+    geom_ribbon(data      = strips,
+                aes(x     = x,
+                    ymin  = ymin,
+                    ymax  = ymax,
+                    group = xposition,
+                    fill  = fill),
+                show.legend = F) +
+    scale_fill_manual(values = c("grey"  = "#EBEBEB",
+                                         "white"  = "#FFFFFF"),
+                                         na.value = NULL) +
+    geom_point(data       = data2plot,
+               aes(x      = labels,
+                   y      = mean,
+                   group  = party,
+                   color  = party),
+               size     = 2,
+               position = position_dodge(width = .75)) +
+    geom_errorbar(data       = data2plot,
+                  aes(x      = labels,
+                      y      = mean,
+                      group  = party,
+                      color  = party,
+                      ymin  = mean-sd, 
+                      ymax  = mean+sd), 
+                  width     = 0.5,
+                  linewidth = 1,
+                  position  = position_dodge(.75)) +
+    scale_color_manual(values = colors4plot) + 
+    scale_y_continuous(limits   = c(25,125),
+                       breaks   = seq(25,100,25),
+                       labels   = paste0(seq(25,100,25), "%"),
+                       position = "right") +
+    scale_x_discrete(expand = c(0,0)) +
+    coord_flip() +
+    WJP_theme() +
+    theme(
+      legend.position    = "none",
+      panel.grid.major.y = element_blank(),
+      panel.grid.major.x = element_line(size     = 0.25,
+                                        colour   = "#5e5c5a",
+                                        linetype = "dashed"),
+      panel.ontop        = T,
+      panel.background   = element_blank(),
+      plot.background    = element_blank(),
+      axis.title.x       = element_blank(),
+      axis.title.y       = element_blank(),
+      axis.text.y        = element_text(family   = "Lato Full",
+                                        face     = "plain",
+                                        size     = 3.514598*.pt,
+                                        color    = "#524F4C"),
+      axis.text.x        = element_text(family = "Lato Full",
+                                        face   = "plain",
+                                        size   = 3.514598*.pt,
+                                        color  = "#524F4C"),
+    );chart
+  
+  # Saving panels
+  saveIT.fn(chart  = chart,
+            n      = nchart,
+            suffix = "A",
+            w      = 189.7883,
+            h      = 57.44707)
+} 
 
-
+figure06B_US.fn <- function(nchart = 6){
+  
+  # Defining variables to use
+  vars4plot <- list("B" = c("q45a_G1", "q45b_G1", "q45c_G1"))
+  
+  # Defining data for plot
   data2plot <- data_subset.df %>%
     filter(year == latestYear) %>%
     filter(country == mainCountry) %>%
@@ -987,10 +1150,6 @@ figure06_US.fn <- function(nchart = 6){
     )) %>%
     select(party, all_of(unlist(vars4plot, use.names = F))) %>%
     mutate(      
-      across(starts_with("q5"),
-             ~if_else(.x == 3 | .x == 4, 1,
-                      if_else(.x == 1 | .x == 2, 0, 
-                              NA_real_))),
       across(starts_with("q45"),
              ~if_else(.x == 1 | .x == 2, 1,
                       if_else(.x == 3 | .x == 4, 0, 
@@ -1006,18 +1165,12 @@ figure06_US.fn <- function(nchart = 6){
                  values_to  = "value2plot") %>%
     mutate(
       labels = case_when(
-        category == "q50" ~ "It is important that citizens have a say in government matters, \neven at the expense of efficiency",
-        category == "q51" ~ "The president must always obey the law and the courts",
-        category == "q52" ~ "It is important to obey the government in power, \nno matter who you voted for",
         category == "q45a_G1" ~ "Congress",
         category == "q45b_G1" ~ "The Courts",
         category == "q45c_G1" ~ "Citizens"
       ),
       value2plot = round(value2plot*100,2),
       order_value = case_when(
-        category == "q50" ~ 1,
-        category == "q51" ~ 2,
-        category == "q52" ~ 3,
         category == "q45a_G1" ~ 1,
         category == "q45b_G1" ~ 2,
         category == "q45c_G1" ~ 3
@@ -1030,14 +1183,15 @@ figure06_US.fn <- function(nchart = 6){
                                    str_replace_all(mainCountry, " ", "_"),
                                    "dataPoints.xlsx",
                                    fsep = "/"), 
-             sheetName = paste0("Chart_", nchart),
+             sheetName = paste0("Chart_", nchart, "B"),
              append    = T,
              row.names = T)
   
   # Defining color palette
   colors4plot <- binPalette
   names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
-
+  
+  # Plotting panels
   imap(vars4plot,
        function(tvar, panelName) {
          
