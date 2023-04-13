@@ -303,7 +303,7 @@ figure03.fn <- function(nchart = 3, PAR = F) {
   }
   if (mainCountry == "United States"){
     data_subset.df <- data_subset.df %>%
-      filter(country != "Italy")
+      filter(country != c("Italy", "Canada"))
   }
   
   # Defining data frame for plot

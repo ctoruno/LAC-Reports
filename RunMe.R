@@ -373,7 +373,7 @@ for (mainCountry in group) {
   if (args[1] == "carib2" | mainCountry == "United States") {
     print("Designing Figure 11")
     figure12_1.fn(nchart = 11)
-    # figure12_2.fn(nchart = 11)
+    figure12_2.fn(nchart = 11)
   }
   if (mainCountry == "Suriname") {
     print("Designing Figure 10")
