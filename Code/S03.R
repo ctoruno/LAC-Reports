@@ -114,7 +114,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
     summarise(victim = round(mean(victim, na.rm = T),2)) %>%
     mutate(non_victim = 1 - victim)
 
-  if (mainCountry == "Paraguay") {
+  if (mainCountry == "Paraguay" | mainCountry == "United States") {
     
     report <- security_universe %>%
       mutate(q8d = case_when(
@@ -139,7 +139,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
       mutate(non_report = 1 - report)
   }
   
-  if (mainCountry == "Paraguay") {
+  if (mainCountry == "Paraguay" | mainCountry == "United States") {
     
     fill_report <- security_universe %>%
       filter(victim == 1) %>%
@@ -186,7 +186,7 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   d <- data.frame(cbind(t1, t2))
   names(d) <- c("Victim", "Report")
   
-  if (mainCountry == "Paraguay") {
+  if (mainCountry == "Paraguay" | mainCountry == "United States") {
     
     df <- d %>%
       mutate(`Crime Prosecution` = if_else(Report %in% "Report", t3, " ")) 
@@ -1416,14 +1416,13 @@ figure18.fn <- function(nchart = 18) {
                a2j_community = ifelse(q19_H3 == 1 | q19_E3 == 1, 1, 0)) %>%
         mutate(legal = ifelse(a2j_consumer == 1 | a2j_land == 1 | a2j_housing == 1 | a2j_family == 1 | a2j_education == 1 | a2j_accidental == 1 |
                                 a2j_employment == 1 | a2j_public == 1 | a2j_law == 1 | a2j_id == 1 | a2j_money == 1 | a2j_community == 1 | q19_99 == 1, 1, 0))
-    }
-    
     subset <- a %>%
-      group_by(country) %>%
-      filter(year == if_else(mainCountry %in% "Paraguay", 2021, 2022)) %>%
-      ungroup() %>%
-      select(country, year, ends_with(target_variables), starts_with("a2j_"), legal) %>%
-      filter(country %in% mainCountry)
+      filter(country == mainCountry) %>%
+      filter(year == latestYear) %>%
+      select(country, year, ends_with(target_variables), starts_with("a2j_"), legal) 
+    
+    return(subset)
+    }
   }
   
   aes_function <- function(mainData) {
