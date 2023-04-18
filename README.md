@@ -40,7 +40,7 @@ The resulting markdown file is saved in the Outputs folder of each country.
 ## How to use
 As mentioned above, in order to generate all the plots needed, you just need to call the RunMe.R file with the country group name that you wish to generate the visualizations for.
 
-There are five different groups:
+There are six different groups:
 
 1. **Andean Countries**: Pass the string "_andean_" as an argument to the call in order to generate the plots for Colombia, Ecuador, Bolivia and Peru.
 
@@ -51,6 +51,8 @@ There are five different groups:
 4. **Eastern Caribbean**: Pass the string "_carib2_" as an argument to the call in order to generate the plots for  Antigua and Barbuda, Barbados, Dominica, Grenada, St. Kitts and Nevis, St. Lucia, St. Vincent and the Grenadines and Trinidad and Tobago.
 
 5. **Central America**: Pass the string "_central_" as an argument to the call in order to generate the plots for Belize, Guatemala, Honduras, El Salvador, Costa Rica and Panama.
+
+6. **USA**: Pass the string "_usa_" as an argument to the call in order to generate the plots for the USA.
 
 In order to call the RunMe.R with the respective country group, open  your terminal and run the following lines:
 
