@@ -237,7 +237,9 @@ for (mainCountry in group) {
   # ALT Figure for the USA: Government Accountability and Rule of Law, by Political Affiliation
   if (mainCountry %in% c("United States")) {
     print("Designing Figure 6")
-    figure06_US.fn(nchart = 6)
+    figure06A_US.fn(nchart = 6)
+    figure06B_US.fn(nchart = 6)
+    
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -473,9 +475,13 @@ for (mainCountry in group) {
     print("Designing Figure 15")
     figure16.fn(nchart = 15)
   }
-  if (mainCountry == "Paraguay"| mainCountry == "United States") {
+  if (mainCountry == "Paraguay") {
     print("Designing Figure 11")
     figure11_PRY.fn()
+  }
+  if (mainCountry == "United States") {
+    print("Designing Figure 15")
+    figure11_PRY.fn(nchart = 15)
   }
   if (mainCountry == "Suriname") {
     print("Designing Figure 14")
