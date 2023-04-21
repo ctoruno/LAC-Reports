@@ -2238,7 +2238,7 @@ figure11_PRY.fn <- function (nchart = 11) {
                            x_lab_pos    = x_pos,
                            y_lab_pos    = 0,
                            bar_color    = "#2a2a94",
-                           margin_top   = 0);a
+                           margin_top   = 0);c
   
   saveIT.fn(chart  = c,
             n      = nchart,
