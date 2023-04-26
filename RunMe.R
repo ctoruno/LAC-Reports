@@ -36,6 +36,7 @@ source("Code/S01.R")
 source("Code/S02.R")
 source("Code/S03.R")
 source("Code/S05.R")
+source("Code/S06.R")
 source("Code/methodology.R")
 
 # Loading plotting functions from GitHub
@@ -508,6 +509,14 @@ for (mainCountry in group) {
     print("Designing Figure 15")
     figure17.fn(nchart = 15)
   }
+  
+  # Figure 18: No one above the law
+  
+  
+  if (mainCountry == "United States") {
+    print("Designing Figure 18")
+    figure18_US.fn()
+  }
     
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
@@ -563,6 +572,27 @@ for (mainCountry in group) {
     figure22B.fn()
     figure22C.fn()
     
+  }
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##   Section 6                                                                                             ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  # Figure 16: Discrimination USA
+  
+  if (mainCountry == "United States") {
+    print("Designing Figure 16")
+    figure16A_US.fn()
+    figure16B_US.fn()
+  }
+  
+  # Figure 17: Discriminations bias USA
+  
+  if (mainCountry == "United States") {
+    print("Designing Figure 17")
+    figure17_US.fn()
   }
   
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
