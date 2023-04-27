@@ -976,7 +976,8 @@ figure06A_US.fn <- function(nchart = 6){
   
   # Defining variables to use
   vars4plot <- c("q50", "q51", "q52")
-  
+  alpha <- 0.05
+    
   # Defining data for plot
   data2plot <- data_subset.df %>%
     filter(year == latestYear & country == mainCountry) %>%
@@ -1000,39 +1001,46 @@ figure06A_US.fn <- function(nchart = 6){
                               NA_real_)))
     ) %>%
     group_by(party) %>%
+    mutate(obs = n()) %>%
+    ungroup() %>%
+    group_by(party) %>%
     summarise(
       across(c("q50", "q51", "q52"),
-             mean,
+             mean, 
              na.rm = T,
              .names = "{col}_mean"),
       across(c("q50", "q51", "q52"),
              sd,
              na.rm = T,
-             .names = "{col}_sd")
+             .names = "{col}_sd"),
+      n_obs = mean(obs, na.rm = T),
+      n_obs = as.character(n_obs)
     ) %>%
     drop_na() %>%
-    pivot_longer(!party,
+    pivot_longer(!c(party,n_obs),
                  names_to      = c("category", "stat"),
                  names_pattern = "(.*)_(.*)",
                  values_to     = "value") %>%
-    pivot_wider(c(party, category),
+    pivot_wider(c(category,party,n_obs),
                 names_from  = stat,
                 values_from = value) %>%
     mutate(
+      n_obs  = as.numeric(n_obs),
       labels = case_when(
-        category == "q50" ~ paste("It is important that citizens have\n",
-                                  "a say in government matters, even\n",
-                                  "at the expense of efficiency"),
-        category == "q51" ~ paste("The president must always obey\n",
-                                  "the law and the courts"),
-        category == "q52" ~ paste("It is important to obey the\n",
-                                  "government in power, no\n",
-                                  "matter who you voted for")
-      ), 
-      across(c("mean", "sd"),
-             ~.x*100)
-    )
-  
+        category == "q50" ~ paste("It is important that citizens have\na",
+                                  "say in government matters, even\nat",
+                                  "the expense of efficiency"),
+        category == "q51" ~ paste("The president must always obey\nthe",
+                                  "law and the courts"),
+        category == "q52" ~ paste("It is important to obey the\ngovernment",
+                                  "in power, no\nmatter",
+                                  "who you voted for")
+      ),
+      lower = mean - qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs),
+      upper = mean + qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs)
+    ) %>%
+    rename(values = mean)
+      
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
              file      = file.path("Outputs", 
@@ -1046,13 +1054,14 @@ figure06A_US.fn <- function(nchart = 6){
   # Defining color palette
   colors4plot <- binPalette
   names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
+  names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
   
   # Creating a strip pattern
   strips <- data2plot %>%
     group_by(labels) %>%
     summarise() %>%
-    mutate(ymin = 25,
-           ymax = 125,
+    mutate(ymin = 0,
+           ymax = 1,
            xposition = rev(1:nrow(.)),
            xmin = xposition - 0.5,
            xmax = xposition + 0.5,
@@ -1064,68 +1073,13 @@ figure06A_US.fn <- function(nchart = 6){
     select(-cat) %>%
     filter(fill != "white")
   
-  # Plotting Figure
-  chart <- ggplot() +
-    geom_blank(data       = data2plot,
-               aes(x      = labels,
-                   y      = mean,
-                   group  = party,
-                   color  = party)) +
-    geom_ribbon(data      = strips,
-                aes(x     = x,
-                    ymin  = ymin,
-                    ymax  = ymax,
-                    group = xposition,
-                    fill  = fill),
-                show.legend = F) +
-    scale_fill_manual(values = c("grey"  = "#EBEBEB",
-                                         "white"  = "#FFFFFF"),
-                                         na.value = NULL) +
-    geom_point(data       = data2plot,
-               aes(x      = labels,
-                   y      = mean,
-                   group  = party,
-                   color  = party),
-               size     = 2,
-               position = position_dodge(width = .75)) +
-    geom_errorbar(data       = data2plot,
-                  aes(x      = labels,
-                      y      = mean,
-                      group  = party,
-                      color  = party,
-                      ymin  = mean-sd, 
-                      ymax  = mean+sd), 
-                  width     = 0.5,
-                  linewidth = 1,
-                  position  = position_dodge(.75)) +
-    scale_color_manual(values = colors4plot) + 
-    scale_y_continuous(limits   = c(25,125),
-                       breaks   = seq(25,100,25),
-                       labels   = paste0(seq(25,100,25), "%"),
-                       position = "right") +
-    scale_x_discrete(expand = c(0,0)) +
-    coord_flip() +
-    WJP_theme() +
-    theme(
-      legend.position    = "none",
-      panel.grid.major.y = element_blank(),
-      panel.grid.major.x = element_line(size     = 0.25,
-                                        colour   = "#5e5c5a",
-                                        linetype = "dashed"),
-      panel.ontop        = T,
-      panel.background   = element_blank(),
-      plot.background    = element_blank(),
-      axis.title.x       = element_blank(),
-      axis.title.y       = element_blank(),
-      axis.text.y        = element_text(family   = "Lato Full",
-                                        face     = "plain",
-                                        size     = 3.514598*.pt,
-                                        color    = "#524F4C"),
-      axis.text.x        = element_text(family = "Lato Full",
-                                        face   = "plain",
-                                        size   = 3.514598*.pt,
-                                        color  = "#524F4C"),
-    );chart
+  chart <- errorDotChart(data2plot = data2plot,
+                         labels = "labels",
+                         group = "party",
+                         category = "category",
+                         values = values,
+                         lower = lower,
+                         upper = upper);chart
   
   # Saving panels
   saveIT.fn(chart  = chart,

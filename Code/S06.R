@@ -292,14 +292,14 @@ figure17_US.fn <- function(nchart = 17){
         category == "q17_5" ~ "Religion",
         category == "q17_6" ~ "Height",
         category == "q17_7" ~ "Weight",
-        category == "q17_8" ~ "Physical appearence",
+        category == "q17_8" ~ "Physical\nappearence",
         category == "q17_9" ~ "Physical or mental \ndisability",
         category == "q17_10" ~ "Sexual orientation",
-        category == "q17_11" ~ "Education or income \nlevel",
+        category == "q17_11" ~ "Education or\nincome level",
         category == "q17_12" ~ "Nationality or inmigration \nstatus",
         category == "q17_13" ~ "Shade of skin color",
         category == "q17_14" ~ "Tribe",
-        category == "q17_15" ~ "Clothing or hairstyle",
+        category == "q17_15" ~ "Clothing or\nhairstyle",
       )
     ) %>%
     top_n(n = 10, wt = avg) %>%
@@ -311,7 +311,7 @@ figure17_US.fn <- function(nchart = 17){
                html <- paste0("<span style='color:#000000;font-size:6.326276mm;font-weight:bold'>",  
                               percentage, "</span>",
                               "<br>",
-                              "<span style='color:#524F4C;font-size:3.514598mm'>",
+                              "<span style='color:#524F4C;font-size:4.514598mm;font-weight:bold'>",
                               str_replace_all(raw_label, "\\n", "<br>"),
                               "</span>")
                return(html)
