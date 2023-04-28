@@ -35,7 +35,7 @@
         # Security perception
         q9, 
         # Sociodemographics 
-        COLOR, fin, gend, disability2, disability, Urban, age, edu,
+        COLOR, fin, gend, disability2, disability, Urban, age, edu, ethni,
         # Variables related to institutions perfomance
         q48b_G1, q48f_G1, q49a, CAR_q58_G1, q48f_G2, q48g_G2, 
         # Trust in institutions
@@ -426,6 +426,23 @@ figure13_2.fn <- function(nchart = 13) {
              gender        =  if_else(gend == 1, "Male", "Female"),
              diploma       =  if_else(edu == 4 | edu == 5 | edu == 6| edu == 7, "High Education Level", 
                                       if_else(edu < 4, "No High Education Level", NA_character_))) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
+  } else if (mainCountry == "United States") {
+    
+    perception <- security_universe %>%
+      mutate(unsafe_bin    =  if_else(q9 == 1 | q9 == 2, 1, 
+                                      if_else(q9 == 3 | q9 ==4, 0, NA_real_)),
+             victim        =  if_else(victim == 1, "Victim", "Non Victim"), 
+             young         =  if_else(age < 30, "Less than 30 years", 
+                                      if_else(age > 29, "More than 30 years", NA_character_)),
+             poor          =  if_else(fin == 1 | fin == 2, "Poor",
+                                      if_else(fin == 3 | fin == 4 | fin == 5, "No Poor", NA_character_)),
+             area          =  if_else(Urban == 1, "Urban", "Rural"),
+             gender        =  if_else(gend == 1, "Male", "Female"),
+             diploma       =  if_else(edu == 5 | edu == 6| edu == 7, "High Education Level", 
+                                      if_else(edu < 5, "No High Education Level", NA_character_)),
+             white         =  if_else(ethni == "White", "White", "No white", NA_character_)
+      ) # We transform the variable of security perception in a dummy variable, the values 3 and 4 reference to unsafe people feeling
+    
   } else {
     
     perception <- security_universe %>%
@@ -479,6 +496,17 @@ figure13_2.fn <- function(nchart = 13) {
                values = if_else(categories %in% "gender" & values %in% "Male", "1Male", values)) %>%
         pivot_wider(id_cols = c(unsafe_bin, id), names_from = categories, values_from = values)
       
+    } else if(mainCountry == "United States") {
+      
+      logit_data <- perception %>%
+        select(unsafe_bin, all_of(selectables)) %>%
+        rowid_to_column("id") %>%
+        pivot_longer(cols = !c(Yvar, id), names_to = "categories", values_to = "values") %>%
+        mutate(values = if_else(categories %in% "young" & values %in% "More than 30 years", "1More than 30 years", values),
+               values = if_else(categories %in% "gender" & values %in% "Male", "1Male", values),
+               values = if_else(categories %in% "white" & values %in% "White", "1White", values)) %>%
+        pivot_wider(id_cols = c(Yvar, id), names_from = categories, values_from = values)
+      
     } else {
       
       logit_data <- perception %>%
@@ -530,7 +558,13 @@ figure13_2.fn <- function(nchart = 13) {
       data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure", "victimVictim" = "Previous crime \nvictimization",
                                "areaUrban" = "Urban", "whiteWhite" = "Light skin \ntone", "youngLess than 35 years" = "Younger than 35",
                                "diplomaNo High Education Level" = "No high school \ndiploma")
-    } else {
+    } else if(mainCountry == "United States") {
+      
+      data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure", "victimVictim" = "Previous crime \nvictimization",
+                                "areaUrban" = "Urban", "youngLess than 30 years" = "Younger than 30",
+                                "diplomaNo High Education Level" = "No bachelor’s degree \ndiploma", "whiteNo white" = "Non-white")
+    }
+    else {
       
       data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure", "victimVictim" = "Previous crime \nvictimization",
                                  "areaUrban" = "Urban", "whiteWhite" = "Light skin \ntone", "youngLess than 30 years" = "Younger than 30",
@@ -638,7 +672,7 @@ figure14.fn <- function(nchart = 14) {
                                             "and<br>efficiently")
       ),
       across(label,
-             ~paste0("<span style='color:", "#003b8a", ";font-size:6.326276mm;font-weight:bold'>",  
+             ~paste0("<span style='color:", "#a90099", ";font-size:6.326276mm;font-weight:bold'>",  
                      valuelabel,
                      "</span>",
                      "<br>",
@@ -661,7 +695,7 @@ figure14.fn <- function(nchart = 14) {
              row.names = T)
   
   # Defining color palette
-  colors4plot <- binPalette
+  colors4plot <- c("#a90099", "#3273ff")
   names(colors4plot) <- yrs
   
   chart <- LAC_radarChart(data          = data2plot,
@@ -2568,7 +2602,12 @@ figure21_US.fn <- function(nchart = 21) {
         category == 'q49c_G1'       ~ paste("Ensures everyone<br>has **access** to the<br>justice system"),
         category == 'q49b_G1'       ~ paste("Ensures **timeliness**<br>by dealing with<br>cases promptly",
                                             "and<br>efficiently")
-      )
+      ),
+      across(label,
+             ~paste0("<br> <br>",
+                     "<span style='color:#524F4C;font-size:3.514598mm;font-weight:bold'>",
+                     label,
+                     "</span>"))
       ) %>%
     drop_na() %>%
     rename(year = party) 
