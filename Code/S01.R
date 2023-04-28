@@ -980,7 +980,8 @@ figure06A_US.fn <- function(nchart = 6){
     
   # Defining data for plot
   data2plot <- data_subset.df %>%
-    filter(year == latestYear & country == mainCountry) %>%
+    filter(year == latestYear) %>%
+    filter(country == mainCountry) %>%
     mutate(party = case_when(
       paff3 == "The Democratic Party" ~ "Democratic Party",
       paff3 == "The Republican Party" ~ "Republican Party"
@@ -1056,30 +1057,14 @@ figure06A_US.fn <- function(nchart = 6){
   names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
   names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
   
-  # Creating a strip pattern
-  strips <- data2plot %>%
-    group_by(labels) %>%
-    summarise() %>%
-    mutate(ymin = 0,
-           ymax = 1,
-           xposition = rev(1:nrow(.)),
-           xmin = xposition - 0.5,
-           xmax = xposition + 0.5,
-           fill = rep(c("grey", "white"), 
-                      length.out = nrow(.))) %>%
-    pivot_longer(c(xmin, xmax),
-                 names_to  = "cat",
-                 values_to = "x") %>%
-    select(-cat) %>%
-    filter(fill != "white")
-  
-  chart <- errorDotChart(data2plot = data2plot,
+  chart <- errorDotsChart(data2plot = data2plot,
                          labels = "labels",
                          group = "party",
                          category = "category",
                          values = values,
                          lower = lower,
-                         upper = upper);chart
+                         upper = upper, 
+                         colors4plot = colors4plot);chart
   
   # Saving panels
   saveIT.fn(chart  = chart,
@@ -1093,6 +1078,7 @@ figure06B_US.fn <- function(nchart = 6){
   
   # Defining variables to use
   vars4plot <- list("B" = c("q45a_G1", "q45b_G1", "q45c_G1"))
+  alpha <- 0.05
   
   # Defining data for plot
   data2plot <- data_subset.df %>%
@@ -1110,26 +1096,39 @@ figure06B_US.fn <- function(nchart = 6){
                               NA_real_)))
       ) %>%
     group_by(party) %>%
-    summarise(across(everything(),
-                     mean,
-                     na.rm = T)) %>%
+    mutate(obs = n()) %>%
+    ungroup() %>%
+    group_by(party) %>%
+    summarise(
+      across(c("q45a_G1", "q45b_G1", "q45c_G1"),
+             mean, 
+             na.rm = T,
+             .names = "{col}_mean"),
+      across(c("q45a_G1", "q45b_G1", "q45c_G1"),
+             sd,
+             na.rm = T,
+             .names = "{col}_sd"),
+      n_obs = mean(obs, na.rm = T),
+      n_obs = as.character(n_obs)
+    ) %>%
     drop_na() %>%
-    pivot_longer(!party,
-                 names_to   = "category",
-                 values_to  = "value2plot") %>%
+    pivot_longer(!c(party,n_obs),
+                 names_to      = c("category", "stat"),
+                 names_pattern = "(.*)_(.*)",
+                 values_to     = "value") %>%
+    pivot_wider(c(category,party,n_obs),
+                names_from  = stat,
+                values_from = value) %>%
     mutate(
+      n_obs  = as.numeric(n_obs),
       labels = case_when(
         category == "q45a_G1" ~ "Congress",
         category == "q45b_G1" ~ "The Courts",
-        category == "q45c_G1" ~ "Citizens"
-      ),
-      value2plot = round(value2plot*100,2),
-      order_value = case_when(
-        category == "q45a_G1" ~ 1,
-        category == "q45b_G1" ~ 2,
-        category == "q45c_G1" ~ 3
-      )
-    )
+        category == "q45c_G1" ~ "Citizens"),
+      lower = mean - qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs),
+      upper = mean + qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs)
+    ) %>%
+    rename(values = mean)
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
@@ -1145,30 +1144,22 @@ figure06B_US.fn <- function(nchart = 6){
   colors4plot <- binPalette
   names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
   
-  # Plotting panels
-  imap(vars4plot,
-       function(tvar, panelName) {
-         
-         # Filtering data2plot to leave the variable for each panel
-         data2plot <- data2plot %>%
-           filter(category %in% tvar)
-         
-         # Applying plotting function
-         chart <- LAC_dotsChart(data         = data2plot,
-                                target_var   = "value2plot",
-                                grouping_var = "party",
-                                labels_var   = "labels",
-                                colors       = colors4plot,
-                                order_var    = "order_value")
+  chart <- errorDotsChart(data2plot = data2plot,
+                          labels = "labels",
+                          group = "party",
+                          category = "category",
+                          values = values,
+                          lower = lower,
+                          upper = upper, 
+                          colors4plot = colors4plot);chart
+
          
          # Saving panels
          saveIT.fn(chart  = chart,
                    n      = nchart,
-                   suffix = panelName,
+                   suffix = "B",
                    w      = 189.7883,
                    h      = 47.44707)
-       }
-       )
 }                              
                               
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -2372,4 +2372,235 @@ figure12_2_CA.fn <- function(nchart = 12, country = mainCountry) {
              row.names = T)
 
 }
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 20 - US                                                                                   ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure20_US.fn <- function(nchart = 20) {
+  
+  alpha <- 0.05
+  # Variables to plot
+  vars4plot <- list("Trust"               = c("q1d", "q48a_G2", "q48b_G1", "q48c_G2", "q48b_G2"),
+                    "Accountability"      = c("q48a_G1", "q48c_G1", "q48d_G2", "q2d", "q48e_G2", "q48d_G1"),
+                    "Discrimination"      = c("q18a", "q18b", "q18c", "q18d", "q18e", "q18f"))
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry) %>%
+    filter(year == latestYear) %>%
+    mutate(party = case_when(
+      paff3 == "The Democratic Party" ~ "Democratic Party",
+      paff3 == "The Republican Party" ~ "Republican Party"
+    )) %>%
+    select(party, all_of(unlist(vars4plot, 
+                                use.names = F))) %>%
+    mutate(
+      across(
+        !c(party, q18a, q18b, q18c, q18d, q18e, q18f),
+        ~ case_when(
+          .x == 1  ~ 1,
+          .x == 2  ~ 1,
+          .x == 3  ~ 0,
+          .x == 4  ~ 0,
+          .x == 99 ~ NA_real_,
+          is.na(.x) ~ NA_real_
+        )),
+      across(
+        c(q18a, q18b, q18c, q18d, q18e, q18f),
+        ~ case_when(
+          .x == 0  ~ 1,
+          .x == 1  ~ 0,
+          .x == 99 ~ NA_real_,
+          is.na(.x) ~ NA_real_)
+      )
+    )%>%
+    group_by(party) %>%
+    mutate(obs = n()) %>%
+    ungroup() %>%
+    group_by(party) %>%
+    summarise(
+      across(c(all_of(unlist(vars4plot, 
+                             use.names = F))),
+             mean, 
+             na.rm = T,
+             .names = "{col}_mean"),
+      across(c(all_of(unlist(vars4plot, 
+                             use.names = F))),
+             sd,
+             na.rm = T,
+             .names = "{col}_sd"),
+      n_obs = mean(obs, na.rm = T),
+      n_obs = as.character(n_obs)
+    ) %>%
+    drop_na() %>%
+    pivot_longer(!c(party,n_obs),
+                 names_to      = c("category", "stat"),
+                 names_pattern = "(.*)_(.*)",
+                 values_to     = "value") %>%
+    pivot_wider(c(category,party,n_obs),
+                names_from  = stat,
+                values_from = value) %>%
+    mutate(
+      n_obs  = as.numeric(n_obs),
+      labels = case_when(
+        category == "q1d" ~ "Are trustworthy",
+        category == "q48a_G2" ~ "Resolve security problems in  the community",
+        category == "q48b_G1" ~ "Perform effective and lawful investigations",
+        category == "q48c_G2" ~ "Are available to help when needed",
+        category == "q48b_G2" ~ "Help them feel safe",
+        category == "q48a_G1" ~ "Act lawfully",
+        category == "q48c_G1" ~ "Respect the rights of suspects",
+        category == "q48d_G2" ~ "Treat all people with respect",
+        category == "q2d" ~ "Are not involved in corrupt practices",
+        category == "q48e_G2" ~ "Investigate crimes in an independent manner",
+        category == "q48d_G1" ~ "Are held accountable for violating laws",
+        category == "q18a" ~ "Socioeconomic status",
+        category == "q18b" ~ "Gender",
+        category == "q18c" ~ "Ethnicity",
+        category == "q18d" ~ "Religion",
+        category == "q18e" ~ "Citizenship status",
+        category == "q18f" ~ "Sexual orientation"
+      ),
+      lower = mean - qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs),
+      upper = mean + qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs)
+    ) %>%
+    rename(values = mean) %>%
+    mutate(batch = if_else(category %in% c("q1d", "q48a_G2", "q48b_G1", "q48c_G2", "q48b_G2"), "Trust", 
+                           if_else(category %in% c("q48a_G1", "q48c_G1", "q48d_G2", "q2d", "q48e_G2", "q48d_G1"), "Accountability",
+                                   "Discrimination")))
+  
+  # Defining color palette
+  colors4plot <- binPalette
+  names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
+  
+  imap(c("A" = "Trust",
+         "B" = "Accountability",
+         "C" = "Discrimination"),
+       function(varSet, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(batch %in% varSet)
+         
+         # Applying plotting function
+         chart <- errorDotsChart(data2plot = data2plot,
+                                 labels = "labels",
+                                 group = "party",
+                                 category = "category",
+                                 values = values,
+                                 lower = lower,
+                                 upper = upper, 
+                                 colors4plot = colors4plot)
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 189.7883,
+                   h      = 54.12481)
+         
+       })
+}
+
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 21 - US                                                                                   ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure21_US.fn <- function(nchart = 21) {
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry) %>%
+    filter(year == latestYear) %>%
+    select(paff3, q49a, q49b_G2, q49e_G2, q49c_G2, q49e_G1, q49d_G1, EXP_q23d_G1, q49c_G1, q49b_G1) %>%
+    mutate(party = case_when(
+      paff3 == "The Democratic Party" ~ "Democratic Party",
+      paff3 == "The Republican Party" ~ "Republican Party"
+    )) %>%
+    mutate(
+      
+      # We need to concatenate variables q49d_G1 and EXP_q23d_G1 into a single one
+      q49d_G1_merge = rowSums(across(c(q49d_G1, EXP_q23d_G1)), 
+                              na.rm = T),
+      q49d_G1_merge = if_else(is.na(q49d_G1) & is.na(EXP_q23d_G1), NA_real_, q49d_G1_merge),
+      
+      # Transforming everything into binary variables
+      across(!c(party),
+             ~if_else(.x == 1 | .x == 2, 1,
+                      if_else(!is.na(.x) & .x != 99, 0, NA_real_)))
+    ) %>%
+    select(party, q49a, q49b_G2, q49e_G2, q49c_G2, q49e_G1, q49d_G1_merge, q49c_G1, q49b_G1) %>%
+    group_by(party) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    pivot_longer(!c(party),
+                 names_to  = "category",
+                 values_to = "value4radar") %>%
+    mutate(
+      order_value = case_when(
+        category     == 'q49a'          ~ 1,
+        category     == 'q49b_G2'       ~ 2,
+        category     == 'q49e_G2'       ~ 3,
+        category     == 'q49c_G2'       ~ 4,
+        category     == 'q49e_G1'       ~ 5,
+        category     == 'q49d_G1_merge' ~ 6,
+        category     == 'q49c_G1'       ~ 7,
+        category     == 'q49b_G1'       ~ 8
+      ),
+      valuelabel = to_percentage.fn(value4radar*100),
+      label = case_when(
+        category == 'q49a'          ~ paste("Is **effective** in bringing<br>people who commit<br>crimes to justice"),
+        category == 'q49b_G2'       ~ paste("Ensures **equal treatment<br>of victims** by allowing all<br>",
+                                            "victims to seek justice<br>regardless of who they are"),
+        category == 'q49e_G2'       ~ paste("Safeguards the<br>**presumption of<br>innocence** by treating<br>those",
+                                            "accused of<br>crimes as innocent<br>until proven guilty"),
+        category == 'q49c_G2'       ~ paste("Ensures **equal treatment of<br>the accused** by giving all a<br>",
+                                            "fair trial regardless of who<br>they are"),
+        category == 'q49e_G1'       ~ paste("Gives **appropriate<br>punishments** that fit<br>the crime"),
+        category == 'q49d_G1_merge' ~ paste("Ensures **uniform quality** by<br>providing equal service<br>",
+                                            "regardless of where<br>they live",
+                                            "</span>"),
+        category == 'q49c_G1'       ~ paste("Ensures everyone<br>has **access** to the<br>justice system"),
+        category == 'q49b_G1'       ~ paste("Ensures **timeliness**<br>by dealing with<br>cases promptly",
+                                            "and<br>efficiently")
+      )
+      ) %>%
+    drop_na() %>%
+    rename(year = party) 
+  
+  # Saving data points
+  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+             file      = file.path("Outputs", 
+                                   str_replace_all(mainCountry, " ", "_"),
+                                   "dataPoints.xlsx",
+                                   fsep = "/"), 
+             sheetName = paste0("Chart_", nchart),
+             append    = T,
+             row.names = T)
+  
+  # Defining color palette
+  colors4plot <- binPalette
+  names(colors4plot) <- data2plot %>% distinct(year) %>% arrange(year) %>% pull(year)
+  
+  latestYear <- "Democratic Party"
+  
+  chart <- LAC_radarChart(data          = data2plot,
+                          axis_var      = "category",         
+                          target_var    = "value4radar",     
+                          label_var     = "label", 
+                          order_var     = "order_value",
+                          colors        = colors4plot,
+                          latestYear    = "Democratic Party")
+  
+  # Saving panels
+  saveIT.fn(chart  = chart,
+            n      = nchart,
+            suffix = NULL,
+            w      = 189.7883,
+            h      = 183.1106)
+}

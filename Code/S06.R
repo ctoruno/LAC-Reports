@@ -59,7 +59,7 @@ figure16A_US.fn <- function(nchart = 16){
   
   names(parts) = paste0(parts,"%", " ",names(parts))
   plot <- waffle(parts, 
-                 rows = 5, colors = c("#a90099", "#dee2cc"),
+                 rows = 5, colors = c("#a90099", "#EBEBEB"),
                  legend_pos="left",
                  use_glyph = 'child', 
                  glyph_size = 2.5, size = 1) +
@@ -238,20 +238,9 @@ figure16B_US.fn <- function(nchart = 16){
             h      = 65.72298)
 }
 
-# data2plot_P5 <- logit_demo(mainData = discrimination, Yvar = harassed)
-# logit_plotP5<- logit_demo_panel(mainData = data2plot_P5[[1]], 
-#                                 line_size = 1.25, 
-#                                 point_color = "#a90099", 
-#                                 line_color  = "#a90099") +
-#   scale_y_continuous(limits = c(-0.40, 0.40),
-#                      breaks = seq(-0.40, 0.40, by = 0.20),
-#                      expand = expansion(mult = 0.075), position = "right",
-#                      labels = c("-40", "-20", "0", "+20","+40")) +
-#   labs(y = "Less likely                      More likely");logit_plotP5
-
- ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
-##    Figure 17 - United States: Discrimination Bias                                                                      ----
+##    Figure 17 - United States: Discrimination Bias                                                       ----
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

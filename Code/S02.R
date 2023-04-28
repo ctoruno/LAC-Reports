@@ -880,4 +880,117 @@ figure05_B_PRY.fn <- function(nchart = 5){
        })
 }
 
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 18 - US                                                                                   ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+figure18_US.fn <- function(nchart = 18) {
+  alpha <- 0.05
+  # Variables to plot
+  vars4plot <- list("Corruption" = c("q2a","q2d","q2b", "q2c","q2e", "q2f", "q2g"),
+                    "Trust"      = c("q1a","q1d","q1b", "q1c","q1e", "q1f", "q1g"))
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry) %>%
+    filter(year == latestYear) %>%
+    mutate(party = case_when(
+      paff3 == "The Democratic Party" ~ "Democratic Party",
+      paff3 == "The Republican Party" ~ "Republican Party"
+    )) %>%
+    select(party, all_of(unlist(vars4plot, 
+                                use.names = F))) %>%
+    mutate(
+      across(starts_with("q2"),
+             ~if_else(.x == 3 | .x == 4, 1,
+                      if_else(!is.na(.x)  & .x != 99, 0, 
+                              NA_real_))),
+      across(starts_with("q1"),
+             ~if_else(.x == 1 | .x == 2, 1,
+                      if_else(!is.na(.x) & .x != 99, 0, 
+                              NA_real_)))
+    ) %>%
+    group_by(party) %>%
+    mutate(obs = n()) %>%
+    ungroup() %>%
+    group_by(party) %>%
+    summarise(
+      across(c(all_of(unlist(vars4plot, 
+                             use.names = F))),
+             mean, 
+             na.rm = T,
+             .names = "{col}_mean"),
+      across(c(all_of(unlist(vars4plot, 
+                             use.names = F))),
+             sd,
+             na.rm = T,
+             .names = "{col}_sd"),
+      n_obs = mean(obs, na.rm = T),
+      n_obs = as.character(n_obs)
+    ) %>%
+    drop_na() %>%
+    pivot_longer(!c(party,n_obs),
+                 names_to      = c("category", "stat"),
+                 names_pattern = "(.*)_(.*)",
+                 values_to     = "value") %>%
+    pivot_wider(c(category,party,n_obs),
+                names_from  = stat,
+                values_from = value) %>%
+    mutate(
+      n_obs  = as.numeric(n_obs),
+      labels = case_when(
+        category == "q2a" ~ "Members of the senate",
+        category == "q2d" ~ "Police officers",
+        category == "q2b" ~ "Local Government Officers",
+        category == "q2c" ~ "National Government Officers",
+        category == "q2e" ~ "Prosecutors",
+        category == "q2f" ~ "Public Defense Attorneys",
+        category == "q2g" ~ "Judges and Magistrates",
+        category == "q1a" ~ "People Living in Their Community",
+        category == "q1d" ~ "Police officers",
+        category == "q1b" ~ "Local Government Officers",
+        category == "q1c" ~ "National Government Officers",
+        category == "q1e" ~ "Prosecutors",
+        category == "q1f" ~ "Public Defense Attorneys",
+        category == "q1g" ~ "Judges and Magistrates"
+        
+        
+      ),
+      lower = mean - qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs),
+      upper = mean + qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs)
+    ) %>%
+    rename(values = mean) %>%
+    mutate(batch = if_else(str_detect(category, "q1"), "trust", "corruption"))
+  
+  # Defining color palette
+  colors4plot <- binPalette
+  names(colors4plot) <- data2plot %>% distinct(party) %>% arrange(party) %>% pull(party)
+  
+  imap(c("A" = "corruption",
+         "B" = "trust"),
+       function(varSet, panelName) {
+         
+         # Filtering data2plot to leave the variable for each panel
+         data2plot <- data2plot %>%
+           filter(batch %in% varSet)
+         
+         # Applying plotting function
+         chart <- errorDotsChart(data2plot = data2plot,
+                                 labels = "labels",
+                                 group = "party",
+                                 category = "category",
+                                 values = values,
+                                 lower = lower,
+                                 upper = upper, 
+                                 colors4plot = colors4plot)
+         # Saving panels
+         saveIT.fn(chart  = chart,
+                   n      = nchart,
+                   suffix = panelName,
+                   w      = 189.7883,
+                   h      = 54.12481)
+         
+       })
+}

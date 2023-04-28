@@ -348,6 +348,11 @@ for (mainCountry in group) {
     figure11.fn(nchart = 10)
   }
   
+  if (mainCountry == "United States") {
+    print("Designing Figure 18")
+    figure18_US.fn()
+  }
+  
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ##   Section 3                                                                                              ----
@@ -509,15 +514,15 @@ for (mainCountry in group) {
     print("Designing Figure 15")
     figure17.fn(nchart = 15)
   }
-  
-  # Figure 18: No one above the law
-  
-  
   if (mainCountry == "United States") {
-    print("Designing Figure 18")
-    figure18_US.fn()
+    print("Designing Figure 20")
+    figure20_US.fn(nchart = 20)
   }
-    
+  if (mainCountry == "United States") {
+    print("Designing Figure 21")
+    figure21_US.fn(nchart = 21)
+  }
+  
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ##   Section 4                                                                                              ----
