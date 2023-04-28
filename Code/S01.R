@@ -1171,6 +1171,100 @@ figure06B_US.fn <- function(nchart = 6){
        )
 }                              
                               
-                      
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 7 - US                                                                                        ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   
+
+figure07_US.fn <- function(nchart = 19){
+  
+  # Defining variables to include in plot
+  vars4plot <- list("Expression"    = c("q46c_G2", "q46f_G2", "q46g_G2", "q46c_G1", "q46e_G2"),
+                    "Participation" = c("q46d_G2", "q46f_G1", "q46a_G2"),
+                    "Election"      = c("q46d_G1", "q46e_G1"),
+                    "Religion"      = c("q46h_G2"))
+  
+  # Defining data frame for plot
+  data2plot <- data_subset.df %>%
+    filter(year == latestYear & country == mainCountry) %>%
+    select(party = paff3, all_of(unlist(vars4plot, use.names = F))) %>%
+    mutate(
+      party = case_when(
+        party == "The Democratic Party" ~ "Democratic Party",
+        party == "The Republican Party" ~ "Republican Party"
+      ),
+      across(!party,
+             ~if_else(.x == 1 | .x == 2, 1, 
+                      if_else(!is.na(.x) & .x != 99, 0, 
+                              NA_real_)))) %>%
+    group_by(party) %>%
+    summarise(across(everything(),
+                     mean,
+                     na.rm = T)) %>%
+    filter(!is.na(party)) %>%
+    pivot_longer(!party,
+                 names_to   = "category",
+                 values_to  = "value2plot") %>%
+    mutate(
+      order_value = case_when(
+        category     == 'q46c_G2' ~ 1,
+        category     == 'q46f_G2' ~ 2,
+        category     == 'q46g_G2' ~ 3,
+        category     == 'q46c_G1' ~ 4,
+        category     == 'q46e_G2' ~ 5,
+        category     == 'q46d_G2' ~ 6,
+        category     == 'q46f_G1' ~ 7,
+        category     == 'q46a_G2' ~ 8,
+        category     == 'q46d_G1' ~ 9,
+        category     == 'q46e_G1' ~ 10,
+        category     == 'q46h_G2' ~ 11,
+      ),
+      label = case_when(
+        category == 'q46c_G2'       ~ paste("**People** can <br>express opinions <br>against the government"),
+        category == 'q46f_G2'       ~ paste("**Civil Society**<br>Organizations can <br>express opinions",
+                                            "against<br>the government"),
+        category == 'q46g_G2'       ~ paste("**Political parties**<br>can express opinions<br>",
+                                            "against the<br>government"),
+        category == 'q46c_G1'       ~ paste("**The media**<br>can express opinions<br>",
+                                            "against the<br>government"),
+        category == 'q46e_G2'       ~ paste("**The media**<br>can expose cases<br>of corruption"),
+        category == 'q46d_G2'       ~ paste("People can<br>attend **community<br>meetings**"),
+        category == 'q46f_G1'       ~ paste("People can<br>join any political<br>organization"),
+        category == 'q46a_G2'       ~ paste("People can<br>**organize** around an<br>issue or petition"),
+        category == 'q46d_G1'       ~ paste("Local government<br>officials are elected<br>through a **clean<br>process**"),
+        category == 'q46e_G1'       ~ paste("People can<br>**vote freely** without<br>feeling harassed<br>or pressured"),
+        category == 'q46h_G2'       ~ paste("Religious minorities<br>can observe their<br>**holy days**"),
+      ),
+      across(label,
+             ~paste0("<span style='color:#524F4C;font-size:3.514598mm;font-weight:bold'>",
+                     label,
+                     "</span>")),
+      label = if_else(party != "Democratic Party", 
+                      NA_character_, 
+                      label),
+      latestYear = "Democratic Party"
+    ) %>%
+    rename(year = party)
+  
+  # Defining color palette
+  colors4plot <- binPalette
+  names(colors4plot) <- data2plot %>% distinct(year) %>% arrange(year) %>% pull(year)
+  
+  # Pllotting chart
+  chart <- LAC_radarChart(data          = data2plot,
+                          axis_var      = "category",         
+                          target_var    = "value2plot",     
+                          label_var     = "label", 
+                          order_var     = "order_value",
+                          colors        = colors4plot)
+  
+  # Saving panels
+  saveIT.fn(chart  = chart,
+            n      = nchart,
+            suffix = "A",
+            w      = 189.7883,
+            h      = 183.1106)
+}
 
   
