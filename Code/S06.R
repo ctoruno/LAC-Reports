@@ -212,7 +212,7 @@ figure16B_US.fn <- function(nchart = 16){
                        breaks = seq(-0.40, 0.40, by = 0.20),
                        expand = expansion(mult = 0.075), position = "right",
                        labels = c("-40", "-20", "0", "+20","+40")) +
-    labs(y = "Less likely                      More likely");logit_plotP1
+    labs(y = "Less likely                   More likely");logit_plotP1
   
   saveIT.fn(chart  = logit_plotP1,
             n      = nchart,
@@ -229,7 +229,7 @@ figure16B_US.fn <- function(nchart = 16){
                        breaks = seq(-0.40, 0.40, by = 0.20),
                        expand = expansion(mult = 0.075), position = "right",
                        labels = c("-40", "-20", "0", "+20","+40")) +
-    labs(y = "Less likely                      More likely");logit_plotP2
+    labs(y = "Less likely                   More likely");logit_plotP2
   
   saveIT.fn(chart  = logit_plotP2,
             n      = nchart,

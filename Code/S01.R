@@ -1212,16 +1212,16 @@ figure07_US.fn <- function(nchart = 19){
         category     == 'q46h_G2' ~ 11,
       ),
       label = case_when(
-        category == 'q46c_G2'       ~ paste("**People** can <br>express opinions <br>against the government"),
-        category == 'q46f_G2'       ~ paste("**Civil Society**<br>Organizations can <br>express opinions",
+        category == 'q46c_G2'       ~ paste("People can <br>**express opinions**<br>against the government"),
+        category == 'q46f_G2'       ~ paste("Civil Society<br>Organizations can <br>**express opinions**",
                                             "against<br>the government"),
-        category == 'q46g_G2'       ~ paste("**Political parties**<br>can express opinions<br>",
+        category == 'q46g_G2'       ~ paste("Political parties<br>can **express opinions**<br>",
                                             "against the<br>government"),
-        category == 'q46c_G1'       ~ paste("**The media**<br>can express opinions<br>",
+        category == 'q46c_G1'       ~ paste("The media<br>can **express opinions**<br>",
                                             "against the<br>government"),
-        category == 'q46e_G2'       ~ paste("**The media**<br>can expose cases<br>of corruption"),
+        category == 'q46e_G2'       ~ paste("The media<br>can **expose cases<br>of corruption**"),
         category == 'q46d_G2'       ~ paste("People can<br>attend **community<br>meetings**"),
-        category == 'q46f_G1'       ~ paste("People can<br>join any political<br>organization"),
+        category == 'q46f_G1'       ~ paste("People can<br>**join any political<br>organization**"),
         category == 'q46a_G2'       ~ paste("People can<br>**organize** around an<br>issue or petition"),
         category == 'q46d_G1'       ~ paste("Local government<br>officials are elected<br>through a **clean<br>process**"),
         category == 'q46e_G1'       ~ paste("People can<br>**vote freely** without<br>feeling harassed<br>or pressured"),
@@ -1253,7 +1253,7 @@ figure07_US.fn <- function(nchart = 19){
   # Saving panels
   saveIT.fn(chart  = chart,
             n      = nchart,
-            suffix = "A",
+            suffix = NULL,
             w      = 189.7883,
             h      = 183.1106)
 }

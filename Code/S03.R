@@ -225,14 +225,14 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   label.df <- data.frame(label)
   
   # Saving data points
-  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
-             file      = file.path("Outputs", 
-                                   str_replace_all(mainCountry, " ", "_"),
-                                   "dataPoints.xlsx",
-                                   fsep = "/"), 
-             sheetName = paste0("Chart_", nchart, "B"),
-             append    = T,
-             row.names = T)
+  # write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+  #            file      = file.path("Outputs", 
+  #                                  str_replace_all(mainCountry, " ", "_"),
+  #                                  "dataPoints.xlsx",
+  #                                  fsep = "/"), 
+  #            sheetName = paste0("Chart_", nchart, "B"),
+  #            append    = T,
+  #            row.names = T)
   
   pl <- ggplot(data = data2plot, aes(x = x, 
                                      next_x = next_x,
@@ -276,7 +276,6 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
   if (! country %in% c("Paraguay", "Antigua and Barbuda")) {
     
     # Reasons table 
-    
     reasons <- security_universe %>%
       filter(victim == 1) %>%
       filter(EXP_q8d == 0) %>%
@@ -305,13 +304,13 @@ figure12_2.fn <- function(nchart = 12, country = mainCountry) {
       mutate(proportion = paste0(round(reasons/universe,2)*100, "%"))
     
     # Saving data points
-    write.xlsx(as.data.frame(reasons2table %>% ungroup()), 
-               file      = file.path("Outputs", 
-                                     str_replace_all(mainCountry, " ", "_"),
-                                     paste0("imgChart", nchart),
-                                     "reasons.xlsx",
-                                     fsep = "/"),
-               row.names = T)
+    # write.xlsx(as.data.frame(reasons2table %>% ungroup()), 
+    #            file      = file.path("Outputs", 
+    #                                  str_replace_all(mainCountry, " ", "_"),
+    #                                  paste0("imgChart", nchart),
+    #                                  "reasons.xlsx",
+    #                                  fsep = "/"),
+    #            row.names = T)
   }
 
 }
