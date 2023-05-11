@@ -113,6 +113,15 @@ if (args[1] != "usa"){
     ))
 }
 
+# Fixing Trust in Community/Country issue
+if (args[1] != "central"){
+  data_subset.df <- data_subset.df %>%
+    mutate(
+      EXP_q1a = if_else(year == 2021, q1a, as.double(EXP_q1a)),
+      q1a     = if_else(year == 2021, NA_real_, as.double(q1a))
+    )
+}
+
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ##  Loop Prologue                                                                                           ----

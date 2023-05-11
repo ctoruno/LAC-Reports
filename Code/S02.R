@@ -563,10 +563,18 @@ figure10.fn <- function(nchart = 10, carib = FALSE) {
 figure11.fn <- function(nchart = 11) {
   
   # Variables to plot
-  vars4plot = list("Community"    = c("q1a"), 
-                   "Police"       = c("q1d"), 
-                   "Executive"    = c("q1b", "q1c"), 
-                   "Judiciary"    = c("q1e", "q1f", "q1g"))
+  if (mainCountry %in% centralAmerica.ls & mainCountry != "Costa Rica") {
+    vars4plot = list("Community"    = c("q1a", "EXP_q1a"), 
+                     "Police"       = c("q1d"), 
+                     "Executive"    = c("q1b", "q1c"), 
+                     "Judiciary"    = c("q1e", "q1f", "q1g"))
+    
+  } else {
+    vars4plot = list("Community"    = c("q1a"), 
+                     "Police"       = c("q1d"), 
+                     "Executive"    = c("q1b", "q1c"), 
+                     "Judiciary"    = c("q1e", "q1f", "q1g"))
+  }
   
   # Defining data frame for plot
   data2plot <- data_subset.df %>%
@@ -590,6 +598,12 @@ figure11.fn <- function(nchart = 11) {
                                  nsmall = 0),
                           "%")) %>%
     filter(year >= 2014)
+  
+  # Variables to plot
+  if (mainCountry %in% centralAmerica.ls & mainCountry != "Costa Rica") {
+    data2plot <- data2plot %>%
+      filter(!(category == "Community1" & year == 2021))
+  }
   
   # Pulling minimum and maximum available year
   minyear <- min(data2plot %>% pull(year))
@@ -665,7 +679,6 @@ figure11.fn <- function(nchart = 11) {
                    h      = 76.9697)
          
        })
-  
 } 
 
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
