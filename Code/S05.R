@@ -802,8 +802,12 @@ figure20A.fn <- function(nchart = 20) {
     pivot_longer(!c(country, year),
                  names_to  = "category",
                  values_to = "value2plot") %>%
+    group_by(country, category) %>%
     mutate(
-      label = to_percentage.fn(value2plot*100),
+      value4label = value2plot,
+      value4label = if_else(year == 2022, value4label, NA_real_),
+      value4label = sum(value4label, na.rm = T),
+      label = to_percentage.fn(value4label*100),
       high  = if_else(country == mainCountry, "Primary", "Secondary"),
       label = if_else(country == mainCountry & year == 2021,
                       label,
@@ -831,6 +835,7 @@ figure20A.fn <- function(nchart = 20) {
     geom_text(data = data2plot %>% filter(year == 2021),
               aes(x     = country,
                   y     = value2plot*100,
+                  color = category,
                   label = label,
                   alpha = high),
               nudge_x   = ifelse(data2plot$category == "EXP_q31d", -0.25, 0.25),
@@ -844,6 +849,8 @@ figure20A.fn <- function(nchart = 20) {
                        labels = paste0(seq(0,100, 20),
                                        "%")) +
     scale_fill_manual(values = c("EXP_q31d" = "#2a2a94",
+                                 "EXP_q31f" = "#a90099")) +
+    scale_color_manual(values = c("EXP_q31d" = "#2a2a94",
                                  "EXP_q31f" = "#a90099")) +
     scale_alpha_manual(values = c("Primary"   = 1,
                                   "Secondary" = 0.5)) +

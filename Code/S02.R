@@ -941,15 +941,15 @@ figure18_US.fn <- function(nchart = 18) {
     mutate(
       n_obs  = as.numeric(n_obs),
       labels = case_when(
-        category == "q2a" ~ "Members of the senate",
-        category == "q2d" ~ "Police officers",
+        category == "q2a" ~ "Members of the Senate",
+        category == "q2d" ~ "Police Officers",
         category == "q2b" ~ "Local Government Officers",
         category == "q2c" ~ "National Government Officers",
         category == "q2e" ~ "Prosecutors",
         category == "q2f" ~ "Public Defense Attorneys",
         category == "q2g" ~ "Judges and Magistrates",
         category == "q1a" ~ "People Living in Their Community",
-        category == "q1d" ~ "Police officers",
+        category == "q1d" ~ "Police Officers",
         category == "q1b" ~ "Local Government Officers",
         category == "q1c" ~ "National Government Officers",
         category == "q1e" ~ "Prosecutors",

@@ -212,7 +212,7 @@ figure16B_US.fn <- function(nchart = 16){
                        breaks = seq(-0.40, 0.40, by = 0.20),
                        expand = expansion(mult = 0.075), position = "right",
                        labels = c("-40", "-20", "0", "+20","+40")) +
-    labs(y = "Less likely                      More likely");logit_plotP1
+    labs(y = "Less likely                   More likely");logit_plotP1
   
   saveIT.fn(chart  = logit_plotP1,
             n      = nchart,
@@ -229,7 +229,7 @@ figure16B_US.fn <- function(nchart = 16){
                        breaks = seq(-0.40, 0.40, by = 0.20),
                        expand = expansion(mult = 0.075), position = "right",
                        labels = c("-40", "-20", "0", "+20","+40")) +
-    labs(y = "Less likely                      More likely");logit_plotP2
+    labs(y = "Less likely                   More likely");logit_plotP2
   
   saveIT.fn(chart  = logit_plotP2,
             n      = nchart,
@@ -246,12 +246,13 @@ figure16B_US.fn <- function(nchart = 16){
 
 figure17_US.fn <- function(nchart = 17){
   
+  vars4plot <- c("q17_1", "q17_2", "q17_3", "q17_4", "q17_5", "q17_6", "q17_7", "q17_8", 
+                  "q17_9", "q17_10", "q17_11", "q17_12", "q17_13", "q17_14", "q17_15", "q17_99")
+  
   data2plot <- data_subset.df %>%
     filter(country == mainCountry & year == latestYear) %>%
-    select(q17_1, q17_3, q17_4, q17_5, q17_6, q17_7, q17_8, 
-           q17_9, q17_10, q17_11, q17_12, q17_13, q17_14, q17_15, 
-           q17_99) %>%
-    mutate(across( everything(),
+    select(all_of(vars4plot)) %>%
+    mutate(across(everything(),
       ~ case_when(
         .x == 1  ~ 1,
         .x == 0  ~ 0,
@@ -259,13 +260,15 @@ figure17_US.fn <- function(nchart = 17){
       ) 
     )) %>%
     rowwise() %>%
-    mutate(experiences = sum(q17_1, q17_3, q17_4, q17_5, q17_6, q17_7, q17_8, 
-                             q17_9, q17_10, q17_11, q17_12, q17_13, q17_14, q17_15, 
-                             q17_99, na.rm = T)) %>%
+    mutate(
+      total_experiences = sum(
+        q17_1, q17_2, q17_3, q17_4, q17_5, q17_6, q17_7, q17_8, 
+        q17_9, q17_10, q17_11, q17_12, q17_13, q17_14, q17_15,
+        na.rm = T)
+    ) %>%
     ungroup() %>%
-    mutate(filtro_dk = if_else(q17_99 == 1 & experiences == 1, 1, 0, 0)) %>%
-    filter(filtro_dk != 1) %>%
-    summarise(across(!c(experiences,q17_99,filtro_dk),
+    filter(total_experiences > 0 & q17_99 != 1) %>%
+    summarise(across(!c(total_experiences, q17_99),
                      mean, 
                      na.rm = T)) %>%
     pivot_longer(everything(),
@@ -307,6 +310,7 @@ figure17_US.fn <- function(nchart = 17){
              }),
       order_var = seq_along(along.with = avg)
     )
+  
   # Defining colors
   colors4plot        <- rosePalette
   names(colors4plot) <- data2plot %>% pull(category)
