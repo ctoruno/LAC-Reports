@@ -954,20 +954,20 @@ figure18_US.fn <- function(nchart = 18) {
     mutate(
       n_obs  = as.numeric(n_obs),
       labels = case_when(
-        category == "q2a" ~ "Members of the Senate",
-        category == "q2d" ~ "Police Officers",
-        category == "q2b" ~ "Local Government Officers",
-        category == "q2c" ~ "National Government Officers",
+        category == "q2a" ~ "Members of the congress",
+        category == "q2d" ~ "Police officers",
+        category == "q2b" ~ "Local government officers",
+        category == "q2c" ~ "National government officers",
         category == "q2e" ~ "Prosecutors",
-        category == "q2f" ~ "Public Defense Attorneys",
-        category == "q2g" ~ "Judges and Magistrates",
-        category == "q1a" ~ "People Living in Their Community",
-        category == "q1d" ~ "Police Officers",
-        category == "q1b" ~ "Local Government Officers",
-        category == "q1c" ~ "National Government Officers",
+        category == "q2f" ~ "Public defense attorneys",
+        category == "q2g" ~ "Judges and magistrates",
+        category == "q1a" ~ "People living in their country",
+        category == "q1d" ~ "Police officers",
+        category == "q1b" ~ "Local government officers",
+        category == "q1c" ~ "National government officers",
         category == "q1e" ~ "Prosecutors",
-        category == "q1f" ~ "Public Defense Attorneys",
-        category == "q1g" ~ "Judges and Magistrates"
+        category == "q1f" ~ "Public defense attorneys",
+        category == "q1g" ~ "Judges and magistrates"
         
         
       ),
@@ -975,7 +975,17 @@ figure18_US.fn <- function(nchart = 18) {
       upper = mean + qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs)
     ) %>%
     rename(values = mean) %>%
-    mutate(batch = if_else(str_detect(category, "q1"), "trust", "corruption"))
+    mutate(batch = if_else(str_detect(category, "q1"), "trust", "corruption")) %>%
+    mutate(order_values =
+             case_when(
+               category %in% c("q1a", "q2a") ~ 1,
+               category %in% c("q1d", "q2d") ~ 2,
+               category %in% c("q1b", "q2b") ~ 3,
+               category %in% c("q1c", "q2c") ~ 4,
+               category %in% c("q1e", "q2e") ~ 5,
+               category %in% c("q1g", "q2g") ~ 1,
+               category %in% c("q1f", "q2f") ~ 6
+             ))
   
   # Defining color palette
   colors4plot <- binPalette
@@ -997,7 +1007,9 @@ figure18_US.fn <- function(nchart = 18) {
                                  values = values,
                                  lower = lower,
                                  upper = upper, 
-                                 colors4plot = colors4plot)
+                                 colors4plot = colors4plot, 
+                                 custom_order = F, 
+                                 order_values = order_values)
          # Saving panels
          saveIT.fn(chart  = chart,
                    n      = nchart,

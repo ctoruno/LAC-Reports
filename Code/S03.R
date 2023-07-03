@@ -561,7 +561,7 @@ figure13_2.fn <- function(nchart = 13) {
       
       data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure", "victimVictim" = "Previous crime \nvictimization",
                                 "areaUrban" = "Urban", "youngLess than 30 years" = "Younger than 30",
-                                "diplomaNo High Education Level" = "No bachelor’s degree \ndiploma", "whiteNo white" = "Non-white")
+                                "diplomaNo High Education Level" = "No Bachelor's degree", "whiteNo white" = "Non-white")
     }
     else {
       

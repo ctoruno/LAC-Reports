@@ -102,7 +102,7 @@ if (args[1] != "usa"){
     
     # Latest year is different for Paraguay
     mutate(latestYear = if_else(country == "Paraguay", 2021, 2022)) %>%
-    mutate(year = if_else(country == "Nicaragua" & year == 2021, NA_real_, year))
+    mutate(year = if_else(country == "Nicaragua" & year == 2021, NA_real_, year)) # We didn't use the data from Nicaragua in 2021 index
   
 } else {
   data_subset.df <- master_data.df %>%
@@ -635,3 +635,6 @@ for (mainCountry in group) {
   }
 
 }
+
+
+#HOLA

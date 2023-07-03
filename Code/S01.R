@@ -1128,7 +1128,9 @@ figure06B_US.fn <- function(nchart = 6){
       lower = mean - qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs),
       upper = mean + qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs)
     ) %>%
-    rename(values = mean)
+    rename(values = mean) %>%
+    mutate(order_values = if_else(category %in% "q45a_G1", 1,
+                                  if_else(category %in% "q45b_G1", 2, 3)))
   
   # Saving data points
   write.xlsx(as.data.frame(data2plot %>% ungroup()), 
@@ -1151,7 +1153,9 @@ figure06B_US.fn <- function(nchart = 6){
                           values = values,
                           lower = lower,
                           upper = upper, 
-                          colors4plot = colors4plot);chart
+                          colors4plot = colors4plot, 
+                          custom_order = F, 
+                          order_values = order_values);chart
 
          
          # Saving panels
@@ -1212,20 +1216,20 @@ figure07_US.fn <- function(nchart = 19){
         category     == 'q46h_G2' ~ 11,
       ),
       label = case_when(
-        category == 'q46c_G2'       ~ paste("People can <br>**express opinions**<br>against the government"),
-        category == 'q46f_G2'       ~ paste("Civil Society<br>Organizations can <br>**express opinions**",
+        category == 'q46c_G2'       ~ paste("**People** can <br> express opinions<br>against the government"),
+        category == 'q46f_G2'       ~ paste("**Civil Society** <br>Organizations can <br> express opinions",
                                             "against<br>the government"),
-        category == 'q46g_G2'       ~ paste("Political parties<br>can **express opinions**<br>",
+        category == 'q46g_G2'       ~ paste("**Political parties**<br>can express opinions<br>",
                                             "against the<br>government"),
-        category == 'q46c_G1'       ~ paste("The media<br>can **express opinions**<br>",
+        category == 'q46c_G1'       ~ paste("**The media**<br>can express opinions<br>",
                                             "against the<br>government"),
         category == 'q46e_G2'       ~ paste("The media<br>can **expose cases<br>of corruption**"),
-        category == 'q46d_G2'       ~ paste("People can<br>attend **community<br>meetings**"),
+        category == 'q46d_G2'       ~ paste("People can<br>**attend community<br>meetings**"),
         category == 'q46f_G1'       ~ paste("People can<br>**join any political<br>organization**"),
-        category == 'q46a_G2'       ~ paste("People can<br>**organize** around an<br>issue or petition"),
-        category == 'q46d_G1'       ~ paste("Local government<br>officials are elected<br>through a **clean<br>process**"),
+        category == 'q46a_G2'       ~ paste("People can<br>**organize around an<br>issue or petition**"),
+        category == 'q46d_G1'       ~ paste("Local government<br>officials **are elected<br>through a clean<br>process**"),
         category == 'q46e_G1'       ~ paste("People can<br>**vote freely** without<br>feeling harassed<br>or pressured"),
-        category == 'q46h_G2'       ~ paste("Religious minorities<br>can observe their<br>**holy days**"),
+        category == 'q46h_G2'       ~ paste("Religious minorities<br>can **observe their<br>holy days**"),
       ),
       across(label,
              ~paste0("<span style='color:#524F4C;font-size:3.514598mm;font-weight:bold'>",

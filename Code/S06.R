@@ -191,7 +191,7 @@ figure16B_US.fn <- function(nchart = 16){
     
     data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure",
                                "areaUrban" = "Urban", "youngLess than 30 years" = "Younger than 30",
-                               "diplomaNo High Education Level" = "No bachelor’s degree \ndiploma", "colorNo white" = "Non-white")
+                               "diplomaNo High Education Level" = "No Bachelor's degree", "colorNo white" = "Non-white")
     
     data2plot <- data2plot %>%
       mutate(category = mainCountry,
@@ -289,7 +289,7 @@ figure17_US.fn <- function(nchart = 17){
         category == "q17_10" ~ "Sexual orientation",
         category == "q17_11" ~ "Education or\nincome level",
         category == "q17_12" ~ "Nationality or inmigration \nstatus",
-        category == "q17_13" ~ "Shade of skin color",
+        category == "q17_13" ~ "Skin color",
         category == "q17_14" ~ "Tribe",
         category == "q17_15" ~ "Clothing or\nhairstyle",
       )
