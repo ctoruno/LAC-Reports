@@ -561,7 +561,7 @@ figure13_2.fn <- function(nchart = 13) {
       
       data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure", "victimVictim" = "Previous crime \nvictimization",
                                 "areaUrban" = "Urban", "youngLess than 30 years" = "Younger than 30",
-                                "diplomaNo High Education Level" = "No Bachelor's degree", "whiteNo white" = "Non-white")
+                                "diplomaNo High Education Level" = "No Bachelor's \ndegree", "whiteNo white" = "Non-white")
     }
     else {
       
@@ -2489,7 +2489,7 @@ figure20_US.fn <- function(nchart = 20) {
         category == "q2d" ~ "Are not involved in corrupt practices",
         category == "q48e_G2" ~ "Investigate crimes in an independent manner",
         category == "q48d_G1" ~ "Are held accountable for violating laws",
-        category == "q18a" ~ "Socioeconomic status",
+        category == "q18a" ~ "Socioeconomic status                                        ",
         category == "q18b" ~ "Gender",
         category == "q18c" ~ "Ethnicity",
         category == "q18d" ~ "Religion",

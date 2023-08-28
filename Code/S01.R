@@ -1122,7 +1122,7 @@ figure06B_US.fn <- function(nchart = 6){
     mutate(
       n_obs  = as.numeric(n_obs),
       labels = case_when(
-        category == "q45a_G1" ~ "Congress",
+        category == "q45a_G1" ~ "Congress                                           ",
         category == "q45b_G1" ~ "The Courts",
         category == "q45c_G1" ~ "Citizens"),
       lower = mean - qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs),
@@ -1217,7 +1217,7 @@ figure07_US.fn <- function(nchart = 19){
       ),
       label = case_when(
         category == 'q46c_G2'       ~ paste("**People** can <br> express opinions<br>against the government"),
-        category == 'q46f_G2'       ~ paste("**Civil Society** <br>Organizations can <br> express opinions",
+        category == 'q46f_G2'       ~ paste("**Civil society** <br>organizations can <br> express opinions",
                                             "against<br>the government"),
         category == 'q46g_G2'       ~ paste("**Political parties**<br>can express opinions<br>",
                                             "against the<br>government"),

@@ -110,7 +110,7 @@ figure16B_US.fn <- function(nchart = 16){
 
   discrimination <- data_subset.df %>%
     filter(country %in% mainCountry) %>%
-    filter(year == 2021) %>%
+    #filter(year == 2021) %>%
     mutate(respect     = if_else(q16a < 4, 1, 
                                   if_else(q16a == 4 | q16a == 5 | q16a == 6, 0, NA_real_)),
            poor_service  =  if_else(q16b < 4, 1, 
@@ -191,7 +191,7 @@ figure16B_US.fn <- function(nchart = 16){
     
     data2plot$factor <- recode(data2plot$factor, "genderFemale" = "Female", "poorPoor" = "Financially \ninsecure",
                                "areaUrban" = "Urban", "youngLess than 30 years" = "Younger than 30",
-                               "diplomaNo High Education Level" = "No Bachelor's degree", "colorNo white" = "Non-white")
+                               "diplomaNo High Education Level" = "No Bachelor's \ndegree", "colorNo white" = "Non-white")
     
     data2plot <- data2plot %>%
       mutate(category = mainCountry,
@@ -244,7 +244,7 @@ figure16B_US.fn <- function(nchart = 16){
 ##
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-figure17_US.fn <- function(nchart = 17){
+figure17_US.fn_alt <- function(nchart = 17){
   
   vars4plot <- c("q17_1", "q17_2", "q17_3", "q17_4", "q17_5", "q17_6", "q17_7", "q17_8", 
                   "q17_9", "q17_10", "q17_11", "q17_12", "q17_13", "q17_14", "q17_15", "q17_99")
@@ -289,7 +289,7 @@ figure17_US.fn <- function(nchart = 17){
         category == "q17_10" ~ "Sexual orientation",
         category == "q17_11" ~ "Education or\nincome level",
         category == "q17_12" ~ "Nationality or inmigration \nstatus",
-        category == "q17_13" ~ "Skin color",
+        category == "q17_13" ~ "Shade of \nskin color",
         category == "q17_14" ~ "Tribe",
         category == "q17_15" ~ "Clothing or\nhairstyle",
       )
@@ -332,3 +332,120 @@ figure17_US.fn <- function(nchart = 17){
             h      = 168.7007)
 
 }
+
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+##    Figure 17 - United States: Discrimination Bias per Race                                               ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+figure17_US.fn <- function(nchart = 17){
+
+  vars4plot <- c("q17_1", "q17_2", "q17_3", "q17_4", "q17_5", "q17_6", "q17_7", "q17_8", 
+                  "q17_9", "q17_10", "q17_11", "q17_12", "q17_13", "q17_14", "q17_15", "q17_99")
+
+  data2plot <- data_subset.df %>%
+    filter(country == mainCountry & year == latestYear) %>%
+    mutate(
+      color =  if_else(ethni == "White", "White", "No white", NA_character_)
+    ) %>%
+    select(all_of(vars4plot), color) %>%
+    mutate(across(!color,
+      ~ case_when(
+        .x == 1  ~ 1,
+        .x == 0  ~ 0,
+        .x == 99 ~ NA_real_
+      ) 
+    )) %>%
+    rowwise() %>%
+    mutate(
+      total_experiences = sum(
+        q17_1, q17_2, q17_3, q17_4, q17_5, q17_6, q17_7, q17_8, 
+        q17_9, q17_10, q17_11, q17_12, q17_13, q17_14, q17_15,
+        na.rm = T)
+    ) %>%
+    ungroup() %>%
+    filter(total_experiences > 0 & q17_99 != 1) %>%
+    group_by(color) %>%
+    summarise(across(!c(total_experiences, q17_99),
+                     mean, 
+                     na.rm = T)) %>%
+    pivot_longer(!color,
+                 names_to  = "category",
+                 values_to = "avg") %>%
+    mutate(
+      label = case_when(
+        category == "q17_1" ~ "Ancestry or \nnational origin",
+        category == "q17_2" ~ "Gender",
+        category == "q17_3" ~ "Race",
+        category == "q17_4" ~ "Age",
+        category == "q17_5" ~ "Religion",
+        category == "q17_6" ~ "Height",
+        category == "q17_7" ~ "Weight",
+        category == "q17_8" ~ "Physical\nappearence",
+        category == "q17_9" ~ "Physical or \nmental \ndisability",
+        category == "q17_10" ~ "Sexual \norientation",
+        category == "q17_11" ~ "Education or\nincome level",
+        category == "q17_12" ~ "Nationality or \ninmigration \nstatus",
+        category == "q17_13" ~ "Shade of \nskin color",
+        category == "q17_14" ~ "Tribe",
+        category == "q17_15" ~ "Clothing or\nhairstyle",
+      ),
+      order_var = case_when(
+        category == "q17_1" ~ 11,
+        category == "q17_2" ~ 6,
+        category == "q17_3" ~ 1,
+        category == "q17_4" ~ 7,
+        category == "q17_5" ~ 4,
+        category == "q17_6" ~ 12,
+        category == "q17_7" ~ 13,
+        category == "q17_8" ~  8,
+        category == "q17_9" ~  9,
+        category == "q17_10" ~ 3,
+        category == "q17_11" ~ 5,
+        category == "q17_12" ~ 10,
+        category == "q17_13" ~ 2,
+        category == "q17_14" ~ 14,
+        category == "q17_15" ~ 15,
+        
+      )
+    ) %>%
+    filter(label != "Height" & label != "Weight" & label != "Tribe" & label != "Clothing or\nhairstyle") %>%
+    arrange(color, category) %>%
+    mutate(
+      # Converting labels into HTML syntax
+      across(label,
+             function(raw_label){
+               html <- paste0(
+                              "<span style='color:#524F4C;font-size:4.514598mm;font-weight:bold'>",
+                              str_replace_all(raw_label, "\\n", "<br>"),
+                              "</span>")
+               return(html)
+             }),
+    ) %>%
+    rename(year = color) %>%
+    mutate(latestYear = "No white")
+
+  # Defining color palette
+  colors4plot <-c("#006d77", "#e29578")
+  names(colors4plot) <- data2plot %>% distinct(year) %>% arrange(year) %>% pull(year)
+  
+  # Plotting chart
+  chart <- LAC_radarChart(data          = data2plot,
+                          axis_var      = "category",         
+                          target_var    = "avg",     
+                          label_var     = "label", 
+                          order_var     = "order_var",
+                          colors        = colors4plot, 
+                          latestYear    = "No white")
+  
+  # Saving panels
+  saveIT.fn(chart  = chart,
+            n      = nchart,
+            suffix = NULL,
+            w      = 189.7883,
+            h      = 168.7007)
+  
+}
+  
+  

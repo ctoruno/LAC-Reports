@@ -110,7 +110,8 @@ if (args[1] != "usa"){
       country == "United States" ~ 2021,
       country %in% c("Japan", "France", "Germany", "United Kingdom") ~ 2018,
       country %in% c("Canada", "Italy") ~ 2017
-    ))
+    )) %>%
+    mutate(country_code = if_else(country_code %in% "DEU", "GER", country_code))
 }
 
 # Fixing Trust in Community/Country issue
@@ -609,6 +610,13 @@ for (mainCountry in group) {
     figure17_US.fn()
   }
   
+  # Figure 5: Perceptions of fundamental freedoms by political affiliation in US
+  
+  if (mainCountry == "United States") {
+    print("Designing Figure 19")
+    figure07_US.fn(n = 19)
+  }
+  
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ##
 ##   Methodology                                                                                            ----
@@ -637,4 +645,3 @@ for (mainCountry in group) {
 }
 
 
-#HOLA
