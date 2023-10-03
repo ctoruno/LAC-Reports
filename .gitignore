@@ -65,3 +65,6 @@ Outputs/0.DataChecks/Step_8/Security.png
 Outputs/0.DataChecks/Step_8/Fundamental Freedoms.png
 Outputs/0.DataChecks/Step_8/Trust.png
 *.md
+Outputs/0.DataChecks/additionalValidations.xlsx
+Outputs/0.DataChecks/US_ttest.xlsx
+Outputs/0.DataChecks/US_ttest_final.xlsx
