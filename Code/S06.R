@@ -59,7 +59,7 @@ figure16A_US.fn <- function(nchart = 16){
   
   names(parts) = paste0(parts,"%", " ",names(parts))
   plot <- waffle(parts, 
-                 rows = 5, colors = c("#a90099", "#EBEBEB"),
+                 rows = 5, colors = c("#a90099", "#B9B9B9"),
                  legend_pos="left",
                  use_glyph = 'child', 
                  glyph_size = 2.5, size = 1) +
@@ -427,7 +427,7 @@ figure17_US.fn <- function(nchart = 17){
     mutate(latestYear = "No white")
 
   # Defining color palette
-  colors4plot <-c("#006d77", "#e29578")
+  colors4plot <-c("#a90099", "#3273ff")
   names(colors4plot) <- data2plot %>% distinct(year) %>% arrange(year) %>% pull(year)
   
   # Plotting chart
