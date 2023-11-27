@@ -38,7 +38,7 @@ p_load(char = c(
   "waffle", "ggh4x",
   
   # Data Loading
-  "haven", "readxl", "writexl", "xlsx",
+  "haven", "readxl", "writexl", "xlsx", "openxlsx",
   
   # GIS
   "tmaptools", "rmapshaper", "sf", "units", "rgeos",
