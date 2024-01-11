@@ -1125,8 +1125,8 @@ figure06B_US.fn <- function(nchart = 6){
         category == "q45a_G1" ~ "Congress                                           ",
         category == "q45b_G1" ~ "The Courts",
         category == "q45c_G1" ~ "Citizens"),
-      lower = mean - qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs),
-      upper = mean + qt(1- alpha/2, (n() - 1))*sd/sqrt(n_obs)
+      lower = mean - qt(1- alpha/2, (n_obs - 1))*sd/sqrt(n_obs),
+      upper = mean + qt(1- alpha/2, (n_obs - 1))*sd/sqrt(n_obs)
     ) %>%
     rename(values = mean) %>%
     mutate(order_values = if_else(category %in% "q45a_G1", 1,
