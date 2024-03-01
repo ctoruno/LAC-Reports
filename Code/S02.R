@@ -954,7 +954,7 @@ figure18_US.fn <- function(nchart = 18) {
     mutate(
       n_obs  = as.numeric(n_obs),
       labels = case_when(
-        category == "q2a" ~ "Members of congress",
+        category == "q2a" ~ "Members of Congress",
         category == "q2d" ~ "Police officers",
         category == "q2b" ~ "Local government officers",
         category == "q2c" ~ "National government officers",

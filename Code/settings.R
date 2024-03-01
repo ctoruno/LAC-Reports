@@ -38,7 +38,7 @@ p_load(char = c(
   "waffle", "ggh4x",
   
   # Data Loading
-  "haven", "readxl", "writexl", "xlsx", "openxlsx",
+  "haven", "readxl", "writexl", "openxlsx",
   
   # GIS
   "tmaptools", "rmapshaper", "sf", "units", "rgeos",
@@ -58,8 +58,8 @@ p_load(char = c(
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # SharePoint path
-if (Sys.info()["user"] == "carlostorunopaniagua") {
-  path2SP <- paste0("/Users/carlostorunopaniagua/OneDrive - World Justice Project/Data Analytics/")
+if (Sys.info()["user"] == "ctoruno") {
+  path2SP <- paste0("/Users/ctoruno/OneDrive - World Justice Project/Data Analytics/")
 
 } else if (Sys.info()["user"] == "santiagopardo") {
   path2SP <- paste0("/Users/santiagopardo/OneDrive - World Justice Project/Data Analytics/")
@@ -70,6 +70,7 @@ if (Sys.info()["user"] == "carlostorunopaniagua") {
   
 } else if (Sys.info()["user"] == "macbookprosolido") {
   path2SP <- paste0("/Users/macbookprosolido/Documents/WJP/")
+  
 } else{
   path2SP <- "PLEASE INSERT YOUR PERSONAL PATH TO THE  WJP - DATA ANALYTICS DIRECTORY"
 }
@@ -81,7 +82,6 @@ if (Sys.info()["user"] == "carlostorunopaniagua") {
 ## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 #Loading fonts
-
 path2fonts<- paste0(path2SP, "6. Country Reports/0. Fonts/")
 font_add(family     = "Lato Full",
          regular    = paste0(path2fonts, "Lato-Regular.ttf"),
