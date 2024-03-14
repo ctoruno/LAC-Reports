@@ -583,14 +583,14 @@ figure13_2.fn <- function(nchart = 13) {
   data2plot <- logit_demo(mainData = perception, Yvar = 'unsafe_bin')
   
   # Saving data points
-  write.xlsx(as.data.frame(data2plot %>% ungroup()), 
-             file      = file.path("Outputs", 
-                                   str_replace_all(mainCountry, " ", "_"),
-                                   "dataPoints.xlsx",
-                                   fsep = "/"), 
-             sheetName = paste0("Chart_", nchart, "B"),
-             append    = T,
-             row.names = T)
+  # write.xlsx(as.data.frame(data2plot %>% ungroup()), 
+  #            file      = file.path("Outputs", 
+  #                                  str_replace_all(mainCountry, " ", "_"),
+  #                                  "dataPoints.xlsx",
+  #                                  fsep = "/"), 
+  #            sheetName = paste0("Chart_", nchart, "B"),
+  #            append    = T,
+  #            row.names = T)
   
   logit_plot <- logit_demo_panel(mainData = data2plot, line_size = 1.5)
   

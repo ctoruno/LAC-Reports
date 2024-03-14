@@ -110,7 +110,7 @@ figure16B_US.fn <- function(nchart = 16){
 
   discrimination <- data_subset.df %>%
     filter(country %in% mainCountry) %>%
-    #filter(year == 2021) %>%
+    filter(year == 2021) %>%
     mutate(respect     = if_else(q16a < 4, 1, 
                                   if_else(q16a == 4 | q16a == 5 | q16a == 6, 0, NA_real_)),
            poor_service  =  if_else(q16b < 4, 1, 
@@ -185,6 +185,15 @@ figure16B_US.fn <- function(nchart = 16){
     
     summaryreg <- bind_rows(as.data.frame(coef(summary(models[[1]]))))
     
+    write.xlsx(as.data.frame(summaryreg %>% ungroup()), 
+               file      = file.path("Outputs", 
+                                     str_replace_all(mainCountry, " ", "_"),
+                                     "dataPoints.xlsx",
+                                     fsep = "/"), 
+               sheetName = paste0("Chart_", nchart, "B", "reg"),
+               append    = T,
+               row.names = T)
+    
     margEff    <- margins_summary(models[[1]], data = models[[1]]$model)
     
     data2plot <- margEff
@@ -200,10 +209,13 @@ figure16B_US.fn <- function(nchart = 16){
                                               if_else(factor %in% "Poor", 3,
                                                       if_else(factor %in% "Urban", 4, 
                                                               if_else(factor %in% "Young", 5, 6))))))
-    return(list(data2plot, summaryreg))
+    return(list(data2plot, summaryreg, models[[1]]))
   }
   
   data2plot_P1 <- logit_demo(mainData = discrimination, Yvar = respect)
+  
+  writexl::write_xlsx(data2plot_P1,
+                      "Outputs/United_States/chart16p1.xlsx")
   logit_plotP1 <- logit_demo_panel(mainData = data2plot_P1[[1]], 
                                  line_size = 1.25, 
                                  point_color = "#a90099", 
@@ -221,6 +233,8 @@ figure16B_US.fn <- function(nchart = 16){
             h      = 65.72298)
   
   data2plot_P2 <- logit_demo(mainData = discrimination, Yvar = afraid)
+  writexl::write_xlsx(data2plot_P2,
+                      "Outputs/United_States/chart16p2.xlsx")
   logit_plotP2<- logit_demo_panel(mainData = data2plot_P2[[1]], 
                                   line_size = 1.25, 
                                   point_color = "#a90099", 
